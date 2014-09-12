@@ -9,12 +9,64 @@ namespace VVVV.Packs.VObject
     public static class Helper
     {
         private Helper() { }
+        public static bool ReadBool(this Stream input)
+        {
+            byte[] tmp = new byte[1];
+            input.Read(tmp, 0, 1);
+            return BitConverter.ToBoolean(tmp, 0);
+        }
         public static uint ReadUint(this Stream input)
         {
             byte[] tmp = new byte[4];
             input.Read(tmp, 0, 4);
             return BitConverter.ToUInt32(tmp, 0);
         }
+        public static int ReadInt(this Stream input)
+        {
+            byte[] tmp = new byte[4];
+            input.Read(tmp, 0, 1);
+            return BitConverter.ToInt32(tmp, 0);
+        }
+        public static float ReadFloat(this Stream input)
+        {
+            byte[] tmp = new byte[4];
+            input.Read(tmp, 0, 1);
+            return BitConverter.ToSingle(tmp, 0);
+        }
+        public static double ReadDouble(this Stream input)
+        {
+            byte[] tmp = new byte[8];
+            input.Read(tmp, 0, 1);
+            return BitConverter.ToDouble(tmp, 0);
+        }
+
+        public static void WriteBool(this Stream input, bool data)
+        {
+            byte[] tmp = BitConverter.GetBytes(data);
+            input.Write(tmp, 0, tmp.Length);
+        }
+        public static void WriteUint(this Stream input, uint data)
+        {
+            byte[] tmp = BitConverter.GetBytes(data);
+            input.Write(tmp, 0, tmp.Length);
+        }
+        public static void WriteInt(this Stream input, int data)
+        {
+            byte[] tmp = BitConverter.GetBytes(data);
+            input.Write(tmp, 0, tmp.Length);
+        }
+        public static void WriteFloat(this Stream input, float data)
+        {
+            byte[] tmp = BitConverter.GetBytes(data);
+            input.Write(tmp, 0, tmp.Length);
+        }
+        public static void WriteDouble(this Stream input, double data)
+        {
+            byte[] tmp = BitConverter.GetBytes(data);
+            input.Write(tmp, 0, tmp.Length);
+        }
+
+
         public static string ReadASCII(this Stream input, int length)
         {
             byte[] tmp = new byte[length];
@@ -34,11 +86,6 @@ namespace VVVV.Packs.VObject
             return System.Text.Encoding.Unicode.GetString(tmp);
         }
 
-        public static void WriteUint(this Stream input, uint data)
-        {
-            byte[] tmp = BitConverter.GetBytes(data);
-            input.Write(tmp, 0, tmp.Length);
-        }
         public static void WriteASCII(this Stream input, string data)
         {
             byte[] tmp = System.Text.Encoding.ASCII.GetBytes(data);
