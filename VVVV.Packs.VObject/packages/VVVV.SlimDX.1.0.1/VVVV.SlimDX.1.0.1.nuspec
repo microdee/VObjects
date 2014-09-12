@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
+  <metadata minClientVersion="2.5">
+    <id>VVVV.SlimDX</id>
+    <version>1.0.1</version>
+    <title>SlimDX</title>
+    <authors>SlimDX Group</authors>
+    <owners>SlimDX Group</owners>
+    <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+    <projectUrl>http://slimdx.org/</projectUrl>
+    <iconUrl>http://code.google.com/p/slimdx/logo?cct=1325216584</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>This package introduces the msbuild property SlimDXPrivate to control whether the reference will be copied to the output folder.</description>
+    <summary>This package introduces the msbuild property SlimDXPrivate to control whether the reference will be copied to the output folder.</summary>
+    <releaseNotes>The January 2012 release was a minor stability release. Once again this release does not reflect a corresponding release of the DirectX SDK. Development effort was spent on fixing minor bugs and resolving issues in the installer and deployment infrastructure. Full release notes http://slimdx.org/docs/#What%27s_New_In_January_2012</releaseNotes>
+    <copyright>Copyright 2013</copyright>
+    <language />
+    <tags>DirectX</tags>
+  </metadata>
+</package>
