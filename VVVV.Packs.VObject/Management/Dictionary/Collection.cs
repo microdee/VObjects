@@ -72,6 +72,7 @@ namespace VVVV.Packs.VObject
             {
                 VObjectCollection ThisContent = this.Content as VObjectCollection;
                 ThisContent.Dispose();
+                this.Serialized.Dispose();
             }
             disposed = true;
         }

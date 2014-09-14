@@ -178,5 +178,82 @@ namespace VVVV.Packs.VObject
         {
             this.DeSerialize(this.Serialized);
         }
+
+        public ObjectTypePair DeepCopy()
+        {
+            ObjectTypePair Out = new ObjectTypePair();
+            Out.Type = this.Type;
+
+            for (int i = 0; i < this.Objects.Count; i++)
+            {
+                if (this.Type == typeof(bool)) Out.Objects.Add((object)((bool)this.Objects[i]));
+                if (this.Type == typeof(int)) Out.Objects.Add((object)((int)this.Objects[i]));
+                if (this.Type == typeof(float)) Out.Objects.Add((object)((float)this.Objects[i]));
+                if (this.Type == typeof(double)) Out.Objects.Add((object)((double)this.Objects[i]));
+                if (this.Type == typeof(string)) Out.Objects.Add((object)((string)this.Objects[i]));
+
+                if (this.Type == typeof(RGBAColor))
+                {
+                    RGBAColor inp = (RGBAColor)this.Objects[i];
+                    RGBAColor res = new RGBAColor(inp.R, inp.G, inp.B, inp.A);
+                    this.Objects.Add((object)res);
+                }
+                if (this.Type == typeof(Vector2D))
+                {
+                    Vector2D inp = (Vector2D)this.Objects[i];
+                    Vector2D res = new Vector2D(inp);
+                    this.Objects.Add((object)res);
+                }
+                if (this.Type == typeof(Vector3D))
+                {
+                    Vector3D inp = (Vector3D)this.Objects[i];
+                    Vector3D res = new Vector3D(inp);
+                    this.Objects.Add((object)res);
+                }
+                if (this.Type == typeof(Vector4D))
+                {
+                    Vector4D inp = (Vector4D)this.Objects[i];
+                    Vector4D res = new Vector4D(inp);
+                    this.Objects.Add((object)res);
+                }
+                if (this.Type == typeof(Matrix4x4))
+                {
+                    Matrix4x4 inp = (Matrix4x4)this.Objects[i];
+                    Matrix4x4 res = new Matrix4x4(inp);
+                    this.Objects.Add((object)res);
+                }
+                if (this.Type == typeof(Stream))
+                {
+                    Stream inp = (Stream)this.Objects[i];
+                    inp.Position = 0;
+                    Stream res = new MemoryStream();
+                    inp.CopyTo(res);
+                    res.Position = 0;
+                    this.Objects.Add((object)res);
+                }
+            }
+            return Out;
+        }
+        public void Dispose()
+        {
+            if(this.Type == typeof(Stream))
+            {
+                foreach(object o in this.Objects)
+                {
+                    Stream tmp = o as Stream;
+                    tmp.Dispose();
+                }
+            }
+            this.Serialized.Dispose();
+        }
+        public object this[int i]
+        {
+            get { return this.Objects[i]; }
+            set
+            {
+                if(value.GetType() == this.Type)
+                    this.Objects[i] = value;
+            }
+        }
     }
 }
