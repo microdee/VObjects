@@ -8,7 +8,7 @@ using System.IO;
 using VVVV.Utils.VColor;
 using VVVV.Utils.VMath;
 
-namespace VVVV.Packs.VObject
+namespace VVVV.Packs.VObjects
 {
     public class TypeIdentity : Dictionary<Type, string>
     {

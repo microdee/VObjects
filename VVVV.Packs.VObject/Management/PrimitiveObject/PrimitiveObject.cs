@@ -8,13 +8,13 @@ using System.IO;
 using VVVV.Utils.VColor;
 using VVVV.Utils.VMath;
 
-namespace VVVV.Packs.VObject
+namespace VVVV.Packs.VObjects
 {
-    public class BasicObject
+    public class PrimitiveObject
     {
         public Dictionary<string, ObjectTypePair> Fields = new Dictionary<string, ObjectTypePair>();
 
-        public BasicObject() { }
+        public PrimitiveObject() { }
         public void Add(string name, object Field)
         {
             if (!this.Fields.ContainsKey(name))
@@ -44,6 +44,7 @@ namespace VVVV.Packs.VObject
                         obj.Objects.Add(o);
                     }
                     obj.Type = Field[0].GetType();
+                    this.Fields.Add(name, obj);
                 }
             }
         }
@@ -62,18 +63,48 @@ namespace VVVV.Packs.VObject
         {
             get
             {
-                if (this.Fields.ContainsKey(name)) return Fields[name];
+                if (this.Fields.ContainsKey(name)) return this.Fields[name];
                 else return null;
             }
-            set { Fields[name] = value; }
+            set { if(this.Fields.ContainsKey(name)) this.Fields[name] = value; }
+        }
+        public void Clear()
+        {
+            foreach(KeyValuePair<string, ObjectTypePair> kvp in this.Fields)
+            {
+                kvp.Value.Dispose();
+            }
+            this.Fields.Clear();
         }
 
-
+        public void Remove(string key, bool match)
+        {
+            if(match)
+            {
+                if (this.Fields.ContainsKey(key))
+                    this.Fields.Remove(key);
+            }
+            else
+            {
+                List<string> ToBeRemoved = new List<string>();
+                foreach (KeyValuePair<string, ObjectTypePair> kvp in this.Fields)
+                {
+                    if(kvp.Key.Contains(key)) ToBeRemoved.Add(kvp.Key);
+                }
+                foreach(string k in ToBeRemoved)
+                {
+                    this.Fields[k].Dispose();
+                    this.Fields.Remove(k);
+                }
+                ToBeRemoved.Clear();
+            }
+        }
     }
-    public class BasicObjectWrap : VObject
+
+    public class PrimitiveObjectWrap : VObject
     {
-        public BasicObjectWrap(BasicObject o) : base(o.GetType(), o) { }
-        public BasicObjectWrap(Stream s) : base(typeof(BasicObject), s) { }
+        public PrimitiveObjectWrap(PrimitiveObject o) : base(o.GetType(), o) { }
+        public PrimitiveObjectWrap(Stream s) : base(typeof(PrimitiveObject), s) { }
 
         protected override void Dispose(bool disposing)
         {
@@ -81,8 +112,8 @@ namespace VVVV.Packs.VObject
                 return;
             if (disposing)
             {
-                BasicObject ThisContent = this.Content as BasicObject;
-                ThisContent.Dispose();
+                PrimitiveObject ThisContent = this.Content as PrimitiveObject;
+                ThisContent.Clear();
                 this.Serialized.Dispose();
             }
             disposed = true;
@@ -90,7 +121,7 @@ namespace VVVV.Packs.VObject
 
         public override Stream Serialize()
         {
-            BasicObject ThisContent = this.Content as BasicObject;
+            PrimitiveObject ThisContent = this.Content as PrimitiveObject;
             Stream dest = this.Serialized;
             dest.SetLength(0);
             dest.Position = 0;
@@ -101,21 +132,14 @@ namespace VVVV.Packs.VObject
             {
                 kvp.Value.Serialize();
                 uint l = (uint)kvp.Value.Serialized.Length;
-                l += kvp.Key.UnicodeLength();
-                l += kvp.Value.GetType().ToString().UnicodeLength() + 8;
+                l += kvp.Key.UnicodeLength() + 4;
                 dest.WriteUint(l);
             }
 
-            dest.WriteUnicode(ThisContent.Name);
-            dest.WriteUnicode(ThisContent.Debug);
-
-            foreach (KeyValuePair<string, VObject> kvp in ThisContent.Children) // 12 + CC*4 + NL + DL
+            foreach (KeyValuePair<string, ObjectTypePair> kvp in ThisContent.Fields) // 12 + CC*4 + NL + DL
             {
                 dest.WriteUint(kvp.Key.UnicodeLength()); // 0 | 4
-                dest.WriteUint(kvp.Value.GetType().ToString().UnicodeLength()); // 0 | 4
                 dest.WriteUnicode(kvp.Key); // 4 | KL
-                dest.WriteUnicode(kvp.Value.GetType().ToString());
-
                 kvp.Value.Serialized.CopyTo(dest); // 4 + KL | CL // using the stream created above
             }
             return dest;
