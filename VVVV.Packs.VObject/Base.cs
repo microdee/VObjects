@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using System.IO;
 
-namespace VVVV.Packs.VObject
+namespace VVVV.Packs.VObjects
 {
     /*
      * Object management hackery: 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using System.IO;
 
-namespace VVVV.Packs.VObject
+namespace VVVV.Packs.VObjects
 {
     // class for high level and simple object emulation in VVVV
     public class VObjectCollection
@@ -15,7 +15,7 @@ namespace VVVV.Packs.VObject
         public string Name = "";
         public Stopwatch Age = new Stopwatch();
         public string Debug = "";
-        public bool Remove = false;
+        public bool Removing = false;
         public VObjectCollection()
         {
             this.Age.Reset();
@@ -51,6 +51,56 @@ namespace VVVV.Packs.VObject
             foreach (KeyValuePair<string, VObject> kvp in this.Children)
             {
                 kvp.Value.Dispose();
+            }
+        }
+
+        public void Add(string name, VObject vobject)
+        {
+            if (!this.Children.ContainsKey(name))
+            {
+                this.Children.Add(name, vobject);
+            }
+        }
+        public void Clear()
+        {
+            foreach (KeyValuePair<string, VObject> kvp in this.Children)
+            {
+                kvp.Value.Dispose();
+            }
+            this.Children.Clear();
+        }
+        public void Remove(string key, bool match)
+        {
+            if (match)
+            {
+                if (this.Children.ContainsKey(key))
+                    this.Children.Remove(key);
+            }
+            else
+            {
+                List<string> ToBeRemoved = new List<string>();
+                foreach (KeyValuePair<string, VObject> kvp in this.Children)
+                {
+                    if (kvp.Key.Contains(key)) ToBeRemoved.Add(kvp.Key);
+                }
+                foreach (string k in ToBeRemoved)
+                {
+                    this.Children[k].Dispose();
+                    this.Children.Remove(k);
+                }
+                ToBeRemoved.Clear();
+            }
+        }
+        public VObject this[string name]
+        {
+            get
+            {
+                if (this.Children.ContainsKey(name)) return this.Children[name];
+                else return null;
+            }
+            set
+            {
+                if (this.Children.ContainsKey(name)) this.Children[name] = value;
             }
         }
 

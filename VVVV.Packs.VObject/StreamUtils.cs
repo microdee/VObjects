@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.IO;
 
-namespace VVVV.Packs.VObject
+namespace VVVV.Packs.VObjects
 {
     public static class Helper
     {
-        private Helper() { }
         public static bool ReadBool(this Stream input)
         {
             byte[] tmp = new byte[1];

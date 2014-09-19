@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using System.IO;
 
-namespace VVVV.Packs.VObject
+namespace VVVV.Packs.VObjects
 {
     // class for high level object management in VVVV
     public class VObjectDictionary
@@ -18,7 +18,7 @@ namespace VVVV.Packs.VObject
         public void RemoveObject(string k)
         {
             VObjectCollection tbr = this.Objects[k].Content as VObjectCollection;
-            tbr.Remove = true;
+            tbr.Removing = true;
         }
         public void RemoveTagged()
         {
