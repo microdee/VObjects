@@ -18,4 +18,27 @@ using VVVV.Packs.VObjects;
 
 namespace VVVV.Nodes.VObjects
 {
+    [PluginInfo(Name = "Construct", Category = "VObjectCollection", AutoEvaluate = true)]
+    public class VObjectCollectionConstructNode : ConstructVObjectNode<VObjectDictionary>
+    {
+        [Input("Name")]
+        public ISpread<ISpread<string>> FName;
+
+        [Input("Manage Existing Object", DefaultEnumEntry = "Extend", Visibility = PinVisibility.OnlyInspector)]
+        public IDiffSpread<ManageExistingObject> FExistObjMan;
+        [Input("Manage Not-Existing Object", DefaultEnumEntry = "Create", Visibility = PinVisibility.OnlyInspector)]
+        public IDiffSpread<ManageNotExisting> FNotExistObjMan;
+
+        public override void ConstructVObject(VObjectDictionary Parent)
+        {
+            if (Parent.Objects.ContainsKey(FName[this.CurrParent][this.CurrChild]))
+            {
+                if (FNotExistObjMan[this.CurrParent] == ManageNotExisting.Create)
+                {
+                    VObjectCollection NewObj = new VObjectCollection();
+                    VObjectCollectionWrap NewWrap = new VObjectCollectionWrap(NewObj);
+                }
+            }
+        }
+    }
 }

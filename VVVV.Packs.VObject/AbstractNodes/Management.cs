@@ -18,6 +18,22 @@ using VVVV.Packs.VObjects;
 
 namespace VVVV.Nodes.VObjects
 {
+    public enum ManageExistingObject
+    {
+        Ignore,
+        Overwrite,
+        Extend
+    }
+    public enum ManageExistingKey
+    {
+        Ignore,
+        Overwrite
+    }
+    public enum ManageNotExisting
+    {
+        Ignore,
+        Create
+    }
     public abstract class ParentNode<ParentObject> : IPluginEvaluate where ParentObject : VObject
     {
         [Input("Clear", IsBang = true, IsSingle = true)]
@@ -27,9 +43,9 @@ namespace VVVV.Nodes.VObjects
         public ISpread<ParentObject> FOutput;
 
         // You have to construct your parent object when the node is being constructed
-        public virtual void Cast();
-        public virtual void Clear();
-        public virtual void Remove();
+        public virtual void Cast() { }
+        public virtual void Clear() { }
+        public virtual void Remove() { }
 
         public void Evaluate(int SpreadMax)
         {
@@ -39,7 +55,34 @@ namespace VVVV.Nodes.VObjects
             this.Cast();
         }
     }
+    public abstract class ConstructVObjectNode<ParentObject> : IPluginEvaluate where ParentObject : VObject
+    {
+        [Input("Parent")]
+        public Pin<ParentObject> FParent;
+        [Input("Construct", IsBang = true)]
+        public ISpread<ISpread<bool>> FConstruct;
 
+        public int CurrParent;
+        public int CurrChild;
+
+        public virtual void ConstructVObject(ParentObject Parent) { }
+
+        public void Evaluate(int SpreadMax)
+        {
+            if (FParent.IsConnected)
+            {
+                for (int i = 0; i < FParent.SliceCount; i++)
+                {
+                    this.CurrParent = i;
+                    for (int j = 0; j < FParent.SliceCount; j++)
+                    {
+                        this.CurrParent = i;
+                        if (FConstruct[i][j]) ConstructVObject(FParent[i]);
+                    }
+                }
+            }
+        }
+    }
     public abstract class AddVObjectNode<ParentObject> : IPluginEvaluate where ParentObject : VObject
     {
         [Input("Parent")]
@@ -52,7 +95,7 @@ namespace VVVV.Nodes.VObjects
         public int CurrParent;
         public int CurrSource;
 
-        public virtual int AddVObject(ParentObject Parent, VObject Source);
+        public virtual void AddVObject(ParentObject Parent, VObject Source) { }
 
         public void Evaluate(int SpreadMax)
         {
@@ -82,7 +125,7 @@ namespace VVVV.Nodes.VObjects
 
         public int CurrSource;
 
-        public virtual int RemoveVObject(SourceObject Source);
+        public virtual void RemoveVObject(SourceObject Source) { }
 
         public void Evaluate(int SpreadMax)
         {
@@ -105,7 +148,7 @@ namespace VVVV.Nodes.VObjects
         [Output("Output")]
         public ISpread<ISpread<VObject>> FOutput;
 
-        public virtual ISpread<VObject> ToSpread(SourceObject Source);
+        public virtual ISpread<VObject> ToSpread(SourceObject Source) { }
 
         public void Evaluate(int SpreadMax)
         {
@@ -142,7 +185,7 @@ namespace VVVV.Nodes.VObjects
         [Output("Former Index")]
         public ISpread<ISpread<int>> FFormerIndex;
 
-        public virtual void Sift(SourceObject Source, string Filter, bool Contains, bool Exclude, List<int> MatchingIndices, List<VObject> Output);
+        public virtual void Sift(SourceObject Source, string Filter, bool Contains, bool Exclude, List<int> MatchingIndices, List<VObject> Output) { }
         private List<VObject> Objects = new List<VObject>();
         private List<int> Indices = new List<int>();
 
