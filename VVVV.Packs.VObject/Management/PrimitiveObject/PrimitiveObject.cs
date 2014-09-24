@@ -119,12 +119,11 @@ namespace VVVV.Packs.VObjects
             disposed = true;
         }
 
-        public override Stream Serialize()
+        public override void Serialize()
         {
+            base.Serialize();
             PrimitiveObject ThisContent = this.Content as PrimitiveObject;
             Stream dest = this.Serialized;
-            dest.SetLength(0);
-            dest.Position = 0;
 
             dest.WriteUint((uint)ThisContent.Fields.Count);
 
@@ -142,7 +141,47 @@ namespace VVVV.Packs.VObjects
                 dest.WriteUnicode(kvp.Key); // 4 | KL
                 kvp.Value.Serialized.CopyTo(dest); // 4 + KL | CL // using the stream created above
             }
-            return dest;
+        }
+
+        public override void DeSerialize(Stream Input)
+        {
+            base.DeSerialize(Input);
+            PrimitiveObject ThisContent = new PrimitiveObject();
+            Stream dest = this.Serialized;
+
+            uint Count = dest.ReadUint();
+            List<int> lengths = new List<int>();
+            
+            for(int i=0; i<Count; i++)
+            {
+                lengths.Add((int)dest.ReadUint());
+            }
+
+            for (int i = 0; i < Count; i++)
+            {
+                int nameL = (int)dest.ReadUint();
+                string name = dest.ReadUnicode(nameL);
+                int l = lengths[i]-4-nameL;
+
+                Stream CurrObj = new MemoryStream();
+                CurrObj.SetLength(0);
+                dest.CopyTo(CurrObj, l);
+
+                ObjectTypePair otp = new ObjectTypePair(CurrObj);
+                ThisContent.Add(name, otp);
+            }
+        }
+        public override VObject DeepCopy()
+        {
+            PrimitiveObject ThisContent = (PrimitiveObject)this.Content;
+            PrimitiveObject NewObject = new PrimitiveObject();
+            foreach (KeyValuePair<string, ObjectTypePair> kvp in ThisContent.Fields)
+            {
+                ObjectTypePair NewCollection = kvp.Value.DeepCopy();
+                NewObject.Add(kvp.Key, NewCollection);
+            }
+            PrimitiveObjectWrap NewWrap = new PrimitiveObjectWrap(NewObject);
+            return (VObject)NewWrap;
         }
     }
 }

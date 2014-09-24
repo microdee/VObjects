@@ -221,7 +221,7 @@ namespace VVVV.Nodes.VObjects
     }
 
     #region PluginInfo
-    [PluginInfo(Name = "SetPrimitiveObject", AutoEvaluate = true, Category = "VObject", Help = "Adds or edits fields of a Primitive Object", Tags = "Dynamic, Bin, velcrome")]
+    [PluginInfo(Name = "PrimitiveObject", AutoEvaluate = true, Category = "Set", Help = "Adds or edits fields of a Primitive Object", Tags = "Dynamic, Bin, velcrome")]
     #endregion PluginInfo
     public class SetMessageNode : DynamicNode
     {

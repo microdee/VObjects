@@ -126,12 +126,11 @@ namespace VVVV.Packs.VObjects
             }
             disposed = true;
         }
-        public override Stream Serialize()
+        public override void Serialize()
         {
+            base.Serialize();
             VObjectCollection ThisContent = this.Content as VObjectCollection;
             Stream dest = this.Serialized;
-            dest.SetLength(0);
-            dest.Position = 0;
 
             dest.WriteUint((uint)ThisContent.Children.Count); // 0 | 4
             dest.WriteUint(ThisContent.Name.UnicodeLength()); // 4 | 4
@@ -139,7 +138,8 @@ namespace VVVV.Packs.VObjects
 
             foreach (KeyValuePair<string, VObject> kvp in ThisContent.Children) // 12 | CC*4
             {
-                uint l = (uint)kvp.Value.Serialize().Length; // serialized here
+                kvp.Value.Serialize();
+                uint l = (uint)kvp.Value.Serialized.Length; // serialized here
                 l += kvp.Key.UnicodeLength();
                 l += kvp.Value.GetType().ToString().UnicodeLength() + 8;
                 dest.WriteUint(l);
@@ -157,7 +157,6 @@ namespace VVVV.Packs.VObjects
 
                 kvp.Value.Serialized.CopyTo(dest); // 4 + KL | CL // using the stream created above
             }
-            return dest;
         }
         protected override void DeSerialize(Stream Input)
         {
@@ -189,13 +188,25 @@ namespace VVVV.Packs.VObjects
                 Type childtype = Type.GetType(typename);
                 this.Serialized.CopyTo(child, (int)l);
 
-                Object[] ConstrArgs = new Object[] {new MemoryStream()};
+                child.Position = 0;
+                int DerivedTypeL = (int)child.ReadUint();
+                Type DerivedType = Type.GetType(child.ReadUnicode(DerivedTypeL));
+                child.Position = 0;
+
+                Object[] ConstrArgs = new Object[] {child};
                 ThisContent.Children.Add(
                     keyname,
-                    Activator.CreateInstance(childtype, ConstrArgs) as VObject
+                    Activator.CreateInstance(DerivedType, ConstrArgs) as VObject
                 );
             }
             this.Content = ThisContent;
+        }
+        public override VObject DeepCopy()
+        {
+            VObjectCollection ThisContent = (VObjectCollection)this.Content;
+            VObjectCollection NewObject = ThisContent.DeepCopy();
+            VObjectCollectionWrap NewWrap = new VObjectCollectionWrap(NewObject);
+            return (VObject)NewWrap;
         }
 
         public VObjectCollection Cast()

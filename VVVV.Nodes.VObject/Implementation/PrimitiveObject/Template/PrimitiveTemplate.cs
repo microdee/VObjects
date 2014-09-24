@@ -19,7 +19,7 @@ using VVVV.Packs.VObjects;
 namespace VVVV.Nodes.VObjects
 {
     #region PluginInfo
-    [PluginInfo(Name = "PrimitiveTemplate", AutoEvaluate = true, Category = "VObject", Help = "Define a high level Template for Primitive Objects", Tags = "Dynamic, Bin, microdee")]
+    [PluginInfo(Name = "PrimitiveTemplate", AutoEvaluate = true, Category = "PrimitiveObject", Help = "Define a high level Template for Primitive Objects", Tags = "Dynamic, Bin, microdee")]
     #endregion PluginInfo
     public class VObjectPrimitiveTemplateNode : IPluginEvaluate
     {

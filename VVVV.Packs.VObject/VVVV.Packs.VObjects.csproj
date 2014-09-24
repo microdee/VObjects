@@ -124,6 +124,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractNodes\Casting.cs" />
+    <Compile Include="AbstractNodes\Management.cs" />
     <Compile Include="Base.cs" />
     <Compile Include="Management\PrimitiveObject\PrimitiveObject.cs" />
     <Compile Include="Management\PrimitiveObject\ObjectTypePair.cs" />

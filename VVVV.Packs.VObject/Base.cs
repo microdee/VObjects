@@ -51,18 +51,30 @@ namespace VVVV.Packs.VObjects
             disposed = true;
         }
 
-        public virtual Stream Serialize();
-        protected virtual void DeSerialize(Stream Input)
+        public virtual void Serialize()
+        {
+            this.Serialized.Position = 0;
+            this.Serialized.SetLength(0);
+            this.Serialized.WriteUint((uint)this.GetType().ToString().Length);
+            this.Serialized.WriteUnicode(this.GetType().ToString());
+            this.Serialized.WriteUint((uint)this.ObjectType.ToString().Length);
+            this.Serialized.WriteUnicode(this.ObjectType.ToString());
+        }
+        public virtual void DeSerialize(Stream Input)
         {
             Stream dest = this.Serialized;
 
-            dest.Position = 0;
+            this.Serialized.Position = 0;
             Input.Position = 0;
 
-            dest.SetLength(0);
-            Input.CopyTo(dest);
+            this.Serialized.SetLength(0);
+            Input.CopyTo(this.Serialized);
+            this.Serialized.Position = 0;
 
-            dest.Position = 0;
+            uint l = this.Serialized.ReadUint();
+            this.Serialized.ReadUnicode((int)l);
+            l = this.Serialized.ReadUint();
+            this.Serialized.ReadUnicode((int)l);
         }
         public virtual VObject DeepCopy();
     }

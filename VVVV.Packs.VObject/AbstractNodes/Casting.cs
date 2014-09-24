@@ -21,25 +21,32 @@ namespace VVVV.Nodes.VObjects
     public abstract class SoucreCastNode<DerivedVObject> : IPluginEvaluate where DerivedVObject : VObject
     {
         [Input("Input")]
-        public IDiffSpread<DerivedVObject> FInput;
+        public Pin<DerivedVObject> FInput;
 
         [Output("Output")]
         public ISpread<VObject> FOutput;
 
         public void Evaluate(int SpreadMax)
         {
-            FOutput.SliceCount = SpreadMax;
-
-            for (int i = 0; i < SpreadMax; i++)
+            if (FInput.IsConnected)
             {
-                FOutput[i] = (VObject)FInput[i];
+                FOutput.SliceCount = SpreadMax;
+
+                for (int i = 0; i < SpreadMax; i++)
+                {
+                    FOutput[i] = (VObject)FInput[i];
+                }
+            }
+            else
+            {
+                FOutput.SliceCount = 0;
             }
         }
     }
     public abstract class SinkCastNode<DerivedVObject> : IPluginEvaluate where DerivedVObject : VObject
     {
         [Input("Input")]
-        public IDiffSpread<VObject> FInput;
+        public Pin<VObject> FInput;
 
         [Output("Output")]
         public ISpread<DerivedVObject> FOutput;
@@ -50,25 +57,33 @@ namespace VVVV.Nodes.VObjects
 
         public void Evaluate(int SpreadMax)
         {
-            FValid.SliceCount = SpreadMax;
-
-            int validcount = 0;
-            ValidID.Clear();
-            for(int i=0; i<SpreadMax; i++)
+            if (FInput.IsConnected)
             {
-                FValid[i] = false;
-                if(FInput[i] is DerivedVObject)
+                FValid.SliceCount = SpreadMax;
+
+                int validcount = 0;
+                ValidID.Clear();
+                for(int i=0; i<SpreadMax; i++)
                 {
-                    FValid[i] = true;
-                    ValidID.Add(i);
-                    validcount++;
+                    FValid[i] = false;
+                    if(FInput[i] is DerivedVObject)
+                    {
+                        FValid[i] = true;
+                        ValidID.Add(i);
+                        validcount++;
+                    }
+                }
+
+                FOutput.SliceCount = validcount;
+                for(int i=0; i<validcount; i++)
+                {
+                    FOutput[i] = (DerivedVObject)FInput[ValidID[i]];
                 }
             }
-
-            FOutput.SliceCount = validcount;
-            for(int i=0; i<validcount; i++)
+            else
             {
-                FOutput[i] = (DerivedVObject)FInput[ValidID[i]];
+                FOutput.SliceCount = 0;
+                FValid.SliceCount = 0;
             }
         }
     }

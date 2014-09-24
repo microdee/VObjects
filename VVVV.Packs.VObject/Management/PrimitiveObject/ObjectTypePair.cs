@@ -15,6 +15,10 @@ namespace VVVV.Packs.VObjects
         public List<object> Objects = new List<object>();
         public Type Type;
         public ObjectTypePair() { }
+        public ObjectTypePair(Stream Input)
+        {
+            this.DeSerialize(Input);
+        }
         public Stream Serialized = new MemoryStream();
 
         public void Serialize()

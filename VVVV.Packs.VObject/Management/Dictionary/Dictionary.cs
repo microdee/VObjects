@@ -37,6 +37,8 @@ namespace VVVV.Packs.VObjects
     }
     public class VObjectDictionaryWrap : VObject
     {
+        public VObjectDictionaryWrap(VObjectDictionary o) : base(o.GetType(), o) { }
+        public VObjectDictionaryWrap(Stream s) : base(typeof(VObjectDictionary), s) { }
         protected override void Dispose(bool disposing)
         {
             if (this.disposed)
@@ -48,18 +50,18 @@ namespace VVVV.Packs.VObjects
             }
             disposed = true;
         }
-        public override Stream Serialize()
+        public override void Serialize()
         {
+            base.Serialize();
             VObjectDictionary ThisContent = this.Content as VObjectDictionary;
             Stream dest = this.Serialized;
-            dest.SetLength(0);
-            dest.Position = 0;
 
             dest.WriteUint((uint)ThisContent.Objects.Count); // 0 | 4
 
             foreach (KeyValuePair<string, VObjectCollectionWrap> kvp in ThisContent.Objects) // 4 | CC*4
             {
-                uint l = (uint)kvp.Value.Serialize().Length; // serialized here
+                kvp.Value.Serialize();
+                uint l = (uint)kvp.Value.Serialized.Length; // serialized here
                 l += kvp.Key.UnicodeLength() + 4;
                 dest.WriteUint(l);
             }
@@ -71,7 +73,6 @@ namespace VVVV.Packs.VObjects
 
                 kvp.Value.Serialized.CopyTo(dest); // 4 + KL | CL // using the stream created above
             }
-            return dest;
         }
         protected override void DeSerialize(Stream Input)
         {
@@ -97,6 +98,18 @@ namespace VVVV.Packs.VObjects
                 ThisContent.Objects.Add(keyname, new VObjectCollectionWrap(vobject));
             }
             this.Content = ThisContent;
+        }
+        public override VObject DeepCopy()
+        {
+            VObjectDictionary ThisContent = (VObjectDictionary)this.Content;
+            VObjectDictionary NewObject = new VObjectDictionary();
+            foreach(KeyValuePair<string, VObjectCollectionWrap> kvp in ThisContent.Objects)
+            {
+                VObjectCollectionWrap NewCollection = (VObjectCollectionWrap)kvp.Value.DeepCopy();
+                NewObject.Objects.Add(kvp.Key, NewCollection);
+            }
+            VObjectDictionaryWrap NewWrap = new VObjectDictionaryWrap(NewObject);
+            return (VObject)NewWrap;
         }
     }
 }
