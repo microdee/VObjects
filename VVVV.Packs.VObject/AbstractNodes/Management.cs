@@ -64,17 +64,27 @@ namespace VVVV.Nodes.VObjects
 
         public int CurrParent;
         public int CurrChild;
+        public Spread<int> SliceCount = new Spread<int>();
+        public virtual void SetSliceCount()
+        {
+            this.SliceCount.SliceCount = FConstruct.SliceCount;
+            for (int i = 0; i < SliceCount.SliceCount; i++)
+            {
+                SliceCount[i] = FConstruct[i].SliceCount;
+            }
+        }
 
         public virtual void ConstructVObject(ParentObject Parent) { }
 
         public void Evaluate(int SpreadMax)
         {
+            this.SetSliceCount();
             if (FParent.IsConnected)
             {
                 for (int i = 0; i < FParent.SliceCount; i++)
                 {
                     this.CurrParent = i;
-                    for (int j = 0; j < FParent.SliceCount; j++)
+                    for (int j = 0; j < FConstruct[i].SliceCount; j++)
                     {
                         this.CurrParent = i;
                         if (FConstruct[i][j]) ConstructVObject(FParent[i]);
@@ -148,7 +158,10 @@ namespace VVVV.Nodes.VObjects
         [Output("Output")]
         public ISpread<ISpread<VObject>> FOutput;
 
-        public virtual ISpread<VObject> ToSpread(SourceObject Source) { }
+        public virtual Spread<VObject> ToSpread(SourceObject Source)
+        {
+            return new Spread<VObject>();
+        }
 
         public void Evaluate(int SpreadMax)
         {

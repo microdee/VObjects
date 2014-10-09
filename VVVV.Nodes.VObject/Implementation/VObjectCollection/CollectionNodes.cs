@@ -36,9 +36,33 @@ namespace VVVV.Nodes.VObjects
                 if (FNotExistObjMan[this.CurrParent] == ManageNotExisting.Create)
                 {
                     VObjectCollection NewObj = new VObjectCollection();
+                    NewObj.Name = FName[this.CurrParent][this.CurrChild];
                     VObjectCollectionWrap NewWrap = new VObjectCollectionWrap(NewObj);
+                    Parent.Objects.Add(FName[this.CurrParent][this.CurrChild], NewWrap);
+                }
+            }
+            else
+            {
+                if (FExistObjMan[this.CurrParent] == ManageExistingObject.Overwrite)
+                {
+                    VObjectCollection CurrObj = Parent.Objects[FName[this.CurrParent][this.CurrChild]].Content as VObjectCollection;
+                    CurrObj.Clear();
                 }
             }
         }
+    }
+
+    [PluginInfo(Name = "Add", Category = "VObjectCollection", AutoEvaluate = true)]
+    public class VObjectCollectionAddNode : AddVObjectNode<VObjectCollection>
+    {
+        [Input("Name")]
+        public ISpread<ISpread<string>> FName;
+
+        [Input("Manage Existing Object", DefaultEnumEntry = "Extend", Visibility = PinVisibility.OnlyInspector)]
+        public IDiffSpread<ManageExistingObject> FExistObjMan;
+        [Input("Manage Not-Existing Object", DefaultEnumEntry = "Create", Visibility = PinVisibility.OnlyInspector)]
+        public IDiffSpread<ManageNotExisting> FNotExistObjMan;
+
+
     }
 }
