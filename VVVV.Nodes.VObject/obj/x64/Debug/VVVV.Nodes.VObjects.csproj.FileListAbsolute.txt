@@ -1,0 +1,11 @@
+C:\vvvv\github\VObjects\VVVV.Nodes.VObject\bin\x64\Debug\VVVV.Nodes.VObject.dll.config
+C:\vvvv\github\VObjects\VVVV.Nodes.VObject\bin\x64\Debug\VVVV.Nodes.VObject.dll
+C:\vvvv\github\VObjects\VVVV.Nodes.VObject\bin\x64\Debug\VVVV.Nodes.VObject.pdb
+C:\vvvv\github\VObjects\VVVV.Nodes.VObject\bin\x64\Debug\System.ComponentModel.Composition.Registration.CodePlex.dll
+C:\vvvv\github\VObjects\VVVV.Nodes.VObject\bin\x64\Debug\System.ComponentModel.Composition.Web.Mvc.CodePlex.dll
+C:\vvvv\github\VObjects\VVVV.Nodes.VObject\bin\x64\Debug\System.Reflection.Context.CodePlex.dll
+C:\vvvv\github\VObjects\VVVV.Nodes.VObject\bin\x64\Debug\VVVV.Packs.VObject.dll
+C:\vvvv\github\VObjects\VVVV.Nodes.VObject\bin\x64\Debug\VVVV.Packs.VObject.pdb
+C:\vvvv\github\VObjects\VVVV.Nodes.VObject\obj\x64\Debug\VVVV.Nodes.VObjects.csprojResolveAssemblyReference.cache
+C:\vvvv\github\VObjects\VVVV.Nodes.VObject\obj\x64\Debug\VVVV.Nodes.VObject.dll
+C:\vvvv\github\VObjects\VVVV.Nodes.VObject\obj\x64\Debug\VVVV.Nodes.VObject.pdb

@@ -158,7 +158,7 @@ namespace VVVV.Packs.VObjects
                 kvp.Value.Serialized.CopyTo(dest); // 4 + KL | CL // using the stream created above
             }
         }
-        protected override void DeSerialize(Stream Input)
+        public override void DeSerialize(Stream Input)
         {
             base.DeSerialize(Input);
             VObjectCollection ThisContent = new VObjectCollection();

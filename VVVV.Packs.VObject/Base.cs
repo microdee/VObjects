@@ -76,6 +76,9 @@ namespace VVVV.Packs.VObjects
             l = this.Serialized.ReadUint();
             this.Serialized.ReadUnicode((int)l);
         }
-        public virtual VObject DeepCopy();
+        public virtual VObject DeepCopy()
+        {
+            return null;
+        }
     }
 }

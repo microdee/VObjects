@@ -55,7 +55,52 @@ namespace VVVV.Nodes.VObjects
             this.Cast();
         }
     }
-    public abstract class ConstructVObjectNode<ParentObject> : IPluginEvaluate where ParentObject : VObject
+    public abstract class ConstructVObjectNode<ResultObject> : IPluginEvaluate where ResultObject : VObject
+    {
+        [Input("Construct", IsBang = true)]
+        public ISpread<bool> FConstruct;
+        [Input("Auto Clear", DefaultBoolean = true)]
+        public ISpread<bool> FAutoClear;
+        [Output("Output")]
+        public ISpread<ResultObject> FOutput;
+
+        public int CurrObj;
+        public int SliceCount = 0;
+        public int fc = 0;
+        public virtual void SetSliceCount(int SpreadMax)
+        {
+            this.SliceCount = SpreadMax;
+        }
+
+        public virtual ResultObject ConstructVObject()
+        {
+            return null;
+        }
+
+        public void Evaluate(int SpreadMax)
+        {
+            this.SetSliceCount(SpreadMax);
+
+            if (FAutoClear[0])
+            {
+                bool clear = false;
+                for (int i = 0; i < this.SliceCount; i++)
+                {
+                    if (FConstruct[i]) clear = true;
+                }
+                if (clear) fc = 0;
+            }
+            if (fc == 0) FOutput.SliceCount = 0;
+            fc++;
+
+            for (int i = 0; i < this.SliceCount; i++)
+            {
+                this.CurrObj = i;
+                if(FConstruct[i]) FOutput.Add(ConstructVObject());
+            }
+        }
+    }
+    public abstract class ConstructToParentVObjectNode<ParentObject> : IPluginEvaluate where ParentObject : VObject
     {
         [Input("Parent")]
         public Pin<ParentObject> FParent;
@@ -65,7 +110,7 @@ namespace VVVV.Nodes.VObjects
         public int CurrParent;
         public int CurrChild;
         public Spread<int> SliceCount = new Spread<int>();
-        public virtual void SetSliceCount()
+        public virtual void SetSliceCount(int SpreadMax)
         {
             this.SliceCount.SliceCount = FConstruct.SliceCount;
             for (int i = 0; i < SliceCount.SliceCount; i++)
@@ -78,15 +123,15 @@ namespace VVVV.Nodes.VObjects
 
         public void Evaluate(int SpreadMax)
         {
-            this.SetSliceCount();
             if (FParent.IsConnected)
             {
+                this.SetSliceCount(SpreadMax);
                 for (int i = 0; i < FParent.SliceCount; i++)
                 {
                     this.CurrParent = i;
-                    for (int j = 0; j < FConstruct[i].SliceCount; j++)
+                    for (int j = 0; j < this.SliceCount[i]; j++)
                     {
-                        this.CurrParent = i;
+                        this.CurrChild = j;
                         if (FConstruct[i][j]) ConstructVObject(FParent[i]);
                     }
                 }
@@ -100,51 +145,97 @@ namespace VVVV.Nodes.VObjects
         [Input("Source")]
         public ISpread<ISpread<VObject>> FSource;
         [Input("Add", IsBang = true)]
-        public ISpread<bool> FAdd;
+        public ISpread<ISpread<bool>> FAdd;
 
         public int CurrParent;
         public int CurrSource;
 
         public virtual void AddVObject(ParentObject Parent, VObject Source) { }
+        public virtual void InitializeFrame() { }
 
         public void Evaluate(int SpreadMax)
         {
             if (FParent.IsConnected)
             {
+                this.InitializeFrame();
                 for(int i=0; i<FParent.SliceCount; i++)
                 {
                     this.CurrParent = i;
-                    if((FSource[i][0] != null) && FAdd[i])
                     {
                         for (int j = 0; j < FSource[i].SliceCount; j++ )
                         {
                             this.CurrSource = j;
-                            AddVObject(FParent[i], FSource[i][j]);
+                            if ((FSource[i][j] != null) && FAdd[i][j])
+                                AddVObject(FParent[i], FSource[i][j]);
                         }
                     }
                 }
             }
         }
     }
-    public abstract class RemoveVObjectNode<SourceObject> : IPluginEvaluate where SourceObject : VObject
+    public abstract class RemoveVObjectNode<ParentObject> : IPluginEvaluate where ParentObject : VObject
+    {
+        [Input("Parent")]
+        public Pin<ParentObject> FParent;
+        [Input("Remove", IsBang = true)]
+        public ISpread<ISpread<bool>> FRemove;
+
+        public int CurrParent;
+        public int CurrChild;
+
+        public Spread<int> SliceCount = new Spread<int>();
+        public virtual void SetSliceCount(int SpreadMax)
+        {
+            this.SliceCount.SliceCount = FParent.SliceCount;
+            for (int i = 0; i < SliceCount.SliceCount; i++)
+            {
+                SliceCount[i] = FRemove[i].SliceCount;
+            }
+        }
+
+        public virtual void RemoveVObject(ParentObject Parent) { }
+
+        public void Evaluate(int SpreadMax)
+        {
+            if (FParent.IsConnected)
+            {
+                this.SetSliceCount(SpreadMax);
+                for (int i = 0; i < this.SliceCount.SliceCount; i++)
+                {
+                    this.CurrParent = i;
+                    {
+                        for (int j = 0; j < this.SliceCount[i]; j++)
+                        {
+                            this.CurrChild = j;
+                            if (FRemove[i][j])
+                                RemoveVObject(FParent[i]);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    public abstract class DestroyVObjectNode<SourceObject> : IPluginEvaluate where SourceObject : VObject
     {
         [Input("Source")]
         public Pin<SourceObject> FInput;
-        [Input("Remove", IsBang = true)]
-        public ISpread<bool> FRemove;
+        [Input("Destroy", IsBang = true)]
+        public ISpread<bool> FDestroy;
 
         public int CurrSource;
 
-        public virtual void RemoveVObject(SourceObject Source) { }
+        public virtual void DestroyVObject(SourceObject Source) { }
+        public virtual void InitializeFrame() { }
 
         public void Evaluate(int SpreadMax)
         {
             if (FInput.IsConnected)
             {
+                this.InitializeFrame();
                 for (int i = 0; i < FInput.SliceCount; i++)
                 {
                     CurrSource = i;
-                    RemoveVObject(FInput[i]);
+                    if(FDestroy[i]) DestroyVObject(FInput[i]);
                 }
             }
         }
@@ -162,12 +253,15 @@ namespace VVVV.Nodes.VObjects
         {
             return new Spread<VObject>();
         }
+        public virtual void InitializeFrame() { }
 
         public void Evaluate(int SpreadMax)
         {
             if (FInput.IsConnected)
             {
                 FOutput.SliceCount = FInput.SliceCount;
+                this.InitializeFrame();
+
                 for (int i = 0; i < FInput.SliceCount; i++)
                 {
                     FOutput[i] = ToSpread(FInput[i]);
@@ -201,6 +295,7 @@ namespace VVVV.Nodes.VObjects
         public virtual void Sift(SourceObject Source, string Filter, bool Contains, bool Exclude, List<int> MatchingIndices, List<VObject> Output) { }
         private List<VObject> Objects = new List<VObject>();
         private List<int> Indices = new List<int>();
+        public virtual void InitializeFrame() { }
 
         public void Evaluate(int SpreadMax)
         {
@@ -208,6 +303,8 @@ namespace VVVV.Nodes.VObjects
             {
                 FOutput.SliceCount = FInput.SliceCount;
                 FFormerIndex.SliceCount = FInput.SliceCount;
+
+                this.InitializeFrame();
                 for (int i = 0; i < FInput.SliceCount; i++)
                 {
                     FOutput[i].SliceCount = 0;

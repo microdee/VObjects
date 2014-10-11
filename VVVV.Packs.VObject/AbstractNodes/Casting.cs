@@ -18,7 +18,7 @@ using VVVV.Packs.VObjects;
 
 namespace VVVV.Nodes.VObjects
 {
-    public abstract class SoucreCastNode<DerivedVObject> : IPluginEvaluate where DerivedVObject : VObject
+    public abstract class CastFromNode<DerivedVObject> : IPluginEvaluate where DerivedVObject : VObject
     {
         [Input("Input")]
         public Pin<DerivedVObject> FInput;
@@ -43,7 +43,7 @@ namespace VVVV.Nodes.VObjects
             }
         }
     }
-    public abstract class SinkCastNode<DerivedVObject> : IPluginEvaluate where DerivedVObject : VObject
+    public abstract class CastToNode<DerivedVObject> : IPluginEvaluate where DerivedVObject : VObject
     {
         [Input("Input")]
         public Pin<VObject> FInput;

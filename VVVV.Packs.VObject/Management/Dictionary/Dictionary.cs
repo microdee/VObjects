@@ -22,6 +22,13 @@ namespace VVVV.Packs.VObjects
         }
         public void RemoveTagged()
         {
+            this.RemoveList.Clear();
+            foreach (KeyValuePair<string, VObjectCollectionWrap> kvp in this.Objects)
+            {
+                VObjectCollection Content = kvp.Value.Content as VObjectCollection;
+                if (Content.Removing) this.RemoveList.Add(kvp.Key);
+            }
+
             foreach (string k in this.RemoveList)
             {
                 this.Objects[k].Dispose();
@@ -74,7 +81,7 @@ namespace VVVV.Packs.VObjects
                 kvp.Value.Serialized.CopyTo(dest); // 4 + KL | CL // using the stream created above
             }
         }
-        protected override void DeSerialize(Stream Input)
+        public override void DeSerialize(Stream Input)
         {
             base.DeSerialize(Input);
             VObjectDictionary ThisContent = new VObjectDictionary();

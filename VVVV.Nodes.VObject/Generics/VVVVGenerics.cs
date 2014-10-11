@@ -2,7 +2,6 @@
 using VVVV.Nodes.Generic;
 using VVVV.PluginInterfaces.V2;
 using VVVV.Utils.Streams;
-using VVVV.Nodes.Generic;
 
 using VVVV.Packs.VObjects;
 
@@ -180,6 +179,10 @@ namespace VVVV.Nodes.VObjects
     public class VObjectStackNode : StackNode<VObject> { }
     #endregion basics
 
+    [PluginInfo(Name = "FrameDelay",
+                Category = "VObject",
+                Author = "vux"
+                )]
     public class VObjectFrameDelayNode : FrameDelayNode<VObject>
     {
         protected override VObject CloneSlice(VObject slice)
