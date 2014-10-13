@@ -28,7 +28,7 @@ namespace VVVV.Nodes.VObjects
     [PluginInfo(Name = "Construct", Category = "VObjectCollection")]
     public class VObjectCollectionConstructNode : ConstructVObjectNode<VObjectCollectionWrap>
     {
-        [Input("Name")]
+        [Input("Name", Order = 10)]
         public ISpread<string> FName;
 
         public override VObjectCollectionWrap ConstructVObject()
@@ -43,12 +43,12 @@ namespace VVVV.Nodes.VObjects
     [PluginInfo(Name = "ConstructToDictionary", Category = "VObjectCollection", AutoEvaluate = true)]
     public class VObjectCollectionConstructToDictionaryNode : ConstructToParentVObjectNode<VObjectDictionaryWrap>
     {
-        [Input("Name")]
+        [Input("Name", Order = 10)]
         public ISpread<ISpread<string>> FName;
 
-        [Input("Manage Existing Object", DefaultEnumEntry = "Overwrite", Visibility = PinVisibility.OnlyInspector)]
+        [Input("Manage Existing Object", DefaultEnumEntry = "Overwrite", Order = 11)]
         public IDiffSpread<ManageExistingObject> FExistObjMan;
-        [Input("Manage Not-Existing Object", DefaultEnumEntry = "Create", Visibility = PinVisibility.OnlyInspector)]
+        [Input("Manage Not-Existing Object", DefaultEnumEntry = "Create", Order = 12)]
         public IDiffSpread<ManageNotExisting> FNotExistObjMan;
 
         public override void SetSliceCount(int SpreadMax)
@@ -70,6 +70,8 @@ namespace VVVV.Nodes.VObjects
                     NewObj.Name = FName[this.CurrParent][this.CurrChild];
                     VObjectCollectionWrap NewWrap = new VObjectCollectionWrap(NewObj);
                     Content.Objects.Add(FName[this.CurrParent][this.CurrChild], NewWrap);
+
+                    FOutput.Add(NewWrap);
                 }
             }
             else
@@ -84,6 +86,7 @@ namespace VVVV.Nodes.VObjects
                     VObjectCollectionWrap NewWrap = new VObjectCollectionWrap(NewObj);
 
                     Content.Objects[FName[this.CurrParent][this.CurrChild]] = NewWrap;
+                    FOutput.Add(NewWrap);
                 }
             }
         }
@@ -92,12 +95,12 @@ namespace VVVV.Nodes.VObjects
     [PluginInfo(Name = "Add", Category = "VObjectCollection", AutoEvaluate = true)]
     public class VObjectCollectionAddNode : AddVObjectNode<VObjectCollectionWrap>
     {
-        [Input("Name")]
+        [Input("Name", Order = 10)]
         public ISpread<ISpread<string>> FName;
 
-        [Input("Manage Existing Object", DefaultEnumEntry = "Overwrite", Visibility = PinVisibility.OnlyInspector)]
+        [Input("Manage Existing Object", DefaultEnumEntry = "Overwrite", Order = 11)]
         public IDiffSpread<ManageExistingObject> FExistObjMan;
-        [Input("Manage Not-Existing Object", DefaultEnumEntry = "Create", Visibility = PinVisibility.OnlyInspector)]
+        [Input("Manage Not-Existing Object", DefaultEnumEntry = "Create", Order = 12)]
         public IDiffSpread<ManageNotExisting> FNotExistObjMan;
 
         public override void AddVObject(VObjectCollectionWrap Parent, VObject Source)
@@ -124,9 +127,9 @@ namespace VVVV.Nodes.VObjects
     [PluginInfo(Name = "Remove", Category = "VObjectCollection", AutoEvaluate = true)]
     public class VObjectCollectionRemoveNode : RemoveVObjectNode<VObjectCollectionWrap>
     {
-        [Input("Name")]
+        [Input("Name", Order = 10)]
         public ISpread<ISpread<string>> FName;
-        [Input("Match")]
+        [Input("Match", Order = 11)]
         public ISpread<ISpread<bool>> FMatch;
 
         public override void SetSliceCount(int SpreadMax)

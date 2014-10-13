@@ -54,16 +54,16 @@ namespace VVVV.Nodes.VObjects
     [PluginInfo(Name = "Add", Category = "VObjectDictionary", AutoEvaluate = true)]
     public class VObjectDictionaryAddNode : AddVObjectNode<VObjectDictionaryWrap>
     {
-        [Input("Reset Age")]
+        [Input("Reset Age", Order = 10)]
         public ISpread<bool> FResetAge;
 
-        [Input("Manage Existing Object", DefaultEnumEntry = "Extend", Visibility = PinVisibility.OnlyInspector)]
+        [Input("Manage Existing Object", DefaultEnumEntry = "Extend", Order = 11)]
         public IDiffSpread<ManageExistingObject> FExistObjMan;
-        [Input("Manage Existing Child", DefaultEnumEntry = "Overwrite", Visibility = PinVisibility.OnlyInspector)]
+        [Input("Manage Existing Child", DefaultEnumEntry = "Overwrite", Order = 12)]
         public ISpread<ISpread<ManageExistingKey>> FExistKeyMan;
-        [Input("Manage Not-Existing Object", DefaultEnumEntry = "Create", Visibility = PinVisibility.OnlyInspector)]
+        [Input("Manage Not-Existing Object", DefaultEnumEntry = "Create", Order = 13)]
         public IDiffSpread<ManageNotExisting> FNotExistObjMan;
-        [Input("Manage Not-Existing Child", DefaultEnumEntry = "Create", Visibility = PinVisibility.OnlyInspector)]
+        [Input("Manage Not-Existing Child", DefaultEnumEntry = "Create", Order = 14)]
         public ISpread<ISpread<ManageNotExisting>> FNotExistKeyMan;
 
         [Output("Valid")]
@@ -138,9 +138,9 @@ namespace VVVV.Nodes.VObjects
     [PluginInfo(Name = "Remove", Category = "VObjectDictionary", AutoEvaluate = true)]
     public class VObjectDictionaryRemoveNode : RemoveVObjectNode<VObjectDictionaryWrap>
     {
-        [Input("Name")]
+        [Input("Name", Order = 10)]
         public ISpread<ISpread<string>> FName;
-        [Input("Match")]
+        [Input("Match", Order = 11)]
         public ISpread<ISpread<bool>> FMatch;
 
         public override void SetSliceCount(int SpreadMax)

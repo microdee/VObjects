@@ -36,10 +36,10 @@ namespace VVVV.Nodes.VObjects
     }
     public abstract class ParentNode<ParentObject> : IPluginEvaluate where ParentObject : VObject
     {
-        [Input("Clear", IsBang = true, IsSingle = true)]
+        [Input("Clear", IsBang = true, IsSingle = true, Order = 0)]
         public IDiffSpread<bool> FClear;
 
-        [Output("Output")]
+        [Output("Output", Order = 0)]
         public ISpread<ParentObject> FOutput;
 
         // You have to construct your parent object when the node is being constructed
@@ -57,11 +57,11 @@ namespace VVVV.Nodes.VObjects
     }
     public abstract class ConstructVObjectNode<ResultObject> : IPluginEvaluate where ResultObject : VObject
     {
-        [Input("Construct", IsBang = true)]
+        [Input("Construct", IsBang = true, Order = 0)]
         public ISpread<bool> FConstruct;
-        [Input("Auto Clear", DefaultBoolean = true)]
+        [Input("Auto Clear", DefaultBoolean = true, Order = 1)]
         public ISpread<bool> FAutoClear;
-        [Output("Output")]
+        [Output("Output", Order = 0)]
         public ISpread<ResultObject> FOutput;
 
         public int CurrObj;
@@ -102,14 +102,18 @@ namespace VVVV.Nodes.VObjects
     }
     public abstract class ConstructToParentVObjectNode<ParentObject> : IPluginEvaluate where ParentObject : VObject
     {
-        [Input("Parent")]
+        [Input("Parent", Order = 0)]
         public Pin<ParentObject> FParent;
-        [Input("Construct", IsBang = true)]
+        [Input("Construct", Order = 1, IsBang = true)]
         public ISpread<ISpread<bool>> FConstruct;
+
+        [Output("Output", Order = 0)]
+        public ISpread<VObject> FOutput;
 
         public int CurrParent;
         public int CurrChild;
         public Spread<int> SliceCount = new Spread<int>();
+        public int fc = 0;
         public virtual void SetSliceCount(int SpreadMax)
         {
             this.SliceCount.SliceCount = FConstruct.SliceCount;
@@ -126,25 +130,40 @@ namespace VVVV.Nodes.VObjects
             if (FParent.IsConnected)
             {
                 this.SetSliceCount(SpreadMax);
+                foreach(ISpread<bool> s in FConstruct)
+                {
+                    foreach (bool c in s)
+                    {
+                        if (c) fc = 0;
+                    }
+                }
+                if(fc==0)
+                {
+                    FOutput.SliceCount = 0;
+                }
                 for (int i = 0; i < FParent.SliceCount; i++)
                 {
                     this.CurrParent = i;
                     for (int j = 0; j < this.SliceCount[i]; j++)
                     {
                         this.CurrChild = j;
-                        if (FConstruct[i][j]) ConstructVObject(FParent[i]);
+                        if (FConstruct[i][j])
+                        {
+                            ConstructVObject(FParent[i]);
+                        }
                     }
                 }
+                fc++;
             }
         }
     }
     public abstract class AddVObjectNode<ParentObject> : IPluginEvaluate where ParentObject : VObject
     {
-        [Input("Parent")]
+        [Input("Parent", Order = 0)]
         public Pin<ParentObject> FParent;
-        [Input("Source")]
+        [Input("Source", Order = 1)]
         public ISpread<ISpread<VObject>> FSource;
-        [Input("Add", IsBang = true)]
+        [Input("Add", IsBang = true, Order = 2)]
         public ISpread<ISpread<bool>> FAdd;
 
         public int CurrParent;
@@ -175,9 +194,9 @@ namespace VVVV.Nodes.VObjects
     }
     public abstract class RemoveVObjectNode<ParentObject> : IPluginEvaluate where ParentObject : VObject
     {
-        [Input("Parent")]
+        [Input("Parent", Order = 0)]
         public Pin<ParentObject> FParent;
-        [Input("Remove", IsBang = true)]
+        [Input("Remove", IsBang = true, Order = 1)]
         public ISpread<ISpread<bool>> FRemove;
 
         public int CurrParent;
@@ -217,9 +236,9 @@ namespace VVVV.Nodes.VObjects
     }
     public abstract class DestroyVObjectNode<SourceObject> : IPluginEvaluate where SourceObject : VObject
     {
-        [Input("Source")]
+        [Input("Source", Order = 0)]
         public Pin<SourceObject> FInput;
-        [Input("Destroy", IsBang = true)]
+        [Input("Destroy", IsBang = true, Order = 1)]
         public ISpread<bool> FDestroy;
 
         public int CurrSource;
@@ -243,10 +262,10 @@ namespace VVVV.Nodes.VObjects
 
     public abstract class ToSpreadNode<SourceObject> : IPluginEvaluate where SourceObject : VObject
     {
-        [Input("Source")]
+        [Input("Source", Order = 0)]
         public Pin<SourceObject> FInput;
 
-        [Output("Output")]
+        [Output("Output", Order = 0)]
         public ISpread<ISpread<VObject>> FOutput;
 
         public virtual Spread<VObject> ToSpread(SourceObject Source)
@@ -276,20 +295,20 @@ namespace VVVV.Nodes.VObjects
 
     public abstract class SiftNode<SourceObject> : IPluginEvaluate where SourceObject : VObject
     {
-        [Input("Source")]
+        [Input("Source", Order = 0)]
         public Pin<SourceObject> FInput;
-        [Input("Filter")]
+        [Input("Filter", Order = 1)]
         public ISpread<string> FFilter;
-        [Input("Contains")]
+        [Input("Contains", Order = 2)]
         public ISpread<bool> FContains;
-        [Input("Exclude")]
+        [Input("Exclude", Order = 3)]
         public ISpread<bool> FExclude;
-        [Input("Enabled", IsBang = true)]
+        [Input("Enabled", IsBang = true, Order = 4)]
         public ISpread<bool> FEnabled;
 
-        [Output("Output")]
+        [Output("Output", Order = 0)]
         public ISpread<ISpread<VObject>> FOutput;
-        [Output("Former Index")]
+        [Output("Former Index", Order = 1)]
         public ISpread<ISpread<int>> FFormerIndex;
 
         public virtual void Sift(SourceObject Source, string Filter, bool Contains, bool Exclude, List<int> MatchingIndices, List<VObject> Output) { }

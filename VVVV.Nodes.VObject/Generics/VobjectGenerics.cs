@@ -26,22 +26,27 @@ namespace VVVV.Nodes.VObjects
         [Input("Input")]
         public Pin<VObject> FInput;
 
-        [Output("Type")]
+        [Output("Object Type")]
         public ISpread<string> FType;
+        [Output("Wrapper Type")]
+        public ISpread<string> FWrapType;
 
         public void Evaluate(int SpreadMax)
         {
             if(FInput.IsConnected)
             {
                 FType.SliceCount = FInput.SliceCount;
+                FWrapType.SliceCount = FInput.SliceCount;
                 for(int i=0; i<FInput.SliceCount; i++)
                 {
                     FType[i] = FInput[i].ObjectType.ToString();
+                    FWrapType[i] = FInput[i].GetType().ToString();
                 }
             }
             else
             {
                 FType.SliceCount = 0;
+                FWrapType.SliceCount = 0;
             }
         }
     }
@@ -73,14 +78,14 @@ namespace VVVV.Nodes.VObjects
                     {
                         if (FExclude[i])
                         {
-                            if (FType[i] != FInput[j].ObjectType.ToString())
+                            if ((FType[i] != FInput[j].ObjectType.ToString()) || (FType[i] != FInput[j].GetType().ToString()))
                             {
                                 FOutput[i].Add(FInput[j]);
                             }
                         }
                         else
                         {
-                            if (FType[i] == FInput[j].ObjectType.ToString())
+                            if ((FType[i] == FInput[j].ObjectType.ToString()) || (FType[i] == FInput[j].GetType().ToString()))
                             {
                                 FOutput[i].Add(FInput[j]);
                             }
@@ -152,8 +157,8 @@ namespace VVVV.Nodes.VObjects
             {
                 if (FDeSerialize[i])
                 {
-                    try
-                    {
+                    //try
+                    //{
                         FInput[i].Position = 0;
                         uint typeL = FInput[i].ReadUint();
                         Type ObjType = Type.GetType(FInput[i].ReadUnicode((int)typeL));
@@ -163,11 +168,11 @@ namespace VVVV.Nodes.VObjects
                         VObject NewObject = Activator.CreateInstance(ObjType, ConstrArgs) as VObject;
 
                         FOut[i] = NewObject;
-                    }
-                    catch (Exception e)
-                    {
-                        FError[0] = e.Message;
-                    }
+                    //}
+                    //catch (Exception e)
+                    //{
+                        //FError[0] = e.Message;
+                    //}
                 }
                 // else ToBeRemoved.Add(i);
             }
