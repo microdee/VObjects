@@ -154,7 +154,16 @@ namespace VVVV.Nodes.VObjects
         public override void RemoveVObject(VObjectDictionaryWrap Parent)
         {
             VObjectDictionary Content = Parent.Content as VObjectDictionary;
-            Content.RemoveObject(FName[this.CurrParent][this.CurrChild]);
+            if(FMatch[this.CurrParent][this.CurrChild])
+                Content.RemoveObject(FName[this.CurrParent][this.CurrChild]);
+            else
+            {
+                foreach(string k in Content.Objects.Keys)
+                {
+                    if (k.Contains(FName[this.CurrParent][this.CurrChild]))
+                        Content.RemoveObject(k);
+                }
+            }
         }
     }
 

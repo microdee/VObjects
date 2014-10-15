@@ -55,9 +55,9 @@ namespace VVVV.Packs.VObjects
         {
             this.Serialized.Position = 0;
             this.Serialized.SetLength(0);
-            this.Serialized.WriteUint((uint)this.GetType().ToString().Length);
+            this.Serialized.WriteUint((uint)this.GetType().ToString().UnicodeLength());
             this.Serialized.WriteUnicode(this.GetType().ToString());
-            this.Serialized.WriteUint((uint)this.ObjectType.ToString().Length);
+            this.Serialized.WriteUint((uint)this.ObjectType.ToString().UnicodeLength());
             this.Serialized.WriteUnicode(this.ObjectType.ToString());
         }
         public virtual void DeSerialize(Stream Input)

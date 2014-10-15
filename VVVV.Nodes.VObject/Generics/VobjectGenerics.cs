@@ -145,44 +145,44 @@ namespace VVVV.Nodes.VObjects
         public ISpread<VObject> FOut;
         [Output("Error")]
         public ISpread<string> FError;
+        [Output("Type")]
+        public ISpread<string> FType;
 
+        int fc = 0;
         // List<int> ToBeRemoved = new List<int>();
 
         public void Evaluate(int SpreadMax)
         {
-            FOut.SliceCount = FInput.SliceCount;
-
+            FError.SliceCount = FInput.SliceCount;
+            FType.SliceCount = FInput.SliceCount;
+            bool clear = false;
+            for (int i = 0; i < FInput.SliceCount; i++)
+            {
+                if (FDeSerialize[i]) clear = true;
+            }
+            if (clear || fc==0) FOut.SliceCount = 0;
+            fc++;
             // ToBeRemoved.Clear();
             for(int i=0; i<FInput.SliceCount; i++)
             {
                 if (FDeSerialize[i])
                 {
-                    //try
-                    //{
-                        FInput[i].Position = 0;
-                        uint typeL = FInput[i].ReadUint();
-                        Type ObjType = Type.GetType(FInput[i].ReadUnicode((int)typeL));
+                    FInput[i].Position = 0;
+                    uint typeL = FInput[i].ReadUint();
+                    FType[i] = FInput[i].ReadUnicode((int)typeL);
+                    Type ObjType = Type.GetType(FType[i]);
+                        
+                    FInput[i].Position = 0;
+                    Stream temp = new MemoryStream();
+                    temp.SetLength(0);
+                    FInput[i].CopyTo(temp);
+                    temp.Position = 0;
+                    Object[] ConstrArgs = new Object[] { temp };
+                    VObject NewObject = Activator.CreateInstance(ObjType, ConstrArgs) as VObject;
 
-                        FInput[i].Position = 0;
-                        Object[] ConstrArgs = new Object[] { FInput[i] };
-                        VObject NewObject = Activator.CreateInstance(ObjType, ConstrArgs) as VObject;
-
-                        FOut[i] = NewObject;
-                    //}
-                    //catch (Exception e)
-                    //{
-                        //FError[0] = e.Message;
-                    //}
+                    FOut.Add(NewObject);
                 }
-                // else ToBeRemoved.Add(i);
             }
-
-            /*
-            for(int i=0; i<ToBeRemoved.Count; i++)
-            {
-                FOut.RemoveAt(ToBeRemoved[i]);
-            }
-            */
         }
     }
 }

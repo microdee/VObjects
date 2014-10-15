@@ -326,19 +326,22 @@ namespace VVVV.Nodes.VObjects
                 this.InitializeFrame();
                 for (int i = 0; i < FInput.SliceCount; i++)
                 {
-                    FOutput[i].SliceCount = 0;
-                    FFormerIndex[i].SliceCount = 0;
+                    if (FEnabled[i])
+                    {
+                        FOutput[i].SliceCount = 0;
+                        FFormerIndex[i].SliceCount = 0;
 
-                    this.Indices.Clear();
-                    this.Objects.Clear();
-                    this.Sift(FInput[i], FFilter[i], FContains[i], FExclude[i], Indices, Objects);
-                    foreach (int index in Indices)
-                    {
-                        FFormerIndex[i].Add(index);
-                    }
-                    foreach (VObject o in Objects)
-                    {
-                        FOutput[i].Add(o);
+                        this.Indices.Clear();
+                        this.Objects.Clear();
+                        this.Sift(FInput[i], FFilter[i], FContains[i], FExclude[i], Indices, Objects);
+                        foreach (int index in Indices)
+                        {
+                            FFormerIndex[i].Add(index);
+                        }
+                        foreach (VObject o in Objects)
+                        {
+                            FOutput[i].Add(o);
+                        }
                     }
 
                 }
