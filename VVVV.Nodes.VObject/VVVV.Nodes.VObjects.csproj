@@ -124,6 +124,7 @@
     <Compile Include="Implementation\PrimitiveObject\DynamicNodes.cs" />
     <Compile Include="Implementation\PrimitiveObject\Template\PrimitiveTemplate.cs" />
     <Compile Include="Implementation\PrimitiveObject\Template\TemplateDictionary.cs" />
+    <Compile Include="Implementation\Stopwatch.cs" />
     <Compile Include="Implementation\VObjectCollection\DerivedDictionaryNodes.cs" />
     <Compile Include="Implementation\VObjectCollection\DerivedCollectionNodes.cs" />
     <Compile Include="Implementation\VObjectCollection\GeneralCollectionNodes.cs" />
