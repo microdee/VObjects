@@ -44,18 +44,15 @@ namespace VVVV.Packs.VObjects
     }
     public class VObjectDictionaryWrap : VObject
     {
-        public VObjectDictionaryWrap(VObjectDictionary o) : base(o.GetType(), o) { }
-        public VObjectDictionaryWrap(Stream s) : base(typeof(VObjectDictionary), s) { }
-        protected override void Dispose(bool disposing)
+        public VObjectDictionaryWrap() : base() { }
+        public VObjectDictionaryWrap(VObjectDictionary o) : base(o) { }
+        public VObjectDictionaryWrap(Stream s) : base(s) { }
+
+        public override void Dispose()
         {
-            if (this.disposed)
-                return;
-            if (disposing)
-            {
-                VObjectDictionary ThisContent = this.Content as VObjectDictionary;
-                ThisContent.Clear();
-            }
-            disposed = true;
+            VObjectDictionary ThisContent = this.Content as VObjectDictionary;
+            ThisContent.Clear();
+            base.Dispose();
         }
         public override void Serialize()
         {

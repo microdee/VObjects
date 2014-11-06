@@ -130,7 +130,7 @@ namespace VVVV.Nodes.VObjects
             }
         }
     }
-
+    /*
     #region PluginInfo
     [PluginInfo(Name = "DeSerialize", Category = "VObject", Version = "Generic", Help = "Convert Raw to VObject", Tags = "microdee")]
     #endregion PluginInfo
@@ -177,12 +177,12 @@ namespace VVVV.Nodes.VObjects
                     temp.SetLength(0);
                     FInput[i].CopyTo(temp);
                     temp.Position = 0;
-                    Object[] ConstrArgs = new Object[] { temp };
-                    VObject NewObject = Activator.CreateInstance(ObjType, ConstrArgs) as VObject;
+                    VObject NewObject = DynamicConstruct.ActivatorCreateInstance(temp);
 
                     FOut.Add(NewObject);
                 }
             }
         }
     }
+    */
 }

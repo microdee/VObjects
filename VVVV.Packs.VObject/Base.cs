@@ -24,39 +24,33 @@ namespace VVVV.Packs.VObjects
         public Object Content;
         public Type ObjectType;
         public Stream Serialized = new MemoryStream();
-        public VObject(Type type, Object content)
+        public VObject() { }
+        public VObject(Object content)
         {
             this.Content = content;
-            this.ObjectType = type;
+            this.ObjectType = content.GetType();
         }
-        public VObject(Type type, Stream Input)
+        public VObject(Stream Input)
         {
-            this.ObjectType = type;
             this.DeSerialize(Input);
         }
 
         protected bool disposed = false;
-        public void Dispose()
+        public virtual void Dispose()
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposed)
-                return;
-            if (disposing)
-                this.Serialized.Dispose();
+            this.Serialized.Dispose();
             disposed = true;
+            GC.SuppressFinalize(this);
         }
 
         public virtual void Serialize()
         {
             this.Serialized.Position = 0;
             this.Serialized.SetLength(0);
+            // wrapper type
             this.Serialized.WriteUint((uint)this.GetType().ToString().UnicodeLength());
             this.Serialized.WriteUnicode(this.GetType().ToString());
+            // object type
             this.Serialized.WriteUint((uint)this.ObjectType.ToString().UnicodeLength());
             this.Serialized.WriteUnicode(this.ObjectType.ToString());
         }
@@ -71,10 +65,12 @@ namespace VVVV.Packs.VObjects
             Input.CopyTo(this.Serialized);
             this.Serialized.Position = 0;
 
+            // wrap type
             uint l = this.Serialized.ReadUint();
-            this.Serialized.ReadUnicode((int)l);
+            Type WrapType = Type.GetType(this.Serialized.ReadUnicode((int)l));
+            // object type
             l = this.Serialized.ReadUint();
-            this.Serialized.ReadUnicode((int)l);
+            this.ObjectType = Type.GetType(this.Serialized.ReadUnicode((int)l));
         }
         public virtual VObject DeepCopy()
         {

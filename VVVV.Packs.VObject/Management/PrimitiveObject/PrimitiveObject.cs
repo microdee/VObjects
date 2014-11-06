@@ -103,22 +103,17 @@ namespace VVVV.Packs.VObjects
 
     public class PrimitiveObjectWrap : VObject
     {
-        public PrimitiveObjectWrap(PrimitiveObject o) : base(o.GetType(), o) { }
-        public PrimitiveObjectWrap(Stream s) : base(typeof(PrimitiveObject), s) { }
+        public PrimitiveObjectWrap() : base() { }
+        public PrimitiveObjectWrap(PrimitiveObject o) : base(o) { }
+        //public PrimitiveObjectWrap(Stream s) : base(s) { }
 
-        protected override void Dispose(bool disposing)
+        public override void Dispose()
         {
-            if (this.disposed)
-                return;
-            if (disposing)
-            {
-                PrimitiveObject ThisContent = this.Content as PrimitiveObject;
-                ThisContent.Clear();
-                this.Serialized.Dispose();
-            }
-            disposed = true;
+            PrimitiveObject ThisContent = this.Content as PrimitiveObject;
+            ThisContent.Clear();
+            base.Dispose();
         }
-
+        
         public override void Serialize()
         {
             base.Serialize();
@@ -171,6 +166,7 @@ namespace VVVV.Packs.VObjects
                 ThisContent.Add(name, otp);
             }
         }
+        
         public override VObject DeepCopy()
         {
             PrimitiveObject ThisContent = (PrimitiveObject)this.Content;

@@ -112,20 +112,17 @@ namespace VVVV.Packs.VObjects
     // Wrap in VObject
     public class VObjectCollectionWrap : VObject
     {
-        public VObjectCollectionWrap(VObjectCollection o) : base(o.GetType(), o) { }
-        public VObjectCollectionWrap(Stream s) : base(typeof(VObjectCollection), s) { }
-        protected override void Dispose(bool disposing)
+        public VObjectCollectionWrap() : base() { }
+        public VObjectCollectionWrap(VObjectCollection o) : base(o) { }
+        public VObjectCollectionWrap(Stream s) : base(s) { }
+
+        public override void Dispose()
         {
-            if (this.disposed)
-                return;
-            if (disposing)
-            {
-                VObjectCollection ThisContent = this.Content as VObjectCollection;
-                ThisContent.Dispose();
-                this.Serialized.Dispose();
-            }
-            disposed = true;
+            VObjectCollection ThisContent = this.Content as VObjectCollection;
+            ThisContent.Dispose();
+            base.Dispose();
         }
+
         public override void Serialize()
         {
             base.Serialize();
@@ -188,16 +185,7 @@ namespace VVVV.Packs.VObjects
                 Type childtype = Type.GetType(typename);
                 this.Serialized.CopyTo(child, (int)l);
 
-                child.Position = 0;
-                int DerivedTypeL = (int)child.ReadUint();
-                Type DerivedType = Type.GetType(child.ReadUnicode(DerivedTypeL));
-                child.Position = 0;
-
-                Object[] ConstrArgs = new Object[] {child};
-                ThisContent.Children.Add(
-                    keyname,
-                    Activator.CreateInstance(DerivedType, ConstrArgs) as VObject
-                );
+                ThisContent.Children.Add(keyname, DynamicConstruct.ActivatorCreateInstance(child));
             }
             this.Content = ThisContent;
         }

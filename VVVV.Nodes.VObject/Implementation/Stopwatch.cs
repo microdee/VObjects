@@ -20,14 +20,17 @@ namespace VVVV.Nodes.VObjects
 {
     public class StopwatchWrap : VObject
     {
-        public StopwatchWrap(Stopwatch o) : base(o.GetType(), o) { }
-        public StopwatchWrap(Stream s) : base(typeof(Stopwatch), s) { }
+        public StopwatchWrap() : base() { }
+        public StopwatchWrap(Stopwatch o) : base(o) { }
+        
+        public StopwatchWrap(Stream s) : base(s) { }
         public override void DeSerialize(Stream Input)
         {
             base.DeSerialize(Input);
             Stopwatch st = new Stopwatch();
             this.Content = st;
         }
+        
         public override VObject DeepCopy()
         {
             Stopwatch st = new Stopwatch();
