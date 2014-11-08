@@ -1,13 +1,6 @@
 ﻿using System;
 using System.ComponentModel.Composition;
 using System.IO;
-
-using VVVV.PluginInterfaces.V1;
-using VVVV.PluginInterfaces.V2;
-using VVVV.Utils.VColor;
-using VVVV.Utils.VMath;
-
-using VVVV.Core.Logging;
 using System.Collections.Generic;
 using VVVV.Packs.VObjects;
 
@@ -15,31 +8,44 @@ using WebSocketSharp;
 
 namespace VVVV.Nodes.VObjects
 {
-    public class HostedClientMessage
+    public class ClientMessage
     {
         public WebSocketSharp.Opcode Type;
         public byte[] Raw;
         public string Text;
-        public HostedClientMessage() { }
+        public ClientMessage() { }
     }
-    public class wsHostedClient
+    public class VebSocketClient
     {
         public string Url;
         public WebSocketSharp.WebSocket Client;
         public bool Connected = false;
         public bool Connecting = false;
-        public List<HostedClientMessage> ReceivedMessages = new List<HostedClientMessage>();
+        /*
+        public List<ClientMessage> ReceivedMessages = new List<ClientMessage>();
+        public List<ClientMessage> SendingMessages = new List<ClientMessage>();
+        public List<ClientMessage> SentMessages = new List<ClientMessage>();
         public List<string> ReceivedErrors = new List<string>();
+         */
         public string CloseReason = "";
 
-        public wsHostedClient(string url)
+        public VebSocketClient(string url)
         {
             this.Url = url;
             this.Client = new WebSocketSharp.WebSocket(url);
             this.Client.OnOpen += onOpen;
-            this.Client.OnMessage += onMessage;
-            this.Client.OnError += onError;
+            //this.Client.OnMessage += onMessage;
+            //this.Client.OnError += onError;
             this.Client.OnClose += onClose;
+        }
+        public VebSocketClient(WebSocketSharp.WebSocket w)
+        {
+            this.Client = w;
+            this.Client.OnOpen += onOpen;
+            //this.Client.OnMessage += onMessage;
+            //this.Client.OnError += onError;
+            this.Client.OnClose += onClose;
+            this.Url = w.Url.ToString();
         }
         
         private void onOpen(object sender, EventArgs e)
@@ -47,9 +53,10 @@ namespace VVVV.Nodes.VObjects
             this.Connected = true;
             this.Connecting = false;
         }
+        /*
         private void onMessage(object sender, WebSocketSharp.MessageEventArgs e)
         {
-            HostedClientMessage m = new HostedClientMessage();
+            ClientMessage m = new ClientMessage();
             m.Type = e.Type;
             if(e.Type == Opcode.Binary)
             {
@@ -67,24 +74,53 @@ namespace VVVV.Nodes.VObjects
         {
             this.ReceivedErrors.Add(e.Message);
         }
+         */
         private void onClose(object sender, WebSocketSharp.CloseEventArgs e)
         {
             this.CloseReason = e.Reason;
         }
+        /*
+        public void Send(byte[] data)
+        {
+            ClientMessage m = new ClientMessage();
+            m.Type = Opcode.Binary;
+            m.Raw = data;
+            m.Text = "";
+            this.SendingMessages.Add(m);
+
+            this.Client.SendAsync(data, onSendComplete);
+        }
+        private void onSendComplete(bool sent)
+        {
+            if(!sent)
+            {
+                string error = "message not sent:" + this.SendingMessages[0].GetHashCode().ToString();
+                this.ReceivedErrors.Add(error);
+            }
+            else
+            {
+                this.SentMessages.Add(this.SendingMessages[0]);
+            }
+            this.SendingMessages.RemoveAt(0);
+        }
+         */
+    }
+    public class VebSocketHostedClient : VebSocketClient
+    {
         public void Connect()
         {
             this.Client.ConnectAsync();
             this.Connecting = true;
         }
     }
-    public class HostedClientWrap : VObject
+    public class VebSocketClientWrap : VObject
     {
-        public HostedClientWrap() : base() { }
-        public HostedClientWrap(wsHostedClient o) : base(o) { }
+        public VebSocketClientWrap() : base() { }
+        public VebSocketClientWrap(VebSocketClient o) : base(o) { }
         
         public override void Dispose()
         {
-            wsHostedClient hc = this.Content as wsHostedClient;
+            VebSocketClient hc = this.Content as VebSocketClient;
             hc.Client.Close();
  	        base.Dispose();
         }

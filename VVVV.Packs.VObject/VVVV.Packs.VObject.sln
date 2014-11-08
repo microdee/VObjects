@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VVVV.Packs.VObjects", "VVVV
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VVVV.Nodes.VObjects", "..\VVVV.Nodes.VObject\VVVV.Nodes.VObjects.csproj", "{85A22185-CEDD-4AD2-B71D-18BE81B689AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VVVV.Nodes.VObjects.WebSocket", "..\VVVV.Nodes.VObjects.WebSocket\VVVV.Nodes.VObjects.WebSocket.csproj", "{29E9C3A6-5DBD-4463-9750-1E317CA7136D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VVVV.Nodes.VObjects.VebSocket", "..\VVVV.Nodes.VObjects.WebSocket\VVVV.Nodes.VObjects.VebSocket.csproj", "{29E9C3A6-5DBD-4463-9750-1E317CA7136D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
