@@ -38,12 +38,12 @@ namespace VVVV.Nodes.VObjects
         {
             base.OnClose(e);
         }
-    }   
+    }
     class VebSocketService
     {
         public WebSocketServiceHost Service;
-        public Dictionary<string, IWebSocketSession> Sessions;
-        public Dictionary<string, VebSocketClient> Clients;
+        public Dictionary<string, IWebSocketSession> Sessions = new Dictionary<string, IWebSocketSession>();
+        public Dictionary<string, VebSocketClient> Clients = new Dictionary<string, VebSocketClient>();
 
         public VebSocketService() { }
 
@@ -57,7 +57,7 @@ namespace VVVV.Nodes.VObjects
     class VebSocketServer
     {
         public WebSocketServer Server;
-        public Dictionary<string, VebSocketService> Services;
+        public Dictionary<string, VebSocketService> Services = new Dictionary<string, VebSocketService>();
         public VebSocketServer(int port, bool secure)
         {
             this.Server = new WebSocketServer(port, secure);

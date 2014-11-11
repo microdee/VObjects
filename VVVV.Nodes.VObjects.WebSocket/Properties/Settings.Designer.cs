@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace VVVV.Nodes.VObjects.WebSocket.Properties {
+namespace VVVV.Nodes.VObjects.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

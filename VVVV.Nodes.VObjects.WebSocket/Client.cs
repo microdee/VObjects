@@ -8,12 +8,58 @@ using WebSocketSharp;
 
 namespace VVVV.Nodes.VObjects
 {
+    public static class VebSocketClientHelper
+    {
+        public static ClientMessage ToClientMessage(this WebSocketSharp.MessageEventArgs e)
+        {
+            ClientMessage m = new ClientMessage();
+            m.Type = e.Type;
+            if (e.Type == Opcode.Binary)
+            {
+                m.Raw = e.RawData;
+                m.Text = "";
+            }
+            if (e.Type == Opcode.Text)
+            {
+                m.Raw = new byte[0];
+                m.Text = e.Data;
+            }
+            return m;
+        }
+    }
     public class ClientMessage
     {
         public WebSocketSharp.Opcode Type;
         public byte[] Raw;
         public string Text;
         public ClientMessage() { }
+    }
+    public class ClientMessageWrap : VObject
+    {
+        public ClientMessageWrap() : base() { }
+        public ClientMessageWrap(ClientMessage o) : base(o) { }
+        
+        public override void Dispose()
+        {
+ 	        base.Dispose();
+        }
+    }
+    public class ReceivingBuffer
+    {
+        public List<ClientMessage> Messages = new List<ClientMessage>();
+        public List<string> Errors = new List<string>();
+        public bool PresentInCurrentContext = false;
+        public VebSocketClient Parent;
+        public ReceivingBuffer() { }
+    }
+    public class SendingBuffer
+    {
+        public List<ClientMessage> SendingMessages = new List<ClientMessage>();
+        public List<ClientMessage> SentMessages = new List<ClientMessage>();
+        public List<string> Errors = new List<string>();
+        public bool PresentInCurrentContext = false;
+        public VebSocketClient Parent;
+        public SendingBuffer() { }
     }
     public class VebSocketClient
     {
@@ -56,18 +102,6 @@ namespace VVVV.Nodes.VObjects
         /*
         private void onMessage(object sender, WebSocketSharp.MessageEventArgs e)
         {
-            ClientMessage m = new ClientMessage();
-            m.Type = e.Type;
-            if(e.Type == Opcode.Binary)
-            {
-                m.Raw = e.RawData;
-                m.Text = "";
-            }
-            if (e.Type == Opcode.Text)
-            {
-                m.Raw = new byte[0];
-                m.Text = e.Data;
-            }
             this.ReceivedMessages.Add(m);
         }
         private void onError(object sender, WebSocketSharp.ErrorEventArgs e)
@@ -79,17 +113,25 @@ namespace VVVV.Nodes.VObjects
         {
             this.CloseReason = e.Reason;
         }
-        /*
-        public void Send(byte[] data)
+        public ClientMessage Send(byte[] data, Action<bool> onSendComplete)
         {
             ClientMessage m = new ClientMessage();
             m.Type = Opcode.Binary;
             m.Raw = data;
             m.Text = "";
-            this.SendingMessages.Add(m);
-
             this.Client.SendAsync(data, onSendComplete);
+            return m;
         }
+        public ClientMessage Send(string data, Action<bool> onSendComplete)
+        {
+            ClientMessage m = new ClientMessage();
+            m.Type = Opcode.Text;
+            m.Raw = new byte[0];
+            m.Text = data;
+            this.Client.SendAsync(data, onSendComplete);
+            return m;
+        }
+        /*
         private void onSendComplete(bool sent)
         {
             if(!sent)
@@ -107,6 +149,8 @@ namespace VVVV.Nodes.VObjects
     }
     public class VebSocketHostedClient : VebSocketClient
     {
+        public VebSocketHostedClient(WebSocketSharp.WebSocket w) : base(w) { }
+        public VebSocketHostedClient(string url) : base(url) { }
         public void Connect()
         {
             this.Client.ConnectAsync();

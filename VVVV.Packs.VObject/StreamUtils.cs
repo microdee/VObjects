@@ -116,5 +116,12 @@ namespace VVVV.Packs.VObjects
             byte[] tmp = System.Text.Encoding.Unicode.GetBytes(s);
             return (uint)tmp.Length;
         }
+
+        public static Stream ToStream(this byte[] b)
+        {
+            Stream s = new MemoryStream();
+            s.Read(b,0,b.Length);
+            return s;
+        }
     }
 }

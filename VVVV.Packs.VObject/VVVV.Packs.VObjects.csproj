@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>VVVV.Packs.VObjects</RootNamespace>
-    <AssemblyName>VVVV.Packs.VObject</AssemblyName>
+    <AssemblyName>VVVV.Packs.VObjects</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
