@@ -5,11 +5,11 @@
    <PACK Name="addonpack" Version="33.3.0">
    </PACK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="1" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="1275" top="255" width="2040" height="240">
+   <BOUNDS type="Box" left="1275" top="255" width="2730" height="240">
    </BOUNDS>
    <BOUNDS type="Node" left="1275" top="255" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="1" values="wss://echo.websocket.org">
+   <PIN pinname="Input String" slicecount="1" visible="1" values="wss://beta.yogasystems.com/magic">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="ws://localhost">
    </PIN>
@@ -29,9 +29,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="3" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="3375" top="150" width="480" height="480">
+   <BOUNDS type="Box" left="4170" top="195" width="480" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="3375" top="150" width="0" height="0">
+   <BOUNDS type="Node" left="4170" top="195" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
@@ -83,7 +83,7 @@
    <LINK srcnodeid="5" srcpinname="Text" dstnodeid="9" dstpinname="Input">
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="10" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="5220" top="1860" width="2040" height="285">
+   <BOUNDS type="Box" left="5220" top="1860" width="2895" height="240">
    </BOUNDS>
    <BOUNDS type="Node" left="5220" top="1860" width="0" height="0">
    </BOUNDS>
@@ -117,9 +117,9 @@
    <LINK srcnodeid="11" srcpinname="frames per second" dstnodeid="12" dstpinname="Y Input Value">
    </LINK>
    <NODE systemname="ClientMessage (Join String)" filename="..\nodes\plugins\x64\VVVV.Nodes.VObjects.VebSocket.dll" nodename="ClientMessage (Join String)" componentmode="Hidden" id="18">
-   <BOUNDS type="Node" left="2685" top="2595" width="100" height="100">
+   <BOUNDS type="Node" left="1410" top="2910" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Input" visible="1">
+   <PIN pinname="Input" visible="1" slicecount="1" values="26">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="19" systemname="IOBox (Value Advanced)">
@@ -140,28 +140,6 @@
    <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
    </NODE>
-   <NODE systemname="LFO (Animation)" nodename="LFO (Animation)" componentmode="Hidden" id="20">
-   <BOUNDS type="Node" left="1410" top="1890" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Cycles" visible="1">
-   </PIN>
-   <PIN pinname="Change" visible="1">
-   </PIN>
-   <PIN pinname="Period" slicecount="1" values="1">
-   </PIN>
-   </NODE>
-   <NODE systemname="FormatValue (String)" nodename="FormatValue (String)" componentmode="Hidden" id="21">
-   <BOUNDS type="Node" left="2685" top="2130" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Input" visible="1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="20" srcpinname="Cycles" dstnodeid="21" dstpinname="Input">
-   </LINK>
-   <LINK srcnodeid="21" srcpinname="Output" dstnodeid="18" dstpinname="Input">
-   </LINK>
    <NODE systemname="MainLoop (VVVV)" nodename="MainLoop (VVVV)" componentmode="Hidden" id="-6">
    <BOUNDS type="Node" left="7800" top="2760" width="100" height="100">
    </BOUNDS>
@@ -211,17 +189,17 @@
    </PIN>
    <PIN pinname="Error" visible="1">
    </PIN>
+   <PIN pinname="Send" slicecount="1" values="0">
+   </PIN>
    </NODE>
    <LINK srcnodeid="18" srcpinname="Output" dstnodeid="39" dstpinname="Message">
-   </LINK>
-   <LINK srcnodeid="20" srcpinname="Change" dstnodeid="39" dstpinname="Send">
    </LINK>
    <NODE systemname="Client (VebSocket)" filename="..\nodes\plugins\x64\VVVV.Nodes.VObjects.VebSocket.dll" nodename="Client (VebSocket)" componentmode="Hidden" id="43">
    <BOUNDS type="Node" left="1260" top="1110" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Compression" slicecount="1" values="Deflate">
    </PIN>
-   <PIN pinname="Origin Header" slicecount="1" values="https://echo.websocket.org">
+   <PIN pinname="Origin Header" slicecount="1" values="https://beta.yogasystems.com">
    </PIN>
    </NODE>
    <LINK srcnodeid="1" srcpinname="Output String" dstnodeid="43" dstpinname="Url">
@@ -266,22 +244,6 @@
    </LINK>
    <LINK srcnodeid="4" srcpinname="Message Bin Size" dstnodeid="19" dstpinname="Y Input Value">
    </LINK>
-   <NODE nodename="IOBox (String)" componentmode="InABox" id="47" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="4170" top="4965" width="795" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="4170" top="4965" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Default" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="File Mask" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
-   </PIN>
-   <PIN pinname="String Type" slicecount="1" values="MultiLine">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="21" srcpinname="Output" dstnodeid="47" dstpinname="Input String">
-   </LINK>
    <NODE systemname="AvoidNIL (String)" filename="%VVVV%\lib\nodes\modules\String\AvoidNIL (String).v4p" nodename="AvoidNIL (String)" componentmode="Hidden" id="49">
    <BOUNDS type="Node" left="6375" top="4335" width="100" height="100">
    </BOUNDS>
@@ -299,7 +261,7 @@
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
-   <PIN pinname="Frame Count" slicecount="1" values="100" visible="1">
+   <PIN pinname="Frame Count" slicecount="1" visible="1" values="100">
    </PIN>
    <PIN pinname="Insert" slicecount="1" values="1">
    </PIN>

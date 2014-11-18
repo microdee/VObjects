@@ -54,7 +54,7 @@ namespace VVVV.Nodes.VObjects
         public ISpread<bool> FValid;
 
         [Import()]
-        ILogger FLogger;
+        public ILogger FLogger;
         #endregion fields & pins
         //called when data for any output pin is requested
 
@@ -94,7 +94,7 @@ namespace VVVV.Nodes.VObjects
         public ISpread<ISpread<string>> FOutput;
 
         [Import()]
-        ILogger FLogger;
+        public ILogger FLogger;
         #endregion fields & pins
         //called when data for any output pin is requested
 
@@ -151,7 +151,7 @@ namespace VVVV.Nodes.VObjects
         //ISpread<Vson> FJOutput;
 
         [Import()]
-        ILogger FLogger;
+        public ILogger FLogger;
         #endregion fields & pins
         //called when data for any output pin is requested
         public void Evaluate(int SpreadMax)

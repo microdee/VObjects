@@ -138,7 +138,8 @@ namespace VVVV.Nodes.VObjects
         private void onError(object sender, WebSocketSharp.ErrorEventArgs e)
         {
             WebSocketSharp.WebSocket Sender = sender as WebSocketSharp.WebSocket;
-            this.Receiving[Sender].Errors.Add(e.Message);
+            string ErrorMessage = e.Message + ":\r\n" + e.Exception.Message;
+            this.Receiving[Sender].Errors.Add(ErrorMessage);
         }
     }
 
@@ -248,7 +249,8 @@ namespace VVVV.Nodes.VObjects
         private void onError(object sender, WebSocketSharp.ErrorEventArgs e)
         {
             WebSocketSharp.WebSocket Sender = sender as WebSocketSharp.WebSocket;
-            this.Receiving[Sender].Errors.Add(e.Message);
+            string ErrorMessage = e.Message + ":\r\n" + e.Exception.Message;
+            this.Receiving[Sender].Errors.Add(ErrorMessage);
         }
     }
 
@@ -278,8 +280,8 @@ namespace VVVV.Nodes.VObjects
         public ISpread<string> FCompression;
         [Output("State")]
         public ISpread<string> FState;
-        //[Output("Is Alive")]
-        //public ISpread<bool> FIsAlive;
+        [Output("Close Reason")]
+        public ISpread<string> FCloseReason;
         [Output("Is Secure")]
         public ISpread<bool> FIsSecure;
         
@@ -299,7 +301,7 @@ namespace VVVV.Nodes.VObjects
                 FExtensions.SliceCount = FInput.SliceCount;
                 FCompression.SliceCount = FInput.SliceCount;
                 FState.SliceCount = FInput.SliceCount;
-                //FIsAlive.SliceCount = FInput.SliceCount;
+                FCloseReason.SliceCount = FInput.SliceCount;
                 FIsSecure.SliceCount = FInput.SliceCount;
                 FCredentials.SliceCount = FInput.SliceCount;
                 FCookies.SliceCount = FInput.SliceCount;
@@ -313,7 +315,7 @@ namespace VVVV.Nodes.VObjects
                     FExtensions[i] = vs.Client.Extensions;
                     FCompression[i] = vs.Client.Compression.ToString();
                     FState[i] = vs.Client.ReadyState.ToString();
-                    //FIsAlive[i] = vs.Client.IsAlive;
+                    FCloseReason[i] = vs.CloseReason;
                     FIsSecure[i] = vs.Client.IsSecure;
                     FCredentials[i] = vs.Client.Credentials;
                     FCookies[i].SliceCount = 0;
@@ -333,7 +335,7 @@ namespace VVVV.Nodes.VObjects
                 FExtensions.SliceCount = 0;
                 FCompression.SliceCount = 0;
                 FState.SliceCount = 0;
-                //FIsAlive.SliceCount = 0;
+                FCloseReason.SliceCount = 0;
                 FIsSecure.SliceCount = 0;
                 FCredentials.SliceCount = 0;
                 FCookies.SliceCount = 0;
