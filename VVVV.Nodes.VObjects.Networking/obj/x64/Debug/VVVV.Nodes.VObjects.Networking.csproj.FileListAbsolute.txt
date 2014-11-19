@@ -1,6 +1,6 @@
 C:\vvvv\libs\VObjects\VVVV.Nodes.VObjects.Networking\obj\x64\Debug\VVVV.Nodes.VObjects.Networking.csprojResolveAssemblyReference.cache
-C:\vvvv\libs\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.VebSocket.dll.config
-C:\vvvv\libs\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.VebSocket.dll
-C:\vvvv\libs\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.VebSocket.pdb
-C:\vvvv\libs\VObjects\VVVV.Nodes.VObjects.Networking\obj\x64\Debug\VVVV.Nodes.VObjects.VebSocket.dll
-C:\vvvv\libs\VObjects\VVVV.Nodes.VObjects.Networking\obj\x64\Debug\VVVV.Nodes.VObjects.VebSocket.pdb
+C:\vvvv\libs\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.Networking.dll.config
+C:\vvvv\libs\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.Networking.dll
+C:\vvvv\libs\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.Networking.pdb
+C:\vvvv\libs\VObjects\VVVV.Nodes.VObjects.Networking\obj\x64\Debug\VVVV.Nodes.VObjects.Networking.dll
+C:\vvvv\libs\VObjects\VVVV.Nodes.VObjects.Networking\obj\x64\Debug\VVVV.Nodes.VObjects.Networking.pdb

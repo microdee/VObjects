@@ -132,7 +132,9 @@
     <Compile Include="Generics\VVVVGenerics.cs" />
     <Compile Include="Implementation\JSON.cs" />
     <Compile Include="Implementation\PrimitiveObject\AbstractDynamicNode.cs" />
+    <Compile Include="Implementation\PrimitiveObject\AbstractEditorNodes.cs" />
     <Compile Include="Implementation\PrimitiveObject\DynamicNodes.cs" />
+    <Compile Include="Implementation\PrimitiveObject\EditorNodes.cs" />
     <Compile Include="Implementation\PrimitiveObject\Template\PrimitiveTemplate.cs" />
     <Compile Include="Implementation\PrimitiveObject\Template\TemplateDictionary.cs" />
     <Compile Include="Implementation\Stopwatch.cs" />

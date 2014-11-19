@@ -298,23 +298,24 @@ namespace VVVV.Nodes.VObjects
         [Input("Source", Order = 0)]
         public Pin<SourceObject> FInput;
         [Input("Filter", Order = 1)]
-        public ISpread<string> FFilter;
+        public ISpread<ISpread<string>> FFilter;
         [Input("Contains", Order = 2)]
         public ISpread<bool> FContains;
         [Input("Exclude", Order = 3)]
         public ISpread<bool> FExclude;
-        [Input("Enabled", IsBang = true, Order = 4)]
+        [Input("Enabled", IsBang = true, DefaultBoolean = true, Order = 5)]
         public ISpread<bool> FEnabled;
 
         [Output("Output", Order = 0)]
         public ISpread<ISpread<VObject>> FOutput;
-        [Output("Former Index", Order = 1)]
+        [Output("Filter Index", Order = 1)]
         public ISpread<ISpread<int>> FFormerIndex;
 
         public virtual void Sift(SourceObject Source, string Filter, bool Contains, bool Exclude, List<int> MatchingIndices, List<VObject> Output) { }
         private List<VObject> Objects = new List<VObject>();
         private List<int> Indices = new List<int>();
         public virtual void InitializeFrame() { }
+        public int CurrentAbsIndex = 0;
 
         public void Evaluate(int SpreadMax)
         {
@@ -324,6 +325,9 @@ namespace VVVV.Nodes.VObjects
                 FFormerIndex.SliceCount = FInput.SliceCount;
 
                 this.InitializeFrame();
+
+                CurrentAbsIndex = 0;
+
                 for (int i = 0; i < FInput.SliceCount; i++)
                 {
                     if (FEnabled[i])
@@ -331,16 +335,20 @@ namespace VVVV.Nodes.VObjects
                         FOutput[i].SliceCount = 0;
                         FFormerIndex[i].SliceCount = 0;
 
-                        this.Indices.Clear();
-                        this.Objects.Clear();
-                        this.Sift(FInput[i], FFilter[i], FContains[i], FExclude[i], Indices, Objects);
-                        foreach (int index in Indices)
+                        for(int j=0; j<FFilter[i].SliceCount; j++)
                         {
-                            FFormerIndex[i].Add(index);
-                        }
-                        foreach (VObject o in Objects)
-                        {
-                            FOutput[i].Add(o);
+                            this.Indices.Clear();
+                            this.Objects.Clear();
+                            this.Sift(FInput[i], FFilter[i][j], FContains[i], FExclude[i], Indices, Objects);
+                            foreach (int index in Indices)
+                            {
+                                FFormerIndex[i].Add(index);
+                            }
+                            foreach (VObject o in Objects)
+                            {
+                                FOutput[i].Add(o);
+                            }
+                            CurrentAbsIndex++;
                         }
                     }
 

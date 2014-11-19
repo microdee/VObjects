@@ -181,28 +181,24 @@ namespace VVVV.Nodes.VObjects
             VObjectCollection Content = Source.Content as VObjectCollection;
             if(Contains)
             {
-                int index = 0;
                 foreach(string k in Content.Children.Keys)
                 {
                     if(k.Contains(Filter) ^ Exclude)
                     {
-                        MatchingIndices.Add(index);
+                        MatchingIndices.Add(this.CurrentAbsIndex);
                         Output.Add(Content[k]);
                     }
-                    index++;
                 }
             }
             else
             {
-                int index = 0;
                 foreach (string k in Content.Children.Keys)
                 {
                     if ((k == Filter) ^ Exclude)
                     {
-                        MatchingIndices.Add(index);
+                        MatchingIndices.Add(this.CurrentAbsIndex);
                         Output.Add(Content[k]);
                     }
-                    index++;
                 }
             }
         }

@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>VVVV.Nodes.VObjects</RootNamespace>
-    <AssemblyName>VVVV.Nodes.VObjects.VebSocket</AssemblyName>
+    <AssemblyName>VVVV.Nodes.VObjects.Networking</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

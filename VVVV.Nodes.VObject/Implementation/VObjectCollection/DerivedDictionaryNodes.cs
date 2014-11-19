@@ -191,28 +191,24 @@ namespace VVVV.Nodes.VObjects
             VObjectDictionary Content = Source.Content as VObjectDictionary;
             if (Contains)
             {
-                int index = 0;
                 foreach (string k in Content.Objects.Keys)
                 {
                     if (k.Contains(Filter) ^ Exclude)
                     {
-                        MatchingIndices.Add(index);
+                        MatchingIndices.Add(this.CurrentAbsIndex);
                         Output.Add(Content.Objects[k]);
                     }
-                    index++;
                 }
             }
             else
             {
-                int index = 0;
                 foreach (string k in Content.Objects.Keys)
                 {
                     if ((k == Filter) ^ Exclude)
                     {
-                        MatchingIndices.Add(index);
+                        MatchingIndices.Add(this.CurrentAbsIndex);
                         Output.Add(Content.Objects[k]);
                     }
-                    index++;
                 }
             }
         }
