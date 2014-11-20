@@ -20,6 +20,7 @@ namespace VVVV.Nodes.VObjects.Http.HttpNodes
         Name = "Send",
         Category = "Http",
         Help = "Send an HTTP message",
+        AutoEvaluate = true,
         Tags = "microdee"
     )]
     public class HttpClientSendNode : IPluginEvaluate
