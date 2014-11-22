@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Security.Cryptography.X509Certificates;
 using VVVV.Packs.VObjects;
+using VVVV.PluginInterfaces.V2;
 
 using WebSocketSharp;
 using WebSocketSharp.Net;
@@ -45,13 +46,22 @@ namespace VVVV.Nodes.VObjects
         public Dictionary<string, IWebSocketSession> Sessions = new Dictionary<string, IWebSocketSession>();
         public Dictionary<string, VebSocketClient> Clients = new Dictionary<string, VebSocketClient>();
 
-        public VebSocketService() { }
-
-        public void Add(IWebSocketSession session)
+        public VebSocketService()
         {
-            Sessions.Add(session.ID, session);
-            VebSocketClient c = new VebSocketClient(session.Context.WebSocket);
-            Clients.Add(session.ID, c);
+            this.Service.Sessions.OnConnectedClient += onConnectedClient;
+            this.Service.Sessions.OnClosedClient += onClosedClient;
+        }
+
+        private void onClosedClient(object sender, ClientCloseEventArgs e)
+        {
+            this.Sessions.Remove(e.ID);
+            this.Clients.Remove(e.ID);
+        }
+
+        private void onConnectedClient(object sender, ClientConnectEventArgs e)
+        {
+            this.Sessions.Add(e.ID, e.Session);
+            this.Clients.Add(e.ID, e.Session.Context.WebSocket.ToVebSocketClient());
         }
     }
     class VebSocketServer
@@ -61,32 +71,22 @@ namespace VVVV.Nodes.VObjects
         public VebSocketServer(int port, bool secure)
         {
             this.Server = new WebSocketServer(port, secure);
+            this.Server.WebSocketServices.ServiceAdded += OnNewService;
+        }
+
+        private void OnNewService(object sender, ServiceAddedEventArgs e)
+        {
+            VebSocketService s = new VebSocketService();
+            s.Service = this.Server.WebSocketServices[e.Path];
+            this.Services.Add(e.Path, s);
         }
         public void AddService(string Path)
         {
             this.Server.AddWebSocketService<VebSocketBehavior>(Path);
-            foreach(WebSocketServiceHost h in this.Server.WebSocketServices.Hosts)
-            {
-                if (h.Path == Path)
-                {
-                    VebSocketService s = new VebSocketService();
-                    s.Service = h;
-                    this.Services.Add(h.Path, s);
-                }
-            }
         }
         public void AddService(string Path, Action<WebSocketServer, string> CustomBehavior)
         {
             CustomBehavior(this.Server, Path);
-            foreach (WebSocketServiceHost h in this.Server.WebSocketServices.Hosts)
-            {
-                if (h.Path == Path)
-                {
-                    VebSocketService s = new VebSocketService();
-                    s.Service = h;
-                    this.Services.Add(h.Path, s);
-                }
-            }
         }
 
         public void TemplateCustomBehavior(WebSocketServer server, string path)

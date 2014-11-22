@@ -1,0 +1,2 @@
+- This is a modified version of https://github.com/sta/websocket-sharp
+- Source of my fork can be found here: https://github.com/microdee/websocket-sharp

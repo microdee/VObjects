@@ -3,4 +3,9 @@
   <PropertyGroup>
     <ProjectView>ShowAllFiles</ProjectView>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <StartAction>Program</StartAction>
+    <StartProgram>C:\vvvv\app\vvvv_45beta33.3_x64\vvvv.exe</StartProgram>
+    <StartArguments>/o "C:\vvvv\libs\VObjects\girlpower\VebSocket\Sandboxes\echo.websocket.org.v4p"</StartArguments>
+  </PropertyGroup>
 </Project>

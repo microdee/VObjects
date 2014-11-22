@@ -57,6 +57,22 @@ namespace VVVV.Nodes.VObjects
         [Input("Auto Connect", DefaultBoolean = true)]
         public ISpread<bool> FAutoConnect;
 
+        public override void InitializeFrame()
+        {
+            try
+            {
+                for (int i = 0; i < FOutput.SliceCount; i++)
+                {
+                    VebSocketClient vc = FOutput[i].Content as VebSocketClient;
+                    vc.SubscribeToMainloop();
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
         public override VebSocketClientWrap ConstructVObject()
         {
             string[] protocols;
@@ -74,6 +90,8 @@ namespace VVVV.Nodes.VObjects
             VebSocketHostedClient newVebSocketClient = new VebSocketHostedClient(newWebSocket);
             VebSocketClientWrap newWrap = new VebSocketClientWrap(newVebSocketClient as VebSocketClient);
 
+            newVebSocketClient.SubscribeToMainloop();
+
             if(FOrigin[this.CurrObj] != "")
                 newWebSocket.Origin = FOrigin[this.CurrObj];
 
@@ -81,7 +99,7 @@ namespace VVVV.Nodes.VObjects
                 newWebSocket.SetCookie(FCookie[this.CurrObj]);
 
             if(FServerCertValidCallback.IsConnected && (FServerCertValidCallback[this.CurrObj] != null))
-                newWebSocket.ServerCertificateValidationCallback = FServerCertValidCallback[this.CurrObj];
+                newWebSocket.SslConfiguration.ServerCertificateValidationCallback = FServerCertValidCallback[this.CurrObj];
 
             if((FUser[this.CurrObj] != "") || (FPassword[this.CurrObj] != ""))
                 newWebSocket.SetCredentials(FUser[this.CurrObj], FPassword[this.CurrObj], FPreAuth[this.CurrObj]);

@@ -71,6 +71,10 @@ namespace VVVV.Nodes.VObjects
         {
             this.SliceCount = SpreadMax;
         }
+        public virtual void InitializeFrame()
+        {
+            return;
+        }
 
         public virtual ResultObject ConstructVObject()
         {
@@ -80,6 +84,7 @@ namespace VVVV.Nodes.VObjects
         public void Evaluate(int SpreadMax)
         {
             this.SetSliceCount(SpreadMax);
+            this.InitializeFrame();
 
             if (FAutoClear[0])
             {

@@ -44,51 +44,6 @@ namespace VVVV.Nodes.VObjects
         [Output("Error")]
         public ISpread<ISpread<string>> FError;
 
-        public Dictionary<WebSocketSharp.WebSocket, ReceivingBuffer> Receiving = new Dictionary<WebSocketSharp.WebSocket, ReceivingBuffer>();
-        public List<WebSocketSharp.WebSocket> ToBeRemoved = new List<WebSocketSharp.WebSocket>();
-        
-        public void AddNewClient()
-        {
-            foreach(VebSocketClientWrap vsw in FInput)
-            {
-                VebSocketClient vs = vsw.Content as VebSocketClient;
-                if(!Receiving.ContainsKey(vs.Client))
-                {
-                    ReceivingBuffer rb = new ReceivingBuffer();
-                    rb.Parent = vs;
-                    vs.Client.OnMessage += onMessage;
-                    vs.Client.OnError += onError;
-                    Receiving.Add(vs.Client, rb);
-                }
-            }
-        }
-        public void RemoveExpiredClient()
-        {
-            ToBeRemoved.Clear();
-            foreach (VebSocketClientWrap vsw in FInput)
-            {
-                VebSocketClient vs = vsw.Content as VebSocketClient;
-                if (Receiving.ContainsKey(vs.Client))
-                    Receiving[vs.Client].PresentInCurrentContext = true;
-            }
-            foreach (KeyValuePair<WebSocketSharp.WebSocket, ReceivingBuffer> kvp in Receiving)
-            {
-                if(!kvp.Value.PresentInCurrentContext)
-                    ToBeRemoved.Add(kvp.Key);
-            }
-            foreach (WebSocketSharp.WebSocket vs in ToBeRemoved)
-                Receiving.Remove(vs);
-        }
-        public void ClearBuffers()
-        {
-            foreach(KeyValuePair<WebSocketSharp.WebSocket, ReceivingBuffer> kvp in Receiving)
-            {
-                kvp.Value.Errors.Clear();
-                kvp.Value.Messages.Clear();
-            }
-        }
-
-
         public void Evaluate(int SpreadMax)
         {
             if (FInput.IsConnected)
@@ -98,9 +53,6 @@ namespace VVVV.Nodes.VObjects
                 FMessageType.SliceCount = FInput.SliceCount;
                 FError.SliceCount = FInput.SliceCount;
 
-                RemoveExpiredClient();
-                AddNewClient();
-
                 for (int i = 0; i < FInput.SliceCount; i++)
                 {
                     FTextMessage[i].SliceCount = 0;
@@ -109,15 +61,16 @@ namespace VVVV.Nodes.VObjects
                     FError[i].SliceCount = 0;
                     VebSocketClient vs = FInput[i].Content as VebSocketClient;
 
-                    foreach (ClientMessage cm in Receiving[vs.Client].Messages)
+                    foreach (ClientMessage cm in vs.ReceivedMessages.Values)
                     {
                         FTextMessage[i].Add(cm.Text);
                         FRawMessage[i].Add(cm.Raw.ToStream());
                         FMessageType[i].Add(cm.Type.ToString());
                     }
-                    foreach (string e in Receiving[vs.Client].Errors)
+                    foreach (VebSocketError e in vs.Errors)
                     {
-                        FError[i].Add(e);
+                        if (e.Exception != null) FError[i].Add(e.Message + "\n" + e.Exception.Message);
+                        else FError[i].Add(e.Message);
                     }
                 }
             }
@@ -128,18 +81,6 @@ namespace VVVV.Nodes.VObjects
                 FMessageType.SliceCount = 0;
                 FError.SliceCount = 0;
             }
-            ClearBuffers();
-        }
-        private void onMessage(object sender, WebSocketSharp.MessageEventArgs e)
-        {
-            WebSocketSharp.WebSocket Sender = sender as WebSocketSharp.WebSocket;
-            this.Receiving[Sender].Messages.Add(e.ToClientMessage());
-        }
-        private void onError(object sender, WebSocketSharp.ErrorEventArgs e)
-        {
-            WebSocketSharp.WebSocket Sender = sender as WebSocketSharp.WebSocket;
-            string ErrorMessage = e.Message + ":\r\n" + e.Exception.Message;
-            this.Receiving[Sender].Errors.Add(ErrorMessage);
         }
     }
 
@@ -157,100 +98,46 @@ namespace VVVV.Nodes.VObjects
         [Input("Input")]
         public Pin<VebSocketClientWrap> FInput;
 
-        [Output("Message")]
+        [Output("Raw Message")]
         public ISpread<ISpread<ClientMessageWrap>> FMessage;
+        [Output("Message Type")]
+        public ISpread<ISpread<string>> FMessageType;
         [Output("Error")]
         public ISpread<ISpread<string>> FError;
-
-        public Dictionary<WebSocketSharp.WebSocket, ReceivingBuffer> Receiving = new Dictionary<WebSocketSharp.WebSocket, ReceivingBuffer>();
-        public List<WebSocketSharp.WebSocket> ToBeRemoved = new List<WebSocketSharp.WebSocket>();
-
-        public void AddNewClient()
-        {
-            foreach (VebSocketClientWrap vsw in FInput)
-            {
-                VebSocketClient vs = vsw.Content as VebSocketClient;
-                if (!Receiving.ContainsKey(vs.Client))
-                {
-                    ReceivingBuffer rb = new ReceivingBuffer();
-                    rb.Parent = vs;
-                    vs.Client.OnMessage += onMessage;
-                    vs.Client.OnError += onError;
-                    Receiving.Add(vs.Client, rb);
-                }
-            }
-        }
-        public void RemoveExpiredClient()
-        {
-            ToBeRemoved.Clear();
-            foreach (VebSocketClientWrap vsw in FInput)
-            {
-                VebSocketClient vs = vsw.Content as VebSocketClient;
-                if (Receiving.ContainsKey(vs.Client))
-                    Receiving[vs.Client].PresentInCurrentContext = true;
-            }
-            foreach (KeyValuePair<WebSocketSharp.WebSocket, ReceivingBuffer> kvp in Receiving)
-            {
-                if (!kvp.Value.PresentInCurrentContext)
-                    ToBeRemoved.Add(kvp.Key);
-            }
-            foreach (WebSocketSharp.WebSocket vs in ToBeRemoved)
-                Receiving.Remove(vs);
-        }
-        public void ClearBuffers()
-        {
-            foreach (KeyValuePair<WebSocketSharp.WebSocket, ReceivingBuffer> kvp in Receiving)
-            {
-                kvp.Value.Errors.Clear();
-                kvp.Value.Messages.Clear();
-            }
-        }
-
 
         public void Evaluate(int SpreadMax)
         {
             if (FInput.IsConnected)
             {
                 FMessage.SliceCount = FInput.SliceCount;
+                FMessageType.SliceCount = FInput.SliceCount;
                 FError.SliceCount = FInput.SliceCount;
-
-                RemoveExpiredClient();
-                AddNewClient();
 
                 for (int i = 0; i < FInput.SliceCount; i++)
                 {
                     FMessage[i].SliceCount = 0;
+                    FMessageType[i].SliceCount = 0;
                     FError[i].SliceCount = 0;
                     VebSocketClient vs = FInput[i].Content as VebSocketClient;
 
-                    foreach (ClientMessage cm in Receiving[vs.Client].Messages)
+                    foreach (ClientMessage cm in vs.ReceivedMessages.Values)
                     {
-                        ClientMessageWrap cmw = new ClientMessageWrap(cm);
-                        FMessage[i].Add(cmw);
+                        FMessage[i].Add(new ClientMessageWrap(cm));
+                        FMessageType[i].Add(cm.Type.ToString());
                     }
-                    foreach (string e in Receiving[vs.Client].Errors)
+                    foreach (VebSocketError e in vs.Errors)
                     {
-                        FError[i].Add(e);
+                        if (e.Exception != null) FError[i].Add(e.Message + "\n" + e.Exception.Message);
+                        else FError[i].Add(e.Message);
                     }
                 }
             }
             else
             {
                 FMessage.SliceCount = 0;
+                FMessageType.SliceCount = 0;
                 FError.SliceCount = 0;
             }
-            ClearBuffers();
-        }
-        private void onMessage(object sender, WebSocketSharp.MessageEventArgs e)
-        {
-            WebSocketSharp.WebSocket Sender = sender as WebSocketSharp.WebSocket;
-            this.Receiving[Sender].Messages.Add(e.ToClientMessage());
-        }
-        private void onError(object sender, WebSocketSharp.ErrorEventArgs e)
-        {
-            WebSocketSharp.WebSocket Sender = sender as WebSocketSharp.WebSocket;
-            string ErrorMessage = e.Message + ":\r\n" + e.Exception.Message;
-            this.Receiving[Sender].Errors.Add(ErrorMessage);
         }
     }
 
