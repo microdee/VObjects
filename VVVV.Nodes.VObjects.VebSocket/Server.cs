@@ -42,6 +42,8 @@ namespace VVVV.Nodes.VObjects
     }
     class VebSocketService
     {
+        public IHDEHost HDEHost;
+
         public WebSocketServiceHost Service;
         public Dictionary<string, IWebSocketSession> Sessions = new Dictionary<string, IWebSocketSession>();
         public Dictionary<string, VebSocketClient> Clients = new Dictionary<string, VebSocketClient>();
@@ -55,17 +57,32 @@ namespace VVVV.Nodes.VObjects
         private void onClosedClient(object sender, ClientCloseEventArgs e)
         {
             this.Sessions.Remove(e.ID);
+            this.Clients[e.ID].Dispose();
             this.Clients.Remove(e.ID);
         }
 
         private void onConnectedClient(object sender, ClientConnectEventArgs e)
         {
             this.Sessions.Add(e.ID, e.Session);
-            this.Clients.Add(e.ID, e.Session.Context.WebSocket.ToVebSocketClient());
+            VebSocketClient vc = e.Session.Context.WebSocket.ToVebSocketClient();
+            vc.SubscribeToMainloop(this.HDEHost);
+            this.Clients.Add(e.ID, vc);
+        }
+    }
+    public class VebSocketServiceWrap : VObject
+    {
+        public VebSocketServiceWrap() : base() { }
+        public VebSocketServiceWrap(VebSocketService o) : base(o) { }
+
+        public override void Dispose()
+        {
+            base.Dispose();
         }
     }
     class VebSocketServer
     {
+        public IHDEHost HDEHost;
+
         public WebSocketServer Server;
         public Dictionary<string, VebSocketService> Services = new Dictionary<string, VebSocketService>();
         public VebSocketServer(int port, bool secure)
@@ -78,6 +95,7 @@ namespace VVVV.Nodes.VObjects
         {
             VebSocketService s = new VebSocketService();
             s.Service = this.Server.WebSocketServices[e.Path];
+            s.HDEHost = this.HDEHost;
             this.Services.Add(e.Path, s);
         }
         public void AddService(string Path)

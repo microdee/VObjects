@@ -72,6 +72,8 @@ namespace VVVV.Nodes.VObjects
 
     public class VebSocketClient
     {
+        public IHDEHost HDEHost;
+
         public string Url;
         public WebSocketSharp.WebSocket Client;
         public bool Connected = false;
@@ -116,10 +118,16 @@ namespace VVVV.Nodes.VObjects
             this.Client.Log.Output = this.OutputLog;
             this.Url = w.Url.ToString();
         }
-        public void SubscribeToMainloop()
+        public void SubscribeToMainloop(IHDEHost hdehost)
         {
-            ClearBuffers(null, EventArgs.Empty);
-            IncrementAge(null, EventArgs.Empty);
+            this.HDEHost = hdehost;
+            this.HDEHost.MainLoop.OnPrepareGraph += this.ClearBuffers;
+            this.HDEHost.MainLoop.OnUpdateView += this.IncrementAge;
+        }
+        public void Dispose()
+        {
+            this.HDEHost.MainLoop.OnPrepareGraph -= this.ClearBuffers;
+            this.HDEHost.MainLoop.OnUpdateView -= this.IncrementAge;
         }
 
         private void IncrementAge(object sender, EventArgs e)
@@ -268,7 +276,7 @@ namespace VVVV.Nodes.VObjects
                 logdata.Date.ToShortTimeString() + ":" +
                 logdata.Level.ToString() + "," +
                 logdata.Message + "\n" +
-                "<caller>\n" + logdata.Caller.ToString() + "</caller>"
+                logdata.Caller.ToString()
             );
         }
     }
@@ -291,6 +299,7 @@ namespace VVVV.Nodes.VObjects
         {
             VebSocketClient hc = this.Content as VebSocketClient;
             hc.Client.Close();
+            hc.Dispose();
  	        base.Dispose();
         }
     }

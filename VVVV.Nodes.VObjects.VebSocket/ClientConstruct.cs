@@ -35,6 +35,9 @@ namespace VVVV.Nodes.VObjects
     #endregion PluginInfo
     public class VebSocketClientConstructor : ConstructVObjectNode<VebSocketClientWrap>
     {
+        [Import]
+        public IHDEHost FHDEHost;
+
         [Input("Url", DefaultString = "ws://localhost")]
         public ISpread<string> FUrl;
         [Input("Origin Header", DefaultString = "")]
@@ -57,22 +60,6 @@ namespace VVVV.Nodes.VObjects
         [Input("Auto Connect", DefaultBoolean = true)]
         public ISpread<bool> FAutoConnect;
 
-        public override void InitializeFrame()
-        {
-            try
-            {
-                for (int i = 0; i < FOutput.SliceCount; i++)
-                {
-                    VebSocketClient vc = FOutput[i].Content as VebSocketClient;
-                    vc.SubscribeToMainloop();
-                }
-            }
-            catch
-            {
-
-            }
-        }
-
         public override VebSocketClientWrap ConstructVObject()
         {
             string[] protocols;
@@ -90,7 +77,7 @@ namespace VVVV.Nodes.VObjects
             VebSocketHostedClient newVebSocketClient = new VebSocketHostedClient(newWebSocket);
             VebSocketClientWrap newWrap = new VebSocketClientWrap(newVebSocketClient as VebSocketClient);
 
-            newVebSocketClient.SubscribeToMainloop();
+            newVebSocketClient.SubscribeToMainloop(this.FHDEHost);
 
             if(FOrigin[this.CurrObj] != "")
                 newWebSocket.Origin = FOrigin[this.CurrObj];
