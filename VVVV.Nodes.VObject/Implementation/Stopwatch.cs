@@ -47,7 +47,7 @@ namespace VVVV.Nodes.VObjects
     [PluginInfo(Name = "Cast", Category = "To", Version = "Stopwatch")]
     public class ToStopwatchCastNode : CastToNode<StopwatchWrap> { }
 
-    [PluginInfo(Name = "Construct", Category = "Stopwatch")]
+    [PluginInfo(Name = "Construct", Category = "Stopwatch", AutoEvaluate = true)]
     public class StopwatchConstructNode : ConstructVObjectNode<StopwatchWrap>
     {
         [Input("Start", Order = 10)]
