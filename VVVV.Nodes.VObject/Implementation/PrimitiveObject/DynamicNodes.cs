@@ -25,7 +25,7 @@ namespace VVVV.Nodes.VObjects
     public class JoinPrimitiveObjectNode : DynamicNode
     {
 #pragma warning disable 649, 169
-        [Input("Create", IsBang = true, IsSingle = true)]
+        [Input("Create", IsBang = true)]
         ISpread<bool> FCreate;
 
         [Output("Output", AutoFlush = false)]
@@ -48,9 +48,17 @@ namespace VVVV.Nodes.VObjects
             TemplateUpdate();
 
             SpreadMax = 0;
-            if (!FCreate[0])
+            bool creating = false;
+            for (int i = 0; i < FCreate.SliceCount; i++)
             {
-                //				FLogger.Log(LogType.Debug, "skip join");
+                if(FCreate[i])
+                {
+                    creating = true;
+                    break;
+                }
+            }
+            if (!creating)
+            {
                 FOutput.SliceCount = 0;
                 FOutput.Flush();
                 return;
@@ -61,6 +69,7 @@ namespace VVVV.Nodes.VObjects
                 var pin = ToISpread(FPins[name]);
                 pin.Sync();
                 SpreadMax = Math.Max(pin.SliceCount, SpreadMax);
+                SpreadMax = Math.Max(FCreate.SliceCount, SpreadMax);
             }
 
 

@@ -24,11 +24,16 @@ namespace VVVV.Nodes.VObjects
         public StopwatchWrap(Stopwatch o) : base(o) { }
         
         public StopwatchWrap(Stream s) : base(s) { }
+
         public override void DeSerialize(Stream Input)
         {
             base.DeSerialize(Input);
             Stopwatch st = new Stopwatch();
             this.Content = st;
+        }
+        public override void Dispose()
+        {
+            base.Dispose();
         }
         
         public override VObject DeepCopy()
@@ -51,7 +56,7 @@ namespace VVVV.Nodes.VObjects
         public override StopwatchWrap ConstructVObject()
         {
             Stopwatch NewObj = new Stopwatch();
-            if(FStart[this.CurrObj]) NewObj.Start();
+            if (FStart[this.CurrObj]) NewObj.Start();
             StopwatchWrap NewWrap = new StopwatchWrap(NewObj);
             return NewWrap;
         }

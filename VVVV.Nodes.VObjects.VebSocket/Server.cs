@@ -13,7 +13,7 @@ using WebSocketSharp.Server;
 
 namespace VVVV.Nodes.VObjects
 {
-    class VebSocketBehavior : WebSocketBehavior
+    public class VebSocketBehavior : WebSocketBehavior
     {
         /*
          * actual behavior is done in vvvv through the collection of services and clients
@@ -40,7 +40,7 @@ namespace VVVV.Nodes.VObjects
             base.OnClose(e);
         }
     }
-    class VebSocketService
+    public class VebSocketService
     {
         public IHDEHost HDEHost;
 

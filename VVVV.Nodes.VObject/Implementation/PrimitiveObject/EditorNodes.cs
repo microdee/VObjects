@@ -24,7 +24,8 @@ namespace VVVV.Nodes.VObjects
         Category = "PrimitiveObject",
         Version = "bool",
         Help = "Manage Primitive Objects dynamically",
-        Tags = "microdee"
+        Tags = "microdee",
+        AutoEvaluate = true
     )]
     #endregion PluginInfo
     public class PrimitiveObjectboolEditorNode : EditPrimitiveObjectNode<bool> { }
@@ -35,7 +36,8 @@ namespace VVVV.Nodes.VObjects
         Category = "PrimitiveObject",
         Version = "int",
         Help = "Manage Primitive Objects dynamically",
-        Tags = "microdee"
+        Tags = "microdee",
+        AutoEvaluate = true
     )]
     #endregion PluginInfo
     public class PrimitiveObjectintEditorNode : EditPrimitiveObjectNode<int> { }
@@ -46,7 +48,8 @@ namespace VVVV.Nodes.VObjects
         Category = "PrimitiveObject",
         Version = "double",
         Help = "Manage Primitive Objects dynamically",
-        Tags = "microdee"
+        Tags = "microdee",
+        AutoEvaluate = true
     )]
     #endregion PluginInfo
     public class PrimitiveObjectdoubleEditorNode : EditPrimitiveObjectNode<double> { }
@@ -57,7 +60,8 @@ namespace VVVV.Nodes.VObjects
         Category = "PrimitiveObject",
         Version = "float",
         Help = "Manage Primitive Objects dynamically",
-        Tags = "microdee"
+        Tags = "microdee",
+        AutoEvaluate = true
     )]
     #endregion PluginInfo
     public class PrimitiveObjectfloatEditorNode : EditPrimitiveObjectNode<float> { }
@@ -68,7 +72,8 @@ namespace VVVV.Nodes.VObjects
         Category = "PrimitiveObject",
         Version = "string",
         Help = "Manage Primitive Objects dynamically",
-        Tags = "microdee"
+        Tags = "microdee",
+        AutoEvaluate = true
     )]
     #endregion PluginInfo
     public class PrimitiveObjectstringEditorNode : EditPrimitiveObjectNode<string> { }
@@ -79,7 +84,8 @@ namespace VVVV.Nodes.VObjects
         Category = "PrimitiveObject",
         Version = "Color",
         Help = "Manage Primitive Objects dynamically",
-        Tags = "microdee"
+        Tags = "microdee",
+        AutoEvaluate = true
     )]
     #endregion PluginInfo
     public class PrimitiveObjectRGBAColorEditorNode : EditPrimitiveObjectNode<RGBAColor>
@@ -96,7 +102,8 @@ namespace VVVV.Nodes.VObjects
         Category = "PrimitiveObject",
         Version = "Transform",
         Help = "Manage Primitive Objects dynamically",
-        Tags = "microdee"
+        Tags = "microdee",
+        AutoEvaluate = true
     )]
     #endregion PluginInfo
     public class PrimitiveObjectMatrix4x4EditorNode : EditPrimitiveObjectNode<Matrix4x4>
@@ -113,7 +120,8 @@ namespace VVVV.Nodes.VObjects
         Category = "PrimitiveObject",
         Version = "Vector2D",
         Help = "Manage Primitive Objects dynamically",
-        Tags = "microdee"
+        Tags = "microdee",
+        AutoEvaluate = true
     )]
     #endregion PluginInfo
     public class PrimitiveObjectVector2DEditorNode : EditPrimitiveObjectNode<Vector2D>
@@ -130,7 +138,8 @@ namespace VVVV.Nodes.VObjects
         Category = "PrimitiveObject",
         Version = "Vector3D",
         Help = "Manage Primitive Objects dynamically",
-        Tags = "microdee"
+        Tags = "microdee",
+        AutoEvaluate = true
     )]
     #endregion PluginInfo
     public class PrimitiveObjectVector3DEditorNode : EditPrimitiveObjectNode<Vector3D>
@@ -147,7 +156,8 @@ namespace VVVV.Nodes.VObjects
         Category = "PrimitiveObject",
         Version = "Vector4D",
         Help = "Manage Primitive Objects dynamically",
-        Tags = "microdee"
+        Tags = "microdee",
+        AutoEvaluate = true
     )]
     #endregion PluginInfo
     public class PrimitiveObjectVector4DEditorNode : EditPrimitiveObjectNode<Vector4D>
@@ -164,7 +174,8 @@ namespace VVVV.Nodes.VObjects
         Category = "PrimitiveObject",
         Version = "Raw",
         Help = "Manage Primitive Objects dynamically",
-        Tags = "microdee"
+        Tags = "microdee",
+        AutoEvaluate = true
     )]
     #endregion PluginInfo
     public class PrimitiveObjectStreamEditorNode : EditPrimitiveObjectNode<Stream>
