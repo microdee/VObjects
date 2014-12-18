@@ -308,7 +308,7 @@ namespace VVVV.Nodes.VObjects
         public ISpread<bool> FContains;
         [Input("Exclude", Order = 3)]
         public ISpread<bool> FExclude;
-        [Input("Enabled", IsBang = true, DefaultBoolean = true, Order = 5)]
+        [Input("Enabled", DefaultBoolean = true, Order = 5)]
         public ISpread<bool> FEnabled;
 
         [Output("Output", Order = 0)]
@@ -345,6 +345,73 @@ namespace VVVV.Nodes.VObjects
                             this.Indices.Clear();
                             this.Objects.Clear();
                             this.Sift(FInput[i], FFilter[i][j], FContains[i], FExclude[i], Indices, Objects);
+                            foreach (int index in Indices)
+                            {
+                                FFormerIndex[i].Add(index);
+                            }
+                            foreach (VObject o in Objects)
+                            {
+                                FOutput[i].Add(o);
+                            }
+                            CurrentAbsIndex++;
+                        }
+                    }
+
+                }
+            }
+            else
+            {
+                FOutput.SliceCount = 0;
+                FFormerIndex.SliceCount = 0;
+            }
+        }
+    }
+
+    public abstract class VPathNode<SourceObject> : IPluginEvaluate where SourceObject : VObject
+    {
+        [Input("Source", Order = 0)]
+        public Pin<SourceObject> FInput;
+        [Input("Path", Order = 1)]
+        public ISpread<ISpread<string>> FFilter;
+        [Input("Separator", Order = 2, IsSingle = true, DefaultString="¦")]
+        public ISpread<string> FSeparator;
+        [Input("Enabled", DefaultBoolean = true, Order = 5)]
+        public ISpread<bool> FEnabled;
+
+        [Output("Output", Order = 0)]
+        public ISpread<ISpread<VObject>> FOutput;
+        [Output("Path Index", Order = 1)]
+        public ISpread<ISpread<int>> FFormerIndex;
+
+        public virtual void Sift(SourceObject Source, string Filter, List<int> MatchingIndices, List<VObject> Output) { }
+        private List<VObject> Objects = new List<VObject>();
+        private List<int> Indices = new List<int>();
+        public virtual void InitializeFrame() { }
+        public int CurrentAbsIndex = 0;
+
+        public void Evaluate(int SpreadMax)
+        {
+            if (FInput.IsConnected)
+            {
+                FOutput.SliceCount = FInput.SliceCount;
+                FFormerIndex.SliceCount = FInput.SliceCount;
+
+                this.InitializeFrame();
+
+                CurrentAbsIndex = 0;
+
+                for (int i = 0; i < FInput.SliceCount; i++)
+                {
+                    if (FEnabled[i])
+                    {
+                        FOutput[i].SliceCount = 0;
+                        FFormerIndex[i].SliceCount = 0;
+
+                        for (int j = 0; j < FFilter[i].SliceCount; j++)
+                        {
+                            this.Indices.Clear();
+                            this.Objects.Clear();
+                            this.Sift(FInput[i], FFilter[i][j], Indices, Objects);
                             foreach (int index in Indices)
                             {
                                 FFormerIndex[i].Add(index);
