@@ -134,6 +134,10 @@
     <Compile Include="Implementation\PrimitiveObject\EditorNodes.cs" />
     <Compile Include="Implementation\PrimitiveObject\Template\PrimitiveTemplate.cs" />
     <Compile Include="Implementation\PrimitiveObject\Template\TemplateDictionary.cs" />
+    <Compile Include="Implementation\Smoothing\Smoothing.cs" />
+    <Compile Include="Implementation\Smoothing\SmoothingAlgorithmNodes.cs" />
+    <Compile Include="Implementation\Smoothing\SmoothingAlgorithms.cs" />
+    <Compile Include="Implementation\Smoothing\SmoothingNodes.cs" />
     <Compile Include="Implementation\Stopwatch.cs" />
     <Compile Include="Implementation\VObjectCollection\DerivedDictionaryNodes.cs" />
     <Compile Include="Implementation\VObjectCollection\DerivedCollectionNodes.cs" />

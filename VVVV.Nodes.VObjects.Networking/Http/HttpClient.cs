@@ -24,10 +24,7 @@ namespace VVVV.Nodes.VObjects
         public HttpClient Client = new HttpClient();
         public List<Task<HttpResponseMessage>> OngoingRequests = new List<Task<HttpResponseMessage>>();
 
-        public HttpClientContainer()
-        {
-            //blabla
-        }
+        public HttpClientContainer() { }
 
         public Task<HttpResponseMessage> Send(HttpRequestMessage hrm, HttpCompletionOption hco)
         {

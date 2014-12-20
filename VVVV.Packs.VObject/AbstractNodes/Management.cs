@@ -101,7 +101,11 @@ namespace VVVV.Nodes.VObjects
             for (int i = 0; i < this.SliceCount; i++)
             {
                 this.CurrObj = i;
-                if(FConstruct[i]) FOutput.Add(ConstructVObject());
+                if (FConstruct[i])
+                {
+                    ResultObject ro = ConstructVObject();
+                    if (ro != null) FOutput.Add(ro);
+                }
             }
         }
     }
