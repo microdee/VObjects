@@ -175,6 +175,9 @@ namespace VVVV.Nodes.VObjects
         [Input("Add", IsBang = true, Order = 2)]
         public ISpread<ISpread<bool>> FAdd;
 
+        [Output("Added", IsBang = true)]
+        public ISpread<bool> FAdded;
+
         public int CurrParent;
         public int CurrSource;
 
@@ -185,18 +188,22 @@ namespace VVVV.Nodes.VObjects
         {
             if (FParent.IsConnected)
             {
+                FAdded.SliceCount = FParent.SliceCount;
                 this.InitializeFrame();
                 for(int i=0; i<FParent.SliceCount; i++)
                 {
                     this.CurrParent = i;
+                    bool added = false;
+                    for (int j = 0; j < FSource[i].SliceCount; j++ )
                     {
-                        for (int j = 0; j < FSource[i].SliceCount; j++ )
+                        this.CurrSource = j;
+                        if ((FSource[i][j] != null) && FAdd[i][j])
                         {
-                            this.CurrSource = j;
-                            if ((FSource[i][j] != null) && FAdd[i][j])
-                                AddVObject(FParent[i], FSource[i][j]);
+                            AddVObject(FParent[i], FSource[i][j]);
+                            added = true;
                         }
                     }
+                    FAdded[i] = added;
                 }
             }
         }
