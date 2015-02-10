@@ -18,31 +18,6 @@ using VVVV.Packs.VObjects;
 
 namespace VVVV.Nodes.VObjects
 {
-    public abstract class CastFromNode<DerivedVObject> : IPluginEvaluate where DerivedVObject : VObject
-    {
-        [Input("Input")]
-        public Pin<DerivedVObject> FInput;
-
-        [Output("Output")]
-        public ISpread<VObject> FOutput;
-
-        public void Evaluate(int SpreadMax)
-        {
-            if (FInput.IsConnected)
-            {
-                FOutput.SliceCount = SpreadMax;
-
-                for (int i = 0; i < SpreadMax; i++)
-                {
-                    FOutput[i] = (VObject)FInput[i];
-                }
-            }
-            else
-            {
-                FOutput.SliceCount = 0;
-            }
-        }
-    }
     public abstract class CastToNode<DerivedVObject> : IPluginEvaluate where DerivedVObject : VObject
     {
         [Input("Input")]

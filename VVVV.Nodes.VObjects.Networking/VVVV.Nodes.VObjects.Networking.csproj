@@ -124,6 +124,10 @@
       <HintPath>..\VVVV.Packs.VObject\packages\VVVV.UtilsIL.33.2.0-develop-477\lib\net40\VVVV.UtilsIL.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="websocket-sharp, Version=1.0.2.13716, Culture=neutral, PublicKeyToken=5660b08a1845a91e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dependencies\websocket-sharp.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Http\HttpNodes\HeadersNodes.cs" />
@@ -136,6 +140,13 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="VebSocket\Client.cs" />
+    <Compile Include="VebSocket\ClientConstruct.cs" />
+    <Compile Include="VebSocket\ClientLog.cs" />
+    <Compile Include="VebSocket\ClientMessageNodes.cs" />
+    <Compile Include="VebSocket\ClientSend.cs" />
+    <Compile Include="VebSocket\ClientSplitNodes.cs" />
+    <Compile Include="VebSocket\Server.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

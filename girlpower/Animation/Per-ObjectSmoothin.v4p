@@ -1,8 +1,8 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.3.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
    <PATCH nodename="C:\vvvv\libs\VObjects\girlpower\Animation\Per-ObjectSmoothin.v4p" systemname="Per-ObjectSmoothin" filename="C:\vvvv\libs\VObjects\girlpower\Animation\Per-ObjectSmoothin.v4p" scrollx="0" scrolly="0">
-   <BOUNDS type="Window" left="9915" top="1755" width="9000" height="8400">
+   <BOUNDS type="Window" left="7395" top="2355" width="9930" height="9855">
    </BOUNDS>
-   <PACK Name="addonpack" Version="33.3.0">
+   <PACK Name="addonpack" Version="33.7.0">
    </PACK>
    <NODE systemname="Construct (VObjectCollection)" filename="..\..\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Construct (VObjectCollection)" componentmode="Hidden" id="0">
    <BOUNDS type="Node" left="4485" top="1425" width="100" height="100">
@@ -29,7 +29,7 @@
    </PIN>
    <PIN pinname="VPath" slicecount="1" visible="1" values="Parent.Test">
    </PIN>
-   <PIN pinname="Smoothing Algorithm" visible="1">
+   <PIN pinname="Smoothing Algorithm" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="2" systemname="IOBox (Value Advanced)">
@@ -219,6 +219,8 @@
    </PIN>
    <PIN pinname="Name" visible="1">
    </PIN>
+   <PIN pinname="Added" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="0" srcpinname="Output" dstnodeid="14" dstpinname="Parent">
    </LINK>
@@ -263,7 +265,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="7215" top="480" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -333,9 +335,9 @@
    <LINK srcnodeid="12" srcpinname="Target" dstnodeid="21" dstpinname="Y Input Value">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="24" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="3420" top="3075" width="480" height="480">
+   <BOUNDS type="Box" left="3660" top="3330" width="480" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="3420" top="3075" width="0" height="0">
+   <BOUNDS type="Node" left="3660" top="3330" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
@@ -379,9 +381,9 @@
    <LINK srcnodeid="25" srcpinname="Position Out" dstnodeid="26" dstpinname="Y Input Value">
    </LINK>
    <NODE systemname="Renderer (DX11)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11)" componentmode="InAWindow" id="28">
-   <BOUNDS type="Node" left="4035" top="7320" width="100" height="100">
+   <BOUNDS type="Node" left="4215" top="7530" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="4035" top="7320" width="6000" height="4500">
+   <BOUNDS type="Box" left="4215" top="7530" width="6000" height="4500">
    </BOUNDS>
    <BOUNDS type="Window" left="18900" top="1800" width="6240" height="5085">
    </BOUNDS>
@@ -389,7 +391,7 @@
    </PIN>
    </NODE>
    <NODE systemname="Transform (Transform 2d)" nodename="Transform (Transform 2d)" componentmode="Hidden" id="29">
-   <BOUNDS type="Node" left="4425" top="6390" width="100" height="100">
+   <BOUNDS type="Node" left="4515" top="6480" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Transform Out" visible="1">
    </PIN>
@@ -403,7 +405,7 @@
    </PIN>
    </NODE>
    <NODE systemname="Quad (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Quad (DX11.Layer)" componentmode="Hidden" id="30">
-   <BOUNDS type="Node" left="4275" top="6795" width="100" height="100">
+   <BOUNDS type="Node" left="4365" top="6885" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Transform" visible="1">
    </PIN>
@@ -457,7 +459,7 @@
    <LINK srcnodeid="34" srcpinname="Output" dstnodeid="29" dstpinname="TranslateX">
    </LINK>
    <NODE systemname="Divide (Value)" nodename="Divide (Value)" componentmode="Hidden" id="35">
-   <BOUNDS type="Node" left="4800" top="5970" width="100" height="100">
+   <BOUNDS type="Node" left="5010" top="6060" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input" slicecount="1" values="2">
    </PIN>
@@ -483,5 +485,21 @@
    <LINK srcnodeid="13" srcpinname="Y Output Value" dstnodeid="12" dstpinname="Filter Time">
    </LINK>
    <LINK srcnodeid="17" srcpinname="Y Output Value" dstnodeid="4" dstpinname="Test">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="38" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="5730" top="4695" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5730" top="4695" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="14" srcpinname="Added" dstnodeid="38" dstpinname="Y Input Value">
    </LINK>
    </PATCH>

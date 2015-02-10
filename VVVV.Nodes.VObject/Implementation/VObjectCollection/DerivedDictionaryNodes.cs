@@ -18,10 +18,6 @@ using VVVV.Packs.VObjects;
 
 namespace VVVV.Nodes.VObjects
 {
-
-    [PluginInfo(Name = "Cast", Category = "From", Version = "VObjectDictionary")]
-    public class FromVObjectDictionaryCastNode : CastFromNode<VObjectDictionaryWrap> { }
-
     [PluginInfo(Name = "Cast", Category = "To", Version = "VObjectDictionary")]
     public class ToVObjectDictionaryCastNode : CastToNode<VObjectDictionaryWrap> { }
 
