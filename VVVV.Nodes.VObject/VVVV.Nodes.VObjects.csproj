@@ -91,9 +91,22 @@
       <HintPath>..\VVVV.Packs.VObject\packages\VVVV.System.ComponentModel.Composition.Codeplex.2.5.0\lib\net40\System.ComponentModel.Composition.Web.Mvc.CodePlex.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.Reactive.Core">
+      <HintPath>..\VVVV.Packs.VObject\packages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces">
+      <HintPath>..\VVVV.Packs.VObject\packages\Rx-Interfaces.2.2.5\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq">
+      <HintPath>..\VVVV.Packs.VObject\packages\Rx-Linq.2.2.5\lib\net45\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices">
+      <HintPath>..\VVVV.Packs.VObject\packages\Rx-PlatformServices.2.2.5\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
+    </Reference>
     <Reference Include="System.Reflection.Context.CodePlex">
       <HintPath>..\VVVV.Packs.VObject\packages\VVVV.System.ComponentModel.Composition.Codeplex.2.5.0\lib\net40\System.Reflection.Context.CodePlex.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -142,6 +155,8 @@
     <Compile Include="Implementation\VObjectCollection\DerivedDictionaryNodes.cs" />
     <Compile Include="Implementation\VObjectCollection\DerivedCollectionNodes.cs" />
     <Compile Include="Implementation\VObjectCollection\GeneralCollectionNodes.cs" />
+    <Compile Include="Implementation\VOOG\TypeWriterClass.cs" />
+    <Compile Include="Implementation\VOOG\TypeWriterWrap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>

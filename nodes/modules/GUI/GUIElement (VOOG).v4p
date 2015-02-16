@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\GUI\GUIElement (GUIVObject).v4p" systemname="GUIElement" filename="C:\Users\Intel\Desktop\MG-3-PUMA-CES\ProgramFiles\GUIElement.v4p" scrollx="1050" scrolly="2970">
+   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\GUI\GUIElement (VOOG).v4p" systemname="GUIElement" filename="C:\Users\Intel\Desktop\MG-3-PUMA-CES\ProgramFiles\GUIElement.v4p" scrollx="0" scrolly="4680">
    <BOUNDS type="Window" left="13395" top="4605" width="14760" height="10125">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
@@ -33,7 +33,7 @@
    </PIN>
    <PIN pinname="Primitive Template" visible="1" slicecount="1" values="None">
    </PIN>
-   <PIN pinname="Configuration" slicecount="1" values="|Transform Transform, bool Tap, bool Drag, bool Click, int TouchID|">
+   <PIN pinname="Configuration" slicecount="1" values="|Transform Transform, bool Tap, bool Drag, bool Click, int TouchID, bool Enabled|">
    </PIN>
    <PIN pinname="tr" visible="1" slicecount="1" values="||">
    </PIN>
@@ -54,6 +54,10 @@
    <PIN pinname="TouchID" slicecount="1" values="-1">
    </PIN>
    <PIN pinname="Click Bin Size" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Enabled" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Enabled Bin Size" slicecount="1" values="1">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="7" systemname="IOBox (Node)">
@@ -252,6 +256,8 @@
    <PIN pinname="Behavior" slicecount="1" values="Bang">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Force Set|">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="23" srcpinname="Y Output Value" dstnodeid="22" dstpinname="Input 2">
@@ -609,5 +615,97 @@
    <LINK srcnodeid="42" srcpinname="Output" dstnodeid="55" dstpinname="Y Input Value">
    </LINK>
    <LINK srcnodeid="40" srcpinname="Output String" dstnodeid="44" dstpinname="Name">
+   </LINK>
+   <NODE id="56" systemname="PrimitiveObject (Set)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (Set)" componentmode="Hidden" hiddenwhenlocked="0" managers="">
+   <PIN pinname="Transform" visible="1">
+   </PIN>
+   <BOUNDS type="Node" left="7155" top="12270" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Configuration" slicecount="1" pintype="Configuration" values="|bool Enabled|">
+   </PIN>
+   <PIN pinname="Primitive Object" visible="1" pintype="Input" slicecount="1" values="||">
+   </PIN>
+   <BOUNDS type="Box" left="5025" top="9015" width="2400" height="1800">
+   </BOUNDS>
+   <BOUNDS type="Window" left="0" top="0" width="6000" height="4500">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" pintype="Configuration" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Match Rule" pintype="Input" visible="1" slicecount="1" values="All">
+   </PIN>
+   <PIN pinname="Hold if Nil" pintype="Input" visible="1" slicecount="1" values="Off">
+   </PIN>
+   <PIN pinname="Primitive Template" pintype="Input" visible="1" slicecount="1" values="None">
+   </PIN>
+   <PIN pinname="Window Handle" pintype="Output">
+   </PIN>
+   <PIN pinname="Valid" pintype="Output" visible="1">
+   </PIN>
+   <PIN pinname="Foo" pintype="Output" visible="1">
+   </PIN>
+   <PIN pinname="Foo Bin Size" pintype="Output" visible="0">
+   </PIN>
+   <PIN pinname="ID" pintype="Output" visible="-1">
+   </PIN>
+   <PIN pinname="Enabled" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Enabled Bin Size" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Set" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="57" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="8910" top="8115" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8910" top="8115" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Enabled">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="57" srcpinname="Y Output Value" dstnodeid="56" dstpinname="Enabled">
+   </LINK>
+   <NODE systemname="Change (Animation)" nodename="Change (Animation)" componentmode="Hidden" id="58">
+   <BOUNDS type="Node" left="9135" top="9795" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="OnChange" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="OR (Boolean)" nodename="OR (Boolean)" componentmode="Hidden" id="59">
+   <BOUNDS type="Node" left="9015" top="11055" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="23" srcpinname="Y Output Value" dstnodeid="59" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="58" srcpinname="OnChange" dstnodeid="59" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="59" srcpinname="Output" dstnodeid="56" dstpinname="Set">
+   </LINK>
+   <LINK srcnodeid="8" srcpinname="Output" dstnodeid="56" dstpinname="Primitive Object">
+   </LINK>
+   <LINK srcnodeid="57" srcpinname="Y Output Value" dstnodeid="58" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="57" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Enabled">
    </LINK>
    </PATCH>
