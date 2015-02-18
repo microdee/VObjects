@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\GUI\Evaluate (VOOG.OSK).v4p" systemname="Evaluate (GUIVObject OSK)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\Evaluate (GUIVObject OSK).v4p" scrollx="3675" scrolly="8625">
+   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\GUI\Evaluate (VOOG.OSK).v4p" systemname="Evaluate (GUIVObject OSK)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\Evaluate (GUIVObject OSK).v4p" scrollx="17835" scrolly="3435">
    <BOUNDS type="Window" left="5640" top="2625" width="15270" height="11025">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
@@ -1453,9 +1453,9 @@
    <LINK srcnodeid="44" srcpinname="Output" dstnodeid="130" dstpinname="Input 1">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="132" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="19590" top="10320" width="480" height="480">
+   <BOUNDS type="Box" left="19575" top="9360" width="480" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="19590" top="10320" width="0" height="0">
+   <BOUNDS type="Node" left="19575" top="9360" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -1464,6 +1464,8 @@
    <PIN pinname="Value Type" slicecount="1" values="Boolean">
    </PIN>
    <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Space">
    </PIN>
    </NODE>
    <LINK srcnodeid="130" srcpinname="Output" dstnodeid="132" dstpinname="Y Input Value">
@@ -2465,5 +2467,25 @@
    <LINK srcnodeid="243" srcpinname="Y Output Value" dstnodeid="241" dstpinname="Points">
    </LINK>
    <LINK srcnodeid="242" srcpinname="Output Enum" dstnodeid="84" dstpinname="Resolution Receiver">
+   </LINK>
+   <PACK Name="VVVV.Packs" Version="0.2.0">
+   </PACK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="274" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="21765" top="9300" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="21765" top="9300" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Enter">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="187" srcpinname="Output" dstnodeid="274" dstpinname="Y Input Value">
    </LINK>
    </PATCH>

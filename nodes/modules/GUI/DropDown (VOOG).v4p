@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\GUI\DropDown (VOOG).v4p" systemname="DropDown (VOOG)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\DropDown (VOOG).v4p" scrollx="1575" scrolly="1305">
-   <BOUNDS type="Window" left="32505" top="3210" width="13230" height="9090">
+   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\GUI\DropDown (VOOG).v4p" systemname="DropDown (VOOG)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\DropDown (VOOG).v4p" scrollx="4755" scrolly="10050">
+   <BOUNDS type="Window" left="10710" top="4500" width="13230" height="9090">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
    </PACK>
@@ -398,6 +398,12 @@
    <PIN pinname="Paragraph Alignment" slicecount="1" values="Center">
    </PIN>
    <PIN pinname="Resolution Receiver" visible="1">
+   </PIN>
+   <PIN pinname="Text Alignment" visible="1">
+   </PIN>
+   <PIN pinname="Resolution" visible="1">
+   </PIN>
+   <PIN pinname="Additional Depth" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="48" srcpinname="Transform" dstnodeid="71" dstpinname="Transform In">
@@ -920,6 +926,12 @@
    <PIN pinname="Paragraph Alignment" slicecount="1" values="Center">
    </PIN>
    <PIN pinname="Resolution Receiver" visible="1">
+   </PIN>
+   <PIN pinname="Text Alignment" visible="1">
+   </PIN>
+   <PIN pinname="Resolution" visible="1">
+   </PIN>
+   <PIN pinname="Additional Depth" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="73" srcpinname="Y Output Value" dstnodeid="119" dstpinname="Padding">
@@ -1448,22 +1460,6 @@
    </LINK>
    <LINK srcnodeid="80" srcpinname="Color Output" dstnodeid="119" dstpinname="Color">
    </LINK>
-   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="172" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="14910" top="4260" width="1590" height="270">
-   </BOUNDS>
-   <BOUNDS type="Node" left="14910" top="4260" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="1.GUI.Resolution">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Resolution Receiver|">
-   </PIN>
-   <PIN pinname="Output Enum" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="172" srcpinname="Output Enum" dstnodeid="71" dstpinname="Resolution Receiver">
-   </LINK>
-   <LINK srcnodeid="172" srcpinname="Output Enum" dstnodeid="119" dstpinname="Resolution Receiver">
-   </LINK>
    <NODE systemname="RoundRect (DX11)" filename="..\..\..\..\libs\mcropack\nodes\Modules\RoundRect (DX11).v4p" componentmode="Hidden" id="173" nodename="..\..\..\..\libs\mcropack\nodes\Modules\RoundRect (DX11).v4p">
    <BOUNDS type="Node" left="9315" top="8025" width="100" height="100">
    </BOUNDS>
@@ -1478,6 +1474,10 @@
    <PIN pinname="Transform In" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Color" slicecount="1" visible="1" values="|0.00000,0.00000,0.00000,1.00000|">
+   </PIN>
+   <PIN pinname="Resolution Receiver" visible="1">
+   </PIN>
+   <PIN pinname="Resolution" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="48" srcpinname="Transform" dstnodeid="173" dstpinname="Transform In">
@@ -1591,6 +1591,10 @@
    </PIN>
    <PIN pinname="Shrink" slicecount="2" visible="1" values="0,0">
    </PIN>
+   <PIN pinname="Resolution Receiver" visible="1">
+   </PIN>
+   <PIN pinname="Resolution" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="184" srcpinname="Layer" dstnodeid="117" dstpinname="Layer 2">
    </LINK>
@@ -1688,4 +1692,82 @@
    </LINK>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="195" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="10530" top="4755" width="1035" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="10530" top="4755" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="Leading">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="195" srcpinname="Output Enum" dstnodeid="71" dstpinname="Text Alignment">
+   </LINK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="196" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="9825" top="13470" width="825" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="9825" top="13470" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="Leading">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="196" srcpinname="Output Enum" dstnodeid="119" dstpinname="Text Alignment">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="197" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="14295" top="4410" width="795" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="14295" top="4410" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="2" visible="1" values="1080,1920">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Resolution">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="197" srcpinname="Y Output Value" dstnodeid="71" dstpinname="Resolution">
+   </LINK>
+   <LINK srcnodeid="197" srcpinname="Y Output Value" dstnodeid="173" dstpinname="Resolution">
+   </LINK>
+   <LINK srcnodeid="197" srcpinname="Y Output Value" dstnodeid="119" dstpinname="Resolution">
+   </LINK>
+   <LINK srcnodeid="197" srcpinname="Y Output Value" dstnodeid="184" dstpinname="Resolution">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="198" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="12015" top="4050" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="12015" top="4050" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="-0.02">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="198" srcpinname="Y Output Value" dstnodeid="71" dstpinname="Additional Depth">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="199" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="10755" top="13395" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="10755" top="13395" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="-0.02">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="199" srcpinname="Y Output Value" dstnodeid="119" dstpinname="Additional Depth">
+   </LINK>
    </PATCH>

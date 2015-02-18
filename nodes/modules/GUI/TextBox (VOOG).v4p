@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\GUI\TextBox (VOOG).v4p" systemname="TextBox (VOOG)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\TextBox (VOOG).v4p" scrollx="-360" scrolly="0">
+   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\GUI\TextBox (VOOG).v4p" systemname="TextBox (VOOG)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\TextBox (VOOG).v4p" scrollx="11475" scrolly="1995">
    <BOUNDS type="Window" left="9645" top="4230" width="13785" height="9885">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
@@ -460,18 +460,6 @@
    <PIN pinname="Color Output" visible="1">
    </PIN>
    </NODE>
-   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="57" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="21540" top="4455" width="1590" height="270">
-   </BOUNDS>
-   <BOUNDS type="Node" left="21540" top="4455" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="1.GUI.Resolution">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Resolution Receiver|">
-   </PIN>
-   <PIN pinname="Output Enum" visible="1">
-   </PIN>
-   </NODE>
    <NODE systemname="PrimitiveObject (Split)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (Split)" componentmode="Hidden" id="77">
    <BOUNDS type="Node" left="13380" top="4710" width="100" height="100">
    </BOUNDS>
@@ -611,9 +599,9 @@
    </PIN>
    <PIN pinname="Transform In" visible="1" slicecount="1" values="||">
    </PIN>
+   <PIN pinname="Resolution" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="57" srcpinname="Output Enum" dstnodeid="99" dstpinname="Receive String">
-   </LINK>
    <LINK srcnodeid="99" srcpinname="Transform Out" dstnodeid="98" dstpinname="Transform In">
    </LINK>
    <LINK srcnodeid="79" srcpinname="Y Output Value" dstnodeid="98" dstpinname="ScaleY">
@@ -941,6 +929,8 @@
    </PIN>
    <PIN pinname="Resolution Receiver" visible="1">
    </PIN>
+   <PIN pinname="Resolution" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="27" srcpinname="Layer" dstnodeid="22" dstpinname="Layer 1">
    </LINK>
@@ -965,8 +955,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="134" srcpinname="Y Output Value" dstnodeid="27" dstpinname="Radius">
-   </LINK>
-   <LINK srcnodeid="57" srcpinname="Output Enum" dstnodeid="27" dstpinname="Resolution Receiver">
    </LINK>
    <NODE systemname="Change (String)" nodename="Change (String)" componentmode="Hidden" id="135">
    <BOUNDS type="Node" left="17940" top="7605" width="100" height="100">
@@ -1029,9 +1017,11 @@
    </PIN>
    <PIN pinname="Transform Out" visible="1">
    </PIN>
+   <PIN pinname="Resolution" visible="1">
+   </PIN>
+   <PIN pinname="Additional Depth" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="57" srcpinname="Output Enum" dstnodeid="140" dstpinname="Resolution Receiver">
-   </LINK>
    <LINK srcnodeid="78" srcpinname="Output" dstnodeid="140" dstpinname="Text">
    </LINK>
    <LINK srcnodeid="77" srcpinname="Transform" dstnodeid="140" dstpinname="Transform In">
@@ -1091,5 +1081,49 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="147" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Ignore new line">
+   </LINK>
+   <PACK Name="VVVV.Packs" Version="0.2.0">
+   </PACK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="148" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="21315" top="4665" width="795" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="21315" top="4665" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="2" visible="1" values="1080,1920">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Resolution">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="148" srcpinname="Y Output Value" dstnodeid="27" dstpinname="Resolution">
+   </LINK>
+   <LINK srcnodeid="148" srcpinname="Y Output Value" dstnodeid="140" dstpinname="Resolution">
+   </LINK>
+   <LINK srcnodeid="148" srcpinname="Y Output Value" dstnodeid="99" dstpinname="Resolution">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="149" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="19665" top="8010" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="19665" top="8010" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="-0.02">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="149" srcpinname="Y Output Value" dstnodeid="140" dstpinname="Additional Depth">
    </LINK>
    </PATCH>

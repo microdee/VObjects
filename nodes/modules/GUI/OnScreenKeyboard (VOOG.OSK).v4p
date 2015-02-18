@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\GUI\OnScreenKeyboard (VOOG.OSK).v4p" systemname="OnScreenKeyboard (VOOG.OSK)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\OnScreenKeyboard (VOOG.OSK).v4p" scrollx="10350" scrolly="10335">
+   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\GUI\OnScreenKeyboard (VOOG.OSK).v4p" systemname="OnScreenKeyboard (VOOG.OSK)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\OnScreenKeyboard (VOOG.OSK).v4p" scrollx="-1080" scrolly="0">
    <BOUNDS type="Window" left="1200" top="1260" width="25380" height="14340">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
@@ -11,7 +11,7 @@
    </BOUNDS>
    <BOUNDS type="Window" left="20520" top="8175" width="9000" height="6000">
    </BOUNDS>
-   <PIN pinname="Input" visible="1" slicecount="3" values="Q/1;W/2ẄẂŴẀ;E/3ËÉĒÊÈ;R/4;T/5Þ;Y/6ŸÝŶỲ;U/7ÜÚŪÛÙ;I/8ÏÍĪÎÌ;O/9ÖÓÕŌŒÔÒ;P/0,A/ÁÀÄÆÃÅĀÂ;S/Šß;D/Ð;F;G/Ĝ;H/Ĥ;J/Ĵ;K;L,Z;X;C/ÇĈ;V;B;N/Ñ;M">
+   <PIN pinname="Input" visible="1" slicecount="3" values="|Q 1&cr;&lf;W 2ẄẂŴẀ&cr;&lf;E 3ËÉĒÊÈ&cr;&lf;R 4&cr;&lf;T 5Þ&cr;&lf;Y 6ŸÝŶỲ&cr;&lf;U 7ÜÚŪÛÙ&cr;&lf;I 8ÏÍĪÎÌ&cr;&lf;O 9ÖÓÕŌŒÔÒ&cr;&lf;P 0|,|A ÁÀÄÆÃÅĀÂ&cr;&lf;S Šß&cr;&lf;D Ð&cr;&lf;F&cr;&lf;G Ĝ&cr;&lf;H Ĥ&cr;&lf;J Ĵ&cr;&lf;K&cr;&lf;L&cr;&lf;&apos; &quot;’”“‘|,|Z&cr;&lf;X&cr;&lf;C ÇĈ&cr;&lf;V&cr;&lf;B&cr;&lf;N Ñ&cr;&lf;M&cr;&lf;, ;&cr;&lf;. :&cr;&lf;? !/)@-_(#|">
    </PIN>
    <PIN pinname="Main Chars" visible="1">
    </PIN>
@@ -27,7 +27,7 @@
    </BOUNDS>
    <BOUNDS type="Window" left="3585" top="4965" width="9000" height="6015">
    </BOUNDS>
-   <PIN pinname="Input" visible="1" slicecount="3" values="q/1;w/2ẅẃŵẁ;e/3ëéēêè;r/4;t/5þ;y/6ÿýŷỳ;u/7üúūûù;i/8ïíīîì;o/9öóõōœôò;p/0,a/áàäæãåāâ;s/šß;d/ð;f;g/ĝ;h/ĥ;j/ĵ;k;l,z;x;c/çĉ;v;b;n/ñ;m">
+   <PIN pinname="Input" visible="1" slicecount="3" values="|q 1&cr;&lf;w 2ẅẃŵẁ&cr;&lf;e 3ëéēêè&cr;&lf;r 4&cr;&lf;t 5þ&cr;&lf;y 6ÿýŷỳ&cr;&lf;u 7üúūûù&cr;&lf;i 8ïíīîì&cr;&lf;o 9öóõōœôò&cr;&lf;p 0|,|a áàäæãåāâ&cr;&lf;s šß&cr;&lf;d ð&cr;&lf;f&cr;&lf;g ĝ&cr;&lf;h ĥ&cr;&lf;j ĵ&cr;&lf;k&cr;&lf;l&cr;&lf;&apos; &quot;’”“‘|,|z&cr;&lf;x&cr;&lf;c çĉ&cr;&lf;v&cr;&lf;b&cr;&lf;n ñ&cr;&lf;m&cr;&lf;, ;&cr;&lf;. :&cr;&lf;? !/)@-_(#|">
    </PIN>
    <PIN pinname="Main Chars" visible="1">
    </PIN>
@@ -43,7 +43,7 @@
    </BOUNDS>
    <BOUNDS type="Window" left="20520" top="8175" width="9000" height="6000">
    </BOUNDS>
-   <PIN pinname="Input" visible="1" slicecount="3" values="•/·°¶;©/®℗™;%/‰;€/£;µ/πβα∂λ∞θΩ;½/¼⅓¾⅝⅜⅞⅛⅔,&lt;/«〈⊂≤‹;&gt;/»〉⊃≥›;[;];{;},|||/¦‖;¦;¶/§♪;°/ºª;~/¨´¸¯`;^/¨´¸¯`|">
+   <PIN pinname="Input" visible="1" slicecount="3" values="|• ·°¶&cr;&lf;© ®℗™&cr;&lf;% ‰&cr;&lf;€ £&cr;&lf;µ πβα∂λ∞θΩ&cr;&lf;½ ¼⅓¾⅝⅜⅞⅛⅔|,|&lt; «〈⊂≤‹&cr;&lf;&gt; »〉⊃≥›&cr;&lf;[&cr;&lf;]&cr;&lf;{&cr;&lf;}|,||| ¦‖&cr;&lf;¦&cr;&lf;¶ §♪&cr;&lf;° ºª&cr;&lf;~ ¨´¸¯`&cr;&lf;^ ¨´¸¯`|">
    </PIN>
    <PIN pinname="Main Chars" visible="1">
    </PIN>
@@ -59,7 +59,7 @@
    </BOUNDS>
    <BOUNDS type="Window" left="12045" top="3660" width="9000" height="6000">
    </BOUNDS>
-   <PIN pinname="Input" visible="1" slicecount="3" values="!/¡‽‼;@;#/№∞;$/¥¢¤₦₪₹₩₢;£/€;&amp;,(/&lt;{[⁽«;)/&gt;}]⁾»;-/–―—;_/‾;=/¬≈≠≡≉;+/∑∪∩±;,|\;&lt;!-- ; --&gt;;:;&quot;/‘“’”;*/×;&lt;!-- / --&gt;/÷∫√∂|">
+   <PIN pinname="Input" visible="1" slicecount="3" values="|! ¡‽‼&cr;&lf;@&cr;&lf;# №∞&cr;&lf;$ ¥¢¤₦₪₹₩₢&cr;&lf;£ €&cr;&lf;&amp;|,|( &lt;{[⁽«&cr;&lf;) &gt;}]⁾»&cr;&lf;- –―—&cr;&lf;_ ‾&cr;&lf;= ¬≈≠≡≉&cr;&lf;+ ∑∪∩±|,|\&cr;&lf;;&cr;&lf;:&cr;&lf;&quot; ‘“’”&cr;&lf;* ×&cr;&lf;/ ÷∫√∂|">
    </PIN>
    <PIN pinname="Main Chars" visible="1">
    </PIN>
@@ -73,7 +73,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="22335" top="25230" width="3450" height="2280">
    </BOUNDS>
-   <PIN pinname="Input String" visible="0" slicecount="3" values="|q 1&cr;&lf;w 2ẅẃŵẁ&cr;&lf;e 3ëéēêè&cr;&lf;r 4&cr;&lf;t 5þ&cr;&lf;y 6ÿýŷỳ&cr;&lf;u 7üúūûù&cr;&lf;i 8ïíīîì&cr;&lf;o 9öóõōœôò&cr;&lf;p 0|,|a áàäæãåāâ&cr;&lf;s šß&cr;&lf;d ð&cr;&lf;f&cr;&lf;g ĝ&cr;&lf;h ĥ&cr;&lf;j ĵ&cr;&lf;k&cr;&lf;l&cr;&lf;&apos; &quot;’”“‘|,|z&cr;&lf;x&cr;&lf;c çĉ&cr;&lf;v&cr;&lf;b&cr;&lf;n ñ&cr;&lf;m&cr;&lf;, ;&cr;&lf;. :&cr;&lf;? !/)@-_(#|">
+   <PIN pinname="Input String" visible="1" slicecount="3" values="|q 1&cr;&lf;w 2ẅẃŵẁ&cr;&lf;e 3ëéēêè&cr;&lf;r 4&cr;&lf;t 5þ&cr;&lf;y 6ÿýŷỳ&cr;&lf;u 7üúūûù&cr;&lf;i 8ïíīîì&cr;&lf;o 9öóõōœôò&cr;&lf;p 0|,|a áàäæãåāâ&cr;&lf;s šß&cr;&lf;d ð&cr;&lf;f&cr;&lf;g ĝ&cr;&lf;h ĥ&cr;&lf;j ĵ&cr;&lf;k&cr;&lf;l&cr;&lf;&apos; &quot;’”“‘|,|z&cr;&lf;x&cr;&lf;c çĉ&cr;&lf;v&cr;&lf;b&cr;&lf;n ñ&cr;&lf;m&cr;&lf;, ;&cr;&lf;. :&cr;&lf;? !/)@-_(#|">
    </PIN>
    <PIN pinname="Output String" visible="1">
    </PIN>
@@ -93,7 +93,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="8145" top="1695" width="3675" height="1395">
    </BOUNDS>
-   <PIN pinname="Input String" visible="0" slicecount="3" values="|! ¡‽‼&cr;&lf;@&cr;&lf;# №∞&cr;&lf;$ ¥¢¤₦₪₹₩₢&cr;&lf;£ €&cr;&lf;&amp;|,|( &lt;{[⁽«&cr;&lf;) &gt;}]⁾»&cr;&lf;- –―—&cr;&lf;_ ‾&cr;&lf;= ¬≈≠≡≉&cr;&lf;+ ∑∪∩±|,|\&cr;&lf;;&cr;&lf;:&cr;&lf;&quot; ‘“’”&cr;&lf;* ×&cr;&lf;/ ÷∫√∂|">
+   <PIN pinname="Input String" visible="1" slicecount="3" values="|! ¡‽‼&cr;&lf;@&cr;&lf;# №∞&cr;&lf;$ ¥¢¤₦₪₹₩₢&cr;&lf;£ €&cr;&lf;&amp;|,|( &lt;{[⁽«&cr;&lf;) &gt;}]⁾»&cr;&lf;- –―—&cr;&lf;_ ‾&cr;&lf;= ¬≈≠≡≉&cr;&lf;+ ∑∪∩±|,|\&cr;&lf;;&cr;&lf;:&cr;&lf;&quot; ‘“’”&cr;&lf;* ×&cr;&lf;/ ÷∫√∂|">
    </PIN>
    <PIN pinname="Output String" visible="1">
    </PIN>
@@ -168,14 +168,6 @@
    <PIN pinname="Columns" slicecount="1" values="3">
    </PIN>
    </NODE>
-   <LINK srcnodeid="49" srcpinname="Output String" dstnodeid="46" dstpinname="Input">
-   </LINK>
-   <LINK srcnodeid="60" srcpinname="Output String" dstnodeid="43" dstpinname="Input">
-   </LINK>
-   <LINK srcnodeid="53" srcpinname="Output String" dstnodeid="47" dstpinname="Input">
-   </LINK>
-   <LINK srcnodeid="57" srcpinname="Output String" dstnodeid="48" dstpinname="Input">
-   </LINK>
    <NODE systemname="OSKLayoutProcessor" filename="OSKLayoutProcessor.v4p" componentmode="Hidden" id="61" nodename="OSKLayoutProcessor.v4p">
    <BOUNDS type="Node" left="28110" top="13365" width="100" height="100">
    </BOUNDS>
@@ -183,7 +175,7 @@
    </BOUNDS>
    <BOUNDS type="Window" left="12045" top="3660" width="9000" height="6000">
    </BOUNDS>
-   <PIN pinname="Input" visible="1" slicecount="3" values="!/¡‽‼;@;#/№∞;$/¥¢¤₦₪₹₩₢;£/€;&amp;,(/&lt;{[⁽«;)/&gt;}]⁾»;-/–―—;_/‾;=/¬≈≠≡≉;+/∑∪∩±;,|\;&lt;!-- ; --&gt;;:;&quot;/‘“’”;*/×;&lt;!-- / --&gt;/÷∫√∂|">
+   <PIN pinname="Input" visible="1" slicecount="4" values="|1 ¹₁&cr;&lf;2 ²₂&cr;&lf;3 ³₃|,|4 ⁴₄&cr;&lf;5 ⁵₅&cr;&lf;6 ⁶₆|,|7 ⁷₇&cr;&lf;8 ⁸₈&cr;&lf;9 ⁹₉|,|0 ⁰₀&cr;&lf;. ,|">
    </PIN>
    <PIN pinname="Main Chars" visible="1">
    </PIN>
@@ -192,8 +184,6 @@
    <PIN pinname="Extra Chars Bin Size" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="58" srcpinname="Output String" dstnodeid="61" dstpinname="Input">
-   </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="65" systemname="IOBox (String)">
    <BOUNDS type="Box" left="1785" top="900" width="810" height="240">
    </BOUNDS>
@@ -759,6 +749,8 @@
    </PIN>
    <PIN pinname="Extra BinSize" visible="1">
    </PIN>
+   <PIN pinname="Resolution" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="84" srcpinname="Transform Out" dstnodeid="132" dstpinname="Button Transform">
    </LINK>
@@ -785,7 +777,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="14100" top="10875" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.32">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.34">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -936,18 +928,6 @@
    </NODE>
    <LINK srcnodeid="156" srcpinname="Layer" dstnodeid="157" dstpinname="Layer 1">
    </LINK>
-   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="160" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="19845" top="8760" width="1170" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="19845" top="8760" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="Resolution">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Resolution Receiver|">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="160" srcpinname="Output Enum" dstnodeid="132" dstpinname="Resolution Receiver" hiddenwhenlocked="1">
-   </LINK>
    <NODE systemname="OSKButtonText" filename="OSKButtonText.v4p" componentmode="Hidden" id="161" nodename="OSKButtonText.v4p">
    <BOUNDS type="Node" left="14700" top="16635" width="1350" height="270">
    </BOUNDS>
@@ -971,9 +951,9 @@
    </PIN>
    <PIN pinname="Font Weight" slicecount="1" values="Thin">
    </PIN>
+   <PIN pinname="Resolution" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="160" srcpinname="Output Enum" dstnodeid="161" dstpinname="Resolution Receiver" hiddenwhenlocked="1">
-   </LINK>
    <LINK srcnodeid="136" srcpinname="Transform Out" dstnodeid="161" dstpinname="Button Transform">
    </LINK>
    <LINK srcnodeid="161" srcpinname="Layer" dstnodeid="157" dstpinname="Layer 2">
@@ -1363,6 +1343,8 @@
    </PIN>
    <PIN pinname="Extra BinSize" visible="1">
    </PIN>
+   <PIN pinname="Resolution" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="203" srcpinname="Transform Out" dstnodeid="202" dstpinname="Button Transform">
    </LINK>
@@ -1371,8 +1353,6 @@
    <LINK srcnodeid="202" srcpinname="Layer" dstnodeid="223" dstpinname="Layer 2">
    </LINK>
    <LINK srcnodeid="134" srcpinname="Y Output Value" dstnodeid="202" dstpinname="Font Size" hiddenwhenlocked="1">
-   </LINK>
-   <LINK srcnodeid="160" srcpinname="Output Enum" dstnodeid="202" dstpinname="Resolution Receiver" hiddenwhenlocked="1">
    </LINK>
    <LINK srcnodeid="172" srcpinname="Color Output" dstnodeid="202" dstpinname="Color" hiddenwhenlocked="1">
    </LINK>
@@ -1659,9 +1639,9 @@
    </PIN>
    <PIN pinname="Font Weight" slicecount="1" values="Normal">
    </PIN>
+   <PIN pinname="Resolution" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="160" srcpinname="Output Enum" dstnodeid="241" dstpinname="Resolution Receiver" hiddenwhenlocked="1">
-   </LINK>
    <LINK srcnodeid="246" srcpinname="Transform Out" dstnodeid="241" dstpinname="Button Transform">
    </LINK>
    <LINK srcnodeid="241" srcpinname="Layer" dstnodeid="242" dstpinname="Layer 2">
@@ -2175,10 +2155,10 @@
    </PIN>
    <PIN pinname="Color" visible="1" slicecount="1" values="|1.00000,1.00000,1.00000,1.00000|">
    </PIN>
+   <PIN pinname="Resolution" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="133" srcpinname="Output Enum" dstnodeid="285" dstpinname="Font" hiddenwhenlocked="1">
-   </LINK>
-   <LINK srcnodeid="160" srcpinname="Output Enum" dstnodeid="285" dstpinname="Resolution Receiver" hiddenwhenlocked="1">
    </LINK>
    <LINK srcnodeid="289" srcpinname="Transform Out" dstnodeid="285" dstpinname="Button Transform">
    </LINK>
@@ -2401,10 +2381,10 @@
    </PIN>
    <PIN pinname="Font Weight" slicecount="1" values="Normal">
    </PIN>
+   <PIN pinname="Resolution" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="133" srcpinname="Output Enum" dstnodeid="297" dstpinname="Font" hiddenwhenlocked="1">
-   </LINK>
-   <LINK srcnodeid="160" srcpinname="Output Enum" dstnodeid="297" dstpinname="Resolution Receiver" hiddenwhenlocked="1">
    </LINK>
    <LINK srcnodeid="297" srcpinname="Layer" dstnodeid="298" dstpinname="Layer 2">
    </LINK>
@@ -3065,12 +3045,12 @@
    </PIN>
    <PIN pinname="Extra BinSize" visible="1">
    </PIN>
+   <PIN pinname="Resolution" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="133" srcpinname="Output Enum" dstnodeid="347" dstpinname="Font" hiddenwhenlocked="1">
    </LINK>
    <LINK srcnodeid="134" srcpinname="Y Output Value" dstnodeid="347" dstpinname="Font Size" hiddenwhenlocked="1">
-   </LINK>
-   <LINK srcnodeid="160" srcpinname="Output Enum" dstnodeid="347" dstpinname="Resolution Receiver" hiddenwhenlocked="1">
    </LINK>
    <LINK srcnodeid="172" srcpinname="Color Output" dstnodeid="347" dstpinname="Color" hiddenwhenlocked="1">
    </LINK>
@@ -3305,10 +3285,10 @@
    </PIN>
    <PIN pinname="Font Weight" slicecount="1" values="Normal">
    </PIN>
+   <PIN pinname="Resolution" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="133" srcpinname="Output Enum" dstnodeid="368" dstpinname="Font" hiddenwhenlocked="1">
-   </LINK>
-   <LINK srcnodeid="160" srcpinname="Output Enum" dstnodeid="368" dstpinname="Resolution Receiver" hiddenwhenlocked="1">
    </LINK>
    <LINK srcnodeid="368" srcpinname="Layer" dstnodeid="369" dstpinname="Layer 2">
    </LINK>
@@ -3693,10 +3673,10 @@
    </PIN>
    <PIN pinname="Color" visible="1" slicecount="1" values="|1.00000,1.00000,1.00000,1.00000|">
    </PIN>
+   <PIN pinname="Resolution" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="133" srcpinname="Output Enum" dstnodeid="388" dstpinname="Font" hiddenwhenlocked="1">
-   </LINK>
-   <LINK srcnodeid="160" srcpinname="Output Enum" dstnodeid="388" dstpinname="Resolution Receiver" hiddenwhenlocked="1">
    </LINK>
    <LINK srcnodeid="392" srcpinname="Transform Out" dstnodeid="388" dstpinname="Button Transform">
    </LINK>
@@ -4083,10 +4063,10 @@
    </PIN>
    <PIN pinname="Color" visible="1" slicecount="1" values="|1.00000,1.00000,1.00000,1.00000|">
    </PIN>
+   <PIN pinname="Resolution" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="133" srcpinname="Output Enum" dstnodeid="414" dstpinname="Font" hiddenwhenlocked="1">
-   </LINK>
-   <LINK srcnodeid="160" srcpinname="Output Enum" dstnodeid="414" dstpinname="Resolution Receiver" hiddenwhenlocked="1">
    </LINK>
    <NODE systemname="Multiply (Value)" nodename="Multiply (Value)" componentmode="Hidden" id="412">
    <BOUNDS type="Node" left="37725" top="36180" width="100" height="100">
@@ -4289,10 +4269,10 @@
    </PIN>
    <PIN pinname="Color" visible="1" slicecount="1" values="|1.00000,1.00000,1.00000,1.00000|">
    </PIN>
+   <PIN pinname="Resolution" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="133" srcpinname="Output Enum" dstnodeid="422" dstpinname="Font" hiddenwhenlocked="1">
-   </LINK>
-   <LINK srcnodeid="160" srcpinname="Output Enum" dstnodeid="422" dstpinname="Resolution Receiver" hiddenwhenlocked="1">
    </LINK>
    <LINK srcnodeid="426" srcpinname="Transform Out" dstnodeid="422" dstpinname="Button Transform">
    </LINK>
@@ -6785,5 +6765,113 @@
    <LINK srcnodeid="61" srcpinname="Extra Chars" dstnodeid="202" dstpinname="Extra Chars">
    </LINK>
    <LINK srcnodeid="61" srcpinname="Extra Chars Bin Size" dstnodeid="202" dstpinname="Extra BinSize">
+   </LINK>
+   <PACK Name="VVVV.Packs" Version="0.2.0">
+   </PACK>
+   <NODE systemname="OSKLayoutReader" filename="OSKLayoutReader.v4p" componentmode="Hidden" id="627" nodename="OSKLayoutReader.v4p">
+   <BOUNDS type="Node" left="18300" top="1470" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="18300" top="1470" width="4800" height="3600">
+   </BOUNDS>
+   <BOUNDS type="Window" left="12390" top="0" width="9000" height="15600">
+   </BOUNDS>
+   <PIN pinname="Spec 1" visible="1">
+   </PIN>
+   <PIN pinname="Spec 2" visible="1">
+   </PIN>
+   <PIN pinname="Numpad" visible="1">
+   </PIN>
+   <PIN pinname="Chars Lower" visible="1">
+   </PIN>
+   <PIN pinname="Chars Upper" visible="1">
+   </PIN>
+   <PIN pinname="Layout File" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="627" srcpinname="Spec 1" dstnodeid="47" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="627" srcpinname="Spec 1" dstnodeid="53" dstpinname="Input String">
+   </LINK>
+   <LINK srcnodeid="627" srcpinname="Spec 2" dstnodeid="57" dstpinname="Input String">
+   </LINK>
+   <LINK srcnodeid="627" srcpinname="Spec 2" dstnodeid="48" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="627" srcpinname="Numpad" dstnodeid="58" dstpinname="Input String">
+   </LINK>
+   <LINK srcnodeid="627" srcpinname="Numpad" dstnodeid="61" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="627" srcpinname="Chars Lower" dstnodeid="49" dstpinname="Input String">
+   </LINK>
+   <LINK srcnodeid="627" srcpinname="Chars Lower" dstnodeid="46" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="627" srcpinname="Chars Upper" dstnodeid="60" dstpinname="Input String">
+   </LINK>
+   <LINK srcnodeid="627" srcpinname="Chars Upper" dstnodeid="43" dstpinname="Input">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="628" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="30615" top="1245" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="30615" top="1245" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="..\..\..\..\..\app\vvvv_45beta33.7_x64\lib\nodes\modules\String\file.txt">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="file.txt">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="|All Text Formats (*.csv, *.dtd, *.html, *.txt, *.xml)||*.csv;*.dtd;*.html;*.htm;*.txt;*.xml||Text (*.txt)||*.txt||XML (*.xml)||*.xml||CSV (*.csv)||*.csv||DTD (*.dtd)||*.dtd||HTML (*.html, *.htm)||*.html;*.htm|">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="Filename">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Layout File|">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="Hidden">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="628" srcpinname="Output String" dstnodeid="627" dstpinname="Layout File">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="630" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="20490" top="8190" width="795" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="20490" top="8190" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="2" visible="1" values="1080,1920">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Resolution">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="630" srcpinname="Y Output Value" dstnodeid="132" dstpinname="Resolution" hiddenwhenlocked="1">
+   </LINK>
+   <LINK srcnodeid="630" srcpinname="Y Output Value" dstnodeid="241" dstpinname="Resolution" hiddenwhenlocked="1">
+   </LINK>
+   <LINK srcnodeid="630" srcpinname="Y Output Value" dstnodeid="161" dstpinname="Resolution" hiddenwhenlocked="1">
+   </LINK>
+   <LINK srcnodeid="630" srcpinname="Y Output Value" dstnodeid="285" dstpinname="Resolution" hiddenwhenlocked="1">
+   </LINK>
+   <LINK srcnodeid="630" srcpinname="Y Output Value" dstnodeid="202" dstpinname="Resolution" hiddenwhenlocked="1">
+   </LINK>
+   <LINK srcnodeid="630" srcpinname="Y Output Value" dstnodeid="297" dstpinname="Resolution" hiddenwhenlocked="1">
+   </LINK>
+   <LINK srcnodeid="630" srcpinname="Y Output Value" dstnodeid="422" dstpinname="Resolution" hiddenwhenlocked="1">
+   </LINK>
+   <LINK srcnodeid="630" srcpinname="Y Output Value" dstnodeid="347" dstpinname="Resolution" hiddenwhenlocked="1">
+   </LINK>
+   <LINK srcnodeid="630" srcpinname="Y Output Value" dstnodeid="368" dstpinname="Resolution" hiddenwhenlocked="1">
+   </LINK>
+   <LINK srcnodeid="630" srcpinname="Y Output Value" dstnodeid="388" dstpinname="Resolution" hiddenwhenlocked="1">
+   </LINK>
+   <LINK srcnodeid="630" srcpinname="Y Output Value" dstnodeid="414" dstpinname="Resolution" hiddenwhenlocked="1">
    </LINK>
    </PATCH>
