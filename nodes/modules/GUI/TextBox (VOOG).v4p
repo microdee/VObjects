@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\GUI\TextBox (VOOG).v4p" systemname="TextBox (VOOG)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\TextBox (VOOG).v4p" scrollx="11475" scrolly="1995">
+   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\GUI\TextBox (VOOG).v4p" systemname="TextBox (VOOG)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\TextBox (VOOG).v4p" scrollx="11835" scrolly="6120">
    <BOUNDS type="Window" left="9645" top="4230" width="13785" height="9885">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
@@ -1125,5 +1125,15 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="149" srcpinname="Y Output Value" dstnodeid="140" dstpinname="Additional Depth">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="150" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="22065" top="10485" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="22065" top="10485" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Text Layout|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="140" srcpinname="Text Layout" dstnodeid="150" dstpinname="Input Node">
    </LINK>
    </PATCH>

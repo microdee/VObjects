@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\GUI\OnScreenKeyboard (VOOG.OSK).v4p" systemname="OnScreenKeyboard (VOOG.OSK)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\OnScreenKeyboard (VOOG.OSK).v4p" scrollx="-1080" scrolly="0">
+   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\GUI\OnScreenKeyboard (VOOG.OSK).v4p" systemname="OnScreenKeyboard (VOOG.OSK)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\OnScreenKeyboard (VOOG.OSK).v4p" scrollx="0" scrolly="10440">
    <BOUNDS type="Window" left="1200" top="1260" width="25380" height="14340">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">

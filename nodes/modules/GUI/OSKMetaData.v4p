@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\GUI\OSKMetaData.v4p" systemname="OSKMetaData" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\OSKMetaData.v4p" scrollx="-360" scrolly="0">
+   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\GUI\OSKMetaData.v4p" systemname="OSKMetaData" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\OSKMetaData.v4p" scrollx="0" scrolly="-360">
    <BOUNDS type="Window" left="1125" top="3885" width="18255" height="6930">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
@@ -910,4 +910,6 @@
    </NODE>
    <LINK srcnodeid="28" srcpinname="Y Output Value" dstnodeid="29" dstpinname="Set">
    </LINK>
+   <PACK Name="VVVV.Packs" Version="0.2.0">
+   </PACK>
    </PATCH>

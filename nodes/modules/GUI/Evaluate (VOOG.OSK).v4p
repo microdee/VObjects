@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\GUI\Evaluate (VOOG.OSK).v4p" systemname="Evaluate (GUIVObject OSK)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\Evaluate (GUIVObject OSK).v4p" scrollx="17835" scrolly="3435">
+   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\GUI\Evaluate (VOOG.OSK).v4p" systemname="Evaluate (GUIVObject OSK)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\Evaluate (GUIVObject OSK).v4p" scrollx="20880" scrolly="4320">
    <BOUNDS type="Window" left="5640" top="2625" width="15270" height="11025">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
@@ -1019,6 +1019,8 @@
    </BOUNDS>
    <PIN pinname="Resolution Receiver" visible="1">
    </PIN>
+   <PIN pinname="Resolution" visible="1">
+   </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="85" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="11325" top="16215" width="795" height="240">
@@ -1994,7 +1996,7 @@
    </NODE>
    <LINK srcnodeid="240" srcpinname="Output Enum" dstnodeid="238" dstpinname="Event Type">
    </LINK>
-   <NODE systemname="OSKSwipeRepeater" filename="OSKSwipeRepeater.v4p" componentmode="Hidden" id="241" nodename="OSKSwipeRepeater.v4p">
+   <NODE systemname="SwipeRepeater (VOOG Helper)" filename="SwipeRepeater (VOOG Helper).v4p" componentmode="Hidden" id="241" nodename="SwipeRepeater (VOOG Helper).v4p">
    <BOUNDS type="Node" left="24855" top="9030" width="100" height="100">
    </BOUNDS>
    <BOUNDS type="Box" left="24855" top="9030" width="4800" height="3600">
@@ -2011,22 +2013,10 @@
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
-   </NODE>
-   <LINK srcnodeid="224" srcpinname="Y Output Value" dstnodeid="241" dstpinname="Backspace Swipe Quantization">
-   </LINK>
-   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="242" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="26580" top="7185" width="1590" height="270">
-   </BOUNDS>
-   <BOUNDS type="Node" left="26580" top="7185" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="1.GUI.Resolution">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Resolution Receiver|">
-   </PIN>
-   <PIN pinname="Output Enum" visible="1">
+   <PIN pinname="Resolution" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="242" srcpinname="Output Enum" dstnodeid="241" dstpinname="Resolution Receiver">
+   <LINK srcnodeid="224" srcpinname="Y Output Value" dstnodeid="241" dstpinname="Swipe Quantization">
    </LINK>
    <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="243">
    <BOUNDS type="Node" left="25425" top="6750" width="100" height="100">
@@ -2190,7 +2180,7 @@
    </LINK>
    <LINK srcnodeid="252" srcpinname="Keyboard" dstnodeid="149" dstpinname="Input 7">
    </LINK>
-   <NODE systemname="OSKSwipeRepeater" filename="OSKSwipeRepeater.v4p" componentmode="Hidden" id="253" nodename="OSKSwipeRepeater.v4p">
+   <NODE systemname="SwipeRepeater (VOOG Helper)" filename="SwipeRepeater (VOOG Helper).v4p" componentmode="Hidden" id="253" nodename="SwipeRepeater (VOOG Helper).v4p">
    <BOUNDS type="Node" left="30855" top="9315" width="100" height="100">
    </BOUNDS>
    <BOUNDS type="Box" left="30855" top="9315" width="4800" height="3600">
@@ -2209,10 +2199,10 @@
    </PIN>
    <PIN pinname="Reverse Direction" visible="1">
    </PIN>
+   <PIN pinname="Resolution" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="224" srcpinname="Y Output Value" dstnodeid="253" dstpinname="Backspace Swipe Quantization">
-   </LINK>
-   <LINK srcnodeid="242" srcpinname="Output Enum" dstnodeid="253" dstpinname="Resolution Receiver">
+   <LINK srcnodeid="224" srcpinname="Y Output Value" dstnodeid="253" dstpinname="Swipe Quantization">
    </LINK>
    <LINK srcnodeid="243" srcpinname="Y Output Value" dstnodeid="253" dstpinname="Points">
    </LINK>
@@ -2300,7 +2290,7 @@
    </LINK>
    <LINK srcnodeid="45" srcpinname="Output" dstnodeid="257" dstpinname="Input 1">
    </LINK>
-   <NODE systemname="OSKSwipeRepeater" filename="OSKSwipeRepeater.v4p" componentmode="Hidden" id="256" nodename="OSKSwipeRepeater.v4p">
+   <NODE systemname="SwipeRepeater (VOOG Helper)" filename="SwipeRepeater (VOOG Helper).v4p" componentmode="Hidden" id="256" nodename="SwipeRepeater (VOOG Helper).v4p">
    <BOUNDS type="Node" left="33105" top="9315" width="100" height="100">
    </BOUNDS>
    <BOUNDS type="Box" left="33105" top="9315" width="4800" height="3600">
@@ -2321,10 +2311,10 @@
    </PIN>
    <PIN pinname="Reverse Direction" visible="1">
    </PIN>
+   <PIN pinname="Resolution" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="224" srcpinname="Y Output Value" dstnodeid="256" dstpinname="Backspace Swipe Quantization">
-   </LINK>
-   <LINK srcnodeid="242" srcpinname="Output Enum" dstnodeid="256" dstpinname="Resolution Receiver">
+   <LINK srcnodeid="224" srcpinname="Y Output Value" dstnodeid="256" dstpinname="Swipe Quantization">
    </LINK>
    <LINK srcnodeid="243" srcpinname="Y Output Value" dstnodeid="256" dstpinname="Points">
    </LINK>
@@ -2466,8 +2456,6 @@
    </LINK>
    <LINK srcnodeid="243" srcpinname="Y Output Value" dstnodeid="241" dstpinname="Points">
    </LINK>
-   <LINK srcnodeid="242" srcpinname="Output Enum" dstnodeid="84" dstpinname="Resolution Receiver">
-   </LINK>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="274" systemname="IOBox (Value Advanced)">
@@ -2487,5 +2475,35 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="187" srcpinname="Output" dstnodeid="274" dstpinname="Y Input Value">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="275" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="26970" top="6135" width="795" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="26970" top="6135" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="2" visible="1" values="1080,1920">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Resolution">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="275" srcpinname="Y Output Value" dstnodeid="84" dstpinname="Resolution">
+   </LINK>
+   <LINK srcnodeid="275" srcpinname="Y Output Value" dstnodeid="241" dstpinname="Resolution">
+   </LINK>
+   <LINK srcnodeid="275" srcpinname="Y Output Value" dstnodeid="253" dstpinname="Resolution">
+   </LINK>
+   <LINK srcnodeid="275" srcpinname="Y Output Value" dstnodeid="256" dstpinname="Resolution">
    </LINK>
    </PATCH>

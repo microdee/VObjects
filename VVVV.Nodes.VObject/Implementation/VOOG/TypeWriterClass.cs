@@ -399,9 +399,21 @@ namespace VVVV.Nodes.VObjects
 
         public bool CheckLists(string key)
         {
+            bool valid = false;
             if (WhiteList.Count == 0)
-                return !this.BlackList.Contains(key);
-            else return this.WhiteList.Contains(key);
+            {
+                valid = true;
+                foreach (char c in key.ToCharArray())
+                    if (this.BlackList.Contains(c.ToString())) valid = false;
+                return valid;
+            }
+            else
+            {
+                valid = false;
+                foreach (char c in key.ToCharArray())
+                    if (this.WhiteList.Contains(c.ToString())) valid = true;
+                return valid;
+            }
         }
 
         public void Dispose()
