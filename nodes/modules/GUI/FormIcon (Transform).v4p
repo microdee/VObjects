@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\GUI\FormIcon (Transform).v4p" systemname="FormIcon (Transform)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\FormIcon (Transform).v4p" scrollx="0" scrolly="180">
+   <PATCH nodename="C:\vvvv\projects\CA-2-MAX\Libraries\vvvv_45beta33.7_x64\packs\VObjects\nodes\modules\GUI\FormIcon (Transform).v4p" systemname="FormIcon (Transform)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\FormIcon (Transform).v4p" scrollx="0" scrolly="540">
    <BOUNDS type="Window" left="17400" top="8385" width="9000" height="6000">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
@@ -149,7 +149,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="3645" top="1665" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.86">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.93">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -193,7 +193,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="2655" top="1440" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.02">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -223,7 +223,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="4620" top="1890" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="2">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -252,4 +252,6 @@
    </LINK>
    <LINK srcnodeid="17" srcpinname="Output" dstnodeid="6" dstpinname="Input 2">
    </LINK>
+   <PACK Name="VVVV.Packs" Version="0.2.0">
+   </PACK>
    </PATCH>

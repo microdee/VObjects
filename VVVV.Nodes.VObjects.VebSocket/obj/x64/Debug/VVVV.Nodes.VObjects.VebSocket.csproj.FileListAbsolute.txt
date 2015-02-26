@@ -1,9 +1,0 @@
-C:\vvvv\libs\VObjects\VVVV.Nodes.VObjects.WebSocket\obj\x64\Debug\VVVV.Nodes.VObjects.VebSocket.csprojResolveAssemblyReference.cache
-C:\vvvv\libs\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.VebSocket.dll.config
-C:\vvvv\libs\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.VebSocket.dll
-C:\vvvv\libs\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.VebSocket.pdb
-C:\vvvv\libs\VObjects\VVVV.Nodes.VObjects.WebSocket\obj\x64\Debug\VVVV.Nodes.VObjects.VebSocket.dll
-C:\vvvv\libs\VObjects\VVVV.Nodes.VObjects.WebSocket\obj\x64\Debug\VVVV.Nodes.VObjects.VebSocket.pdb
-C:\vvvv\libs\VObjects\VVVV.Nodes.VObjects.VebSocket\obj\x64\Debug\VVVV.Nodes.VObjects.VebSocket.csprojResolveAssemblyReference.cache
-C:\vvvv\libs\VObjects\VVVV.Nodes.VObjects.VebSocket\obj\x64\Debug\VVVV.Nodes.VObjects.VebSocket.dll
-C:\vvvv\libs\VObjects\VVVV.Nodes.VObjects.VebSocket\obj\x64\Debug\VVVV.Nodes.VObjects.VebSocket.pdb

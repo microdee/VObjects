@@ -1,19 +1,9 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\GUI\OnScreenKeyboard (Windows).v4p" systemname="OnScreenKeyboard (Windows)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\OnScreenKeyboard (Windows).v4p" scrollx="0" scrolly="525">
-   <BOUNDS type="Window" left="11130" top="5805" width="11115" height="9315">
+   <PATCH nodename="C:\vvvv\projects\CA-2-MAX\Libraries\vvvv_45beta33.7_x64\packs\VObjects\nodes\modules\GUI\OnScreenKeyboard (Windows).v4p" systemname="OnScreenKeyboard (Windows)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\OnScreenKeyboard (Windows).v4p" scrollx="0" scrolly="600">
+   <BOUNDS type="Window" left="14145" top="2880" width="11115" height="9315">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
    </PACK>
-   <NODE systemname="LaunchOSK (Windows)" filename="..\..\nodes\plugins\WindowsLaunchOSK\WindowsLaunchOSK.csproj" nodename="LaunchOSK (Windows)" componentmode="Hidden" id="22">
-   <BOUNDS type="Node" left="3390" top="3615" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Handle" visible="1">
-   </PIN>
-   <PIN pinname="Open" visible="1" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Close" visible="1">
-   </PIN>
-   </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="21" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="2250" top="2475" width="480" height="480">
    </BOUNDS>
@@ -36,8 +26,6 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="Open">
    </PIN>
    </NODE>
-   <LINK srcnodeid="21" srcpinname="Y Output Value" dstnodeid="22" dstpinname="Open">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="20" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="3900" top="2670" width="480" height="480">
    </BOUNDS>
@@ -60,12 +48,10 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="Close">
    </PIN>
    </NODE>
-   <LINK srcnodeid="20" srcpinname="Y Output Value" dstnodeid="22" dstpinname="Close">
-   </LINK>
    <NODE systemname="WindowPos (Windows)" filename="..\..\..\mcropack\nodes\plugins\WindowsWindowPos\WindowsWindowPos.csproj" nodename="WindowPos (Windows)" componentmode="Hidden" id="19">
    <BOUNDS type="Node" left="3660" top="7170" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Handle In" visible="1">
+   <PIN pinname="Handle In" visible="1" slicecount="1" values="133550">
    </PIN>
    <PIN pinname="Position OutXY" visible="1">
    </PIN>
@@ -84,8 +70,6 @@
    <PIN pinname="Set" visible="1" slicecount="1" values="0">
    </PIN>
    </NODE>
-   <LINK srcnodeid="22" srcpinname="Handle" dstnodeid="19" dstpinname="Handle In">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="18" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="3195" top="7830" width="795" height="480">
    </BOUNDS>
@@ -129,7 +113,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="5130" top="1935" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="2" visible="1" values="2270,785">
+   <PIN pinname="Y Input Value" slicecount="2" visible="1" values="105,785">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -179,7 +163,7 @@
    </PIN>
    <PIN pinname="Rows" slicecount="1" values="2">
    </PIN>
-   <PIN pinname="Y Input Value" slicecount="2" visible="1" values="957,276">
+   <PIN pinname="Y Input Value" slicecount="2" visible="1" values="956,276">
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
@@ -191,7 +175,7 @@
    <NODE systemname="Window (Windows)" nodename="Window (Windows)" componentmode="Hidden" id="8">
    <BOUNDS type="Node" left="2070" top="7245" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Handle" visible="1">
+   <PIN pinname="Handle" visible="1" slicecount="1" values="133550">
    </PIN>
    <PIN pinname="Alpha" slicecount="1" visible="1" values="0">
    </PIN>
@@ -212,8 +196,6 @@
    <PIN pinname="Inverse Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="22" srcpinname="Handle" dstnodeid="8" dstpinname="Handle">
-   </LINK>
    <NODE systemname="TogEdge (Animation)" nodename="TogEdge (Animation)" componentmode="Hidden" id="6">
    <BOUNDS type="Node" left="2070" top="5745" width="100" height="100">
    </BOUNDS>
@@ -261,9 +243,9 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="Handle">
    </PIN>
+   <PIN pinname="Y Input Value" slicecount="1" values="133550">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="22" srcpinname="Handle" dstnodeid="2" dstpinname="Y Input Value">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="24" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="1260" top="6495" width="480" height="480">
    </BOUNDS>
@@ -337,5 +319,53 @@
    <LINK srcnodeid="50" srcpinname="Output" dstnodeid="52" dstpinname="Input 2">
    </LINK>
    <LINK srcnodeid="52" srcpinname="Output" dstnodeid="19" dstpinname="Set">
+   </LINK>
+   <PACK Name="VVVV.Packs" Version="0.2.0">
+   </PACK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="53" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="5220" top="4260" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5220" top="4260" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Y Input Value" slicecount="1" values="7384">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="63" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="6750" top="7185" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6750" top="7185" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="52" srcpinname="Output" dstnodeid="63" dstpinname="Y Input Value">
+   </LINK>
+   <NODE systemname="LaunchOSK (Windows)" filename="..\..\nodes\plugins\WindowsLaunchOSK\WindowsLaunchOSK.csproj" nodename="LaunchOSK (Windows)" componentmode="Hidden" id="64">
+   <BOUNDS type="Node" left="3390" top="3615" width="100" height="100">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="21" srcpinname="Y Output Value" dstnodeid="64" dstpinname="Open">
+   </LINK>
+   <LINK srcnodeid="20" srcpinname="Y Output Value" dstnodeid="64" dstpinname="Close">
+   </LINK>
+   <LINK srcnodeid="64" srcpinname="Handle" dstnodeid="8" dstpinname="Handle">
+   </LINK>
+   <LINK srcnodeid="64" srcpinname="Handle" dstnodeid="2" dstpinname="Y Input Value">
+   </LINK>
+   <LINK srcnodeid="64" srcpinname="PID" dstnodeid="53" dstpinname="Y Input Value">
+   </LINK>
+   <LINK srcnodeid="64" srcpinname="Handle" dstnodeid="19" dstpinname="Handle In">
    </LINK>
    </PATCH>
