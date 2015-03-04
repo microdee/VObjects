@@ -185,4 +185,24 @@ namespace VVVV.Nodes.VObjects
         }
     }
     */
+    [PluginInfo(Name = "VPath", Category = "VObject")]
+    public class VObjectGenericVPathNode : VPathNode
+    {
+        public override void Sift(VObject Source, string Filter, List<int> MatchingIndices, List<VObject> Output)
+        {
+            if (Source.Content is VPathQueryable)
+            {
+                VPathQueryable Content = Source.Content as VPathQueryable;
+                List<object> result = Content.VPath(Filter, FSeparator[0]);
+                foreach (object o in result)
+                {
+                    if (o is VObject)
+                    {
+                        Output.Add(o as VObject);
+                        MatchingIndices.Add(this.CurrentAbsIndex);
+                    }
+                }
+            }
+        }
+    }
 }

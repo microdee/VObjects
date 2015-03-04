@@ -209,22 +209,4 @@ namespace VVVV.Nodes.VObjects
             }
         }
     }
-
-    [PluginInfo(Name = "VPath", Category = "VObjectDictionary")]
-    public class VObjectDictionaryVPathNode : VPathNode<VObjectDictionaryWrap>
-    {
-        public override void Sift(VObjectDictionaryWrap Source, string Filter, List<int> MatchingIndices, List<VObject> Output)
-        {
-            VObjectDictionary Content = Source.Content as VObjectDictionary;
-            List<object> result = Content.VPath(Filter, FSeparator[0]);
-            foreach(object o in result)
-            {
-                if (o is VObject)
-                {
-                    Output.Add(o as VObject);
-                    MatchingIndices.Add(this.CurrentAbsIndex);
-                }
-            }
-        }
-    }
 }

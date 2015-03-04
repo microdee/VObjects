@@ -138,7 +138,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Generics\VobjectGenerics.cs" />
+    <Compile Include="Generics\VObjectGenerics.cs" />
     <Compile Include="Generics\VVVVGenerics.cs" />
     <Compile Include="Implementation\JSON.cs" />
     <Compile Include="Implementation\PrimitiveObject\AbstractDynamicNode.cs" />

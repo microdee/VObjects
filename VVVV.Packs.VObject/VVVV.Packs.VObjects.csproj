@@ -134,6 +134,7 @@
     <Compile Include="AbstractNodes\Management.cs" />
     <Compile Include="Base.cs" />
     <Compile Include="DynamicConstructors.cs" />
+    <Compile Include="Management\IVPathQueryable.cs" />
     <Compile Include="Management\PrimitiveObject\PrimitiveObject.cs" />
     <Compile Include="Management\PrimitiveObject\ObjectTypePair.cs" />
     <Compile Include="Management\PrimitiveObject\TypeIdentity.cs" />

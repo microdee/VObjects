@@ -11,7 +11,7 @@ using VVVV.Utils.VMath;
 
 namespace VVVV.Packs.VObjects
 {
-    public class PrimitiveObject
+    public class PrimitiveObject : VPathQueryable
     {
         public Dictionary<string, ObjectTypePair> Fields = new Dictionary<string, ObjectTypePair>();
 
@@ -100,44 +100,17 @@ namespace VVVV.Packs.VObjects
                 ToBeRemoved.Clear();
             }
         }
-        public void VPath(string path, List<object> Results, string Separator)
+
+        public override object VPathGetItem(string key)
         {
-            string[] levels = path.Split(Separator.ToCharArray());
-            string nextpath = string.Join(Separator, levels, 1, levels.Length - 1);
-            if ((levels[0][0] == '"') && (levels[0][levels[0].Length - 1] == '"'))
-            {
-                string key = levels[0].Trim('"');
-                if (this.Fields.ContainsKey(key))
-                {
-                    if (levels.Length == 1)
-                    {
-                        Results.Add(this.Fields[key]);
-                        return;
-                    }
-                }
-            }
-            else
-            {
-                Regex Pattern = new Regex(levels[0]);
-                List<VObject> matches = new List<VObject>();
-                foreach (string k in this.Fields.Keys)
-                {
-                    if (Pattern.Match(k).Value != string.Empty)
-                    {
-                        if (levels.Length == 1)
-                        {
-                            Results.Add(this.Fields[k]);
-                        }
-                    }
-                }
-                return;
-            }
+            if (this.Fields.ContainsKey(key))
+                return this.Fields[key];
+            else return null;
         }
-        public List<object> VPath(string path, string Separator)
+
+        public override string[] VPathQueryKeys()
         {
-            List<object> Results = new List<object>();
-            this.VPath(path, Results, Separator);
-            return Results;
+            return this.Fields.Keys.ToArray();
         }
     }
 

@@ -199,21 +199,4 @@ namespace VVVV.Nodes.VObjects
             }
         }
     }
-    [PluginInfo(Name = "VPath", Category = "VObjectCollection")]
-    public class VObjectCollectionVPathNode : VPathNode<VObjectCollectionWrap>
-    {
-        public override void Sift(VObjectCollectionWrap Source, string Filter, List<int> MatchingIndices, List<VObject> Output)
-        {
-            VObjectCollection Content = Source.Content as VObjectCollection;
-            List<object> result = Content.VPath(Filter, FSeparator[0]);
-            foreach (object o in result)
-            {
-                if (o is VObject)
-                {
-                    Output.Add(o as VObject);
-                    MatchingIndices.Add(this.CurrentAbsIndex);
-                }
-            }
-        }
-    }
 }

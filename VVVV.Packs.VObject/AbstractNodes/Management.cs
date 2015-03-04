@@ -378,10 +378,10 @@ namespace VVVV.Nodes.VObjects
         }
     }
 
-    public abstract class VPathNode<SourceObject> : IPluginEvaluate where SourceObject : VObject
+    public abstract class VPathNode : IPluginEvaluate
     {
         [Input("Source", Order = 0)]
-        public Pin<SourceObject> FInput;
+        public Pin<VObject> FInput;
         [Input("Path", Order = 1)]
         public ISpread<ISpread<string>> FFilter;
         [Input("Separator", Order = 2, IsSingle = true, DefaultString="¦")]
@@ -394,7 +394,7 @@ namespace VVVV.Nodes.VObjects
         [Output("Path Index", Order = 1)]
         public ISpread<ISpread<int>> FFormerIndex;
 
-        public virtual void Sift(SourceObject Source, string Filter, List<int> MatchingIndices, List<VObject> Output) { }
+        public virtual void Sift(VObject Source, string Filter, List<int> MatchingIndices, List<VObject> Output) { }
         private List<VObject> Objects = new List<VObject>();
         private List<int> Indices = new List<int>();
         public virtual void InitializeFrame() { }

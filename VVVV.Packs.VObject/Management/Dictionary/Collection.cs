@@ -10,7 +10,7 @@ using System.IO;
 namespace VVVV.Packs.VObjects
 {
     // class for high level and simple object emulation in VVVV
-    public class VObjectCollection
+    public class VObjectCollection : VPathQueryable
     {
         public Dictionary<string, VObject> Children = new Dictionary<string, VObject>();
         public string Name = "";
@@ -109,68 +109,17 @@ namespace VVVV.Packs.VObjects
         {
             return new VObjectCollectionWrap(this);
         }
-        public void VPath(string path, List<object> Results, string Separator)
-        {
-            string[] levels = path.Split(Separator.ToCharArray());
-            string nextpath = string.Join(Separator, levels, 1, levels.Length - 1);
-            if((levels[0][0] == '"') && (levels[0][levels[0].Length-1] == '"'))
-            {
-                string key = levels[0].Trim('"');
-                if(this.Children.ContainsKey(key))
-                {
-                    if(levels.Length == 1)
-                    {
-                        Results.Add(this.Children[key] as VObject);
-                        return;
-                    }
-                    VPathNextStep(key, nextpath, Results, Separator);
-                }
-            }
-            else
-            {
-                Regex Pattern = new Regex(levels[0]);
-                List<VObject> matches = new List<VObject>();
-                foreach(string k in this.Children.Keys)
-                {
-                    if(Pattern.Match(k).Value != string.Empty)
-                    {
-                        if (levels.Length == 1)
-                        {
-                            Results.Add(this.Children[k] as VObject);
-                        }
-                        else VPathNextStep(k, nextpath, Results, Separator);
-                    }
-                }
-                return;
-            }
-        }
-        private void VPathNextStep(string CurrentLevel, string NextPath, List<object> Results, string Separator)
-        {
 
-            if (this.Children[CurrentLevel] is VObjectCollectionWrap)
-            {
-                VObjectCollection vc = this.Children[CurrentLevel].Content as VObjectCollection;
-                vc.VPath(NextPath, Results, Separator);
-                return;
-            }
-            if (this.Children[CurrentLevel] is VObjectDictionaryWrap)
-            {
-                VObjectDictionary vd = this.Children[CurrentLevel].Content as VObjectDictionary;
-                vd.VPath(NextPath, Results, Separator);
-                return;
-            }
-            if (this.Children[CurrentLevel] is PrimitiveObjectWrap)
-            {
-                PrimitiveObject po = this.Children[CurrentLevel].Content as PrimitiveObject;
-                po.VPath(NextPath, Results, Separator);
-                return;
-            }
-        }
-        public List<object> VPath(string path, string Separator)
+        public override object VPathGetItem(string key)
         {
-            List<object> Results = new List<object>();
-            this.VPath(path, Results, Separator);
-            return Results;
+            if (this.Children.ContainsKey(key))
+                return this.Children[key];
+            else return null;
+        }
+
+        public override string[] VPathQueryKeys()
+        {
+            return this.Children.Keys.ToArray();
         }
     }
     // Wrap in VObject
