@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\GUI\OnScreenKeyboard (VOOG.OSK).v4p" systemname="OnScreenKeyboard (VOOG.OSK)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\OnScreenKeyboard (VOOG.OSK).v4p" scrollx="0" scrolly="10440">
+   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\GUI\OnScreenKeyboard (VOOG.OSK).v4p" systemname="OnScreenKeyboard (VOOG.OSK)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\OnScreenKeyboard (VOOG.OSK).v4p" scrollx="0" scrolly="9000">
    <BOUNDS type="Window" left="1200" top="1260" width="25380" height="14340">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
@@ -1627,7 +1627,7 @@
    </PIN>
    <PIN pinname="Font" visible="1" slicecount="1" values="|Segoe UI|">
    </PIN>
-   <PIN pinname="Chars" visible="1" slicecount="1" values="||">
+   <PIN pinname="Chars" visible="1" slicecount="1" values="&amp;123">
    </PIN>
    <PIN pinname="Layer" visible="1">
    </PIN>
@@ -1647,9 +1647,9 @@
    <LINK srcnodeid="241" srcpinname="Layer" dstnodeid="242" dstpinname="Layer 2">
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="239" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="2910" top="16395" width="615" height="240">
+   <BOUNDS type="Box" left="2730" top="16095" width="615" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="2910" top="16395" width="0" height="0">
+   <BOUNDS type="Node" left="2730" top="16095" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="1" values="&amp;123">
    </PIN>
@@ -1663,9 +1663,9 @@
    </PIN>
    <PIN pinname="SliceCount Mode" slicecount="1" values="ColsRowsPages">
    </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="239" srcpinname="Output String" dstnodeid="241" dstpinname="Chars">
-   </LINK>
    <NODE systemname="Multiply (Value)" nodename="Multiply (Value)" componentmode="Hidden" id="238">
    <BOUNDS type="Node" left="3780" top="16185" width="100" height="100">
    </BOUNDS>
@@ -6873,5 +6873,45 @@
    <LINK srcnodeid="630" srcpinname="Y Output Value" dstnodeid="388" dstpinname="Resolution" hiddenwhenlocked="1">
    </LINK>
    <LINK srcnodeid="630" srcpinname="Y Output Value" dstnodeid="414" dstpinname="Resolution" hiddenwhenlocked="1">
+   </LINK>
+   <NODE systemname="Switch (String Input)" nodename="Switch (String Input)" componentmode="Hidden" id="631">
+   <BOUNDS type="Node" left="2790" top="16590" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Switch" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="239" srcpinname="Output String" dstnodeid="631" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="631" srcpinname="Output" dstnodeid="241" dstpinname="Chars">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="632" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="3465" top="15870" width="615" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3465" top="15870" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="abcd">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="SliceCount Mode" slicecount="1" values="ColsRowsPages">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="632" srcpinname="Output String" dstnodeid="631" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="351" srcpinname="Y Output Value" dstnodeid="631" dstpinname="Switch">
    </LINK>
    </PATCH>
