@@ -25,6 +25,9 @@ using WebSocketSharp.Net;
 
 namespace VVVV.Nodes.VObjects
 {
+    [PluginInfo(Name = "Cast", Category = "To", Version = "VebSocketClient")]
+    public class ToVebSocketClientCastNode : CastToNode<VebSocketClient> { }
+
     #region PluginInfo
     [PluginInfo(
         Name = "Client",

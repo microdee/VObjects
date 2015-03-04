@@ -147,6 +147,8 @@
     <Compile Include="VebSocket\ClientSend.cs" />
     <Compile Include="VebSocket\ClientSplitNodes.cs" />
     <Compile Include="VebSocket\Server.cs" />
+    <Compile Include="VebSocket\ServerConstruct.cs" />
+    <Compile Include="VebSocket\ServiceNodes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

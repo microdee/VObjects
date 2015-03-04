@@ -1,8 +1,8 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.3.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
    <PATCH nodename="C:\vvvv\libs\VObjects\girlpower\VebSocket\Sandboxes\echo.websocket.org.v4p" scrollx="0" scrolly="0" systemname="VebSocketClient" filename="C:\vvvv\libs\VObjects\girlpower\VebSocketClient.v4p">
    <BOUNDS type="Window" left="9900" top="5100" width="13080" height="9630">
    </BOUNDS>
-   <PACK Name="addonpack" Version="33.3.0">
+   <PACK Name="addonpack" Version="33.7.0">
    </PACK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="1" systemname="IOBox (String)">
    <BOUNDS type="Box" left="1275" top="255" width="2730" height="240">
@@ -412,4 +412,6 @@
    </NODE>
    <LINK srcnodeid="39" srcpinname="Sent Messages" dstnodeid="64" dstpinname="Input Node">
    </LINK>
+   <PACK Name="VVVV.Packs" Version="0.2.0">
+   </PACK>
    </PATCH>

@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Linq;
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Security.Cryptography.X509Certificates;
+using System.Security.Principal;
 using VVVV.Packs.VObjects;
 using VVVV.PluginInterfaces.V2;
 
@@ -40,18 +42,61 @@ namespace VVVV.Nodes.VObjects
             base.OnClose(e);
         }
     }
-    public class VebSocketService
+    public class ServiceBehaviorWrap : VObject
+    {
+        public ServiceBehaviorWrap() : base() { }
+        public ServiceBehaviorWrap(Action<WebSocketServer, string> o) : base(o) { }
+
+        public override void Dispose()
+        {
+            base.Dispose();
+        }
+    }
+    public class UserPassAuthentication : AuthenticationMethod
+    {
+        // user, password
+        public Dictionary<string, NetworkCredential> Users = new Dictionary<string, NetworkCredential>();
+
+        public override NetworkCredential UserCredentialFinder(IIdentity id)
+        {
+            if (this.Users.ContainsKey(id.Name)) return this.Users[id.Name];
+            else return null;
+        }
+        public UserPassAuthentication() { }
+    }
+    public class AuthenticationMethod
+    {
+        public NetworkCredential UserCredentialFinder(IIdentity id)
+        {
+            return null;
+        }
+        public AuthenticationMethod() { }
+    }
+    public class VebSocketService : VPathQueryable
     {
         public IHDEHost HDEHost;
 
         public WebSocketServiceHost Service;
         public Dictionary<string, IWebSocketSession> Sessions = new Dictionary<string, IWebSocketSession>();
-        public Dictionary<string, VebSocketClient> Clients = new Dictionary<string, VebSocketClient>();
+        public Dictionary<string, VebSocketClientWrap> Clients = new Dictionary<string, VebSocketClientWrap>();
+        public Dictionary<string, IWebSocketSession> NewSessions = new Dictionary<string, IWebSocketSession>();
+        public Dictionary<string, VebSocketClientWrap> NewClients = new Dictionary<string, VebSocketClientWrap>();
+        public List<string> ClosedClients = new List<string>();
 
-        public VebSocketService()
+        public VebSocketService(IHDEHost hdehost, WebSocketServiceHost service)
         {
+            this.Service = service;
+            this.HDEHost = hdehost;
             this.Service.Sessions.OnConnectedClient += onConnectedClient;
             this.Service.Sessions.OnClosedClient += onClosedClient;
+            this.HDEHost.MainLoop.OnUpdateView += onUpdateView;
+        }
+
+        private void onUpdateView(object sender, EventArgs e)
+        {
+            NewSessions.Clear();
+            NewClients.Clear();
+            ClosedClients.Clear();
         }
 
         private void onClosedClient(object sender, ClientCloseEventArgs e)
@@ -59,14 +104,28 @@ namespace VVVV.Nodes.VObjects
             this.Sessions.Remove(e.ID);
             this.Clients[e.ID].Dispose();
             this.Clients.Remove(e.ID);
+            this.ClosedClients.Add(e.ID);
         }
 
         private void onConnectedClient(object sender, ClientConnectEventArgs e)
         {
             this.Sessions.Add(e.ID, e.Session);
+            this.NewSessions.Add(e.ID, e.Session);
             VebSocketClient vc = e.Session.Context.WebSocket.ToVebSocketClient();
+            VebSocketClientWrap vcw = new VebSocketClientWrap(vc);
             vc.SubscribeToMainloop(this.HDEHost);
-            this.Clients.Add(e.ID, vc);
+            this.Clients.Add(e.ID, vcw);
+            this.NewClients.Add(e.ID, vcw);
+        }
+        public override object VPathGetItem(string key)
+        {
+            if (this.Clients.ContainsKey(key))
+                return this.Clients[key];
+            else return null;
+        }
+        public override string[] VPathQueryKeys()
+        {
+            return this.Clients.Keys.ToArray();
         }
     }
     public class VebSocketServiceWrap : VObject
@@ -79,7 +138,7 @@ namespace VVVV.Nodes.VObjects
             base.Dispose();
         }
     }
-    class VebSocketServer
+    class VebSocketServer : VPathQueryable
     {
         public IHDEHost HDEHost;
 
@@ -93,9 +152,7 @@ namespace VVVV.Nodes.VObjects
 
         private void OnNewService(object sender, ServiceAddedEventArgs e)
         {
-            VebSocketService s = new VebSocketService();
-            s.Service = this.Server.WebSocketServices[e.Path];
-            s.HDEHost = this.HDEHost;
+            VebSocketService s = new VebSocketService(this.HDEHost, this.Server.WebSocketServices[e.Path]);
             this.Services.Add(e.Path, s);
         }
         public void AddService(string Path)
@@ -111,6 +168,27 @@ namespace VVVV.Nodes.VObjects
         {
             // add your own behavior by inheriting from WebSocketBehavior class
             this.Server.AddWebSocketService<VebSocketBehavior>(path);
+        }
+
+        public override object VPathGetItem(string key)
+        {
+            if (this.Services.ContainsKey(key))
+                return this.Services[key];
+            else return null;
+        }
+        public override string[] VPathQueryKeys()
+        {
+            return this.Services.Keys.ToArray();
+        }
+    }
+    public class VebSocketServerWrap : VObject
+    {
+        public VebSocketServerWrap() : base() { }
+        public VebSocketServerWrap(VebSocketServer o) : base(o) { }
+
+        public override void Dispose()
+        {
+            base.Dispose();
         }
     }
 }
