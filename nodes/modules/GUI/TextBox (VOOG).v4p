@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\GUI\TextBox (VOOG).v4p" systemname="TextBox (VOOG)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\TextBox (VOOG).v4p" scrollx="-360" scrolly="0">
-   <BOUNDS type="Window" left="3915" top="5265" width="13785" height="9885">
+   <PATCH nodename="C:\vvvv\projects\CA-2-MAX\Libraries\vvvv_45beta33.7_x64\packs\VObjects\nodes\modules\GUI\TextBox (VOOG).v4p" systemname="TextBox (VOOG)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\TextBox (VOOG).v4p" scrollx="18180" scrolly="13065">
+   <BOUNDS type="Window" left="1845" top="4755" width="13785" height="9885">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
    </PACK>
@@ -1730,8 +1730,6 @@
    </NODE>
    <LINK srcnodeid="193" srcpinname="Drag" dstnodeid="198" dstpinname="Input 1">
    </LINK>
-   <LINK srcnodeid="198" srcpinname="Output" dstnodeid="194" dstpinname="Set Selection">
-   </LINK>
    <NODE systemname="Change (Animation)" nodename="Change (Animation)" componentmode="Hidden" id="199">
    <BOUNDS type="Node" left="26670" top="12660" width="100" height="100">
    </BOUNDS>
@@ -1755,7 +1753,7 @@
    <LINK srcnodeid="200" srcpinname="Output" dstnodeid="198" dstpinname="Input 2">
    </LINK>
    <NODE systemname="EQ (Value)" nodename="EQ (Value)" componentmode="Hidden" id="201">
-   <BOUNDS type="Node" left="22605" top="14610" width="100" height="100">
+   <BOUNDS type="Node" left="22455" top="14595" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input 1" visible="1">
    </PIN>
@@ -2459,9 +2457,9 @@
    <LINK srcnodeid="273" srcpinname="Output" dstnodeid="259" dstpinname="Get">
    </LINK>
    <NODE systemname="Switch (Value Input)" nodename="Switch (Value Input)" componentmode="Hidden" id="275">
-   <BOUNDS type="Node" left="24105" top="19215" width="100" height="100">
+   <BOUNDS type="Node" left="24105" top="19665" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Switch" visible="1" slicecount="2" values="1,1">
+   <PIN pinname="Switch" visible="1" slicecount="2" values="0,0">
    </PIN>
    <PIN pinname="Input 2" visible="1" slicecount="2" values="249,0">
    </PIN>
@@ -2471,9 +2469,9 @@
    </PIN>
    </NODE>
    <NODE systemname="Switch (Value Input)" nodename="Switch (Value Input)" componentmode="Hidden" id="274">
-   <BOUNDS type="Node" left="24840" top="19230" width="100" height="100">
+   <BOUNDS type="Node" left="24840" top="19680" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Switch" visible="1" slicecount="2" values="1,1">
+   <PIN pinname="Switch" visible="1" slicecount="2" values="0,0">
    </PIN>
    <PIN pinname="Input 2" visible="1" slicecount="2" values="249,0">
    </PIN>
@@ -2537,9 +2535,9 @@
    <LINK srcnodeid="276" srcpinname="Selection End" dstnodeid="274" dstpinname="Input 2">
    </LINK>
    <NODE systemname="Switch (Value Input)" nodename="Switch (Value Input)" componentmode="Hidden" id="279">
-   <BOUNDS type="Node" left="23850" top="19770" width="100" height="100">
+   <BOUNDS type="Node" left="23850" top="20220" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Switch" visible="1" slicecount="2" values="1,1">
+   <PIN pinname="Switch" visible="1" slicecount="2" values="0,0">
    </PIN>
    <PIN pinname="Input 2" visible="1" slicecount="2" values="249,0">
    </PIN>
@@ -2549,9 +2547,9 @@
    </PIN>
    </NODE>
    <NODE systemname="Switch (Value Input)" nodename="Switch (Value Input)" componentmode="Hidden" id="278">
-   <BOUNDS type="Node" left="24585" top="19785" width="100" height="100">
+   <BOUNDS type="Node" left="24585" top="20235" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Switch" visible="1" slicecount="2" values="1,1">
+   <PIN pinname="Switch" visible="1" slicecount="2" values="0,0">
    </PIN>
    <PIN pinname="Input 2" visible="1" slicecount="2" values="369,76">
    </PIN>
@@ -2651,24 +2649,20 @@
    <NODE systemname="FlipFlop (Animation)" nodename="FlipFlop (Animation)" componentmode="Hidden" id="289">
    <BOUNDS type="Node" left="22695" top="18510" width="100" height="100">
    </BOUNDS>
+   <PIN pinname="Output" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="283" srcpinname="Down Edge" dstnodeid="289" dstpinname="Reset">
-   </LINK>
-   <LINK srcnodeid="289" srcpinname="Output" dstnodeid="275" dstpinname="Switch">
-   </LINK>
-   <LINK srcnodeid="289" srcpinname="Output" dstnodeid="274" dstpinname="Switch">
    </LINK>
    <LINK srcnodeid="287" srcpinname="Output" dstnodeid="289" dstpinname="Set">
    </LINK>
    <NODE systemname="FlipFlop (Animation)" nodename="FlipFlop (Animation)" componentmode="Hidden" id="290">
    <BOUNDS type="Node" left="23520" top="18540" width="100" height="100">
    </BOUNDS>
+   <PIN pinname="Output" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="283" srcpinname="Down Edge" dstnodeid="290" dstpinname="Reset">
-   </LINK>
-   <LINK srcnodeid="290" srcpinname="Output" dstnodeid="279" dstpinname="Switch">
-   </LINK>
-   <LINK srcnodeid="290" srcpinname="Output" dstnodeid="278" dstpinname="Switch">
    </LINK>
    <LINK srcnodeid="288" srcpinname="Output" dstnodeid="290" dstpinname="Set">
    </LINK>
@@ -2677,5 +2671,75 @@
    <LINK srcnodeid="117" srcpinname="Output" dstnodeid="116" dstpinname="Switch">
    </LINK>
    <LINK srcnodeid="117" srcpinname="Output" dstnodeid="0" dstpinname="Default Keyboard State">
+   </LINK>
+   <NODE systemname="AND (Boolean)" nodename="AND (Boolean)" componentmode="Hidden" id="292">
+   <BOUNDS type="Node" left="25785" top="20160" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="293" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="31575" top="15060" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="31575" top="15060" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Allow Selection|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="293" srcpinname="Y Output Value" dstnodeid="292" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="198" srcpinname="Output" dstnodeid="292" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="292" srcpinname="Output" dstnodeid="194" dstpinname="Set Selection">
+   </LINK>
+   <NODE systemname="AND (Boolean)" nodename="AND (Boolean)" componentmode="Hidden" id="294">
+   <BOUNDS type="Node" left="22695" top="18990" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="289" srcpinname="Output" dstnodeid="294" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="219" srcpinname="Output" dstnodeid="294" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="294" srcpinname="Output" dstnodeid="275" dstpinname="Switch">
+   </LINK>
+   <LINK srcnodeid="294" srcpinname="Output" dstnodeid="274" dstpinname="Switch">
+   </LINK>
+   <NODE systemname="AND (Boolean)" nodename="AND (Boolean)" componentmode="Hidden" id="295">
+   <BOUNDS type="Node" left="23520" top="19020" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1" slicecount="2" values="0,0">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="219" srcpinname="Output" dstnodeid="295" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="290" srcpinname="Output" dstnodeid="295" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="295" srcpinname="Output" dstnodeid="279" dstpinname="Switch">
+   </LINK>
+   <LINK srcnodeid="295" srcpinname="Output" dstnodeid="278" dstpinname="Switch">
    </LINK>
    </PATCH>
