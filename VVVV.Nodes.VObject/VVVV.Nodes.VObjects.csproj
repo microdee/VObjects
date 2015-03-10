@@ -155,6 +155,9 @@
     <Compile Include="Implementation\VObjectCollection\DerivedDictionaryNodes.cs" />
     <Compile Include="Implementation\VObjectCollection\DerivedCollectionNodes.cs" />
     <Compile Include="Implementation\VObjectCollection\GeneralCollectionNodes.cs" />
+    <Compile Include="Implementation\VOOG\HitTest.cs" />
+    <Compile Include="Implementation\VOOG\HitTestNodes.cs" />
+    <Compile Include="Implementation\VOOG\HostHelper.cs" />
     <Compile Include="Implementation\VOOG\TypeWriterClass.cs" />
     <Compile Include="Implementation\VOOG\TypeWriterWrap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -166,6 +169,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Implementation\VOOG\Readme.md" />
     <None Include="packages.config" />
     <None Include="Implementation\PrimitiveObject\Readme.md" />
     <None Include="Properties\Settings.settings">

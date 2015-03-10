@@ -57,7 +57,7 @@ namespace VVVV.Nodes.VObjects
         // user, password
         public Dictionary<string, NetworkCredential> Users = new Dictionary<string, NetworkCredential>();
 
-        public override NetworkCredential UserCredentialFinder(IIdentity id)
+        public NetworkCredential UserCredentialFinder(IIdentity id)
         {
             if (this.Users.ContainsKey(id.Name)) return this.Users[id.Name];
             else return null;
@@ -138,7 +138,7 @@ namespace VVVV.Nodes.VObjects
             base.Dispose();
         }
     }
-    class VebSocketServer : VPathQueryable
+    public class VebSocketServer : VPathQueryable
     {
         public IHDEHost HDEHost;
 

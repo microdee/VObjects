@@ -23,7 +23,6 @@ namespace VVVV.Nodes.VObjects
         public override void Serialize()
         {
             base.Serialize();
-
         }
         public override VObject DeepCopy()
         {
@@ -46,38 +45,44 @@ namespace VVVV.Nodes.VObjects
 
         [Input("Set Keyboard", Order = 11)]
         public ISpread<bool> FSetKeyboard;
-        [Input("Disable Keyboard", Order = 12)]
+        [Input("Default Keyboard State", DefaultBoolean = true, Order = 12)]
+        public ISpread<bool> FDefKeyState;
+        [Input("Enable Keyboard", Order = 12, IsBang = true)]
+        public ISpread<bool> FEnableKeyboard;
+        [Input("Disable Keyboard", Order = 12, IsBang = true)]
         public ISpread<bool> FDisableKeyboard;
 
         [Input("Text", DefaultString = "", Order = 13)]
         public ISpread<string> FInputText;
-
         [Input("Insert Text", IsBang = true, Order = 14)]
         public ISpread<bool> FInsertText;
 
         [Input("Initial Text", Order = 15)]
         public ISpread<string> FInitialText;
-
         [Input("Initialize", IsBang = true, Order = 16)]
         public ISpread<bool> FInitialize;
 
         [Input("Max Length", MinValue = -1, MaxValue = int.MaxValue, DefaultValue = -1, Visibility = PinVisibility.True, Order = 17)]
         public ISpread<int> FMaxLength;
-
         [Input("Set Max Length", Order = 18)]
         public ISpread<bool> FSetMaxLength;
 
         [Input("Cursor Position", MinValue = 0, MaxValue = int.MaxValue, Visibility = PinVisibility.True, Order = 19)] //ASK ELIAS ABOUT Min and Default
         public ISpread<int> FNewCursorPosition;
-
         [Input("Set Cursor Position", IsBang = true, Visibility = PinVisibility.True, Order = 20)]
         public ISpread<bool> FSetCursorPosition;
 
         [Input("Ignore Navigation Keys", DefaultValue = 0, Visibility = PinVisibility.OnlyInspector, Order = 21)]
         public ISpread<bool> FIgnoreNavigationKeys;
-
         [Input("Ignore new line", DefaultValue = 0, Visibility = PinVisibility.OnlyInspector, Order = 22)]
         public ISpread<bool> FIgnoreNewLine;
+
+        [Input("Selection Start", MinValue = 0, MaxValue = int.MaxValue, Visibility = PinVisibility.True, Order = 23)]
+        public ISpread<int> FSelectStart;
+        [Input("Selection End", MinValue = 0, MaxValue = int.MaxValue, Visibility = PinVisibility.True, Order = 24)]
+        public ISpread<int> FSelectEnd;
+        [Input("Set Selection", IsBang = true, Visibility = PinVisibility.True, Order = 25)]
+        public ISpread<bool> FSetSelect;
 
         public override TypeWriterWrap ConstructVObject()
         {
@@ -87,6 +92,7 @@ namespace VVVV.Nodes.VObjects
             tw.IgnoreNavigationKeys = FIgnoreNavigationKeys[i];
             tw.IgnoreNewLine = FIgnoreNewLine[i];
             tw.Keyboard = FKeyboardIn[i];
+            tw.Enabled = FDefKeyState[i];
             tw.MaxLength = FMaxLength[i];
             return new TypeWriterWrap(tw);
         }
@@ -101,8 +107,10 @@ namespace VVVV.Nodes.VObjects
 
                     if (FSetKeyboard[i])
                         tw.Keyboard = FKeyboardIn[i];
+                    if (FEnableKeyboard[i])
+                        tw.Enabled = true;
                     if (FDisableKeyboard[i])
-                        tw.Keyboard = null;
+                        tw.Enabled = false;
                     if (FSetMaxLength[i])
                         tw.MaxLength = FMaxLength[i];
                     if (FSetCursorPosition[i])
@@ -111,6 +119,11 @@ namespace VVVV.Nodes.VObjects
                         tw.Initialize(FInitialText[i]);
                     if (FInsertText[i])
                         tw.InsertText(FInputText[i]);
+                    if(FSetSelect[i])
+                    {
+                        tw.SelectStart = FSelectStart[i];
+                        tw.SelectEnd = FSelectEnd[i];
+                    }
                 }
             }
         }
@@ -174,32 +187,37 @@ namespace VVVV.Nodes.VObjects
 
         [Input("Set Keyboard", Order = 11)]
         public ISpread<bool> FSetKeyboard;
-        [Input("Disable Keyboard", Order = 12)]
+        [Input("Enable Keyboard", Order = 12, IsBang = true)]
+        public ISpread<bool> FEnableKeyboard;
+        [Input("Disable Keyboard", Order = 12, IsBang = true)]
         public ISpread<bool> FDisableKeyboard;
 
         [Input("Text", DefaultString = "", Order = 13)]
         public ISpread<string> FInputText;
-
         [Input("Insert Text", IsBang = true, Order = 14)]
         public ISpread<bool> FInsertText;
 
         [Input("Initial Text", Order = 15)]
         public ISpread<string> FInitialText;
-
         [Input("Initialize", IsBang = true, Order = 16)]
         public ISpread<bool> FInitialize;
 
         [Input("Max Length", MinValue = -1, MaxValue = int.MaxValue, DefaultValue = -1, Visibility = PinVisibility.True, Order = 17)]
         public ISpread<int> FMaxLength;
-
         [Input("Set Max Length", Order = 18)]
         public ISpread<bool> FSetMaxLength;
 
         [Input("Cursor Position", MinValue = 0, MaxValue = int.MaxValue, Visibility = PinVisibility.True, Order = 19)] //ASK ELIAS ABOUT Min and Default
         public ISpread<int> FNewCursorPosition;
-
         [Input("Set Cursor Position", IsBang = true, Visibility = PinVisibility.True, Order = 20)]
         public ISpread<bool> FSetCursorPosition;
+
+        [Input("Selection Start", MinValue = 0, MaxValue = int.MaxValue, Visibility = PinVisibility.True, Order = 23)]
+        public ISpread<int> FSelectStart;
+        [Input("Selection End", MinValue = 0, MaxValue = int.MaxValue, Visibility = PinVisibility.True, Order = 24)]
+        public ISpread<int> FSelectEnd;
+        [Input("Set Selection", IsBang = true, Visibility = PinVisibility.True, Order = 25)]
+        public ISpread<bool> FSetSelect;
 
         [Output("Valid")]
         public ISpread<bool> FValid;
@@ -218,8 +236,10 @@ namespace VVVV.Nodes.VObjects
 
                         if (FSetKeyboard[i])
                             tw.Keyboard = FKeyboardIn[i];
+                        if (FEnableKeyboard[i])
+                            tw.Enabled = true;
                         if (FDisableKeyboard[i])
-                            tw.Keyboard = null;
+                            tw.Enabled = false;
                         if (FSetMaxLength[i])
                             tw.MaxLength = FMaxLength[i];
                         if (FSetCursorPosition[i])
@@ -228,6 +248,11 @@ namespace VVVV.Nodes.VObjects
                             tw.Initialize(FInitialText[i]);
                         if (FInsertText[i])
                             tw.InsertText(FInputText[i]);
+                        if (FSetSelect[i])
+                        {
+                            tw.SelectStart = FSelectStart[i];
+                            tw.SelectEnd = FSelectEnd[i];
+                        }
                     }
                 }
             }
@@ -246,6 +271,12 @@ namespace VVVV.Nodes.VObjects
 
         [Output("Cursor Position")]
         public ISpread<int> FCursorPosition;
+        [Output("Selection Start")]
+        public ISpread<int> FSelectStart;
+        [Output("Selection End")]
+        public ISpread<int> FSelectEnd;
+        [Output("Enabled")]
+        public ISpread<bool> FEnabled;
 
         [Output("Valid")]
         public ISpread<bool> FValid;
@@ -257,6 +288,9 @@ namespace VVVV.Nodes.VObjects
                 FValid.SliceCount = FTypeWriterWrap.SliceCount;
                 FOutput.SliceCount = FTypeWriterWrap.SliceCount;
                 FCursorPosition.SliceCount = FTypeWriterWrap.SliceCount;
+                FSelectStart.SliceCount = FTypeWriterWrap.SliceCount;
+                FSelectEnd.SliceCount = FTypeWriterWrap.SliceCount;
+                FEnabled.SliceCount = FTypeWriterWrap.SliceCount;
 
                 for (int i = 0; i < FTypeWriterWrap.SliceCount; i++)
                 {
@@ -266,6 +300,9 @@ namespace VVVV.Nodes.VObjects
                         TypeWriter tw = FTypeWriterWrap[i].Content as TypeWriter;
                         FOutput[i] = tw.Output;
                         FCursorPosition[i] = tw.CursorPosition;
+                        FSelectStart[i] = tw.SelectStart;
+                        FSelectEnd[i] = tw.SelectEnd;
+                        FEnabled[i] = tw.Enabled;
                     }
                 }
             }
@@ -274,6 +311,9 @@ namespace VVVV.Nodes.VObjects
                 FValid.SliceCount = 0;
                 FOutput.SliceCount = 0;
                 FCursorPosition.SliceCount = 0;
+                FSelectStart.SliceCount = 0;
+                FSelectEnd.SliceCount = 0;
+                FEnabled.SliceCount = 0;
             }
         }
     }

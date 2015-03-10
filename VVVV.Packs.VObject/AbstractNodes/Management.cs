@@ -109,6 +109,74 @@ namespace VVVV.Nodes.VObjects
             }
         }
     }
+    public abstract class ConstructAndSetVObjectNode<ResultObject> : IPluginEvaluate where ResultObject : VObject
+    {
+        [Input("Construct", IsBang = true, Order = 0)]
+        public ISpread<bool> FConstruct;
+        [Input("Auto Clear", DefaultBoolean = true, Order = 1)]
+        public ISpread<bool> FAutoClear;
+        [Input("Set", IsBang = true, Order = 0)]
+        public ISpread<bool> FSet;
+        [Output("Output", Order = 0)]
+        public ISpread<ResultObject> FOutput;
+
+        public int CurrObj;
+        public int SliceCount = 0;
+        public int fc = 0;
+        public virtual void SetSliceCount(int SpreadMax)
+        {
+            this.SliceCount = SpreadMax;
+        }
+        public virtual void InitializeFrame()
+        {
+            return;
+        }
+
+        public virtual ResultObject ConstructVObject()
+        {
+            return null;
+        }
+        public virtual void SetVObject(ResultObject Obj)
+        {
+            //
+        }
+
+        public void Evaluate(int SpreadMax)
+        {
+            this.SetSliceCount(SpreadMax);
+            this.InitializeFrame();
+
+            if (FAutoClear[0])
+            {
+                bool clear = false;
+                for (int i = 0; i < this.SliceCount; i++)
+                {
+                    if (FConstruct[i] || (FSet[i] && (FOutput.SliceCount == 0))) clear = true;
+                }
+                if (clear) fc = 0;
+            }
+            if (fc == 0) FOutput.SliceCount = 0;
+            fc++;
+
+            for (int i = 0; i < this.SliceCount; i++)
+            {
+                this.CurrObj = i;
+                if (FConstruct[i])
+                {
+                    ResultObject ro = ConstructVObject();
+                    if (ro != null) FOutput.Add(ro);
+                }
+            }
+            for (int i = 0; i < FOutput.SliceCount; i++)
+            {
+                this.CurrObj = i;
+                if (FSet[i])
+                {
+                    SetVObject(FOutput[i]);
+                }
+            }
+        }
+    }
     public abstract class ConstructToParentVObjectNode<ParentObject> : IPluginEvaluate where ParentObject : VObject
     {
         [Input("Parent", Order = 0)]

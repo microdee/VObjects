@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\GUI\OnScreenKeyboard (VOOG.OSK).v4p" systemname="OnScreenKeyboard (VOOG.OSK)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\OnScreenKeyboard (VOOG.OSK).v4p" scrollx="0" scrolly="9000">
+   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\GUI\OnScreenKeyboard (VOOG.OSK).v4p" systemname="OnScreenKeyboard (VOOG.OSK)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\OnScreenKeyboard (VOOG.OSK).v4p" scrollx="0" scrolly="8280">
    <BOUNDS type="Window" left="1200" top="1260" width="25380" height="14340">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
@@ -219,6 +219,8 @@
    </PIN>
    <PIN pinname="GUI Element Added" visible="1">
    </PIN>
+   <BOUNDS type="Window" left="3960" top="4740" width="14760" height="10125">
+   </BOUNDS>
    </NODE>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="68" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="255" top="525" width="795" height="240">
@@ -777,7 +779,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="14100" top="10875" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.34">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.32">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -4860,22 +4862,6 @@
    </LINK>
    <LINK srcnodeid="466" srcpinname="Mode" dstnodeid="462" dstpinname="Input">
    </LINK>
-   <NODE systemname="VPath (VObjectDictionary)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="VPath (VObjectDictionary)" componentmode="Hidden" id="470">
-   <BOUNDS type="Node" left="5865" top="3885" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Source" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Path" visible="1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="68" srcpinname="Output Node" dstnodeid="470" dstpinname="Source" hiddenwhenlocked="1" linkstyle="VHV">
-   <LINKPOINT x="285" y="2880">
-   </LINKPOINT>
-   <LINKPOINT x="5895" y="2880">
-   </LINKPOINT>
-   </LINK>
    <NODE systemname="Add (String)" nodename="Add (String)" componentmode="Hidden" id="471">
    <BOUNDS type="Node" left="6225" top="2055" width="100" height="100">
    </BOUNDS>
@@ -4944,8 +4930,6 @@
    </NODE>
    <LINK srcnodeid="475" srcpinname="Output String" dstnodeid="474" dstpinname="Input 2">
    </LINK>
-   <LINK srcnodeid="474" srcpinname="Output" dstnodeid="470" dstpinname="Path">
-   </LINK>
    <NODE systemname="PrimitiveObject (Split)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (Split)" componentmode="Hidden" id="476">
    <BOUNDS type="Node" left="5865" top="4275" width="100" height="100">
    </BOUNDS>
@@ -4972,8 +4956,6 @@
    <PIN pinname="Valid" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="470" srcpinname="Output" dstnodeid="476" dstpinname="Primitive Object">
-   </LINK>
    <NODE systemname="AvoidNIL (Spreads)" filename="%VVVV%\lib\nodes\modules\Spreads\AvoidNIL (Spreads).v4p" nodename="AvoidNIL (Spreads)" componentmode="Hidden" id="477">
    <BOUNDS type="Node" left="6375" top="4815" width="100" height="100">
    </BOUNDS>
@@ -4987,22 +4969,6 @@
    <LINK srcnodeid="477" srcpinname="Output" dstnodeid="232" dstpinname="Switch">
    </LINK>
    <LINK srcnodeid="477" srcpinname="Output" dstnodeid="460" dstpinname="Switch">
-   </LINK>
-   <NODE systemname="VPath (VObjectDictionary)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="VPath (VObjectDictionary)" componentmode="Hidden" id="485">
-   <BOUNDS type="Node" left="20115" top="29580" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Source" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Path" visible="1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="68" srcpinname="Output Node" dstnodeid="485" dstpinname="Source" hiddenwhenlocked="1" linkstyle="VHV">
-   <LINKPOINT x="285" y="28200">
-   </LINKPOINT>
-   <LINKPOINT x="20145" y="28200">
-   </LINKPOINT>
    </LINK>
    <NODE systemname="Add (String)" nodename="Add (String)" componentmode="Hidden" id="484">
    <BOUNDS type="Node" left="20475" top="28200" width="100" height="100">
@@ -5064,8 +5030,6 @@
    </NODE>
    <LINK srcnodeid="480" srcpinname="Output String" dstnodeid="481" dstpinname="Input 2">
    </LINK>
-   <LINK srcnodeid="481" srcpinname="Output" dstnodeid="485" dstpinname="Path">
-   </LINK>
    <NODE systemname="PrimitiveObject (Split)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (Split)" componentmode="Hidden" id="479">
    <BOUNDS type="Node" left="20115" top="29970" width="100" height="100">
    </BOUNDS>
@@ -5092,8 +5056,6 @@
    <PIN pinname="Valid" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="485" srcpinname="Output" dstnodeid="479" dstpinname="Primitive Object">
-   </LINK>
    <NODE systemname="AvoidNIL (Spreads)" filename="%VVVV%\lib\nodes\modules\Spreads\AvoidNIL (Spreads).v4p" nodename="AvoidNIL (Spreads)" componentmode="Hidden" id="478">
    <BOUNDS type="Node" left="20625" top="30435" width="100" height="100">
    </BOUNDS>
@@ -6210,22 +6172,6 @@
    </LINK>
    <LINK srcnodeid="546" srcpinname="Output" dstnodeid="370" dstpinname="Index">
    </LINK>
-   <NODE systemname="VPath (VObjectDictionary)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="VPath (VObjectDictionary)" componentmode="Hidden" id="556">
-   <BOUNDS type="Node" left="5955" top="19200" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Source" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Path" visible="1" slicecount="1" values="&quot;text.SpecView.Page&quot;¦&quot;ModeSwitcher&quot;">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="68" srcpinname="Output Node" dstnodeid="556" dstpinname="Source" hiddenwhenlocked="1" linkstyle="VHV">
-   <LINKPOINT x="285" y="11520">
-   </LINKPOINT>
-   <LINKPOINT x="5985" y="11520">
-   </LINKPOINT>
-   </LINK>
    <NODE systemname="Add (String)" nodename="Add (String)" componentmode="Hidden" id="555">
    <BOUNDS type="Node" left="6315" top="18555" width="100" height="100">
    </BOUNDS>
@@ -6259,24 +6205,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="554" srcpinname="Output String" dstnodeid="555" dstpinname="Input 2">
-   </LINK>
-   <LINK srcnodeid="555" srcpinname="Output" dstnodeid="556" dstpinname="Path">
-   </LINK>
-   <NODE systemname="VPath (VObjectDictionary)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="VPath (VObjectDictionary)" componentmode="Hidden" id="559">
-   <BOUNDS type="Node" left="6840" top="19560" width="750" height="270">
-   </BOUNDS>
-   <PIN pinname="Source" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Path" visible="1" slicecount="1" values="&quot;text.SpecView.Page&quot;¦&quot;ModeSwitcher&quot;">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="68" srcpinname="Output Node" dstnodeid="559" dstpinname="Source" hiddenwhenlocked="1" linkstyle="VHV">
-   <LINKPOINT x="285" y="11535">
-   </LINKPOINT>
-   <LINKPOINT x="6870" y="11535">
-   </LINKPOINT>
    </LINK>
    <NODE systemname="Add (String)" nodename="Add (String)" componentmode="Hidden" id="558">
    <BOUNDS type="Node" left="7200" top="18915" width="600" height="270">
@@ -6312,22 +6240,18 @@
    </NODE>
    <LINK srcnodeid="557" srcpinname="Output String" dstnodeid="558" dstpinname="Input 2">
    </LINK>
-   <LINK srcnodeid="558" srcpinname="Output" dstnodeid="559" dstpinname="Path">
-   </LINK>
    <NODE systemname="PrimitiveObject (Set)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (Set)" componentmode="Hidden" id="560">
    <BOUNDS type="Node" left="6015" top="20550" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Configuration" slicecount="1" values="|bool Enabled|">
    </PIN>
-   <PIN pinname="Primitive Object" visible="1">
+   <PIN pinname="Primitive Object" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Set" visible="1" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Enabled" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="556" srcpinname="Output" dstnodeid="560" dstpinname="Primitive Object">
-   </LINK>
    <NODE systemname="PrimitiveObject (Set)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (Set)" componentmode="Hidden" id="561">
    <BOUNDS type="Node" left="7365" top="20550" width="100" height="100">
    </BOUNDS>
@@ -6340,8 +6264,6 @@
    <PIN pinname="Enabled" visible="1" slicecount="1" values="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="559" srcpinname="Output" dstnodeid="561" dstpinname="Primitive Object">
-   </LINK>
    <NODE systemname="AND (Boolean)" nodename="AND (Boolean)" componentmode="Hidden" id="563">
    <BOUNDS type="Node" left="7815" top="19740" width="100" height="100">
    </BOUNDS>
@@ -6813,7 +6735,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="30615" top="1245" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="1" values="..\..\..\..\..\app\vvvv_45beta33.7_x64\lib\nodes\modules\String\file.txt">
+   <PIN pinname="Input String" slicecount="1" visible="1" values="..\..\..\girlpower\VOOG.UI\file.txt">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="file.txt">
    </PIN>
@@ -6913,5 +6835,85 @@
    <LINK srcnodeid="632" srcpinname="Output String" dstnodeid="631" dstpinname="Input 2">
    </LINK>
    <LINK srcnodeid="351" srcpinname="Y Output Value" dstnodeid="631" dstpinname="Switch">
+   </LINK>
+   <NODE systemname="VPath (VObject)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="VPath (VObject)" componentmode="Hidden" id="470">
+   <BOUNDS type="Node" left="5865" top="3885" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Source" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Path" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="68" srcpinname="Output Node" dstnodeid="470" dstpinname="Source" hiddenwhenlocked="1" linkstyle="VHV">
+   <LINKPOINT x="285" y="2880">
+   </LINKPOINT>
+   <LINKPOINT x="5895" y="2880">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="474" srcpinname="Output" dstnodeid="470" dstpinname="Path">
+   </LINK>
+   <LINK srcnodeid="470" srcpinname="Output" dstnodeid="476" dstpinname="Primitive Object">
+   </LINK>
+   <NODE systemname="VPath (VObject)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="VPath (VObject)" componentmode="Hidden" id="556">
+   <BOUNDS type="Node" left="5955" top="19200" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Source" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Path" visible="1" slicecount="1" values="&quot;text.SpecView.Page&quot;¦&quot;ModeSwitcher&quot;">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="68" srcpinname="Output Node" dstnodeid="556" dstpinname="Source" hiddenwhenlocked="1" linkstyle="VHV">
+   <LINKPOINT x="285" y="11520">
+   </LINKPOINT>
+   <LINKPOINT x="5985" y="11520">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="555" srcpinname="Output" dstnodeid="556" dstpinname="Path">
+   </LINK>
+   <LINK srcnodeid="556" srcpinname="Output" dstnodeid="560" dstpinname="Primitive Object">
+   </LINK>
+   <NODE systemname="VPath (VObject)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="VPath (VObject)" componentmode="Hidden" id="559">
+   <BOUNDS type="Node" left="6840" top="19560" width="750" height="270">
+   </BOUNDS>
+   <PIN pinname="Source" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Path" visible="1" slicecount="1" values="&quot;text.SpecView.Page&quot;¦&quot;ModeSwitcher&quot;">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="68" srcpinname="Output Node" dstnodeid="559" dstpinname="Source" hiddenwhenlocked="1" linkstyle="VHV">
+   <LINKPOINT x="285" y="11535">
+   </LINKPOINT>
+   <LINKPOINT x="6870" y="11535">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="558" srcpinname="Output" dstnodeid="559" dstpinname="Path">
+   </LINK>
+   <LINK srcnodeid="559" srcpinname="Output" dstnodeid="561" dstpinname="Primitive Object">
+   </LINK>
+   <NODE systemname="VPath (VObject)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="VPath (VObject)" componentmode="Hidden" id="485">
+   <BOUNDS type="Node" left="20115" top="29580" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Source" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Path" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="68" srcpinname="Output Node" dstnodeid="485" dstpinname="Source" hiddenwhenlocked="1" linkstyle="VHV">
+   <LINKPOINT x="285" y="28200">
+   </LINKPOINT>
+   <LINKPOINT x="20145" y="28200">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="481" srcpinname="Output" dstnodeid="485" dstpinname="Path">
+   </LINK>
+   <LINK srcnodeid="485" srcpinname="Output" dstnodeid="479" dstpinname="Primitive Object">
    </LINK>
    </PATCH>

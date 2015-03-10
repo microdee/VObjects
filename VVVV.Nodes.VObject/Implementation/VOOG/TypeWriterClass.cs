@@ -26,6 +26,7 @@ namespace VVVV.Nodes.VObjects
     // "stolen" from vvvv group
     public class TypeWriter : IDisposable
     {
+        public bool Enabled = true;
         private Keyboard FKeyboard;
         private IDisposable FKeyboardSubscription;
         public List<string> WhiteList = new List<string>();
@@ -46,28 +47,32 @@ namespace VVVV.Nodes.VObjects
                     {
                         FKeyboardSubscription = FKeyboard.KeyNotifications.Subscribe(n =>
                             {
-                                switch (n.Kind)
+                                if ((FKeyboard != null) && (Enabled))
                                 {
-                                    case KeyNotificationKind.KeyDown:
-                                        FControlKeyPressed = (FKeyboard.Modifiers & Keys.Control) > 0;
-                                        var altKeyPressed = (FKeyboard.Modifiers & Keys.Alt) > 0;
-                                        var keyDown = n as KeyDownNotification;
-                                        var keyCode = keyDown.KeyCode;
-                                        if ((int)keyCode < 48)
-                                        {
-                                            if (!altKeyPressed)
-                                                RunCommand(keyCode);
-                                        }
-                                        break;
-                                    case KeyNotificationKind.KeyPress:
-                                        var keyPress = n as KeyPressNotification;
-                                        var chr = keyPress.KeyChar;
-                                        if (!char.IsControl(chr))
-                                            AddNewChar(chr.ToString());
-                                        break;
+                                    switch (n.Kind)
+                                    {
+                                        case KeyNotificationKind.KeyDown:
+                                            FControlKeyPressed = (FKeyboard.Modifiers & Keys.Control) > 0;
+                                            FAltKeyPressed = (FKeyboard.Modifiers & Keys.Alt) > 0;
+                                            FShiftKeyPressed = (FKeyboard.Modifiers & Keys.Shift) > 0;
+                                            var keyDown = n as KeyDownNotification;
+                                            var keyCode = keyDown.KeyCode;
+                                            if ((int)keyCode < 48)
+                                            {
+                                                if (!FAltKeyPressed)
+                                                    RunCommand(keyCode);
+                                            }
+                                            break;
+                                        case KeyNotificationKind.KeyPress:
+                                            var keyPress = n as KeyPressNotification;
+                                            var chr = keyPress.KeyChar;
+                                            if (!char.IsControl(chr))
+                                                AddNewChar(chr.ToString());
+                                            break;
+                                    }
                                 }
                             }
-                            );
+                        );
                     }
                 }
             }
@@ -79,6 +84,36 @@ namespace VVVV.Nodes.VObjects
             set
             {
                 FCursorCharPos = Math.Min(FText.Length, Math.Max(0, value));
+            }
+        }
+        public int TabSize
+        {
+            get { return FTabSize; }
+            set
+            {
+                FTabSize = Math.Max(1, value);
+            }
+        }
+        public int SelectStart
+        {
+            get { return FSelectStart; }
+            set
+            {
+                if (value < FSelectEnd)
+                    FSelectStart = Math.Min(FText.Length, Math.Max(-1, value));
+                else
+                    FSelectEnd = Math.Min(FText.Length, Math.Max(-1, value));
+            }
+        }
+        public int SelectEnd
+        {
+            get { return FSelectEnd; }
+            set
+            {
+                if (value > FSelectStart)
+                    FSelectEnd = Math.Min(FText.Length, Math.Max(-1, value));
+                else
+                    FSelectStart = Math.Min(FText.Length, Math.Max(-1, value));
             }
         }
 
@@ -104,7 +139,12 @@ namespace VVVV.Nodes.VObjects
 
         public string Output { get { return FText; } }
 
+        private int FSelectStart = -1;
+        private int FSelectEnd = -1;
+        private int FTabSize = 4;
         private bool FControlKeyPressed;
+        private bool FShiftKeyPressed;
+        private bool FAltKeyPressed;
         private string FLastCapitalKey;
         private string FText = "";
         private int FCursorCharPos = 0;
@@ -178,6 +218,8 @@ namespace VVVV.Nodes.VObjects
             int line = GetLineOfCursor();
             if (line > 0)
             {
+                int StartCurPos = FCursorCharPos;
+
                 var startOfLine = GetStartOfLine(line);
                 var posInLine = FCursorCharPos - startOfLine;
                 var newLine = line - 1;
@@ -185,6 +227,12 @@ namespace VVVV.Nodes.VObjects
                 var newPos = GetStartOfLine(newLine) + Math.Min(posInLine, GetLengthOfLine(newLine));
 
                 FCursorCharPos = EnsureCorrectCursorPlacement(newPos);
+
+                if (FShiftKeyPressed)
+                {
+                    FSelectEnd = StartCurPos;
+                    FSelectStart = FCursorCharPos;
+                }
             }
         }
 
@@ -193,6 +241,8 @@ namespace VVVV.Nodes.VObjects
             int line = GetLineOfCursor();
             if (line < GetLineCount() - 1)
             {
+                int StartCurPos = FCursorCharPos;
+
                 var startOfLine = GetStartOfLine(line);
                 var posInLine = FCursorCharPos - startOfLine;
                 var newLine = line + 1;
@@ -200,6 +250,12 @@ namespace VVVV.Nodes.VObjects
                 var newPos = GetStartOfLine(newLine) + Math.Min(posInLine, GetLengthOfLine(newLine));
 
                 FCursorCharPos = EnsureCorrectCursorPlacement(newPos);
+
+                if (FShiftKeyPressed)
+                {
+                    FSelectStart = StartCurPos;
+                    FSelectEnd = FCursorCharPos;
+                }
             }
         }
 
@@ -220,18 +276,31 @@ namespace VVVV.Nodes.VObjects
 
         void CursorToLineStart()
         {
+            int StartCurPos = FCursorCharPos;
             int line = GetLineOfCursor();
             FCursorCharPos = GetStartOfLine(line);
+            if(FShiftKeyPressed)
+            {
+                FSelectEnd = StartCurPos;
+                FSelectStart = FCursorCharPos;
+            }
         }
 
         void CursorToLineEnd()
         {
+            int StartCurPos = FCursorCharPos;
             int line = GetLineOfCursor();
             FCursorCharPos = GetStartOfLine(line) + GetLengthOfLine(line);
+            if (FShiftKeyPressed)
+            {
+                FSelectStart = StartCurPos;
+                FSelectEnd = FCursorCharPos;
+            }
         }
 
         void CursorStepsRight(int steps = 1)
         {
+            int StartCurPos = FCursorCharPos;
             var newPos = Math.Min(FText.Length, FCursorCharPos + steps);
             //if cursor lands on an \r and the next symbol is an \n make sure to step one more
             if (newPos >= 0 && newPos < FText.Length)
@@ -241,10 +310,23 @@ namespace VVVV.Nodes.VObjects
             }
 
             FCursorCharPos = Math.Min(FText.Length, newPos);
+            if (FShiftKeyPressed)
+            {
+                if (StartCurPos == FSelectStart)
+                    FSelectStart = FCursorCharPos;
+                else if (StartCurPos == FSelectEnd)
+                    FSelectEnd = FCursorCharPos;
+                else
+                {
+                    FSelectStart = StartCurPos;
+                    FSelectEnd = FCursorCharPos;
+                }
+            }
         }
 
         void CursorStepsLeft()
         {
+            int StartCurPos = FCursorCharPos;
             var newPos = Math.Max(0, FCursorCharPos - 1);
             //if cursor lands on an \n and the previouse symbol is an \r make sure to step one more
             if (newPos >= 0 && newPos < FText.Length)
@@ -254,27 +336,72 @@ namespace VVVV.Nodes.VObjects
             }
 
             FCursorCharPos = Math.Max(0, newPos);
+            if (FShiftKeyPressed)
+            {
+                if (StartCurPos == FSelectStart)
+                    FSelectStart = FCursorCharPos;
+                else if (StartCurPos == FSelectEnd)
+                    FSelectEnd = FCursorCharPos;
+                else
+                {
+                    FSelectEnd = StartCurPos;
+                    FSelectStart = FCursorCharPos;
+                }
+            }
         }
 
         void CursorStepsWordRight()
         {
+            int StartCurPos = FCursorCharPos;
             var nextSpace = FText.IndexOfAny(new char[] { ' ', FNewlineSymbol[0] }, FCursorCharPos) + 1;
             FCursorCharPos = Math.Min(FText.Length, nextSpace);
+            if (FShiftKeyPressed)
+            {
+                if (StartCurPos == FSelectStart)
+                    FSelectStart = FCursorCharPos;
+                else if (StartCurPos == FSelectEnd)
+                    FSelectEnd = FCursorCharPos;
+                else
+                {
+                    FSelectStart = StartCurPos;
+                    FSelectEnd = FCursorCharPos;
+                }
+            }
         }
 
         void CursorStepsWordLeft()
         {
+            int StartCurPos = FCursorCharPos;
             if (FCursorCharPos > 2)
             {
                 var lastSpace = FText.LastIndexOfAny(new char[] { ' ', FNewlineSymbol[0] }, FCursorCharPos - 2) + 1;
                 FCursorCharPos = Math.Max(0, lastSpace);
             }
+            if (FShiftKeyPressed)
+            {
+                if (StartCurPos == FSelectStart)
+                    FSelectStart = FCursorCharPos;
+                else if (StartCurPos == FSelectEnd)
+                    FSelectEnd = FCursorCharPos;
+                else
+                {
+                    FSelectEnd = StartCurPos;
+                    FSelectStart = FCursorCharPos;
+                }
+            }
         }
+
         #endregion
 
         #region Commands
+
         private void AddNewChar(string str)
         {
+            if (((FSelectStart > -1) && (FSelectEnd > -1)) && (FSelectStart != FSelectEnd))
+            {
+                DeleteRightChar();
+            }
+
             if (!this.CheckLists(str)) return;
             if (MaxLength != -1)
             {
@@ -293,7 +420,15 @@ namespace VVVV.Nodes.VObjects
             if (str.ToUpper() == str)
                 FLastCapitalKey = str;
 
-            CursorStepsRight(str.Length);
+            int newPos = Math.Min(FText.Length, FCursorCharPos + 1);
+            //if cursor lands on an \r and the next symbol is an \n make sure to step one more
+            if (newPos >= 0 && newPos < FText.Length)
+            {
+                if (FText[newPos] == '\n' && FText[newPos - 1] == '\r')
+                    newPos += 1;
+            }
+
+            FCursorCharPos = Math.Min(FText.Length, newPos);
 
         }
 
@@ -308,11 +443,23 @@ namespace VVVV.Nodes.VObjects
 
         private void DeleteRightChar()
         {
-            var charCount = 1;
-            if (FText[FCursorCharPos] == '\r' && FNewlineSymbol.Length > 1)
-                charCount = FNewlineSymbol.Length;
+            if (((FSelectStart > -1) && (FSelectEnd > -1)) && (FSelectStart != FSelectEnd))
+            {
+                var charCount = FSelectEnd - FSelectStart;
 
-            FText = FText.Remove(FCursorCharPos, charCount);
+                FText = FText.Remove(FSelectStart, charCount);
+                FCursorCharPos = FSelectStart;
+                FSelectStart = -1;
+                FSelectEnd = -1;
+            }
+            else
+            {
+                var charCount = 1;
+                if (FText[FCursorCharPos] == '\r' && FNewlineSymbol.Length > 1)
+                    charCount = FNewlineSymbol.Length;
+
+                FText = FText.Remove(FCursorCharPos, charCount);
+            }
         }
 
         private bool RunCommand(Keys keyCode)
@@ -334,11 +481,8 @@ namespace VVVV.Nodes.VObjects
                         DeleteRightChar();
                         return true;
                     case Keys.Tab:
-                        AddNewChar(" ");
-                        AddNewChar(" ");
-                        AddNewChar(" ");
-                        AddNewChar(" ");
-                        AddNewChar(" ");
+                        for (int i = 0; i < FTabSize; i++ )
+                            AddNewChar(" ");
                         return true;
                     case Keys.Left:
                         if (!IgnoreNavigationKeys)

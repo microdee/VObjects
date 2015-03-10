@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\GUI\DropDown (VOOG).v4p" systemname="DropDown (VOOG)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\DropDown (VOOG).v4p" scrollx="2160" scrolly="7560">
-   <BOUNDS type="Window" left="5655" top="3195" width="19095" height="12195">
+   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\GUI\DropDown (VOOG).v4p" systemname="DropDown (VOOG)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\DropDown (VOOG).v4p" scrollx="0" scrolly="-360">
+   <BOUNDS type="Window" left="3705" top="4155" width="13230" height="9090">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
    </PACK>
@@ -349,7 +349,7 @@
    <NODE systemname="PrimitiveObject (Split)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (Split)" componentmode="Hidden" id="48">
    <BOUNDS type="Node" left="10995" top="2925" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Configuration" slicecount="1" values="|Transform Transform, bool Click, bool Drag, int TouchID|">
+   <PIN pinname="Configuration" slicecount="1" values="|Transform Transform, bool Click, bool Drag, int HoldedTouchID|">
    </PIN>
    <PIN pinname="Primitive Object" visible="1" slicecount="1" values="||">
    </PIN>
@@ -362,6 +362,10 @@
    <PIN pinname="Click" visible="1">
    </PIN>
    <PIN pinname="TouchID" visible="1">
+   </PIN>
+   <PIN pinname="HoldedTouchID" visible="1">
+   </PIN>
+   <PIN pinname="HoldedTouchID Bin Size" visible="1">
    </PIN>
    </NODE>
    <NODE systemname="Blend (DX11.RenderState)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Blend (DX11.RenderState)" componentmode="Hidden" id="29">
@@ -757,7 +761,7 @@
    <NODE systemname="PrimitiveObject (Split)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (Split)" componentmode="Hidden" id="108">
    <BOUNDS type="Node" left="11535" top="12585" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Configuration" slicecount="1" values="|Transform Transform, bool Click, bool Drag, int TouchID|">
+   <PIN pinname="Configuration" slicecount="1" values="|Transform Transform, bool Click, bool Drag, int HoldedTouchID|">
    </PIN>
    <PIN pinname="Primitive Object" visible="1" slicecount="1" values="||">
    </PIN>
@@ -770,6 +774,10 @@
    <PIN pinname="Click" visible="1">
    </PIN>
    <PIN pinname="TouchID" visible="1">
+   </PIN>
+   <PIN pinname="HoldedTouchID" visible="1">
+   </PIN>
+   <PIN pinname="HoldedTouchID Bin Size" visible="1">
    </PIN>
    </NODE>
    <NODE systemname="AvoidNIL (Spreads)" filename="%VVVV%\lib\nodes\modules\Spreads\AvoidNIL (Spreads).v4p" nodename="AvoidNIL (Spreads)" componentmode="Hidden" id="109">
@@ -813,7 +821,7 @@
    </PIN>
    </NODE>
    <NODE systemname="OR (Boolean Spectral)" nodename="OR (Boolean Spectral)" componentmode="Hidden" id="113">
-   <BOUNDS type="Node" left="11985" top="13770" width="100" height="100">
+   <BOUNDS type="Node" left="12015" top="13200" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1">
    </PIN>
@@ -1214,18 +1222,6 @@
    </LINK>
    <LINK srcnodeid="140" srcpinname="Output 1" dstnodeid="138" dstpinname="Set">
    </LINK>
-   <NODE systemname="VPath (VObjectDictionary)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="VPath (VObjectDictionary)" componentmode="Hidden" id="144">
-   <BOUNDS type="Node" left="11175" top="11325" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Source" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Path" visible="1" slicecount="13" values="&quot;DropDown3.Item.0.null&quot;¦&quot;BaseData&quot;,&quot;DropDown3.Item.1.one&quot;¦&quot;BaseData&quot;,&quot;DropDown3.Item.2.two&quot;¦&quot;BaseData&quot;,&quot;DropDown3.Item.3.three&quot;¦&quot;BaseData&quot;,&quot;DropDown3.Item.4.four&quot;¦&quot;BaseData&quot;,&quot;DropDown3.Item.5.five&quot;¦&quot;BaseData&quot;,&quot;DropDown3.Item.6.six&quot;¦&quot;BaseData&quot;,&quot;DropDown3.Item.7.seven&quot;¦&quot;BaseData&quot;,&quot;DropDown3.Item.8.eight&quot;¦&quot;BaseData&quot;,&quot;DropDown3.Item.9.nine&quot;¦&quot;BaseData&quot;,&quot;DropDown3.Item.10.ten&quot;¦&quot;BaseData&quot;,&quot;DropDown3.Item.11.eleven&quot;¦&quot;BaseData&quot;,&quot;DropDown3.Item.12.twelve&quot;¦&quot;BaseData&quot;">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="9" srcpinname="Output Node" dstnodeid="144" dstpinname="Source">
-   </LINK>
    <NODE systemname="Add (String)" nodename="Add (String)" componentmode="Hidden" id="150">
    <BOUNDS type="Node" left="11505" top="10770" width="100" height="100">
    </BOUNDS>
@@ -1254,18 +1250,14 @@
    </NODE>
    <LINK srcnodeid="151" srcpinname="Output String" dstnodeid="150" dstpinname="Input 2">
    </LINK>
-   <LINK srcnodeid="150" srcpinname="Output" dstnodeid="144" dstpinname="Path">
-   </LINK>
    <NODE systemname="Cast (To VObjectCollection)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Cast (To VObjectCollection)" componentmode="Hidden" id="153">
    <BOUNDS type="Node" left="11565" top="11730" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Input" visible="1">
+   <PIN pinname="Input" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="144" srcpinname="Output" dstnodeid="153" dstpinname="Input">
-   </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="154" systemname="IOBox (String)">
    <BOUNDS type="Box" left="12345" top="11250" width="2250" height="240">
    </BOUNDS>
@@ -1282,30 +1274,10 @@
    <PIN pinname="Output String" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="VPath (VObjectCollection)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="VPath (VObjectCollection)" componentmode="Hidden" id="152">
-   <BOUNDS type="Node" left="11550" top="12165" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Source" visible="1">
-   </PIN>
-   <PIN pinname="Filter" visible="1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   <PIN pinname="Path" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="153" srcpinname="Output" dstnodeid="152" dstpinname="Source">
-   </LINK>
-   <LINK srcnodeid="152" srcpinname="Output" dstnodeid="108" dstpinname="Primitive Object">
-   </LINK>
-   <LINK srcnodeid="152" srcpinname="Output" dstnodeid="125" dstpinname="Primitive Object">
-   </LINK>
-   <LINK srcnodeid="154" srcpinname="Output String" dstnodeid="152" dstpinname="Path">
-   </LINK>
    <NODE systemname="FrameDelay (Value)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="FrameDelay (Value)" componentmode="Hidden" id="155">
    <BOUNDS type="Node" left="12720" top="7035" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Input 1" visible="1" slicecount="1" values="1">
+   <PIN pinname="Input 1" visible="1">
    </PIN>
    <PIN pinname="Output 1" visible="1">
    </PIN>
@@ -1313,7 +1285,7 @@
    <NODE systemname="AND (Boolean)" nodename="AND (Boolean)" componentmode="Hidden" id="157">
    <BOUNDS type="Node" left="12135" top="8070" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Input 1" visible="1" slicecount="1" values="1">
+   <PIN pinname="Input 1" visible="1">
    </PIN>
    <PIN pinname="Input 2" visible="1" slicecount="1" values="0">
    </PIN>
@@ -1906,8 +1878,6 @@
    <PIN pinname="Inverse Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="48" srcpinname="TouchID" dstnodeid="216" dstpinname="Input 1">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="217" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="12420" top="3360" width="795" height="240">
    </BOUNDS>
@@ -1923,9 +1893,9 @@
    <LINK srcnodeid="217" srcpinname="Y Output Value" dstnodeid="216" dstpinname="Input 2">
    </LINK>
    <NODE systemname="EQ (Value)" nodename="EQ (Value)" componentmode="Hidden" id="219">
-   <BOUNDS type="Node" left="12660" top="13380" width="100" height="100">
+   <BOUNDS type="Node" left="12675" top="13335" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Input 1" visible="1" slicecount="1" values="0">
+   <PIN pinname="Input 1" visible="1">
    </PIN>
    <PIN pinname="Input 2" visible="1">
    </PIN>
@@ -1947,8 +1917,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="218" srcpinname="Y Output Value" dstnodeid="219" dstpinname="Input 2">
-   </LINK>
-   <LINK srcnodeid="108" srcpinname="TouchID" dstnodeid="219" dstpinname="Input 1">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="220" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="18240" top="14505" width="480" height="480">
@@ -1977,8 +1945,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="180" srcpinname="Y" dstnodeid="221" dstpinname="Y Input Value">
-   </LINK>
-   <LINK srcnodeid="219" srcpinname="Inverse Output" dstnodeid="129" dstpinname="Input">
    </LINK>
    <NODE systemname="Select (Value)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Select (Value)" componentmode="Hidden" id="223">
    <BOUNDS type="Node" left="8025" top="15555" width="100" height="100">
@@ -2028,10 +1994,6 @@
    </NODE>
    <LINK srcnodeid="135" srcpinname="TranslateXYZ" dstnodeid="227" dstpinname="XYZ">
    </LINK>
-   <LINK srcnodeid="216" srcpinname="Inverse Output" dstnodeid="157" dstpinname="Input 1">
-   </LINK>
-   <LINK srcnodeid="216" srcpinname="Inverse Output" dstnodeid="155" dstpinname="Input 1">
-   </LINK>
    <NODE systemname="KeepLast (Value)" filename="..\..\..\..\mcropack\nodes\modules\KeepLast (Value).v4p" nodename="KeepLast (Value)" componentmode="Hidden" id="228">
    <BOUNDS type="Node" left="12165" top="9180" width="100" height="100">
    </BOUNDS>
@@ -2047,5 +2009,79 @@
    <LINK srcnodeid="228" srcpinname="Output" dstnodeid="122" dstpinname="Index">
    </LINK>
    <LINK srcnodeid="214" srcpinname="Output" dstnodeid="159" dstpinname="Reset">
+   </LINK>
+   <NODE systemname="VPath (VObject)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="VPath (VObject)" componentmode="Hidden" id="144">
+   <BOUNDS type="Node" left="11175" top="11325" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Source" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Path" visible="1" slicecount="13" values="&quot;DropDown3.Item.0.null&quot;¦&quot;BaseData&quot;,&quot;DropDown3.Item.1.one&quot;¦&quot;BaseData&quot;,&quot;DropDown3.Item.2.two&quot;¦&quot;BaseData&quot;,&quot;DropDown3.Item.3.three&quot;¦&quot;BaseData&quot;,&quot;DropDown3.Item.4.four&quot;¦&quot;BaseData&quot;,&quot;DropDown3.Item.5.five&quot;¦&quot;BaseData&quot;,&quot;DropDown3.Item.6.six&quot;¦&quot;BaseData&quot;,&quot;DropDown3.Item.7.seven&quot;¦&quot;BaseData&quot;,&quot;DropDown3.Item.8.eight&quot;¦&quot;BaseData&quot;,&quot;DropDown3.Item.9.nine&quot;¦&quot;BaseData&quot;,&quot;DropDown3.Item.10.ten&quot;¦&quot;BaseData&quot;,&quot;DropDown3.Item.11.eleven&quot;¦&quot;BaseData&quot;,&quot;DropDown3.Item.12.twelve&quot;¦&quot;BaseData&quot;">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="9" srcpinname="Output Node" dstnodeid="144" dstpinname="Source">
+   </LINK>
+   <LINK srcnodeid="150" srcpinname="Output" dstnodeid="144" dstpinname="Path">
+   </LINK>
+   <LINK srcnodeid="144" srcpinname="Output" dstnodeid="153" dstpinname="Input">
+   </LINK>
+   <NODE systemname="VPath (VObject)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="VPath (VObject)" componentmode="Hidden" id="152">
+   <BOUNDS type="Node" left="11550" top="12165" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Source" visible="1">
+   </PIN>
+   <PIN pinname="Filter" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Path" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="153" srcpinname="Output" dstnodeid="152" dstpinname="Source">
+   </LINK>
+   <LINK srcnodeid="152" srcpinname="Output" dstnodeid="108" dstpinname="Primitive Object">
+   </LINK>
+   <LINK srcnodeid="152" srcpinname="Output" dstnodeid="125" dstpinname="Primitive Object">
+   </LINK>
+   <LINK srcnodeid="154" srcpinname="Output String" dstnodeid="152" dstpinname="Path">
+   </LINK>
+   <LINK srcnodeid="48" srcpinname="HoldedTouchID" dstnodeid="216" dstpinname="Input 1">
+   </LINK>
+   <NODE systemname="OR (Boolean Spectral)" nodename="OR (Boolean Spectral)" componentmode="Hidden" id="229">
+   <BOUNDS type="Node" left="12705" top="4140" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Bin Size" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="216" srcpinname="Inverse Output" dstnodeid="229" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="48" srcpinname="HoldedTouchID Bin Size" dstnodeid="229" dstpinname="Bin Size">
+   </LINK>
+   <LINK srcnodeid="229" srcpinname="Output" dstnodeid="157" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="229" srcpinname="Output" dstnodeid="155" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="108" srcpinname="HoldedTouchID" dstnodeid="219" dstpinname="Input 1">
+   </LINK>
+   <NODE systemname="OR (Boolean Spectral)" nodename="OR (Boolean Spectral)" componentmode="Hidden" id="230">
+   <BOUNDS type="Node" left="13560" top="13560" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Bin Size" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="219" srcpinname="Inverse Output" dstnodeid="230" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="108" srcpinname="HoldedTouchID Bin Size" dstnodeid="230" dstpinname="Bin Size">
+   </LINK>
+   <LINK srcnodeid="230" srcpinname="Output" dstnodeid="129" dstpinname="Input">
    </LINK>
    </PATCH>

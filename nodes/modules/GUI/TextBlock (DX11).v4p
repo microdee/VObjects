@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\GUI\TextBlock (DX11).v4p" systemname="TextBlock (DX11)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\TextBlock (DX11).v4p" scrollx="0" scrolly="1515">
-   <BOUNDS type="Window" left="0" top="7485" width="14970" height="10140">
+   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\GUI\TextBlock (DX11).v4p" systemname="TextBlock (DX11)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\TextBlock (DX11).v4p" scrollx="0" scrolly="3810">
+   <BOUNDS type="Window" left="4365" top="2580" width="14970" height="10140">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
    </PACK>
