@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\projects\CA-2-MAX\Libraries\vvvv_45beta33.7_x64\packs\VObjects\nodes\modules\GUI\Host (VOOG 2D).v4p" systemname="Host (GUIVObject 2D)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\Host (GUIVObject 2D).v4p" scrollx="0" scrolly="2040" locked="0">
-   <BOUNDS type="Window" left="3600" top="1395" width="17370" height="13035">
+   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\VOOG\Host (VOOG 2D).v4p" systemname="Host (GUIVObject 2D)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\Host (GUIVObject 2D).v4p" scrollx="0" scrolly="9000" locked="0">
+   <BOUNDS type="Window" left="2535" top="1800" width="17370" height="13035">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
    </PACK>
@@ -33,9 +33,9 @@
    <LINK srcnodeid="1" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Clear">
    </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="2" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="360" top="4320" width="945" height="240">
+   <BOUNDS type="Box" left="645" top="12990" width="945" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="360" top="4320" width="0" height="0">
+   <BOUNDS type="Node" left="645" top="12990" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Dictionary Out|">
    </PIN>
@@ -43,9 +43,9 @@
    <LINK srcnodeid="0" srcpinname="Output" dstnodeid="2" dstpinname="Input Node">
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="4" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="4410" top="3900" width="1335" height="240">
+   <BOUNDS type="Box" left="4905" top="4695" width="1245" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="4410" top="3900" width="0" height="0">
+   <BOUNDS type="Node" left="4905" top="4695" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="1" values="GUIElement">
    </PIN>
@@ -59,9 +59,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="6" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="2430" top="2445" width="795" height="240">
+   <BOUNDS type="Box" left="3930" top="1935" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="2430" top="2445" width="0" height="0">
+   <BOUNDS type="Node" left="3930" top="1935" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="1" values=".*?$">
    </PIN>
@@ -193,7 +193,7 @@
    </PIN>
    </NODE>
    <NODE systemname="Cast (To VObjectCollection)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Cast (To VObjectCollection)" componentmode="Hidden" id="78">
-   <BOUNDS type="Node" left="3585" top="4965" width="100" height="100">
+   <BOUNDS type="Node" left="4485" top="6105" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1" slicecount="1" values="||">
    </PIN>
@@ -392,48 +392,14 @@
    <PIN pinname="Up Edge" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="PrimitiveObject (Set)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (Set)" componentmode="Hidden" id="175">
-   <BOUNDS type="Node" left="3360" top="17925" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Configuration" slicecount="1" values="|bool Drag, bool Click, int HoldedTouchID, bool HoldedTap|">
-   </PIN>
-   <PIN pinname="Set" visible="1">
-   </PIN>
-   <PIN pinname="Tap Bin Size" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="TouchID Bin Size" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Drag Bin Size" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Click Bin Size" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Tap" visible="1">
-   </PIN>
-   <PIN pinname="TouchID" visible="1">
-   </PIN>
-   <PIN pinname="Drag" visible="1">
-   </PIN>
-   <PIN pinname="Click" visible="1">
-   </PIN>
-   <PIN pinname="Primitive Object" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="HoldedTouchID" visible="1">
-   </PIN>
-   <PIN pinname="HoldedTouchID Bin Size" visible="1">
-   </PIN>
-   <PIN pinname="HoldedTap" visible="1" slicecount="20" values="0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0">
-   </PIN>
-   <PIN pinname="HoldedTap Bin Size" visible="1">
-   </PIN>
-   </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="176" systemname="IOBox (String)">
-   <BOUNDS type="Node" left="3945" top="5670" width="4110" height="270">
+   <BOUNDS type="Node" left="1755" top="4860" width="4110" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="3945" top="5670" width="4425" height="525">
+   <BOUNDS type="Box" left="1755" top="4860" width="2475" height="915">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="|Transform Transform, bool Tap, bool HoldedTap, bool Drag, bool Click, int TouchID, int HoldedTouchID, bool Enabled|">
    </PIN>
-   <PIN pinname="Output String" visible="0">
+   <PIN pinname="Output String" visible="1">
    </PIN>
    <PIN pinname="Show Grid" slicecount="1" values="0">
    </PIN>
@@ -472,8 +438,6 @@
    <PIN pinname="X Input Value" slicecount="1" values="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="179" srcpinname="Y Output Value" dstnodeid="175" dstpinname="Set">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="180" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="5160" top="16635" width="795" height="240">
    </BOUNDS>
@@ -490,10 +454,6 @@
    </NODE>
    <LINK srcnodeid="180" srcpinname="Y Output Value" dstnodeid="177" dstpinname="Time">
    </LINK>
-   <LINK srcnodeid="177" srcpinname="Dragging" dstnodeid="175" dstpinname="Drag">
-   </LINK>
-   <LINK srcnodeid="177" srcpinname="Clicking" dstnodeid="175" dstpinname="Click">
-   </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="188" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="10410" top="2475" width="795" height="240">
    </BOUNDS>
@@ -505,7 +465,7 @@
    <LINK srcnodeid="188" srcpinname="Output Node" dstnodeid="20" dstpinname="Mouse">
    </LINK>
    <NODE systemname="Sift (VObjectCollection)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Sift (VObjectCollection)" componentmode="Hidden" id="198">
-   <BOUNDS type="Node" left="3570" top="4365" width="100" height="100">
+   <BOUNDS type="Node" left="4590" top="5220" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Source" visible="1">
    </PIN>
@@ -517,7 +477,7 @@
    </PIN>
    </NODE>
    <NODE systemname="Cast (To VObjectCollection)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Cast (To VObjectCollection)" componentmode="Hidden" id="199">
-   <BOUNDS type="Node" left="3585" top="3945" width="100" height="100">
+   <BOUNDS type="Node" left="4515" top="4200" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1" slicecount="1" values="||">
    </PIN>
@@ -529,18 +489,6 @@
    <LINK srcnodeid="4" srcpinname="Output String" dstnodeid="198" dstpinname="Filter">
    </LINK>
    <LINK srcnodeid="198" srcpinname="Output" dstnodeid="78" dstpinname="Input">
-   </LINK>
-   <NODE systemname="Select (Node)" filename="%VVVV%\lib\nodes\modules\Node\Select (Node).v4p" nodename="Select (Node)" componentmode="Hidden" id="212">
-   <BOUNDS type="Node" left="1845" top="4590" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Input" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Select" visible="1" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="198" srcpinname="Output Bin Size" dstnodeid="212" dstpinname="Select">
    </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="220" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="7695" top="18900" width="795" height="240">
@@ -623,11 +571,11 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="ID&apos;s">
    </PIN>
-   <PIN pinname="Y Input Value" visible="1">
+   <PIN pinname="Y Input Value" visible="1" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE systemname="VPath (VObject)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="VPath (VObject)" componentmode="Hidden" id="197">
-   <BOUNDS type="Node" left="1845" top="3750" width="100" height="100">
+   <BOUNDS type="Node" left="4515" top="3720" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Source" visible="1" slicecount="1" values="||">
    </PIN>
@@ -645,8 +593,6 @@
    <LINK srcnodeid="9" srcpinname="Output String" dstnodeid="197" dstpinname="Separator">
    </LINK>
    <LINK srcnodeid="197" srcpinname="Output" dstnodeid="199" dstpinname="Input">
-   </LINK>
-   <LINK srcnodeid="197" srcpinname="Output" dstnodeid="212" dstpinname="Input">
    </LINK>
    <NODE systemname="MonoFlop (Animation Framebased)" filename="%VVVV%\addonpack\lib\nodes\plugins\MonoFlop.dll" nodename="MonoFlop (Animation Framebased)" componentmode="Hidden" id="246">
    <BOUNDS type="Node" left="11310" top="4215" width="100" height="100">
@@ -718,44 +664,6 @@
    </NODE>
    <LINK srcnodeid="160" srcpinname="Down Edge" dstnodeid="250" dstpinname="Input 2">
    </LINK>
-   <NODE id="251" systemname="PrimitiveObject (Split)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (Split)" componentmode="Hidden" hiddenwhenlocked="0" managers="">
-   <PIN pinname="Transform" visible="1">
-   </PIN>
-   <BOUNDS type="Node" left="2640" top="10590" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Configuration" slicecount="1" pintype="Configuration" values="|int TouchID|">
-   </PIN>
-   <PIN pinname="Primitive Object" visible="1" pintype="Input" slicecount="1" values="||">
-   </PIN>
-   <BOUNDS type="Box" left="510" top="7335" width="2400" height="1800">
-   </BOUNDS>
-   <BOUNDS type="Window" left="0" top="0" width="6000" height="4500">
-   </BOUNDS>
-   <PIN pinname="Descriptive Name" pintype="Configuration" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Match Rule" pintype="Input" visible="1" slicecount="1" values="All">
-   </PIN>
-   <PIN pinname="Hold if Nil" pintype="Input" visible="1" slicecount="1" values="Off">
-   </PIN>
-   <PIN pinname="Primitive Template" pintype="Input" visible="1" slicecount="1" values="None">
-   </PIN>
-   <PIN pinname="Window Handle" pintype="Output">
-   </PIN>
-   <PIN pinname="Valid" pintype="Output" visible="1">
-   </PIN>
-   <PIN pinname="Foo" pintype="Output" visible="1">
-   </PIN>
-   <PIN pinname="Foo Bin Size" pintype="Output" visible="0">
-   </PIN>
-   <PIN pinname="ID" pintype="Output" visible="-1">
-   </PIN>
-   <PIN pinname="TouchID Bin Size" visible="1">
-   </PIN>
-   <PIN pinname="TouchID" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="79" srcpinname="Output" dstnodeid="251" dstpinname="Primitive Object">
-   </LINK>
    <NODE systemname="EQ (Value)" nodename="EQ (Value)" componentmode="Hidden" id="252">
    <BOUNDS type="Node" left="4215" top="11940" width="100" height="100">
    </BOUNDS>
@@ -767,13 +675,11 @@
    <NODE systemname="AvoidNIL (Spreads)" filename="%VVVV%\lib\nodes\modules\Spreads\AvoidNIL (Spreads).v4p" nodename="AvoidNIL (Spreads)" componentmode="Hidden" id="253">
    <BOUNDS type="Node" left="4215" top="11460" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Input" visible="1">
+   <PIN pinname="Input" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="251" srcpinname="TouchID Bin Size" dstnodeid="253" dstpinname="Input">
-   </LINK>
    <LINK srcnodeid="253" srcpinname="Output" dstnodeid="252" dstpinname="Input 1">
    </LINK>
    <NODE systemname="EQ (Value)" nodename="EQ (Value)" componentmode="Hidden" id="254">
@@ -812,8 +718,6 @@
    <PIN pinname="Default" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="251" srcpinname="TouchID" dstnodeid="256" dstpinname="Input">
-   </LINK>
    <LINK srcnodeid="255" srcpinname="Y Output Value" dstnodeid="256" dstpinname="Default">
    </LINK>
    <LINK srcnodeid="256" srcpinname="Output" dstnodeid="254" dstpinname="Input 1">
@@ -830,10 +734,6 @@
    </NODE>
    <LINK srcnodeid="252" srcpinname="Inverse Output" dstnodeid="257" dstpinname="Input 2">
    </LINK>
-   <LINK srcnodeid="79" srcpinname="Output" dstnodeid="175" dstpinname="Primitive Object">
-   </LINK>
-   <LINK srcnodeid="251" srcpinname="TouchID" dstnodeid="244" dstpinname="Y Input Value">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="258" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="13140" top="13155" width="795" height="240">
    </BOUNDS>
@@ -847,11 +747,11 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="|ID&apos;s Bin Size|">
    </PIN>
+   <PIN pinname="Y Input Value" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="251" srcpinname="TouchID Bin Size" dstnodeid="258" dstpinname="Y Input Value">
-   </LINK>
    <NODE systemname="Info (VObjectCollection)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Info (VObjectCollection)" componentmode="Hidden" id="260">
-   <BOUNDS type="Node" left="3600" top="6315" width="100" height="100">
+   <BOUNDS type="Node" left="5940" top="5835" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1">
    </PIN>
@@ -861,9 +761,9 @@
    <LINK srcnodeid="78" srcpinname="Output" dstnodeid="260" dstpinname="Input">
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="261" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="4095" top="6900" width="795" height="240">
+   <BOUNDS type="Box" left="6435" top="6420" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="4095" top="6900" width="0" height="0">
+   <BOUNDS type="Node" left="6435" top="6420" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Default" slicecount="1" values="||">
    </PIN>
@@ -977,15 +877,13 @@
    <NODE systemname="S+H (Animation)" nodename="S+H (Animation)" componentmode="Hidden" id="272">
    <BOUNDS type="Node" left="4440" top="14730" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Input" visible="1">
+   <PIN pinname="Input" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Set" visible="1">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="251" srcpinname="TouchID" dstnodeid="272" dstpinname="Input">
-   </LINK>
    <NODE systemname="Select (Value)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Select (Value)" componentmode="Hidden" id="273">
    <BOUNDS type="Node" left="6030" top="13890" width="100" height="100">
    </BOUNDS>
@@ -1010,10 +908,6 @@
    </NODE>
    <LINK srcnodeid="270" srcpinname="Inverse Output" dstnodeid="274" dstpinname="Set">
    </LINK>
-   <LINK srcnodeid="251" srcpinname="TouchID Bin Size" dstnodeid="274" dstpinname="Input">
-   </LINK>
-   <LINK srcnodeid="274" srcpinname="Output" dstnodeid="175" dstpinname="HoldedTouchID Bin Size">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="276" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="5400" top="17520" width="285" height="240">
    </BOUNDS>
@@ -1028,8 +922,6 @@
    <PIN pinname="Value Type" slicecount="1" values="Integer">
    </PIN>
    </NODE>
-   <LINK srcnodeid="276" srcpinname="Y Output Value" dstnodeid="175" dstpinname="HoldedTap Bin Size">
-   </LINK>
    <NODE systemname="FrameDelay (Value)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="FrameDelay (Value)" componentmode="Hidden" id="277">
    <BOUNDS type="Node" left="4950" top="12765" width="100" height="100">
    </BOUNDS>
@@ -1048,8 +940,6 @@
    <PIN pinname="Input 1" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="275" srcpinname="Output" dstnodeid="175" dstpinname="HoldedTap">
-   </LINK>
    <LINK srcnodeid="274" srcpinname="Output" dstnodeid="275" dstpinname="Input 1">
    </LINK>
    <NODE systemname="OR (Boolean Spectral)" nodename="OR (Boolean Spectral)" componentmode="Hidden" id="281">
@@ -1057,14 +947,12 @@
    </BOUNDS>
    <PIN pinname="Input" visible="1">
    </PIN>
-   <PIN pinname="Bin Size" visible="1">
+   <PIN pinname="Bin Size" visible="1" slicecount="1" values="-1">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="254" srcpinname="Inverse Output" dstnodeid="281" dstpinname="Input">
-   </LINK>
-   <LINK srcnodeid="251" srcpinname="TouchID Bin Size" dstnodeid="281" dstpinname="Bin Size">
    </LINK>
    <LINK srcnodeid="281" srcpinname="Output" dstnodeid="257" dstpinname="Input 1">
    </LINK>
@@ -1282,32 +1170,6 @@
    </LINK>
    <LINK srcnodeid="283" srcpinname="Output" dstnodeid="284" dstpinname="Input 1">
    </LINK>
-   <NODE systemname="Count (Value)" nodename="Count (Value)" componentmode="Hidden" id="300">
-   <BOUNDS type="Node" left="6330" top="15210" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Input" visible="1">
-   </PIN>
-   <PIN pinname="Count" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="251" srcpinname="TouchID" dstnodeid="300" dstpinname="Input">
-   </LINK>
-   <NODE systemname="EQ (Value)" nodename="EQ (Value)" componentmode="Hidden" id="301">
-   <BOUNDS type="Node" left="6330" top="15585" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Input 1" visible="1">
-   </PIN>
-   <PIN pinname="Inverse Output" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="300" srcpinname="Count" dstnodeid="301" dstpinname="Input 1">
-   </LINK>
-   <NODE systemname="OR (Boolean)" filename="" nodename="OR (Boolean)" componentmode="Hidden" id="303">
-   <BOUNDS type="Node" left="6960" top="15795" width="100" height="100">
-   </BOUNDS>
-   </NODE>
-   <LINK srcnodeid="272" srcpinname="Output" dstnodeid="175" dstpinname="HoldedTouchID">
-   </LINK>
    <NODE systemname="Count (Value)" nodename="Count (Value)" componentmode="Hidden" id="305">
    <BOUNDS type="Node" left="9705" top="6915" width="100" height="100">
    </BOUNDS>
@@ -1382,19 +1244,7 @@
    </NODE>
    <LINK srcnodeid="271" srcpinname="Output" dstnodeid="308" dstpinname="Y Input Value">
    </LINK>
-   <NODE systemname="FrameDelay (Value)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="FrameDelay (Value)" componentmode="Hidden" id="309">
-   <BOUNDS type="Node" left="6810" top="12960" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Input 1" visible="1" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Output 1" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="251" srcpinname="TouchID Bin Size" dstnodeid="309" dstpinname="Input 1">
-   </LINK>
    <LINK srcnodeid="277" srcpinname="Output 1" dstnodeid="282" dstpinname="Input">
-   </LINK>
-   <LINK srcnodeid="251" srcpinname="TouchID Bin Size" dstnodeid="273" dstpinname="Select">
    </LINK>
    <LINK srcnodeid="270" srcpinname="Inverse Output" dstnodeid="272" dstpinname="Set">
    </LINK>
@@ -1445,5 +1295,179 @@
    <LINK srcnodeid="307" srcpinname="Up Edge" dstnodeid="312" dstpinname="Set">
    </LINK>
    <LINK srcnodeid="312" srcpinname="Output" dstnodeid="304" dstpinname="Input 2">
+   </LINK>
+   <NODE id="251" systemname="PrimitiveObject (VObject Split)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (VObject Split)" componentmode="Hidden" hiddenwhenlocked="0" managers="">
+   <PIN pinname="Transform" visible="1">
+   </PIN>
+   <BOUNDS type="Node" left="2640" top="10440" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Configuration" slicecount="1" pintype="Configuration" values="|int TouchID|">
+   </PIN>
+   <PIN pinname="Primitive Object" visible="1" pintype="Input" slicecount="1" values="||">
+   </PIN>
+   <BOUNDS type="Box" left="510" top="7185" width="2400" height="1800">
+   </BOUNDS>
+   <BOUNDS type="Window" left="0" top="0" width="6000" height="4500">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" pintype="Configuration" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Match Rule" pintype="Input" visible="1" slicecount="1" values="All">
+   </PIN>
+   <PIN pinname="Hold if Nil" pintype="Input" visible="1" slicecount="1" values="Off">
+   </PIN>
+   <PIN pinname="Primitive Template" pintype="Input" visible="1" slicecount="1" values="None">
+   </PIN>
+   <PIN pinname="Window Handle" pintype="Output">
+   </PIN>
+   <PIN pinname="Valid" pintype="Output" visible="1">
+   </PIN>
+   <PIN pinname="Foo" pintype="Output" visible="1">
+   </PIN>
+   <PIN pinname="Foo Bin Size" pintype="Output" visible="0">
+   </PIN>
+   <PIN pinname="ID" pintype="Output" visible="-1">
+   </PIN>
+   <PIN pinname="TouchID Bin Size" visible="1">
+   </PIN>
+   <PIN pinname="TouchID" visible="1">
+   </PIN>
+   <PIN pinname="Formular" slicecount="1" values="None">
+   </PIN>
+   <PIN pinname="Definition" slicecount="1" values="|int TouchID|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="79" srcpinname="Output" dstnodeid="251" dstpinname="Primitive Object">
+   </LINK>
+   <NODE systemname="Formular (PrimitiveObject Individual)" filename="..\PrimitiveObjects\Formular (PrimitiveObject Individual).v4p" nodename="Formular (PrimitiveObject Individual)" componentmode="Hidden" id="313">
+   <BOUNDS type="Node" left="1425" top="6165" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Definition" visible="1">
+   </PIN>
+   <PIN pinname="Prefix" visible="1" slicecount="1" values="VOOG">
+   </PIN>
+   <PIN pinname="Update" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="176" srcpinname="Output String" dstnodeid="313" dstpinname="Definition">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="314" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="1440" top="2760" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1440" top="2760" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="VOOG">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="Formular">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Formular Prefix|">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="315" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="1965" top="3255" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1965" top="3255" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Update Formular|">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="315" srcpinname="Y Output Value" dstnodeid="313" dstpinname="Update">
+   </LINK>
+   <NODE systemname="Add (String)" nodename="Add (String)" componentmode="Hidden" id="316">
+   <BOUNDS type="Node" left="1425" top="4215" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" slicecount="1" values=".">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="314" srcpinname="Output String" dstnodeid="316" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="316" srcpinname="Output" dstnodeid="313" dstpinname="Prefix">
+   </LINK>
+   <LINK srcnodeid="251" srcpinname="TouchID" dstnodeid="256" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="251" srcpinname="TouchID Bin Size" dstnodeid="253" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="251" srcpinname="TouchID" dstnodeid="272" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="251" srcpinname="TouchID" dstnodeid="244" dstpinname="Y Input Value">
+   </LINK>
+   <LINK srcnodeid="251" srcpinname="TouchID Bin Size" dstnodeid="258" dstpinname="Y Input Value">
+   </LINK>
+   <LINK srcnodeid="251" srcpinname="TouchID Bin Size" dstnodeid="273" dstpinname="Select">
+   </LINK>
+   <LINK srcnodeid="251" srcpinname="TouchID Bin Size" dstnodeid="274" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="251" srcpinname="TouchID Bin Size" dstnodeid="281" dstpinname="Bin Size">
+   </LINK>
+   <NODE systemname="PrimitiveObject (VObject Set)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (VObject Set)" componentmode="Hidden" id="317">
+   <BOUNDS type="Node" left="3360" top="17925" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Definition" slicecount="1" values="|bool Drag, bool Click, int HoldedTouchID, bool HoldedTap|">
+   </PIN>
+   <PIN pinname="Drag" visible="1">
+   </PIN>
+   <PIN pinname="Click" visible="1">
+   </PIN>
+   <PIN pinname="HoldedTouchID" visible="1">
+   </PIN>
+   <PIN pinname="HoldedTap" visible="1">
+   </PIN>
+   <PIN pinname="HoldedTouchID Bin Size" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="179" srcpinname="Y Output Value" dstnodeid="317" dstpinname="Set">
+   </LINK>
+   <LINK srcnodeid="79" srcpinname="Output" dstnodeid="317" dstpinname="Primitive Object">
+   </LINK>
+   <LINK srcnodeid="177" srcpinname="Dragging" dstnodeid="317" dstpinname="Drag">
+   </LINK>
+   <LINK srcnodeid="177" srcpinname="Clicking" dstnodeid="317" dstpinname="Click">
+   </LINK>
+   <LINK srcnodeid="272" srcpinname="Output" dstnodeid="317" dstpinname="HoldedTouchID">
+   </LINK>
+   <LINK srcnodeid="275" srcpinname="Output" dstnodeid="317" dstpinname="HoldedTap">
+   </LINK>
+   <LINK srcnodeid="274" srcpinname="Output" dstnodeid="317" dstpinname="HoldedTouchID Bin Size">
+   </LINK>
+   <NODE systemname="Formular (PrimitiveObject)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Formular (PrimitiveObject)" componentmode="Hidden" id="318">
+   <BOUNDS type="Node" left="1425" top="6945" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Definition" visible="1">
+   </PIN>
+   <PIN pinname="Formular Name" visible="1">
+   </PIN>
+   <PIN pinname="Update" visible="1" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="176" srcpinname="Output String" dstnodeid="318" dstpinname="Definition">
+   </LINK>
+   <LINK srcnodeid="314" srcpinname="Output String" dstnodeid="318" dstpinname="Formular Name">
+   </LINK>
+   <LINK srcnodeid="315" srcpinname="Y Output Value" dstnodeid="318" dstpinname="Update">
    </LINK>
    </PATCH>

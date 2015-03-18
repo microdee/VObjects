@@ -35,11 +35,11 @@ namespace VVVV.Packs.VObjects
             this.DeSerialize(Input);
         }
 
-        protected bool disposed = false;
+        public bool Disposed = false;
         public virtual void Dispose()
         {
             this.Serialized.Dispose();
-            disposed = true;
+            Disposed = true;
             GC.SuppressFinalize(this);
         }
 

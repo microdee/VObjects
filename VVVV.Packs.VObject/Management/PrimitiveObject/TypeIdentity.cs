@@ -42,4 +42,36 @@ namespace VVVV.Packs.VObjects
             Add(typeof(Stream), "Raw".ToLower());
         }
     }
+    public class IdentityType : Dictionary<string, Type>
+    {
+        private static IdentityType _instance;
+        public static IdentityType Instance
+        {
+            get
+            {
+                if (_instance == null) _instance = new IdentityType();
+                return _instance;
+            }
+            private set { throw new NotImplementedException(); }
+        }
+
+        public IdentityType()
+        {
+            // Add datatypes here and set (de)serialization and deepcopy in ObjectTypePair.cs
+
+            Add("bool".ToLower(), typeof(bool));
+            Add("int".ToLower(), typeof(int));
+            Add("double".ToLower(), typeof(double));
+            Add("float".ToLower(), typeof(float));
+            Add("string".ToLower(), typeof(string));
+
+            Add("Color".ToLower(), typeof(RGBAColor));
+            Add("Transform".ToLower(), typeof(Matrix4x4));
+            Add("Vector2D".ToLower(), typeof(Vector2D));
+            Add("Vector3D".ToLower(), typeof(Vector3D));
+            Add("Vector4D".ToLower(), typeof(Vector4D));
+
+            Add("Raw".ToLower(), typeof(Stream));
+        }
+    }
 }

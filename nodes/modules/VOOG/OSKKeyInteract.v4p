@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\GUI\OSKKeyInteract.v4p" systemname="OSKKeyInteract" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\OSKKeyInteract.v4p" scrollx="0" scrolly="0">
+   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\VOOG\OSKKeyInteract.v4p" systemname="OSKKeyInteract" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\OSKKeyInteract.v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="17670" top="6405" width="9000" height="6000">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
@@ -14,58 +14,6 @@
    <PIN pinname="Output Node" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="PrimitiveObject (Split)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (Split)" componentmode="Hidden" id="0">
-   <BOUNDS type="Node" left="1515" top="1065" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   <PIN pinname="Create" visible="1" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Primitive Template" visible="1" slicecount="1" values="None">
-   </PIN>
-   <PIN pinname="Configuration" slicecount="1" values="|bool HoldedTap, bool Drag, bool Click, int HoldedTouchID|">
-   </PIN>
-   <PIN pinname="tr" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="tr Bin Size" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="tap Bin Size" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Transform Bin Size" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Tap Bin Size" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Drag Bin Size" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Transform" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="TouchID Bin Size" slicecount="1" visible="1" values="1">
-   </PIN>
-   <PIN pinname="TouchID" slicecount="1" visible="1" values="-1">
-   </PIN>
-   <PIN pinname="Click Bin Size" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Enabled" slicecount="1" visible="1" values="1">
-   </PIN>
-   <PIN pinname="Enabled Bin Size" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Primitive Object" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Click" visible="1">
-   </PIN>
-   <PIN pinname="Tap" visible="1">
-   </PIN>
-   <PIN pinname="Drag" visible="1">
-   </PIN>
-   <PIN pinname="HoldedTouchID" visible="1">
-   </PIN>
-   <PIN pinname="HoldedTouchID Bin Size" visible="1">
-   </PIN>
-   <PIN pinname="HoldedTap" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="1" srcpinname="Output Node" dstnodeid="0" dstpinname="Primitive Object">
-   </LINK>
    <NODE systemname="OR (Boolean)" nodename="OR (Boolean)" componentmode="Hidden" id="2">
    <BOUNDS type="Node" left="2715" top="3450" width="100" height="100">
    </BOUNDS>
@@ -125,14 +73,12 @@
    <NODE systemname="AvoidNIL (Spreads)" filename="%VVVV%\lib\nodes\modules\Spreads\AvoidNIL (Spreads).v4p" nodename="AvoidNIL (Spreads)" componentmode="Hidden" id="7">
    <BOUNDS type="Node" left="1980" top="1995" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Input" visible="1">
+   <PIN pinname="Input" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="2" srcpinname="Output" dstnodeid="6" dstpinname="Y Input Value">
-   </LINK>
-   <LINK srcnodeid="0" srcpinname="Drag" dstnodeid="7" dstpinname="Input">
    </LINK>
    <LINK srcnodeid="7" srcpinname="Output" dstnodeid="2" dstpinname="Input 1">
    </LINK>
@@ -144,8 +90,6 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="0" srcpinname="Click" dstnodeid="8" dstpinname="Input">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="9" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="3525" top="3300" width="480" height="480">
    </BOUNDS>
@@ -220,10 +164,68 @@
    </LINK>
    <LINK srcnodeid="16" srcpinname="Output" dstnodeid="2" dstpinname="Input 2">
    </LINK>
+   <NODE systemname="PrimitiveObject (VObject Split)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (VObject Split)" componentmode="Hidden" id="0">
+   <BOUNDS type="Node" left="1515" top="1065" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Create" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Primitive Template" visible="1" slicecount="1" values="None">
+   </PIN>
+   <PIN pinname="Configuration" slicecount="1" values="|bool HoldedTap, bool Drag, bool Click, int HoldedTouchID|">
+   </PIN>
+   <PIN pinname="tr" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="tr Bin Size" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="tap Bin Size" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Transform Bin Size" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Tap Bin Size" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Drag Bin Size" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Transform" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="TouchID Bin Size" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="TouchID" slicecount="1" visible="1" values="-1">
+   </PIN>
+   <PIN pinname="Click Bin Size" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Enabled" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Enabled Bin Size" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Primitive Object" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Click" visible="1">
+   </PIN>
+   <PIN pinname="Tap" visible="1">
+   </PIN>
+   <PIN pinname="Drag" visible="1">
+   </PIN>
+   <PIN pinname="HoldedTouchID" visible="1">
+   </PIN>
+   <PIN pinname="HoldedTouchID Bin Size" visible="1">
+   </PIN>
+   <PIN pinname="HoldedTap" visible="1">
+   </PIN>
+   <PIN pinname="Definition" slicecount="1" values="|bool HoldedTap, bool Drag, bool Click, int HoldedTouchID|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="1" srcpinname="Output Node" dstnodeid="0" dstpinname="Primitive Object">
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="HoldedTap" dstnodeid="3" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Drag" dstnodeid="7" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Click" dstnodeid="8" dstpinname="Input">
+   </LINK>
    <LINK srcnodeid="0" srcpinname="HoldedTouchID" dstnodeid="14" dstpinname="Input 1">
    </LINK>
    <LINK srcnodeid="0" srcpinname="HoldedTouchID Bin Size" dstnodeid="15" dstpinname="Bin Size">
-   </LINK>
-   <LINK srcnodeid="0" srcpinname="HoldedTap" dstnodeid="3" dstpinname="Input">
    </LINK>
    </PATCH>

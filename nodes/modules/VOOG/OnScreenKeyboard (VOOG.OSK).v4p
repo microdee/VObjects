@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\GUI\OnScreenKeyboard (VOOG.OSK).v4p" systemname="OnScreenKeyboard (VOOG.OSK)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\OnScreenKeyboard (VOOG.OSK).v4p" scrollx="0" scrolly="8280">
+   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\VOOG\OnScreenKeyboard (VOOG.OSK).v4p" systemname="OnScreenKeyboard (VOOG.OSK)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\OnScreenKeyboard (VOOG.OSK).v4p" scrollx="-360" scrolly="0">
    <BOUNDS type="Window" left="1200" top="1260" width="25380" height="14340">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
@@ -4930,36 +4930,10 @@
    </NODE>
    <LINK srcnodeid="475" srcpinname="Output String" dstnodeid="474" dstpinname="Input 2">
    </LINK>
-   <NODE systemname="PrimitiveObject (Split)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (Split)" componentmode="Hidden" id="476">
-   <BOUNDS type="Node" left="5865" top="4275" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Configuration" slicecount="1" values="|bool Mode|">
-   </PIN>
-   <PIN pinname="CurrentChar Bin Size" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="CurrentChar" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Extra" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Extra Bin Size" visible="1" slicecount="1" values="-1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   <PIN pinname="Create" visible="1" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Mode" visible="1" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Mode Bin Size" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Primitive Object" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Valid" visible="1">
-   </PIN>
-   </NODE>
    <NODE systemname="AvoidNIL (Spreads)" filename="%VVVV%\lib\nodes\modules\Spreads\AvoidNIL (Spreads).v4p" nodename="AvoidNIL (Spreads)" componentmode="Hidden" id="477">
    <BOUNDS type="Node" left="6375" top="4815" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Input" visible="1">
+   <PIN pinname="Input" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
@@ -5030,45 +5004,15 @@
    </NODE>
    <LINK srcnodeid="480" srcpinname="Output String" dstnodeid="481" dstpinname="Input 2">
    </LINK>
-   <NODE systemname="PrimitiveObject (Split)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (Split)" componentmode="Hidden" id="479">
-   <BOUNDS type="Node" left="20115" top="29970" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Configuration" slicecount="1" values="|bool Mode|">
-   </PIN>
-   <PIN pinname="CurrentChar Bin Size" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="CurrentChar" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Extra" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Extra Bin Size" visible="1" slicecount="1" values="-1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   <PIN pinname="Create" visible="1" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Mode" visible="1" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Mode Bin Size" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Primitive Object" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Valid" visible="1">
-   </PIN>
-   </NODE>
    <NODE systemname="AvoidNIL (Spreads)" filename="%VVVV%\lib\nodes\modules\Spreads\AvoidNIL (Spreads).v4p" nodename="AvoidNIL (Spreads)" componentmode="Hidden" id="478">
    <BOUNDS type="Node" left="20625" top="30435" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Input" visible="1">
+   <PIN pinname="Input" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="484" srcpinname="Output" dstnodeid="481" dstpinname="Input 1">
-   </LINK>
-   <LINK srcnodeid="479" srcpinname="Mode" dstnodeid="478" dstpinname="Input">
-   </LINK>
-   <LINK srcnodeid="476" srcpinname="Mode" dstnodeid="477" dstpinname="Input">
    </LINK>
    <NODE systemname="OR (Boolean Spectral)" nodename="OR (Boolean Spectral)" componentmode="Hidden" id="486">
    <BOUNDS type="Node" left="20640" top="31020" width="100" height="100">
@@ -6240,30 +6184,6 @@
    </NODE>
    <LINK srcnodeid="557" srcpinname="Output String" dstnodeid="558" dstpinname="Input 2">
    </LINK>
-   <NODE systemname="PrimitiveObject (Set)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (Set)" componentmode="Hidden" id="560">
-   <BOUNDS type="Node" left="6015" top="20550" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Configuration" slicecount="1" values="|bool Enabled|">
-   </PIN>
-   <PIN pinname="Primitive Object" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Set" visible="1" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Enabled" visible="1">
-   </PIN>
-   </NODE>
-   <NODE systemname="PrimitiveObject (Set)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (Set)" componentmode="Hidden" id="561">
-   <BOUNDS type="Node" left="7365" top="20550" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Configuration" slicecount="1" values="|bool Enabled|">
-   </PIN>
-   <PIN pinname="Primitive Object" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Set" visible="1">
-   </PIN>
-   <PIN pinname="Enabled" visible="1" slicecount="1" values="1">
-   </PIN>
-   </NODE>
    <NODE systemname="AND (Boolean)" nodename="AND (Boolean)" componentmode="Hidden" id="563">
    <BOUNDS type="Node" left="7815" top="19740" width="100" height="100">
    </BOUNDS>
@@ -6274,10 +6194,6 @@
    <PIN pinname="Input 2" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="563" srcpinname="Output" dstnodeid="560" dstpinname="Set">
-   </LINK>
-   <LINK srcnodeid="563" srcpinname="Output" dstnodeid="561" dstpinname="Set">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="564" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="7920" top="19005" width="480" height="480">
    </BOUNDS>
@@ -6312,8 +6228,6 @@
    </LINK>
    <LINK srcnodeid="351" srcpinname="Y Output Value" dstnodeid="565" dstpinname="Input 1">
    </LINK>
-   <LINK srcnodeid="565" srcpinname="Output" dstnodeid="560" dstpinname="Enabled">
-   </LINK>
    <NODE systemname="AND (Boolean)" nodename="AND (Boolean)" componentmode="Hidden" id="566">
    <BOUNDS type="Node" left="8325" top="20070" width="100" height="100">
    </BOUNDS>
@@ -6327,8 +6241,6 @@
    <LINK srcnodeid="71" srcpinname="Y Output Value" dstnodeid="566" dstpinname="Input 2" hiddenwhenlocked="1">
    </LINK>
    <LINK srcnodeid="353" srcpinname="Output" dstnodeid="566" dstpinname="Input 1">
-   </LINK>
-   <LINK srcnodeid="566" srcpinname="Output" dstnodeid="561" dstpinname="Enabled">
    </LINK>
    <NODE systemname="OSKMetaData" filename="OSKMetaData.v4p" componentmode="Hidden" id="578" nodename="OSKMetaData.v4p" hiddenwhenlocked="1">
    <BOUNDS type="Node" left="9900" top="42675" width="100" height="100">
@@ -6854,8 +6766,6 @@
    </LINK>
    <LINK srcnodeid="474" srcpinname="Output" dstnodeid="470" dstpinname="Path">
    </LINK>
-   <LINK srcnodeid="470" srcpinname="Output" dstnodeid="476" dstpinname="Primitive Object">
-   </LINK>
    <NODE systemname="VPath (VObject)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="VPath (VObject)" componentmode="Hidden" id="556">
    <BOUNDS type="Node" left="5955" top="19200" width="100" height="100">
    </BOUNDS>
@@ -6873,8 +6783,6 @@
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="555" srcpinname="Output" dstnodeid="556" dstpinname="Path">
-   </LINK>
-   <LINK srcnodeid="556" srcpinname="Output" dstnodeid="560" dstpinname="Primitive Object">
    </LINK>
    <NODE systemname="VPath (VObject)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="VPath (VObject)" componentmode="Hidden" id="559">
    <BOUNDS type="Node" left="6840" top="19560" width="750" height="270">
@@ -6894,8 +6802,6 @@
    </LINK>
    <LINK srcnodeid="558" srcpinname="Output" dstnodeid="559" dstpinname="Path">
    </LINK>
-   <LINK srcnodeid="559" srcpinname="Output" dstnodeid="561" dstpinname="Primitive Object">
-   </LINK>
    <NODE systemname="VPath (VObject)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="VPath (VObject)" componentmode="Hidden" id="485">
    <BOUNDS type="Node" left="20115" top="29580" width="100" height="100">
    </BOUNDS>
@@ -6914,6 +6820,108 @@
    </LINK>
    <LINK srcnodeid="481" srcpinname="Output" dstnodeid="485" dstpinname="Path">
    </LINK>
+   <NODE systemname="PrimitiveObject (VObject Set)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (VObject Set)" componentmode="Hidden" id="560">
+   <BOUNDS type="Node" left="6015" top="20550" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Configuration" slicecount="1" values="|bool Enabled|">
+   </PIN>
+   <PIN pinname="Primitive Object" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Set" visible="1" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Enabled" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Definition" slicecount="1" values="|bool Enabled|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="563" srcpinname="Output" dstnodeid="560" dstpinname="Set">
+   </LINK>
+   <LINK srcnodeid="556" srcpinname="Output" dstnodeid="560" dstpinname="Primitive Object">
+   </LINK>
+   <LINK srcnodeid="565" srcpinname="Output" dstnodeid="560" dstpinname="Enabled">
+   </LINK>
+   <NODE systemname="PrimitiveObject (VObject Set)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (VObject Set)" componentmode="Hidden" id="561">
+   <BOUNDS type="Node" left="7365" top="20550" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Configuration" slicecount="1" values="|bool Enabled|">
+   </PIN>
+   <PIN pinname="Primitive Object" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Set" visible="1">
+   </PIN>
+   <PIN pinname="Enabled" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Definition" slicecount="1" values="|bool Enabled|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="563" srcpinname="Output" dstnodeid="561" dstpinname="Set">
+   </LINK>
+   <LINK srcnodeid="559" srcpinname="Output" dstnodeid="561" dstpinname="Primitive Object">
+   </LINK>
+   <LINK srcnodeid="566" srcpinname="Output" dstnodeid="561" dstpinname="Enabled">
+   </LINK>
+   <NODE systemname="PrimitiveObject (VObject Split)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (VObject Split)" componentmode="Hidden" id="476">
+   <BOUNDS type="Node" left="5865" top="4275" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Configuration" slicecount="1" values="|bool Mode|">
+   </PIN>
+   <PIN pinname="CurrentChar Bin Size" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="CurrentChar" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Extra" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Extra Bin Size" visible="1" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Create" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Mode" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Mode Bin Size" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Primitive Object" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Valid" visible="1">
+   </PIN>
+   <PIN pinname="Definition" slicecount="1" values="|bool Mode|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="470" srcpinname="Output" dstnodeid="476" dstpinname="Primitive Object">
+   </LINK>
+   <LINK srcnodeid="476" srcpinname="Mode" dstnodeid="477" dstpinname="Input">
+   </LINK>
+   <NODE systemname="PrimitiveObject (VObject Split)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (VObject Split)" componentmode="Hidden" id="479">
+   <BOUNDS type="Node" left="20115" top="29970" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Configuration" slicecount="1" values="|bool Mode|">
+   </PIN>
+   <PIN pinname="CurrentChar Bin Size" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="CurrentChar" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Extra" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Extra Bin Size" visible="1" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Create" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Mode" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Mode Bin Size" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Primitive Object" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Valid" visible="1">
+   </PIN>
+   <PIN pinname="Definition" slicecount="1" values="|bool Mode|">
+   </PIN>
+   </NODE>
    <LINK srcnodeid="485" srcpinname="Output" dstnodeid="479" dstpinname="Primitive Object">
+   </LINK>
+   <LINK srcnodeid="479" srcpinname="Mode" dstnodeid="478" dstpinname="Input">
    </LINK>
    </PATCH>

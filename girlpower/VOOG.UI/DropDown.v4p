@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\VObjects\girlpower\VOOG.UI\DropDown.v4p" systemname="DropDown" filename="C:\vvvv\libs\VObjects\girlpower\VOOG.UI\DropDown.v4p" scrollx="0" scrolly="-360">
+   <PATCH nodename="C:\vvvv\libs\VObjects\girlpower\VOOG.UI\DropDown.v4p" systemname="DropDown" filename="C:\vvvv\libs\VObjects\girlpower\VOOG.UI\DropDown.v4p" scrollx="915" scrolly="1020">
    <BOUNDS type="Window" left="990" top="915" width="16260" height="13665">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
@@ -17,7 +17,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="9285" top="9540" width="6000" height="4500">
    </BOUNDS>
-   <BOUNDS type="Window" left="14400" top="1260" width="12225" height="10785">
+   <BOUNDS type="Window" left="9255" top="810" width="12225" height="10785">
    </BOUNDS>
    <PIN pinname="Layers" visible="1" slicecount="1" values="||">
    </PIN>
@@ -668,36 +668,6 @@
    <PIN pinname="Input Value" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="DropDown (VOOG)" filename="..\..\nodes\modules\GUI\DropDown (VOOG).v4p" componentmode="Hidden" id="233" nodename="DropDown (VOOG)">
-   <BOUNDS type="Node" left="10185" top="5955" width="1950" height="270">
-   </BOUNDS>
-   <BOUNDS type="Box" left="10185" top="5955" width="4800" height="3600">
-   </BOUNDS>
-   <BOUNDS type="Window" left="3705" top="4155" width="13230" height="9090">
-   </BOUNDS>
-   <PIN pinname="Transform" visible="1">
-   </PIN>
-   <PIN pinname="Dictionary" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Construct" visible="1">
-   </PIN>
-   <PIN pinname="Focus" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Name" visible="1">
-   </PIN>
-   <PIN pinname="Items" visible="1">
-   </PIN>
-   <PIN pinname="Items Bin Size" visible="1">
-   </PIN>
-   <PIN pinname="Layer Out" visible="1">
-   </PIN>
-   <PIN pinname="Format" visible="1">
-   </PIN>
-   <PIN pinname="Points" visible="1">
-   </PIN>
-   <PIN pinname="Resolution" visible="1">
-   </PIN>
-   </NODE>
    <NODE systemname="TextFormat (DirectWrite)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.Nodes.DirectWrite.dll" nodename="TextFormat (DirectWrite)" componentmode="Hidden" id="234">
    <BOUNDS type="Node" left="12285" top="5220" width="100" height="100">
    </BOUNDS>
@@ -745,12 +715,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="238" srcpinname="Output" dstnodeid="221" dstpinname="TranslateY">
-   </LINK>
-   <LINK srcnodeid="221" srcpinname="Transform Out" dstnodeid="233" dstpinname="Transform">
-   </LINK>
-   <LINK srcnodeid="219" srcpinname="Input Value" dstnodeid="233" dstpinname="Dictionary">
-   </LINK>
-   <LINK srcnodeid="218" srcpinname="Y Output Value" dstnodeid="233" dstpinname="Construct">
    </LINK>
    <NODE systemname="I (Spreads)" nodename="I (Spreads)" componentmode="Hidden" id="239">
    <BOUNDS type="Node" left="10395" top="3615" width="100" height="100">
@@ -802,8 +766,6 @@
    </LINK>
    <LINK srcnodeid="241" srcpinname="Output" dstnodeid="242" dstpinname="Input 2">
    </LINK>
-   <LINK srcnodeid="242" srcpinname="Output" dstnodeid="233" dstpinname="Name">
-   </LINK>
    <NODE systemname="I (Spreads)" nodename="I (Spreads)" componentmode="Hidden" id="243">
    <BOUNDS type="Node" left="13230" top="4140" width="100" height="100">
    </BOUNDS>
@@ -846,20 +808,8 @@
    </NODE>
    <LINK srcnodeid="243" srcpinname="Output" dstnodeid="245" dstpinname="Input">
    </LINK>
-   <LINK srcnodeid="245" srcpinname="Output" dstnodeid="233" dstpinname="Items">
-   </LINK>
-   <LINK srcnodeid="244" srcpinname="Y Output Value" dstnodeid="233" dstpinname="Items Bin Size">
-   </LINK>
-   <LINK srcnodeid="233" srcpinname="Layer Out" dstnodeid="56" dstpinname="Layer 1">
-   </LINK>
-   <LINK srcnodeid="234" srcpinname="Output" dstnodeid="233" dstpinname="Format">
-   </LINK>
-   <LINK srcnodeid="232" srcpinname="Input Value" dstnodeid="233" dstpinname="Points">
-   </LINK>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
-   <LINK srcnodeid="230" srcpinname="Input Value" dstnodeid="233" dstpinname="Focus">
-   </LINK>
    <LINK srcnodeid="191" srcpinname="Input Value" dstnodeid="188" dstpinname="Focus">
    </LINK>
    <NODE systemname="R (Value)" filename="" nodename="R (Value)" componentmode="Hidden" id="246">
@@ -884,6 +834,34 @@
    <PIN pinname="Input Value" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="247" srcpinname="Input Value" dstnodeid="233" dstpinname="Resolution">
+   <NODE systemname="DropDown (VOOG)" filename="..\..\nodes\modules\GUI\DropDown (VOOG).v4p" componentmode="Hidden" id="248" nodename="DropDown (VOOG)">
+   <BOUNDS type="Node" left="10185" top="5955" width="1950" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="10185" top="5955" width="4800" height="3600">
+   </BOUNDS>
+   <BOUNDS type="Window" left="-1050" top="4485" width="13230" height="9090">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="221" srcpinname="Transform Out" dstnodeid="248" dstpinname="Transform">
+   </LINK>
+   <LINK srcnodeid="219" srcpinname="Input Value" dstnodeid="248" dstpinname="Dictionary">
+   </LINK>
+   <LINK srcnodeid="218" srcpinname="Y Output Value" dstnodeid="248" dstpinname="Construct">
+   </LINK>
+   <LINK srcnodeid="242" srcpinname="Output" dstnodeid="248" dstpinname="Name">
+   </LINK>
+   <LINK srcnodeid="245" srcpinname="Output" dstnodeid="248" dstpinname="Items">
+   </LINK>
+   <LINK srcnodeid="244" srcpinname="Y Output Value" dstnodeid="248" dstpinname="Items Bin Size">
+   </LINK>
+   <LINK srcnodeid="248" srcpinname="Layer Out" dstnodeid="56" dstpinname="Layer 1">
+   </LINK>
+   <LINK srcnodeid="234" srcpinname="Output" dstnodeid="248" dstpinname="Format">
+   </LINK>
+   <LINK srcnodeid="232" srcpinname="Input Value" dstnodeid="248" dstpinname="Points">
+   </LINK>
+   <LINK srcnodeid="230" srcpinname="Input Value" dstnodeid="248" dstpinname="Focus">
+   </LINK>
+   <LINK srcnodeid="247" srcpinname="Input Value" dstnodeid="248" dstpinname="Resolution">
    </LINK>
    </PATCH>

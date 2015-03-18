@@ -142,11 +142,11 @@
     <Compile Include="Generics\VVVVGenerics.cs" />
     <Compile Include="Implementation\JSON.cs" />
     <Compile Include="Implementation\PrimitiveObject\AbstractDynamicNode.cs" />
-    <Compile Include="Implementation\PrimitiveObject\AbstractEditorNodes.cs" />
-    <Compile Include="Implementation\PrimitiveObject\DynamicNodes.cs" />
-    <Compile Include="Implementation\PrimitiveObject\EditorNodes.cs" />
-    <Compile Include="Implementation\PrimitiveObject\Template\PrimitiveTemplate.cs" />
-    <Compile Include="Implementation\PrimitiveObject\Template\TemplateDictionary.cs" />
+    <Compile Include="Implementation\PrimitiveObject\ConstructNode.cs" />
+    <Compile Include="Implementation\PrimitiveObject\SetSplitNodes.cs" />
+    <Compile Include="Implementation\PrimitiveObject\Template\Formular.cs" />
+    <Compile Include="Implementation\PrimitiveObject\Template\FormularDictionary.cs" />
+    <Compile Include="Implementation\PrimitiveObject\UtilNodes.cs" />
     <Compile Include="Implementation\Smoothing\Smoothing.cs" />
     <Compile Include="Implementation\Smoothing\SmoothingAlgorithmNodes.cs" />
     <Compile Include="Implementation\Smoothing\SmoothingAlgorithms.cs" />

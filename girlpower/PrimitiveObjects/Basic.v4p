@@ -1,0 +1,295 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
+   <PATCH nodename="C:\vvvv\libs\VObjects\girlpower\PrimitiveObjects\callmenames~.v4p" systemname="callmenames" filename="C:\vvvv\libs\VObjects\girlpower\PrimitiveObjects\callmenames.v4p" scrollx="0" scrolly="0">
+   <BOUNDS type="Window" left="7515" top="2835" width="9000" height="8070">
+   </BOUNDS>
+   <PACK Name="VVVV.Packs" Version="0.2.0">
+   </PACK>
+   <PACK Name="addonpack" Version="33.7.0">
+   </PACK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="5" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="360" top="5265" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="360" top="5265" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="14" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="585" top="1095" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="585" top="1095" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="20" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="1410" top="1755" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1410" top="1755" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="PrimitiveObject (VObject Set)" filename="..\..\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (VObject Set)" componentmode="Hidden" id="25">
+   <BOUNDS type="Node" left="2910" top="3840" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Definition" slicecount="1" values="|double Foo, double Value, Transform Transform|">
+   </PIN>
+   <PIN pinname="Formular" slicecount="3" values="Foo,Value,Transform">
+   </PIN>
+   <PIN pinname="Primitive Object" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Set" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="bar" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="yadda" visible="1" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE systemname="Info (PrimitiveObject)" filename="..\..\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Info (PrimitiveObject)" componentmode="Hidden" id="31">
+   <BOUNDS type="Node" left="1620" top="4125" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="36" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="3975" top="5895" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3975" top="5895" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Y Input Value" visible="1" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="37" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="3495" top="6480" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3495" top="6480" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Input String" visible="1" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="40" systemname="IOBox (Value Advanced)" debug="0">
+   <BOUNDS type="Box" left="2235" top="1395" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2235" top="1395" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.52">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="44" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="870" top="6510" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="870" top="6510" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="45" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="2445" top="6030" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2445" top="6030" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Y Input Value" visible="1" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="46" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="1230" top="5850" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1230" top="5850" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Y Input Value">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="47" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="2550" top="6510" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2550" top="6510" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Y Input Value">
+   </PIN>
+   </NODE>
+   <NODE systemname="PrimitiveObject (VObject Construct)" filename="..\..\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (VObject Construct)" componentmode="Hidden" id="48">
+   <BOUNDS type="Node" left="1260" top="2730" width="1350" height="270">
+   </BOUNDS>
+   <PIN pinname="Definition" slicecount="1" values="|double Value, double Foo, Transform Transform|">
+   </PIN>
+   <PIN pinname="Transform" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Value" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Formular" slicecount="1" values="None">
+   </PIN>
+   <PIN pinname="Foo" visible="1" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="48" srcpinname="Output" dstnodeid="5" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="14" srcpinname="Y Output Value" dstnodeid="48" dstpinname="Construct">
+   </LINK>
+   <LINK srcnodeid="20" srcpinname="Y Output Value" dstnodeid="48" dstpinname="Set">
+   </LINK>
+   <LINK srcnodeid="48" srcpinname="Output" dstnodeid="25" dstpinname="Primitive Object">
+   </LINK>
+   <LINK srcnodeid="48" srcpinname="Output" dstnodeid="31" dstpinname="Input">
+   </LINK>
+   <NODE systemname="PrimitiveObject (VObject Split)" filename="..\..\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (VObject Split)" componentmode="Hidden" id="50">
+   <BOUNDS type="Node" left="1620" top="5175" width="1110" height="270">
+   </BOUNDS>
+   <PIN pinname="Definition" slicecount="1" values="|double Value|">
+   </PIN>
+   <PIN pinname="Foo" visible="1">
+   </PIN>
+   <PIN pinname="Value" visible="1">
+   </PIN>
+   <PIN pinname="Formular" slicecount="1" values="Value">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="50" srcpinname="Valid" dstnodeid="46" dstpinname="Y Input Value">
+   </LINK>
+   <LINK srcnodeid="48" srcpinname="Output" dstnodeid="50" dstpinname="Primitive Object">
+   </LINK>
+   <LINK srcnodeid="50" srcpinname="Foo" dstnodeid="44" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="50" srcpinname="Value" dstnodeid="45" dstpinname="Y Input Value">
+   </LINK>
+   <NODE systemname="PrimitiveObject (VObject Split)" filename="..\..\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (VObject Split)" componentmode="Hidden" id="51">
+   <BOUNDS type="Node" left="3195" top="5115" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Definition" slicecount="1" values="|Transform Transform, double Value|">
+   </PIN>
+   <PIN pinname="bar" visible="1">
+   </PIN>
+   <PIN pinname="yadda" visible="1">
+   </PIN>
+   <PIN pinname="Formular" slicecount="2" values="Transform,Value">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="51" srcpinname="Valid" dstnodeid="47" dstpinname="Y Input Value">
+   </LINK>
+   <LINK srcnodeid="48" srcpinname="Output" dstnodeid="51" dstpinname="Primitive Object">
+   </LINK>
+   <LINK srcnodeid="51" srcpinname="bar" dstnodeid="37" dstpinname="Input String">
+   </LINK>
+   <LINK srcnodeid="51" srcpinname="yadda" dstnodeid="36" dstpinname="Y Input Value">
+   </LINK>
+   <LINK srcnodeid="40" srcpinname="Y Output Value" dstnodeid="48" dstpinname="Value">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="55" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="5070" top="2055" width="3810" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5070" top="2055" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="|double Value, double Foo, Transform Transform|">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="|string Foo|">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="57" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="5505" top="2490" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5505" top="2490" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Transform (Transform 2d)" nodename="Transform (Transform 2d)" componentmode="Hidden" id="58">
+   <BOUNDS type="Node" left="2940" top="2070" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Transform Out" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="58" srcpinname="Transform Out" dstnodeid="48" dstpinname="Transform">
+   </LINK>
+   <LINK srcnodeid="40" srcpinname="Y Output Value" dstnodeid="48" dstpinname="Foo">
+   </LINK>
+   <NODE systemname="Formular (PrimitiveObject Individual)" filename="..\..\nodes\modules\PrimitiveObjects\Formular (PrimitiveObject Individual).v4p" componentmode="Hidden" id="59" nodename="..\..\nodes\modules\PrimitiveObjects\Formular (PrimitiveObject Individual).v4p">
+   <BOUNDS type="Node" left="4635" top="3150" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4635" top="3150" width="4800" height="3600">
+   </BOUNDS>
+   <BOUNDS type="Window" left="15555" top="6570" width="9000" height="6000">
+   </BOUNDS>
+   <PIN pinname="Definition" visible="1">
+   </PIN>
+   <PIN pinname="Update" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="55" srcpinname="Output String" dstnodeid="59" dstpinname="Definition">
+   </LINK>
+   <LINK srcnodeid="57" srcpinname="Y Output Value" dstnodeid="59" dstpinname="Update">
+   </LINK>
+   </PATCH>

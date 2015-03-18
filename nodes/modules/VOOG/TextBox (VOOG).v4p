@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\projects\CA-2-MAX\Libraries\vvvv_45beta33.7_x64\packs\VObjects\nodes\modules\GUI\TextBox (VOOG).v4p" systemname="TextBox (VOOG)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\TextBox (VOOG).v4p" scrollx="18180" scrolly="13065">
-   <BOUNDS type="Window" left="1845" top="4755" width="13785" height="9885">
+   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\VOOG\TextBox (VOOG).v4p" systemname="TextBox (VOOG)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\TextBox (VOOG).v4p" scrollx="7770" scrolly="13605">
+   <BOUNDS type="Window" left="3915" top="5265" width="13785" height="9885">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
    </PACK>
@@ -470,24 +470,6 @@
    <PIN pinname="Color Output" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="PrimitiveObject (Split)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (Split)" componentmode="Hidden" id="77">
-   <BOUNDS type="Node" left="13380" top="4710" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Configuration" slicecount="1" values="|Transform Transform, bool HoldedTap|">
-   </PIN>
-   <PIN pinname="Primitive Object" visible="1">
-   </PIN>
-   <PIN pinname="Transform" visible="1">
-   </PIN>
-   <PIN pinname="Tap" visible="1">
-   </PIN>
-   <PIN pinname="TouchID" visible="1">
-   </PIN>
-   <PIN pinname="HoldedTap" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="1" srcpinname="Base Data" dstnodeid="77" dstpinname="Primitive Object">
-   </LINK>
    <NODE systemname="TypeWriter (VObject Split)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="TypeWriter (VObject Split)" componentmode="Hidden" id="78">
    <BOUNDS type="Node" left="15240" top="5160" width="100" height="100">
    </BOUNDS>
@@ -819,7 +801,7 @@
    </BOUNDS>
    <PIN pinname="Input 2" slicecount="1" values="2">
    </PIN>
-   <PIN pinname="Input 1" visible="1">
+   <PIN pinname="Input 1" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
@@ -939,7 +921,7 @@
    </PIN>
    <PIN pinname="Transform" visible="1">
    </PIN>
-   <PIN pinname="Transform In" visible="1">
+   <PIN pinname="Transform In" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Radius" visible="1">
    </PIN>
@@ -949,8 +931,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="27" srcpinname="Layer" dstnodeid="22" dstpinname="Layer 1">
-   </LINK>
-   <LINK srcnodeid="77" srcpinname="Transform" dstnodeid="27" dstpinname="Transform In">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="134" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="14070" top="3105" width="795" height="240">
@@ -1013,7 +993,7 @@
    </PIN>
    <PIN pinname="Text" visible="1">
    </PIN>
-   <PIN pinname="Transform In" visible="1">
+   <PIN pinname="Transform In" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Format" visible="1" slicecount="1" values="||">
    </PIN>
@@ -1039,8 +1019,6 @@
    </BOUNDS>
    </NODE>
    <LINK srcnodeid="78" srcpinname="Output" dstnodeid="140" dstpinname="Text">
-   </LINK>
-   <LINK srcnodeid="77" srcpinname="Transform" dstnodeid="140" dstpinname="Transform In">
    </LINK>
    <LINK srcnodeid="133" srcpinname="Output Node" dstnodeid="140" dstpinname="Format">
    </LINK>
@@ -1181,8 +1159,6 @@
    <LINK srcnodeid="28" srcpinname="Output" dstnodeid="152" dstpinname="Input">
    </LINK>
    <LINK srcnodeid="152" srcpinname="Output" dstnodeid="27" dstpinname="Color">
-   </LINK>
-   <LINK srcnodeid="77" srcpinname="HoldedTap" dstnodeid="116" dstpinname="Input 1">
    </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="153" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="17310" top="8925" width="795" height="240">
@@ -1652,32 +1628,6 @@
    </NODE>
    <LINK srcnodeid="192" srcpinname="Render State" dstnodeid="178" dstpinname="Render State">
    </LINK>
-   <NODE systemname="PrimitiveObject (Split)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (Split)" componentmode="Hidden" id="193">
-   <BOUNDS type="Node" left="21840" top="13155" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Configuration" slicecount="1" values="|int HoldedTouchID, bool Click, bool Drag|">
-   </PIN>
-   <PIN pinname="Primitive Object" visible="1">
-   </PIN>
-   <PIN pinname="Transform" visible="1">
-   </PIN>
-   <PIN pinname="Tap" visible="1">
-   </PIN>
-   <PIN pinname="TouchID" visible="1">
-   </PIN>
-   <PIN pinname="HoldedTap" visible="1">
-   </PIN>
-   <PIN pinname="Click" visible="1">
-   </PIN>
-   <PIN pinname="Drag" visible="1">
-   </PIN>
-   <PIN pinname="HoldedTouchID" visible="1">
-   </PIN>
-   <PIN pinname="HoldedTouchID Bin Size" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="1" srcpinname="Base Data" dstnodeid="193" dstpinname="Primitive Object">
-   </LINK>
    <NODE systemname="TypeWriter (VObject Set)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="TypeWriter (VObject Set)" componentmode="Hidden" id="194">
    <BOUNDS type="Node" left="22710" top="20895" width="100" height="100">
    </BOUNDS>
@@ -1709,27 +1659,23 @@
    <NODE systemname="NOT (Boolean)" nodename="NOT (Boolean)" componentmode="Hidden" id="196">
    <BOUNDS type="Node" left="24855" top="14655" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Input" visible="1">
+   <PIN pinname="Input" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="193" srcpinname="Drag" dstnodeid="196" dstpinname="Input">
-   </LINK>
    <LINK srcnodeid="196" srcpinname="Output" dstnodeid="195" dstpinname="Set">
    </LINK>
    <NODE systemname="AND (Boolean)" nodename="AND (Boolean)" componentmode="Hidden" id="198">
    <BOUNDS type="Node" left="24855" top="14220" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Input 1" visible="1">
+   <PIN pinname="Input 1" visible="1" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    <PIN pinname="Input 2" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="193" srcpinname="Drag" dstnodeid="198" dstpinname="Input 1">
-   </LINK>
    <NODE systemname="Change (Animation)" nodename="Change (Animation)" componentmode="Hidden" id="199">
    <BOUNDS type="Node" left="26670" top="12660" width="100" height="100">
    </BOUNDS>
@@ -1755,15 +1701,13 @@
    <NODE systemname="EQ (Value)" nodename="EQ (Value)" componentmode="Hidden" id="201">
    <BOUNDS type="Node" left="22455" top="14595" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Input 1" visible="1">
+   <PIN pinname="Input 1" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Input 2" slicecount="1" values="-1">
    </PIN>
    <PIN pinname="Inverse Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="193" srcpinname="HoldedTouchID" dstnodeid="201" dstpinname="Input 1">
-   </LINK>
    <NODE systemname="OR (Boolean Spectral)" nodename="OR (Boolean Spectral)" componentmode="Hidden" id="202">
    <BOUNDS type="Node" left="22680" top="15045" width="100" height="100">
    </BOUNDS>
@@ -1775,8 +1719,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="201" srcpinname="Inverse Output" dstnodeid="202" dstpinname="Input">
-   </LINK>
-   <LINK srcnodeid="193" srcpinname="HoldedTouchID Bin Size" dstnodeid="202" dstpinname="Bin Size">
    </LINK>
    <LINK srcnodeid="202" srcpinname="Output" dstnodeid="194" dstpinname="Set Cursor Position">
    </LINK>
@@ -1999,7 +1941,7 @@
    </PIN>
    <PIN pinname="Selection End" visible="1">
    </PIN>
-   <PIN pinname="Set Selection" visible="1">
+   <PIN pinname="Set Selection" visible="1" slicecount="1" values="0">
    </PIN>
    </NODE>
    <LINK srcnodeid="0" srcpinname="Output" dstnodeid="221" dstpinname="TypeWriter">
@@ -2035,8 +1977,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="223" srcpinname="Y Output Value" dstnodeid="221" dstpinname="Selection End">
-   </LINK>
-   <LINK srcnodeid="193" srcpinname="Click" dstnodeid="221" dstpinname="Set Selection">
    </LINK>
    <NODE systemname="Select (Node)" filename="%VVVV%\lib\nodes\modules\Node\Select (Node).v4p" nodename="Select (Node)" componentmode="Hidden" id="224">
    <BOUNDS type="Node" left="19275" top="16680" width="100" height="100">
@@ -2589,15 +2529,13 @@
    <NODE systemname="TogEdge (Animation)" nodename="TogEdge (Animation)" componentmode="Hidden" id="283">
    <BOUNDS type="Node" left="26760" top="15795" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Input" visible="1">
+   <PIN pinname="Input" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Down Edge" visible="1">
    </PIN>
    <PIN pinname="Up Edge" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="193" srcpinname="Drag" dstnodeid="283" dstpinname="Input">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="286" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="23760" top="16620" width="480" height="240">
    </BOUNDS>
@@ -2741,5 +2679,71 @@
    <LINK srcnodeid="295" srcpinname="Output" dstnodeid="279" dstpinname="Switch">
    </LINK>
    <LINK srcnodeid="295" srcpinname="Output" dstnodeid="278" dstpinname="Switch">
+   </LINK>
+   <NODE systemname="PrimitiveObject (VObject Split)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (VObject Split)" componentmode="Hidden" id="77">
+   <BOUNDS type="Node" left="13380" top="4710" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Configuration" slicecount="1" values="|Transform Transform, bool HoldedTap|">
+   </PIN>
+   <PIN pinname="Primitive Object" visible="1">
+   </PIN>
+   <PIN pinname="Transform" visible="1">
+   </PIN>
+   <PIN pinname="Tap" visible="1">
+   </PIN>
+   <PIN pinname="TouchID" visible="1">
+   </PIN>
+   <PIN pinname="HoldedTap" visible="1">
+   </PIN>
+   <PIN pinname="Definition" slicecount="1" values="|Transform Transform, bool HoldedTap|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="1" srcpinname="Base Data" dstnodeid="77" dstpinname="Primitive Object">
+   </LINK>
+   <LINK srcnodeid="77" srcpinname="HoldedTap" dstnodeid="116" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="77" srcpinname="Transform" dstnodeid="140" dstpinname="Transform In">
+   </LINK>
+   <LINK srcnodeid="77" srcpinname="Transform" dstnodeid="27" dstpinname="Transform In">
+   </LINK>
+   <NODE systemname="PrimitiveObject (VObject Split)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (VObject Split)" componentmode="Hidden" id="193">
+   <BOUNDS type="Node" left="21840" top="13155" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Configuration" slicecount="1" values="|int HoldedTouchID, bool Click, bool Drag|">
+   </PIN>
+   <PIN pinname="Primitive Object" visible="1">
+   </PIN>
+   <PIN pinname="Transform" visible="1">
+   </PIN>
+   <PIN pinname="Tap" visible="1">
+   </PIN>
+   <PIN pinname="TouchID" visible="1">
+   </PIN>
+   <PIN pinname="HoldedTap" visible="1">
+   </PIN>
+   <PIN pinname="Click" visible="1">
+   </PIN>
+   <PIN pinname="Drag" visible="1">
+   </PIN>
+   <PIN pinname="HoldedTouchID" visible="1">
+   </PIN>
+   <PIN pinname="HoldedTouchID Bin Size" visible="1">
+   </PIN>
+   <PIN pinname="Definition" slicecount="1" values="|int HoldedTouchID, bool Click, bool Drag|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="1" srcpinname="Base Data" dstnodeid="193" dstpinname="Primitive Object">
+   </LINK>
+   <LINK srcnodeid="193" srcpinname="HoldedTouchID" dstnodeid="201" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="193" srcpinname="HoldedTouchID Bin Size" dstnodeid="202" dstpinname="Bin Size">
+   </LINK>
+   <LINK srcnodeid="193" srcpinname="Click" dstnodeid="221" dstpinname="Set Selection">
+   </LINK>
+   <LINK srcnodeid="193" srcpinname="Drag" dstnodeid="196" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="193" srcpinname="Drag" dstnodeid="283" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="193" srcpinname="Drag" dstnodeid="198" dstpinname="Input 1">
    </LINK>
    </PATCH>

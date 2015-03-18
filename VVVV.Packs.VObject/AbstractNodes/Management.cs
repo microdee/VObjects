@@ -64,6 +64,7 @@ namespace VVVV.Nodes.VObjects
         [Output("Output", Order = 0)]
         public ISpread<ResultObject> FOutput;
 
+        private List<int> Removables = new List<int>();
         public int CurrObj;
         public int SliceCount = 0;
         public int fc = 0;
@@ -107,6 +108,16 @@ namespace VVVV.Nodes.VObjects
                     if (ro != null) FOutput.Add(ro);
                 }
             }
+
+            Removables.Clear();
+            for (int i = 0; i < FOutput.SliceCount; i++)
+            {
+                if (FOutput[i].Disposed)
+                    Removables.Add(i);
+            }
+
+            for (int i = 0; i < Removables.Count; i++)
+                FOutput.RemoveAt(Removables[i]);
         }
     }
     public abstract class ConstructAndSetVObjectNode<ResultObject> : IPluginEvaluate where ResultObject : VObject
@@ -120,6 +131,7 @@ namespace VVVV.Nodes.VObjects
         [Output("Output", Order = 0)]
         public ISpread<ResultObject> FOutput;
 
+        private List<int> Removables = new List<int>();
         public int CurrObj;
         public int SliceCount = 0;
         public int fc = 0;
@@ -138,7 +150,7 @@ namespace VVVV.Nodes.VObjects
         }
         public virtual void SetVObject(ResultObject Obj)
         {
-            //
+            return;
         }
 
         public void Evaluate(int SpreadMax)
@@ -151,30 +163,44 @@ namespace VVVV.Nodes.VObjects
                 bool clear = false;
                 for (int i = 0; i < this.SliceCount; i++)
                 {
-                    if (FConstruct[i] || (FSet[i] && (FOutput.SliceCount == 0))) clear = true;
+                    if (FConstruct[i]) clear = true;
                 }
                 if (clear) fc = 0;
             }
-            if (fc == 0) FOutput.SliceCount = 0;
+            if (fc == 0)
+            {
+                for (int i = 0; i < FOutput.SliceCount; i++)
+                    FOutput[i].Dispose();
+                FOutput.SliceCount = 0;
+            }
             fc++;
 
+            bool empty = FOutput.SliceCount == 0;
             for (int i = 0; i < this.SliceCount; i++)
             {
                 this.CurrObj = i;
-                if (FConstruct[i])
+                if (FConstruct[i] || (FSet[i] && empty))
                 {
                     ResultObject ro = ConstructVObject();
                     if (ro != null) FOutput.Add(ro);
                 }
             }
+
+            Removables.Clear();
             for (int i = 0; i < FOutput.SliceCount; i++)
             {
+                if (FOutput[i].Disposed)
+                    Removables.Add(i);
+
                 this.CurrObj = i;
                 if (FSet[i])
                 {
                     SetVObject(FOutput[i]);
                 }
             }
+
+            for (int i = 0; i < Removables.Count; i++)
+                FOutput.RemoveAt(Removables[i]);
         }
     }
     public abstract class ConstructToParentVObjectNode<ParentObject> : IPluginEvaluate where ParentObject : VObject

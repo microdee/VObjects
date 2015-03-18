@@ -13,177 +13,194 @@ using VVVV.Hosting;
 using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
 using VVVV.Core.Logging;
+using NGISpread = VVVV.PluginInterfaces.V2.NonGeneric.ISpread;
+using NGIDiffSpread = VVVV.PluginInterfaces.V2.NonGeneric.IDiffSpread;
 
 using VVVV.Packs.VObjects;
 
 namespace VVVV.Nodes.VObjects
 {
-    public abstract class DynamicNode : IPluginEvaluate, IPartImportsSatisfiedNotification
+    public static class NodeUtils
     {
-
-        #region Enum
-        public enum SelectEnum
+        public static NGISpread ToISpread(this IIOContainer pin)
         {
-            All,
-            First,
-            Last
+            return (NGISpread)(pin.RawIOObject);
         }
 
-        #endregion Enum
+        public static NGIDiffSpread ToIDiffSpread(this IIOContainer pin)
+        {
+            return (NGIDiffSpread)(pin.RawIOObject);
+        }
+        public static ISpread<T> ToGenericISpread<T>(this IIOContainer pin)
+        {
+            return (ISpread<T>)(pin.RawIOObject);
+        }
+    }
 
-        #region fields & pins
-        [Input("Primitive Template", DefaultString = "None", IsSingle = true)]
-        public IDiffSpread<string> FTemplate;
+    public abstract class DynamicPrimitiveObjectNode : IPluginEvaluate, IPartImportsSatisfiedNotification
+    {
+        [Config("Definition", DefaultString = "string Foo")]
+        public IDiffSpread<string> FDefinition;
 
-        [Config("Configuration", DefaultString = "string Foo")]
-        public IDiffSpread<string> FConfig;
-
-        [Import()]
-        protected ILogger FLogger;
+        [Input("Formular", EnumName = "PrimitiveObjectFormularSelector", Visibility = PinVisibility.OnlyInspector, Order = -1)]
+        public ISpread<EnumEntry> FFormular;
 
         [Import()]
         protected IIOFactory FIOFactory;
 
-        protected Dictionary<string, IIOContainer> FPins = new Dictionary<string, IIOContainer>();
-        protected Dictionary<string, string> FTypes = new Dictionary<string, string>();
+        public List<string[]> TypesAndFields = new List<string[]>();
+        public Dictionary<string, NGISpread> Spreads = new Dictionary<string, NGISpread>();
+        public Dictionary<string, IIOContainer> Pins = new Dictionary<string, IIOContainer>();
 
-        protected int FCount = 2;
-
-        #endregion fields & pins
-
-        #region type
-
-        public DynamicNode()
+        public virtual IOAttribute PinAttribute(string name, int order)
         {
+            InputAttribute attr = new InputAttribute(name);
+            attr.BinVisibility = PinVisibility.True;
+            attr.BinSize = 1;
+            attr.Order = order * 2;
+            attr.BinOrder = order * 2 + 1;
+
+            return attr;
         }
 
-
-        protected bool TemplateUpdate()
+        public void ChangePins()
         {
-            if (!TemplateDictionary.IsChanged && !FTemplate.IsChanged) return false;
+            TypesAndFields.Clear();
+            
+            string def = "";
+            if(FDefinition[0] != null)
+                def = FDefinition[0];
+            string[] tempfields = def.Trim().Split(',');
 
-            TemplateDictionary dict = TemplateDictionary.Instance;
-            if (!dict.ContainsKey(FTemplate[0])) return false;
+            int order = 100;
+            List<string> fieldnames = new List<string>();
+            foreach (string field in tempfields)
+            {
+                string[] typefieldpair = field.Trim().Split(' ');
+                if (typefieldpair.Length == 2)
+                {
+                    typefieldpair[0] = typefieldpair[0].Trim();
+                    typefieldpair[0] = typefieldpair[0].ToLower();
+                    typefieldpair[1] = typefieldpair[1].Trim();
 
-            if (FTemplate[0].ToLower() == "none") return false;
+                    if (IdentityType.Instance.ContainsKey(typefieldpair[0]) && (!fieldnames.Contains(typefieldpair[1].ToLower())))
+                    {
+                        fieldnames.Add(typefieldpair[1].ToLower());
+                        TypesAndFields.Add(typefieldpair);
 
-            FConfig[0] = dict[FTemplate[0]];
-
-            return true;
+                        if(!Spreads.ContainsKey(typefieldpair[1]))
+                        {
+                            Type currtype = IdentityType.Instance[typefieldpair[0]];
+                            Type pinType = typeof(ISpread<>).MakeGenericType((typeof(ISpread<>)).MakeGenericType(currtype));
+                            IIOContainer currpin = FIOFactory.CreateIOContainer(pinType, PinAttribute(typefieldpair[1], order));
+                            NGISpread currspread = currpin.ToISpread();
+                            Spreads.Add(typefieldpair[1], currspread);
+                            Pins.Add(typefieldpair[1], currpin);
+                        }
+                    }
+                }
+                order++;
+            }
+            List<string> Removable = new List<string>();
+            foreach(string k in Spreads.Keys)
+            {
+                if (!fieldnames.Contains(k.ToLower()))
+                    Removable.Add(k);
+            }
+            foreach(string k in Removable)
+            {
+                Spreads.Remove(k);
+                Pins[k].Dispose();
+                Pins.Remove(k);
+            }
         }
-        #endregion type
 
+        public void Init()
+        {
+            OnFormularChanged(null, EventArgs.Empty);
+            ChangePins();
+        }
 
-        #region pin management
+        void OnConfiguring(object sender, ConfigEventArgs e)
+        {
+            if (e.PluginConfig.Name == "Definition") ChangePins();
+        }
 
+        protected void FormularUpdate()
+        {
+            FormularDictionary dict = FormularDictionary.Instance;
 
+            if (FFormular.IsChanged)
+            {
+                List<string> fields = new List<string>();
+                List<string> fieldslower = new List<string>();
+                for (int i = 0; i < FFormular.SliceCount; i++)
+                {
+                    if (FFormular[i].Name != "None")
+                    {
+                        string currform = dict[FFormular[i].Name];
+                        string[] splittedform = currform.Trim().Split(',');
+                        foreach (string f in splittedform)
+                        {
+                            string ft = f.Trim();
+                            string ftl = ft.ToLower();
+                            string[] sftl = ftl.Split(' ');
+                            if (sftl.Length == 2)
+                            {
+                                if (!fieldslower.Contains(sftl[1].Trim()))
+                                {
+                                    fields.Add(ft);
+                                    fieldslower.Add(sftl[1].Trim());
+                                }
+                            }
+                        }
+                    }
+                }
+                string definition = "";
+                for (int i = 0; i < fields.Count; i++)
+                {
+                    if (i == 0) definition = fields[0];
+                    else definition += ", " + fields[i];
+                }
+                if(definition != "") FDefinition[0] = definition;
+                ChangePins();
+            }
+        }
+
+        public virtual void OnEval()
+        {
+
+        }
+
+        public int fcr = 0;
 
         public void OnImportsSatisfied()
         {
-            FConfig.Changed += HandleConfigChange;
+            Init();
+            FormularDictionary.Changed += OnFormularChanged;
+            FIOFactory.Configuring += OnConfiguring;
         }
 
-        protected virtual void HandleConfigChange(IDiffSpread<string> configSpread)
+        void OnFormularChanged(object sender, EventArgs e)
         {
-            FCount = 0;
-            List<string> invalidPins = FPins.Keys.ToList();
-
-            string[] config = configSpread[0].Trim().Split(',');
-            foreach (string pinConfig in config)
+            FormularDictionary dict = FormularDictionary.Instance;
+            if (dict.Count == 0)
             {
-                string[] pinData = pinConfig.Trim().Split(' ');
-
-                try
-                {
-                    string typeName = pinData[0].ToLower();
-                    string name = pinData[1];
-
-                    bool create = false;
-                    if (FPins.ContainsKey(name) && FPins[name] != null)
-                    {
-                        invalidPins.Remove(name);
-
-                        if (FTypes.ContainsKey(name))
-                        {
-                            if (FTypes[name] != typeName)
-                            {
-                                FPins[name].Dispose();
-                                FPins[name] = null;
-                                create = true;
-                            }
-
-                        }
-                        else
-                        {
-                            // key is in FPins, but no type defined. should never happen
-                            create = true;
-                        }
-                    }
-                    else
-                    {
-                        FPins.Add(name, null);
-                        create = true;
-                    }
-
-                    if (create)
-                    {
-                        Type type = typeof(string);
-                        foreach (Type key in TypeIdentity.Instance.Keys)
-                        {
-                            if (TypeIdentity.Instance[key] == typeName)
-                            {
-                                type = key;
-                            }
-                        }
-
-                        IOAttribute attr = DefinePin(name, type); // each implementation of DynamicNode must create its own InputAttribute or OutputAttribute (
-                        Type pinType = typeof(ISpread<>).MakeGenericType((typeof(ISpread<>)).MakeGenericType(type)); // the Pin is always a binsized one
-                        FPins[name] = FIOFactory.CreateIOContainer(pinType, attr);
-
-                        FTypes.Add(name, typeName);
-                    }
-                    FCount += 2; // total pincount. always add two to account for data pin and binsize pin
-                }
-                catch (Exception ex)
-                {
-                    var e = ex;
-                    FLogger.Log(LogType.Debug, ex.ToString());
-                    FLogger.Log(LogType.Debug, "Invalid Descriptor in Config Pin");
-                }
+                EnumManager.UpdateEnum("PrimitiveObjectFormularSelector", "None", new string[1] { "None" });
             }
-            foreach (string name in invalidPins)
-            {
-                FPins[name].Dispose();
-                FPins.Remove(name);
-                FTypes.Remove(name);
-            }
+
+            List<string> formulars = new List<string>() { "None" };
+            foreach (string k in dict.Keys)
+                formulars.Add(k);
+            EnumManager.UpdateEnum("PrimitiveObjectFormularSelector", "None", formulars.ToArray());
         }
-
-        #endregion pin management
-
-        #region tools
-
-        protected VVVV.PluginInterfaces.V2.NonGeneric.ISpread ToISpread(IIOContainer pin)
+        public void Evaluate(int SpreadMax)
         {
-            return (VVVV.PluginInterfaces.V2.NonGeneric.ISpread)(pin.RawIOObject);
+            if (fcr == 0) Init();
+            FormularUpdate();
+            OnEval();
+            fcr++;
         }
 
-        protected VVVV.PluginInterfaces.V2.NonGeneric.IDiffSpread ToIDiffSpread(IIOContainer pin)
-        {
-            return (VVVV.PluginInterfaces.V2.NonGeneric.IDiffSpread)(pin.RawIOObject);
-        }
-        protected VVVV.PluginInterfaces.V2.ISpread<T> ToGenericISpread<T>(IIOContainer pin)
-        {
-            return (VVVV.PluginInterfaces.V2.ISpread<T>)(pin.RawIOObject);
-        }
-
-        #endregion tools
-
-        #region abstract methods
-        protected abstract IOAttribute DefinePin(string name, Type type);
-
-        public abstract void Evaluate(int SpreadMax);
-
-        #endregion abstract methods
     }
 }

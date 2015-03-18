@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\VObjects\girlpower\VOOG.UI\Basics.v4p" scrollx="390" scrolly="0" systemname="Basics" filename="C:\vvvv\libs\VObjects\girlpower\VOOG.UI\Basics.v4p">
+   <PATCH nodename="C:\vvvv\libs\VObjects\girlpower\VOOG.UI\Basics.v4p" scrollx="0" scrolly="-360" systemname="Basics" filename="C:\vvvv\libs\VObjects\girlpower\VOOG.UI\Basics.v4p">
    <BOUNDS type="Window" left="3330" top="4185" width="22170" height="11415">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -11,7 +11,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="1425" top="14805" width="6000" height="4500">
    </BOUNDS>
-   <BOUNDS type="Window" left="39930" top="2400" width="12855" height="12435">
+   <BOUNDS type="Window" left="19200" top="975" width="8775" height="8550">
    </BOUNDS>
    <PIN pinname="Depth Buffer Mode" slicecount="1" values="Standard">
    </PIN>
@@ -119,15 +119,15 @@
    </PIN>
    <PIN pinname="Base Data" visible="1">
    </PIN>
-   <BOUNDS type="Window" left="29085" top="2790" width="14760" height="10125">
+   <BOUNDS type="Window" left="10560" top="885" width="14760" height="10125">
    </BOUNDS>
    </NODE>
-   <NODE systemname="Host (VOOG 2D)" filename="..\..\nodes\modules\GUI\Host (VOOG 2D).v4p" nodename="Host (VOOG 2D)" componentmode="InAWindow" id="11" debug="0">
+   <NODE systemname="Host (VOOG 2D)" filename="..\..\nodes\modules\GUI\Host (VOOG 2D).v4p" nodename="Host (VOOG 2D)" componentmode="Hidden" id="11" debug="0">
    <BOUNDS type="Node" left="1215" top="2370" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Window" left="3585" top="5415" width="17370" height="13035">
+   <BOUNDS type="Window" left="2535" top="1800" width="17370" height="13035">
    </BOUNDS>
-   <PIN pinname="ID&apos;s Bin Size" visible="1">
+   <PIN pinname="ID&apos;s Bin Size" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Dictionary Out" visible="1">
    </PIN>
@@ -141,9 +141,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="12" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="1665" top="2775" width="795" height="240">
+   <BOUNDS type="Box" left="2670" top="2835" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="1665" top="2775" width="0" height="0">
+   <BOUNDS type="Node" left="2670" top="2835" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -223,7 +223,7 @@
    <LINK srcnodeid="17" srcpinname="Container" dstnodeid="20" dstpinname="Input Value">
    </LINK>
    <NODE systemname="R (Node)" nodename="R (Node)" componentmode="Hidden" id="21">
-   <BOUNDS type="Node" left="2430" top="1065" width="100" height="100">
+   <BOUNDS type="Node" left="2475" top="1185" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Receive String" slicecount="1" values="GUI.Mouse">
    </PIN>
@@ -233,7 +233,7 @@
    <LINK srcnodeid="21" srcpinname="Input Value" dstnodeid="11" dstpinname="Mouse">
    </LINK>
    <NODE systemname="R (Node)" nodename="R (Node)" componentmode="Hidden" id="22">
-   <BOUNDS type="Node" left="2025" top="1710" width="100" height="100">
+   <BOUNDS type="Node" left="2175" top="1740" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Receive String" slicecount="1" values="GUI.Touch">
    </PIN>
@@ -418,28 +418,6 @@
    <PIN pinname="Geometry" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="PrimitiveObject (Split)" filename="..\..\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (Split)" componentmode="Hidden" id="36">
-   <BOUNDS type="Node" left="3660" top="8130" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Configuration" slicecount="1" values="|int HoldedTouchID, bool HoldedTap|">
-   </PIN>
-   <PIN pinname="Primitive Object" visible="1">
-   </PIN>
-   <PIN pinname="TouchID" visible="1">
-   </PIN>
-   <PIN pinname="Tap" visible="1">
-   </PIN>
-   <PIN pinname="TouchID Bin Size" visible="1">
-   </PIN>
-   <PIN pinname="HoldedTouchID" visible="1">
-   </PIN>
-   <PIN pinname="HoldedTouchID Bin Size" visible="1">
-   </PIN>
-   <PIN pinname="HoldedTap" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="9" srcpinname="Base Data" dstnodeid="36" dstpinname="Primitive Object">
-   </LINK>
    <NODE systemname="IOBox (Color)" nodename="IOBox (Color)" componentmode="InABox" id="39">
    <BOUNDS type="Node" left="6465" top="1500" width="100" height="100">
    </BOUNDS>
@@ -577,6 +555,8 @@
    </BOUNDS>
    <PIN pinname="ID" visible="1" slicecount="1" values="-1">
    </PIN>
+   <PIN pinname="BinSize" visible="1">
+   </PIN>
    </NODE>
    <NODE systemname="RandomSpread (Spreads)" nodename="RandomSpread (Spreads)" componentmode="Hidden" id="55">
    <BOUNDS type="Node" left="6270" top="4785" width="100" height="100">
@@ -627,14 +607,6 @@
    <LINK srcnodeid="57" srcpinname="Transform Out" dstnodeid="9" dstpinname="Transform">
    </LINK>
    <LINK srcnodeid="57" srcpinname="Transform Out" dstnodeid="35" dstpinname="Transform In">
-   </LINK>
-   <LINK srcnodeid="36" srcpinname="HoldedTouchID" dstnodeid="42" dstpinname="Input 1">
-   </LINK>
-   <LINK srcnodeid="36" srcpinname="HoldedTouchID Bin Size" dstnodeid="44" dstpinname="Bin Size">
-   </LINK>
-   <LINK srcnodeid="36" srcpinname="HoldedTap" dstnodeid="48" dstpinname="Input 2">
-   </LINK>
-   <LINK srcnodeid="36" srcpinname="HoldedTouchID" dstnodeid="54" dstpinname="ID">
    </LINK>
    <NODE systemname="SuppressDiagonals (DX11.Effect)" filename="..\..\..\mcropack\nodes\dx11\SuppressDiagonals.fx" nodename="SuppressDiagonals (DX11.Effect)" componentmode="Hidden" id="58">
    <BOUNDS type="Node" left="3090" top="11610" width="100" height="100">
@@ -812,28 +784,6 @@
    <PIN pinname="Geometry" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
-   <NODE systemname="PrimitiveObject (Split)" filename="..\..\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (Split)" componentmode="Hidden" id="96">
-   <BOUNDS type="Node" left="10155" top="8265" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Configuration" slicecount="1" values="|int HoldedTouchID, bool HoldedTap|">
-   </PIN>
-   <PIN pinname="Primitive Object" visible="1">
-   </PIN>
-   <PIN pinname="TouchID" visible="1">
-   </PIN>
-   <PIN pinname="Tap" visible="1">
-   </PIN>
-   <PIN pinname="TouchID Bin Size" visible="1">
-   </PIN>
-   <PIN pinname="HoldedTouchID" visible="1">
-   </PIN>
-   <PIN pinname="HoldedTouchID Bin Size" visible="1">
-   </PIN>
-   <PIN pinname="HoldedTap" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="106" srcpinname="Base Data" dstnodeid="96" dstpinname="Primitive Object">
-   </LINK>
    <NODE systemname="GetSlice (Color)" nodename="GetSlice (Color)" componentmode="Hidden" id="95">
    <BOUNDS type="Node" left="10140" top="10470" width="100" height="100">
    </BOUNDS>
@@ -909,7 +859,7 @@
    </BOUNDS>
    <PIN pinname="ID" visible="1" slicecount="1" values="-1">
    </PIN>
-   <PIN pinname="BinSize" visible="1">
+   <PIN pinname="BinSize" visible="1" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE systemname="RandomSpread (Spreads)" nodename="RandomSpread (Spreads)" componentmode="Hidden" id="88">
@@ -961,14 +911,6 @@
    <LINK srcnodeid="86" srcpinname="Transform Out" dstnodeid="106" dstpinname="Transform">
    </LINK>
    <LINK srcnodeid="86" srcpinname="Transform Out" dstnodeid="97" dstpinname="Transform In">
-   </LINK>
-   <LINK srcnodeid="96" srcpinname="HoldedTouchID" dstnodeid="94" dstpinname="Input 1">
-   </LINK>
-   <LINK srcnodeid="96" srcpinname="HoldedTouchID Bin Size" dstnodeid="92" dstpinname="Bin Size">
-   </LINK>
-   <LINK srcnodeid="96" srcpinname="HoldedTap" dstnodeid="91" dstpinname="Input 2">
-   </LINK>
-   <LINK srcnodeid="96" srcpinname="HoldedTouchID" dstnodeid="89" dstpinname="ID">
    </LINK>
    <NODE systemname="SuppressDiagonals (DX11.Effect)" filename="..\..\..\mcropack\nodes\dx11\SuppressDiagonals.fx" nodename="SuppressDiagonals (DX11.Effect)" componentmode="Hidden" id="85">
    <BOUNDS type="Node" left="16800" top="11775" width="100" height="100">
@@ -1112,28 +1054,6 @@
    <PIN pinname="Geometry" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
-   <NODE systemname="PrimitiveObject (Split)" filename="..\..\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (Split)" componentmode="Hidden" id="120">
-   <BOUNDS type="Node" left="16845" top="8310" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Configuration" slicecount="1" values="|int HoldedTouchID, bool HoldedTap|">
-   </PIN>
-   <PIN pinname="Primitive Object" visible="1">
-   </PIN>
-   <PIN pinname="TouchID" visible="1">
-   </PIN>
-   <PIN pinname="Tap" visible="1">
-   </PIN>
-   <PIN pinname="TouchID Bin Size" visible="1">
-   </PIN>
-   <PIN pinname="HoldedTouchID" visible="1">
-   </PIN>
-   <PIN pinname="HoldedTouchID Bin Size" visible="1">
-   </PIN>
-   <PIN pinname="HoldedTap" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="130" srcpinname="Base Data" dstnodeid="120" dstpinname="Primitive Object">
-   </LINK>
    <NODE systemname="GetSlice (Color)" nodename="GetSlice (Color)" componentmode="Hidden" id="119">
    <BOUNDS type="Node" left="16830" top="10515" width="100" height="100">
    </BOUNDS>
@@ -1159,9 +1079,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="117" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="17895" top="8685" width="795" height="240">
+   <BOUNDS type="Box" left="17610" top="8670" width="450" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="17895" top="8685" width="0" height="0">
+   <BOUNDS type="Node" left="17610" top="8670" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="-1">
    </PIN>
@@ -1207,15 +1127,9 @@
    </BOUNDS>
    <PIN pinname="ID" visible="1" slicecount="1" values="-1">
    </PIN>
+   <PIN pinname="BinSize" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="120" srcpinname="HoldedTouchID" dstnodeid="118" dstpinname="Input 1">
-   </LINK>
-   <LINK srcnodeid="120" srcpinname="HoldedTouchID Bin Size" dstnodeid="116" dstpinname="Bin Size">
-   </LINK>
-   <LINK srcnodeid="120" srcpinname="HoldedTap" dstnodeid="115" dstpinname="Input 2">
-   </LINK>
-   <LINK srcnodeid="120" srcpinname="HoldedTouchID" dstnodeid="114" dstpinname="ID">
-   </LINK>
    <NODE systemname="Group (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Group (DX11.Layer)" componentmode="Hidden" id="109">
    <BOUNDS type="Node" left="15525" top="12705" width="100" height="100">
    </BOUNDS>
@@ -1446,28 +1360,6 @@
    <PIN pinname="Geometry" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
-   <NODE systemname="PrimitiveObject (Split)" filename="..\..\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (Split)" componentmode="Hidden" id="150">
-   <BOUNDS type="Node" left="23025" top="8130" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Configuration" slicecount="1" values="|int HoldedTouchID, bool HoldedTap|">
-   </PIN>
-   <PIN pinname="Primitive Object" visible="1">
-   </PIN>
-   <PIN pinname="TouchID" visible="1">
-   </PIN>
-   <PIN pinname="Tap" visible="1">
-   </PIN>
-   <PIN pinname="TouchID Bin Size" visible="1">
-   </PIN>
-   <PIN pinname="HoldedTouchID" visible="1">
-   </PIN>
-   <PIN pinname="HoldedTouchID Bin Size" visible="1">
-   </PIN>
-   <PIN pinname="HoldedTap" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="160" srcpinname="Base Data" dstnodeid="150" dstpinname="Primitive Object">
-   </LINK>
    <NODE systemname="GetSlice (Color)" nodename="GetSlice (Color)" componentmode="Hidden" id="149">
    <BOUNDS type="Node" left="23010" top="10335" width="100" height="100">
    </BOUNDS>
@@ -1539,9 +1431,11 @@
    <LINK srcnodeid="149" srcpinname="Output" dstnodeid="151" dstpinname="Color">
    </LINK>
    <NODE systemname="SplitMouseButtons (VOOG)" filename="..\..\nodes\modules\GUI\SplitMouseButtons (VOOG).v4p" nodename="SplitMouseButtons (VOOG)" componentmode="Hidden" id="144">
-   <BOUNDS type="Node" left="24870" top="8370" width="100" height="100">
+   <BOUNDS type="Node" left="25110" top="8340" width="100" height="100">
    </BOUNDS>
    <PIN pinname="ID" visible="1" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="BinSize" visible="1">
    </PIN>
    </NODE>
    <NODE systemname="RandomSpread (Spreads)" nodename="RandomSpread (Spreads)" componentmode="Hidden" id="143">
@@ -1589,14 +1483,6 @@
    <LINK srcnodeid="143" srcpinname="Output" dstnodeid="141" dstpinname="Z">
    </LINK>
    <LINK srcnodeid="152" srcpinname="Transform Out" dstnodeid="141" dstpinname="Transform In">
-   </LINK>
-   <LINK srcnodeid="150" srcpinname="HoldedTouchID" dstnodeid="148" dstpinname="Input 1">
-   </LINK>
-   <LINK srcnodeid="150" srcpinname="HoldedTouchID Bin Size" dstnodeid="146" dstpinname="Bin Size">
-   </LINK>
-   <LINK srcnodeid="150" srcpinname="HoldedTap" dstnodeid="145" dstpinname="Input 2">
-   </LINK>
-   <LINK srcnodeid="150" srcpinname="HoldedTouchID" dstnodeid="144" dstpinname="ID">
    </LINK>
    <NODE systemname="Group (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Group (DX11.Layer)" componentmode="Hidden" id="139">
    <BOUNDS type="Node" left="22110" top="12075" width="100" height="100">
@@ -1916,6 +1802,148 @@
    </LINK>
    <LINK srcnodeid="177" srcpinname="Layer" dstnodeid="84" dstpinname="Layer 2">
    </LINK>
-   <LINK srcnodeid="96" srcpinname="HoldedTouchID Bin Size" dstnodeid="89" dstpinname="BinSize">
+   <NODE systemname="PrimitiveObject (VObject Split)" filename="..\..\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (VObject Split)" componentmode="Hidden" id="36">
+   <BOUNDS type="Node" left="3660" top="8130" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Configuration" slicecount="1" values="|int HoldedTouchID, bool HoldedTap|">
+   </PIN>
+   <PIN pinname="Primitive Object" visible="1">
+   </PIN>
+   <PIN pinname="TouchID" visible="1">
+   </PIN>
+   <PIN pinname="Tap" visible="1">
+   </PIN>
+   <PIN pinname="TouchID Bin Size" visible="1">
+   </PIN>
+   <PIN pinname="HoldedTouchID" visible="1">
+   </PIN>
+   <PIN pinname="HoldedTouchID Bin Size" visible="1">
+   </PIN>
+   <PIN pinname="HoldedTap" visible="1">
+   </PIN>
+   <PIN pinname="Formular" slicecount="2" values="VOOG.HoldedTouchID,VOOG.HoldedTap">
+   </PIN>
+   <PIN pinname="Definition" slicecount="1" values="|int HoldedTouchID, bool HoldedTap|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="9" srcpinname="Base Data" dstnodeid="36" dstpinname="Primitive Object">
+   </LINK>
+   <LINK srcnodeid="36" srcpinname="HoldedTouchID" dstnodeid="42" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="36" srcpinname="HoldedTouchID Bin Size" dstnodeid="44" dstpinname="Bin Size">
+   </LINK>
+   <LINK srcnodeid="36" srcpinname="HoldedTouchID" dstnodeid="54" dstpinname="ID">
+   </LINK>
+   <LINK srcnodeid="36" srcpinname="HoldedTouchID Bin Size" dstnodeid="54" dstpinname="BinSize">
+   </LINK>
+   <NODE systemname="PrimitiveObject (VObject Split)" filename="..\..\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (VObject Split)" componentmode="Hidden" id="180">
+   <BOUNDS type="Node" left="10590" top="8235" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Configuration" slicecount="1" values="|int HoldedTouchID, bool HoldedTap|">
+   </PIN>
+   <PIN pinname="Primitive Object" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="TouchID" visible="1">
+   </PIN>
+   <PIN pinname="Tap" visible="1">
+   </PIN>
+   <PIN pinname="TouchID Bin Size" visible="1">
+   </PIN>
+   <PIN pinname="HoldedTouchID" visible="1">
+   </PIN>
+   <PIN pinname="HoldedTouchID Bin Size" visible="1">
+   </PIN>
+   <PIN pinname="HoldedTap" visible="1">
+   </PIN>
+   <PIN pinname="Formular" slicecount="2" values="VOOG.HoldedTouchID,VOOG.HoldedTap">
+   </PIN>
+   <PIN pinname="Definition" slicecount="1" values="|int HoldedTouchID, bool HoldedTap|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="106" srcpinname="Base Data" dstnodeid="180" dstpinname="Primitive Object">
+   </LINK>
+   <LINK srcnodeid="180" srcpinname="HoldedTouchID" dstnodeid="94" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="180" srcpinname="HoldedTouchID Bin Size" dstnodeid="92" dstpinname="Bin Size">
+   </LINK>
+   <NODE systemname="PrimitiveObject (VObject Split)" filename="..\..\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (VObject Split)" componentmode="Hidden" id="181">
+   <BOUNDS type="Node" left="16785" top="8325" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Configuration" slicecount="1" values="|int HoldedTouchID, bool HoldedTap|">
+   </PIN>
+   <PIN pinname="Primitive Object" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="TouchID" visible="1">
+   </PIN>
+   <PIN pinname="Tap" visible="1">
+   </PIN>
+   <PIN pinname="TouchID Bin Size" visible="1">
+   </PIN>
+   <PIN pinname="HoldedTouchID" visible="1">
+   </PIN>
+   <PIN pinname="HoldedTouchID Bin Size" visible="1">
+   </PIN>
+   <PIN pinname="HoldedTap" visible="1">
+   </PIN>
+   <PIN pinname="Formular" slicecount="2" values="VOOG.HoldedTouchID,VOOG.HoldedTap">
+   </PIN>
+   <PIN pinname="Definition" slicecount="1" values="|int HoldedTouchID, bool HoldedTap|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="130" srcpinname="Base Data" dstnodeid="181" dstpinname="Primitive Object">
+   </LINK>
+   <LINK srcnodeid="181" srcpinname="HoldedTouchID" dstnodeid="118" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="181" srcpinname="HoldedTouchID Bin Size" dstnodeid="116" dstpinname="Bin Size">
+   </LINK>
+   <LINK srcnodeid="181" srcpinname="HoldedTouchID" dstnodeid="114" dstpinname="ID">
+   </LINK>
+   <LINK srcnodeid="181" srcpinname="HoldedTouchID Bin Size" dstnodeid="114" dstpinname="BinSize">
+   </LINK>
+   <NODE systemname="PrimitiveObject (VObject Split)" filename="..\..\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (VObject Split)" componentmode="Hidden" id="182">
+   <BOUNDS type="Node" left="23130" top="8100" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Configuration" slicecount="1" values="|int HoldedTouchID, bool HoldedTap|">
+   </PIN>
+   <PIN pinname="Primitive Object" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="TouchID" visible="1">
+   </PIN>
+   <PIN pinname="Tap" visible="1">
+   </PIN>
+   <PIN pinname="TouchID Bin Size" visible="1">
+   </PIN>
+   <PIN pinname="HoldedTouchID" visible="1">
+   </PIN>
+   <PIN pinname="HoldedTouchID Bin Size" visible="1">
+   </PIN>
+   <PIN pinname="HoldedTap" visible="1">
+   </PIN>
+   <PIN pinname="Formular" slicecount="2" values="VOOG.HoldedTouchID,VOOG.HoldedTap">
+   </PIN>
+   <PIN pinname="Definition" slicecount="1" values="|int HoldedTouchID, bool HoldedTap|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="160" srcpinname="Base Data" dstnodeid="182" dstpinname="Primitive Object">
+   </LINK>
+   <LINK srcnodeid="182" srcpinname="HoldedTouchID" dstnodeid="148" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="182" srcpinname="HoldedTouchID Bin Size" dstnodeid="146" dstpinname="Bin Size">
+   </LINK>
+   <LINK srcnodeid="182" srcpinname="HoldedTouchID" dstnodeid="144" dstpinname="ID">
+   </LINK>
+   <LINK srcnodeid="182" srcpinname="HoldedTouchID Bin Size" dstnodeid="144" dstpinname="BinSize">
+   </LINK>
+   <LINK srcnodeid="180" srcpinname="HoldedTouchID" dstnodeid="89" dstpinname="ID">
+   </LINK>
+   <LINK srcnodeid="180" srcpinname="HoldedTouchID Bin Size" dstnodeid="89" dstpinname="BinSize">
+   </LINK>
+   <LINK srcnodeid="36" srcpinname="HoldedTap" dstnodeid="48" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="180" srcpinname="HoldedTap" dstnodeid="91" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="181" srcpinname="HoldedTap" dstnodeid="115" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="182" srcpinname="HoldedTap" dstnodeid="145" dstpinname="Input 2">
    </LINK>
    </PATCH>

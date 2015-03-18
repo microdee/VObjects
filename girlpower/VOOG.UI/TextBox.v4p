@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\VObjects\girlpower\VOOG.UI\TextBox.v4p" systemname="TextBox" filename="C:\vvvv\libs\VObjects\girlpower\VOOG.UI\TextBox.v4p" scrollx="-360" scrolly="0" locked="0">
+   <PATCH nodename="C:\vvvv\libs\VObjects\girlpower\VOOG.UI\TextBox.v4p" systemname="TextBox" filename="C:\vvvv\libs\VObjects\girlpower\VOOG.UI\TextBox.v4p" scrollx="0" scrolly="0" locked="0">
    <BOUNDS type="Window" left="990" top="915" width="14700" height="13665">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">

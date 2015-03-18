@@ -1,0 +1,44 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics;
+using System.IO;
+using VVVV.Utils.VColor;
+using VVVV.Utils.VMath;
+
+using VVVV.Hosting;
+using VVVV.PluginInterfaces.V1;
+using VVVV.PluginInterfaces.V2;
+using VVVV.Core.Logging;
+
+namespace VVVV.Nodes.VObjects
+{
+    public delegate void ChangedEventHandler(object sender, EventArgs e);
+    public class FormularDictionary : Dictionary<string, string>
+    {
+        private static FormularDictionary instance;
+        public static event ChangedEventHandler Changed;
+
+        public static void Change(INode sender)
+        {
+            Changed(sender, EventArgs.Empty);
+        }
+        public static bool IsChanged
+        {
+            get;
+            set;
+        }
+
+        public static FormularDictionary Instance
+        {
+            get
+            {
+                if (instance == null) instance = new FormularDictionary();
+                return instance;
+            }
+        }
+    }
+}
