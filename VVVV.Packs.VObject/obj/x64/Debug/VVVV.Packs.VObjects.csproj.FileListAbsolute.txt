@@ -24,3 +24,7 @@ C:\vvvv\libs\VObjects\nodes\plugins\x64\VVVV.Packs.VObjects.dll
 C:\vvvv\libs\VObjects\nodes\plugins\x64\VVVV.Packs.VObjects.pdb
 C:\vvvv\libs\VObjects\VVVV.Packs.VObject\obj\x64\Debug\VVVV.Packs.VObjects.dll
 C:\vvvv\libs\VObjects\VVVV.Packs.VObject\obj\x64\Debug\VVVV.Packs.VObjects.pdb
+C:\vvvv\libs\VObject\nodes\plugins\x64\VVVV.Packs.VObjects.dll
+C:\vvvv\libs\VObject\nodes\plugins\x64\VVVV.Packs.VObjects.pdb
+C:\vvvv\libs\VObject\VVVV.Packs.VObject\obj\x64\Debug\VVVV.Packs.VObjects.dll
+C:\vvvv\libs\VObject\VVVV.Packs.VObject\obj\x64\Debug\VVVV.Packs.VObjects.pdb

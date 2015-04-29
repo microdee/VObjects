@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\GUI\Segment (VOOG.Geometry 2D).v4p" systemname="Segment (GUIGeometry 2D)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\Segment (GUIGeometry 2D).v4p" scrollx="1215" scrolly="0">
+   <PATCH nodename="C:\vvvv\libs\VObject\nodes\modules\VOOG\Segment (VOOG.Geometry 2D).v4p" systemname="Segment (GUIGeometry 2D)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\Segment (GUIGeometry 2D).v4p" scrollx="1215" scrolly="0">
    <BOUNDS type="Window" left="4410" top="2355" width="9165" height="8310">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">

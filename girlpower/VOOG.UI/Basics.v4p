@@ -1,10 +1,10 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\VObjects\girlpower\VOOG.UI\Basics.v4p" scrollx="0" scrolly="-360" systemname="Basics" filename="C:\vvvv\libs\VObjects\girlpower\VOOG.UI\Basics.v4p">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha33.8.dtd" >
+   <PATCH nodename="C:\vvvv\libs\VObject\girlpower\VOOG.UI\Basics.v4p" scrollx="390" scrolly="2970" systemname="Basics" filename="C:\vvvv\libs\VObjects\girlpower\VOOG.UI\Basics.v4p">
    <BOUNDS type="Window" left="3330" top="4185" width="22170" height="11415">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
-   <PACK Name="addonpack" Version="33.7.0">
+   <PACK Name="addonpack" Version="33.8.0">
    </PACK>
    <NODE systemname="Renderer (DX11)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11)" componentmode="InAWindow" id="0">
    <BOUNDS type="Node" left="1425" top="14805" width="100" height="100">
@@ -133,7 +133,7 @@
    </PIN>
    <PIN pinname="Mouse" visible="1">
    </PIN>
-   <PIN pinname="Touch Container" visible="1">
+   <PIN pinname="Touch Container" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Clear" visible="1">
    </PIN>

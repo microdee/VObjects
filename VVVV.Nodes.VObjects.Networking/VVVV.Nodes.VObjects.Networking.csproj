@@ -75,6 +75,10 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\VVVV.Packs.VObject\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="SlimDX">
       <HintPath>..\VVVV.Packs.VObject\packages\VVVV.SlimDX.1.0.1\build\net40\lib\x86\SlimDX.dll</HintPath>
     </Reference>
@@ -114,7 +118,7 @@
       <HintPath>..\VVVV.Packs.VObject\packages\VVVV.PluginInterfaces.33.2.0-develop-477\build\net40\lib\x86\VVVV.PluginInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="VVVV.Utils">
-      <HintPath>..\VVVV.Packs.VObject\packages\VVVV.Utils.33.2.0-develop-477\lib\net40\VVVV.Utils.dll</HintPath>
+      <HintPath>..\VVVV.Packs.VObject\packages\VVVV.Utils.33.7.0\lib\net40\VVVV.Utils.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="VVVV.Utils3rdParty">
@@ -171,6 +175,7 @@
   <Import Project="..\VVVV.Packs.VObject\packages\VVVV.Utils3rdParty.33.2.0-develop-477\build\net40\VVVV.Utils3rdParty.targets" Condition="Exists('..\VVVV.Packs.VObject\packages\VVVV.Utils3rdParty.33.2.0-develop-477\build\net40\VVVV.Utils3rdParty.targets')" />
   <Import Project="..\VVVV.Packs.VObject\packages\VVVV.Hosting.33.2.0-develop-477\build\net40\VVVV.Hosting.targets" Condition="Exists('..\VVVV.Packs.VObject\packages\VVVV.Hosting.33.2.0-develop-477\build\net40\VVVV.Hosting.targets')" />
   <Import Project="..\VVVV.Packs.VObject\packages\VVVV.Nodes.Generic.33.2.0-develop-477\build\net40\VVVV.Nodes.Generic.targets" Condition="Exists('..\VVVV.Packs.VObject\packages\VVVV.Nodes.Generic.33.2.0-develop-477\build\net40\VVVV.Nodes.Generic.targets')" />
+  <Import Project="..\VVVV.Packs.VObject\packages\VVVV.Packs.Time.0.5.5\build\net40\VVVV.Packs.Time.targets" Condition="Exists('..\VVVV.Packs.VObject\packages\VVVV.Packs.Time.0.5.5\build\net40\VVVV.Packs.Time.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

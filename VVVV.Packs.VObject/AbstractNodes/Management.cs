@@ -170,7 +170,10 @@ namespace VVVV.Nodes.VObjects
             if (fc == 0)
             {
                 for (int i = 0; i < FOutput.SliceCount; i++)
-                    FOutput[i].Dispose();
+                {
+                    if (FOutput[i] != null)
+                        FOutput[i].Dispose();
+                }
                 FOutput.SliceCount = 0;
             }
             fc++;

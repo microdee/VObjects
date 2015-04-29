@@ -76,6 +76,10 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="SlimDX, Version=4.0.13.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>packages\VVVV.SlimDX.1.0.1\build\net40\lib\x86\SlimDX.dll</HintPath>
@@ -117,7 +121,7 @@
       <HintPath>packages\VVVV.PluginInterfaces.33.2.0-develop-477\build\net40\lib\x86\VVVV.PluginInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="VVVV.Utils">
-      <HintPath>packages\VVVV.Utils.33.2.0-develop-477\lib\net40\VVVV.Utils.dll</HintPath>
+      <HintPath>packages\VVVV.Utils.33.7.0\lib\net40\VVVV.Utils.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="VVVV.Utils3rdParty, Version=33.0.0.0, Culture=neutral, processorArchitecture=AMD64">
@@ -155,6 +159,7 @@
   <Import Project="packages\VVVV.Utils3rdParty.33.2.0-develop-477\build\net40\VVVV.Utils3rdParty.targets" Condition="Exists('packages\VVVV.Utils3rdParty.33.2.0-develop-477\build\net40\VVVV.Utils3rdParty.targets')" />
   <Import Project="packages\VVVV.Hosting.33.2.0-develop-477\build\net40\VVVV.Hosting.targets" Condition="Exists('packages\VVVV.Hosting.33.2.0-develop-477\build\net40\VVVV.Hosting.targets')" />
   <Import Project="packages\VVVV.Nodes.Generic.33.2.0-develop-477\build\net40\VVVV.Nodes.Generic.targets" Condition="Exists('packages\VVVV.Nodes.Generic.33.2.0-develop-477\build\net40\VVVV.Nodes.Generic.targets')" />
+  <Import Project="packages\VVVV.Packs.Time.0.5.5\build\net40\VVVV.Packs.Time.targets" Condition="Exists('packages\VVVV.Packs.Time.0.5.5\build\net40\VVVV.Packs.Time.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -32,3 +32,9 @@ C:\vvvv\libs\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll
 C:\vvvv\libs\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.pdb
 C:\vvvv\libs\VObjects\VVVV.Nodes.VObject\obj\x64\Debug\VVVV.Nodes.VObjects.dll
 C:\vvvv\libs\VObjects\VVVV.Nodes.VObject\obj\x64\Debug\VVVV.Nodes.VObjects.pdb
+C:\vvvv\libs\VObject\nodes\plugins\x64\VVVV.Nodes.VObjects.dll.config
+C:\vvvv\libs\VObject\nodes\plugins\x64\VVVV.Nodes.VObjects.dll
+C:\vvvv\libs\VObject\nodes\plugins\x64\VVVV.Nodes.VObjects.pdb
+C:\vvvv\libs\VObject\VVVV.Nodes.VObject\obj\x64\Debug\VVVV.Nodes.VObjects.csprojResolveAssemblyReference.cache
+C:\vvvv\libs\VObject\VVVV.Nodes.VObject\obj\x64\Debug\VVVV.Nodes.VObjects.dll
+C:\vvvv\libs\VObject\VVVV.Nodes.VObject\obj\x64\Debug\VVVV.Nodes.VObjects.pdb

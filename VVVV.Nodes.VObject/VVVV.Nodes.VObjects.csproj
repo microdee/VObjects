@@ -77,7 +77,7 @@
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\VVVV.Packs.VObject\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\VVVV.Packs.VObject\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition.CodePlex">
@@ -122,11 +122,14 @@
     <Reference Include="VVVV.Nodes.Generic">
       <HintPath>..\VVVV.Packs.VObject\packages\VVVV.Nodes.Generic.33.2.0-develop-477\build\net40\lib\x86\VVVV.Nodes.Generic.dll</HintPath>
     </Reference>
+    <Reference Include="VVVV.Packs.Messaging">
+      <HintPath>..\VVVV.Packs.VObject\packages\VVVV.Packs.Message.2.0.1\build\net40\x64\VVVV.Packs.Messaging.dll</HintPath>
+    </Reference>
     <Reference Include="VVVV.PluginInterfaces">
       <HintPath>..\VVVV.Packs.VObject\packages\VVVV.PluginInterfaces.33.2.0-develop-477\build\net40\lib\x86\VVVV.PluginInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="VVVV.Utils">
-      <HintPath>..\VVVV.Packs.VObject\packages\VVVV.Utils.33.2.0-develop-477\lib\net40\VVVV.Utils.dll</HintPath>
+      <HintPath>..\VVVV.Packs.VObject\packages\VVVV.Utils.33.7.0\lib\net40\VVVV.Utils.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="VVVV.Utils3rdParty">
@@ -141,6 +144,7 @@
     <Compile Include="Generics\VObjectGenerics.cs" />
     <Compile Include="Generics\VVVVGenerics.cs" />
     <Compile Include="Implementation\JSON.cs" />
+    <Compile Include="Implementation\MessageWrap.cs" />
     <Compile Include="Implementation\PrimitiveObject\AbstractDynamicNode.cs" />
     <Compile Include="Implementation\PrimitiveObject\ConstructNode.cs" />
     <Compile Include="Implementation\PrimitiveObject\SetSplitNodes.cs" />
@@ -190,6 +194,7 @@
   <Import Project="..\VVVV.Packs.VObject\packages\VVVV.Utils3rdParty.33.2.0-develop-477\build\net40\VVVV.Utils3rdParty.targets" Condition="Exists('..\VVVV.Packs.VObject\packages\VVVV.Utils3rdParty.33.2.0-develop-477\build\net40\VVVV.Utils3rdParty.targets')" />
   <Import Project="..\VVVV.Packs.VObject\packages\VVVV.Hosting.33.2.0-develop-477\build\net40\VVVV.Hosting.targets" Condition="Exists('..\VVVV.Packs.VObject\packages\VVVV.Hosting.33.2.0-develop-477\build\net40\VVVV.Hosting.targets')" />
   <Import Project="..\VVVV.Packs.VObject\packages\VVVV.Nodes.Generic.33.2.0-develop-477\build\net40\VVVV.Nodes.Generic.targets" Condition="Exists('..\VVVV.Packs.VObject\packages\VVVV.Nodes.Generic.33.2.0-develop-477\build\net40\VVVV.Nodes.Generic.targets')" />
+  <Import Project="..\VVVV.Packs.VObject\packages\VVVV.Packs.Time.0.5.5\build\net40\VVVV.Packs.Time.targets" Condition="Exists('..\VVVV.Packs.VObject\packages\VVVV.Packs.Time.0.5.5\build\net40\VVVV.Packs.Time.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
