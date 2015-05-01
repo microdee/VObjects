@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\VOOG\DropDown (VOOG).v4p" systemname="DropDown (VOOG)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\DropDown (VOOG).v4p" scrollx="2970" scrolly="12870">
+   <PATCH nodename="C:\vvvv\libs\VObject\nodes\modules\VOOG\DropDown (VOOG).v4p" systemname="DropDown (VOOG)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\DropDown (VOOG).v4p" scrollx="2970" scrolly="15390">
    <BOUNDS type="Window" left="-1050" top="4485" width="13230" height="9090">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
@@ -679,7 +679,7 @@
    <LINK srcnodeid="115" srcpinname="Output" dstnodeid="71" dstpinname="Text">
    </LINK>
    <NODE systemname="Group (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Group (DX11.Layer)" componentmode="Hidden" id="117">
-   <BOUNDS type="Node" left="11625" top="19830" width="100" height="100">
+   <BOUNDS type="Node" left="11325" top="19875" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Layer 1" visible="1" slicecount="1" values="||">
    </PIN>

@@ -82,8 +82,16 @@ namespace VVVV.Nodes.VObjects
                     {
                         for (int k = 0; k < Content.CurrentValues[j].Count; k++)
                         {
-                            FTarget.Add((double)Content.TargetValues[j].Objects[k]);
-                            FCurrent.Add(Content.CurrentValues[j][k]);
+                            if (Content.TargetValues[j].Objects[k] is double)
+                            {
+                                FTarget.Add((double)Content.TargetValues[j].Objects[k]);
+                                FCurrent.Add(Content.CurrentValues[j][k]);
+                            }
+                            if (Content.TargetValues[j].Objects[k] is float)
+                            {
+                                FTarget.Add((float)Content.TargetValues[j].Objects[k]);
+                                FCurrent.Add(Content.CurrentValues[j][k]);
+                            }
                         }
                     }
                     if (FSet[i]) Content.FilterTime = FFilterTime[i];

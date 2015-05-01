@@ -1,10 +1,10 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha33.8.dtd" >
-   <PATCH nodename="C:\vvvv\libs\VObject\girlpower\VOOG.UI\Basics.v4p" scrollx="390" scrolly="2970" systemname="Basics" filename="C:\vvvv\libs\VObjects\girlpower\VOOG.UI\Basics.v4p">
-   <BOUNDS type="Window" left="3330" top="4185" width="22170" height="11415">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
+   <PATCH nodename="C:\vvvv\libs\VObject\girlpower\VOOG.UI\Basics.v4p" scrollx="0" scrolly="9075" systemname="Basics" filename="C:\vvvv\libs\VObjects\girlpower\VOOG.UI\Basics.v4p">
+   <BOUNDS type="Window" left="540" top="5085" width="22170" height="11415">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
-   <PACK Name="addonpack" Version="33.8.0">
+   <PACK Name="addonpack" Version="33.7.0">
    </PACK>
    <NODE systemname="Renderer (DX11)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11)" componentmode="InAWindow" id="0">
    <BOUNDS type="Node" left="1425" top="14805" width="100" height="100">
@@ -93,7 +93,7 @@
    </PIN>
    </NODE>
    <NODE systemname="Polygon (VOOG.Geometry 2D)" filename="..\..\nodes\modules\GUI\Polygon (VOOG.Geometry 2D).v4p" nodename="Polygon (VOOG.Geometry 2D)" componentmode="Hidden" id="8">
-   <BOUNDS type="Node" left="21945" top="8625" width="100" height="100">
+   <BOUNDS type="Node" left="22110" top="8730" width="100" height="100">
    </BOUNDS>
    <PIN pinname="GUI Element" visible="1">
    </PIN>
@@ -109,7 +109,7 @@
    </PIN>
    <PIN pinname="GUI Element Added" visible="1">
    </PIN>
-   <PIN pinname="Dictionary" visible="1">
+   <PIN pinname="Dictionary" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Construct" visible="1">
    </PIN>
@@ -121,6 +121,8 @@
    </PIN>
    <BOUNDS type="Window" left="10560" top="885" width="14760" height="10125">
    </BOUNDS>
+   <PIN pinname="Object" visible="1">
+   </PIN>
    </NODE>
    <NODE systemname="Host (VOOG 2D)" filename="..\..\nodes\modules\GUI\Host (VOOG 2D).v4p" nodename="Host (VOOG 2D)" componentmode="Hidden" id="11" debug="0">
    <BOUNDS type="Node" left="1215" top="2370" width="100" height="100">
@@ -243,9 +245,9 @@
    <LINK srcnodeid="22" srcpinname="Input Value" dstnodeid="11" dstpinname="Touch Container">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="23" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="1275" top="300" width="480" height="480">
+   <BOUNDS type="Box" left="1215" top="375" width="480" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="1275" top="300" width="0" height="0">
+   <BOUNDS type="Node" left="1215" top="375" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
@@ -499,7 +501,7 @@
    <LINK srcnodeid="48" srcpinname="Output" dstnodeid="40" dstpinname="Index">
    </LINK>
    <NODE systemname="Ortho (Transform)" nodename="Ortho (Transform)" componentmode="Hidden" id="49">
-   <BOUNDS type="Node" left="3870" top="15090" width="100" height="100">
+   <BOUNDS type="Node" left="3630" top="14595" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Transform Out" visible="1">
    </PIN>
@@ -551,7 +553,7 @@
    <LINK srcnodeid="40" srcpinname="Output" dstnodeid="35" dstpinname="Color">
    </LINK>
    <NODE systemname="SplitMouseButtons (VOOG)" filename="..\..\nodes\modules\GUI\SplitMouseButtons (VOOG).v4p" nodename="SplitMouseButtons (VOOG)" componentmode="Hidden" id="54">
-   <BOUNDS type="Node" left="5655" top="8370" width="100" height="100">
+   <BOUNDS type="Node" left="5640" top="8370" width="100" height="100">
    </BOUNDS>
    <PIN pinname="ID" visible="1" slicecount="1" values="-1">
    </PIN>
@@ -657,13 +659,13 @@
    </PIN>
    <PIN pinname="Base Data" visible="1">
    </PIN>
-   <BOUNDS type="Window" left="29085" top="2790" width="14760" height="10125">
+   <BOUNDS type="Window" left="9375" top="5715" width="14760" height="10125">
    </BOUNDS>
    <PIN pinname="Enabled" slicecount="1" values="1">
    </PIN>
    </NODE>
    <NODE systemname="R (Node)" nodename="R (Node)" componentmode="Hidden" id="105">
-   <BOUNDS type="Node" left="8370" top="6735" width="100" height="100">
+   <BOUNDS type="Node" left="8730" top="7365" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Receive String" slicecount="1" values="GUI">
    </PIN>
@@ -855,7 +857,7 @@
    <LINK srcnodeid="95" srcpinname="Output" dstnodeid="97" dstpinname="Color">
    </LINK>
    <NODE systemname="SplitMouseButtons (VOOG)" filename="..\..\nodes\modules\GUI\SplitMouseButtons (VOOG).v4p" nodename="SplitMouseButtons (VOOG)" componentmode="Hidden" id="89">
-   <BOUNDS type="Node" left="12510" top="10485" width="100" height="100">
+   <BOUNDS type="Node" left="12555" top="8430" width="100" height="100">
    </BOUNDS>
    <PIN pinname="ID" visible="1" slicecount="1" values="-1">
    </PIN>
@@ -1633,9 +1635,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="172" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="12105" top="1110" width="795" height="240">
+   <BOUNDS type="Box" left="12270" top="1125" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="12105" top="1110" width="0" height="0">
+   <BOUNDS type="Node" left="12270" top="1125" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -1685,13 +1687,15 @@
    </PIN>
    </NODE>
    <NODE systemname="Constant (DX11.Effect)" filename="%VVVV%\packs\dx11\nodes\dx11\Constant.fx" nodename="Constant (DX11.Effect)" componentmode="Hidden" id="177">
-   <BOUNDS type="Node" left="9735" top="11550" width="100" height="100">
+   <BOUNDS type="Node" left="9585" top="11760" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Geometry" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Layer" visible="1">
    </PIN>
    <PIN pinname="Transform In" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Enabled" slicecount="1" values="1">
    </PIN>
    </NODE>
    <NODE systemname="Vector (3d Join)" nodename="Vector (3d Join)" componentmode="Hidden" id="178">

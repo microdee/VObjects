@@ -55,11 +55,7 @@ namespace VVVV.Nodes.VObjects
                         this.TargetValues.Add(otp);
                         foreach(object obj in otp.Objects)
                         {
-                            if(obj is float)
-                            {
-                                float tmpval = (float)obj;
-                                tmplist.Add((double)obj);
-                            }
+                            if(obj is float) tmplist.Add((float)obj);
                             if(obj is double) tmplist.Add((double)obj);
                         }
                         this.CurrentValues.Add(tmplist);
@@ -77,19 +73,42 @@ namespace VVVV.Nodes.VObjects
                 {
                     if (this.Algorithm == null)
                     {
-                        double target = (double)this.TargetValues[i].Objects[j];
-                        double dist = target - this.CurrentValues[i][j];
-                        this.CurrentValues[i][j] += dist * frametime / FilterTime * 6;
+                        if (this.TargetValues[i].Objects[j] is double)
+                        {
+                            double target = (double)this.TargetValues[i].Objects[j];
+                            double dist = target - this.CurrentValues[i][j];
+                            this.CurrentValues[i][j] += dist * frametime / FilterTime * 6;
+                        }
+                        if (this.TargetValues[i].Objects[j] is float)
+                        {
+                            float target = (float)this.TargetValues[i].Objects[j];
+                            float dist = target - (float)this.CurrentValues[i][j];
+                            this.CurrentValues[i][j] += dist * frametime / FilterTime * 6;
+                        }
                     }
                     else
                     {
-                        this.CurrentValues[i][j] =
-                            this.Algorithm.Algorithm(
-                                (double)this.TargetValues[i].Objects[j],
-                                this.CurrentValues[i][j],
-                                frametime,
-                                this.FilterTime
-                            );
+                        if (this.TargetValues[i].Objects[j] is double)
+                        {
+                            this.CurrentValues[i][j] =
+                                this.Algorithm.Algorithm(
+                                    (double)this.TargetValues[i].Objects[j],
+                                    this.CurrentValues[i][j],
+                                    frametime,
+                                    this.FilterTime
+                                );
+                        }
+                        if (this.TargetValues[i].Objects[j] is float)
+                        {
+                            float TempVal = (float)this.TargetValues[i].Objects[j];
+                            this.CurrentValues[i][j] =
+                                this.Algorithm.Algorithm(
+                                    (double)TempVal,
+                                    this.CurrentValues[i][j],
+                                    frametime,
+                                    this.FilterTime
+                                );
+                        }
                     }
                 }
             }
