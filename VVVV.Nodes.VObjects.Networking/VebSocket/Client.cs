@@ -254,7 +254,7 @@ namespace VVVV.Nodes.VObjects
             m.Raw = new byte[0];
             m.Text = data;
             m.GUID = this.Client.SendAsync(data, onSendComplete);
-            this.SendingMessages.Add(m.GUID, m);
+            if(!this.SendingMessages.ContainsKey(m.GUID)) this.SendingMessages.Add(m.GUID, m);
             return m;
         }
         public ClientMessage Send(string data)

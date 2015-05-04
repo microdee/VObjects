@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\VObjects\girlpower\PrimitiveObjects\callmenames~.v4p" systemname="callmenames" filename="C:\vvvv\libs\VObjects\girlpower\PrimitiveObjects\callmenames.v4p" scrollx="0" scrolly="0">
-   <BOUNDS type="Window" left="7515" top="2835" width="9000" height="8070">
+   <PATCH nodename="C:\vvvv\libs\VObjects\girlpower\PrimitiveObjects\Basic.v4p" systemname="callmenames" filename="C:\vvvv\libs\VObjects\girlpower\PrimitiveObjects\callmenames.v4p" scrollx="0" scrolly="0">
+   <BOUNDS type="Window" left="7515" top="2835" width="9570" height="9930">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>

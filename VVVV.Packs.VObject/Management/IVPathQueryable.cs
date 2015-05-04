@@ -39,7 +39,6 @@ namespace VVVV.Packs.VObjects
             else
             {
                 Regex Pattern = new Regex(levels[0]);
-                List<VObject> matches = new List<VObject>();
                 foreach (string k in VPathQueryKeys())
                 {
                     if (Pattern.Match(k).Value != string.Empty)

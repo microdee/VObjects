@@ -143,7 +143,7 @@ namespace VVVV.Nodes.VObjects
         public IHDEHost HDEHost;
 
         public WebSocketServer Server;
-        public Dictionary<string, VebSocketService> Services = new Dictionary<string, VebSocketService>();
+        public Dictionary<string, VebSocketServiceWrap> Services = new Dictionary<string, VebSocketServiceWrap>();
         public VebSocketServer(int port, bool secure)
         {
             this.Server = new WebSocketServer(port, secure);
@@ -152,8 +152,17 @@ namespace VVVV.Nodes.VObjects
 
         private void OnNewService(object sender, ServiceAddedEventArgs e)
         {
-            VebSocketService s = new VebSocketService(this.HDEHost, this.Server.WebSocketServices[e.Path]);
-            this.Services.Add(e.Path, s);
+            WebSocketServiceHost wssh = null;
+            foreach(WebSocketServiceHost cwssh in this.Server.WebSocketServices.Hosts)
+            {
+                if (cwssh.Path == e.Path) wssh = cwssh;
+            }
+            if (wssh != null)
+            {
+                VebSocketService s = new VebSocketService(this.HDEHost, wssh);
+                VebSocketServiceWrap sw = new VebSocketServiceWrap(s);
+                this.Services.Add(e.Path, sw);
+            }
         }
         public void AddService(string Path)
         {
@@ -173,7 +182,9 @@ namespace VVVV.Nodes.VObjects
         public override object VPathGetItem(string key)
         {
             if (this.Services.ContainsKey(key))
+            {
                 return this.Services[key];
+            }
             else return null;
         }
         public override string[] VPathQueryKeys()
