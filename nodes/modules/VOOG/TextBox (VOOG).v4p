@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\VOOG\TextBox (VOOG).v4p" systemname="TextBox (VOOG)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\TextBox (VOOG).v4p" scrollx="7770" scrolly="13605">
+   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\VOOG\TextBox (VOOG).v4p" systemname="TextBox (VOOG)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\TextBox (VOOG).v4p" scrollx="16215" scrolly="10110">
    <BOUNDS type="Window" left="3915" top="5265" width="13785" height="9885">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
@@ -1531,9 +1531,9 @@
    <NODE systemname="Vector (2d Join)" nodename="Vector (2d Join)" componentmode="Hidden" id="179">
    <BOUNDS type="Node" left="21225" top="14625" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="X" visible="1">
+   <PIN pinname="X" visible="1" slicecount="1" values="0">
    </PIN>
-   <PIN pinname="Y" visible="1">
+   <PIN pinname="Y" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="XY" visible="1">
    </PIN>
@@ -1571,7 +1571,7 @@
    <NODE systemname="Select (Node)" filename="%VVVV%\lib\nodes\modules\Node\Select (Node).v4p" nodename="Select (Node)" componentmode="Hidden" id="182">
    <BOUNDS type="Node" left="19230" top="14385" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Select" visible="1">
+   <PIN pinname="Select" visible="1" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Input" visible="1">
    </PIN>

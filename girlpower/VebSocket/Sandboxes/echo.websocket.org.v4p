@@ -414,4 +414,20 @@
    </LINK>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="65" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="2265" top="2190" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2265" top="2190" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="Bar">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="65" srcpinname="Output String" dstnodeid="18" dstpinname="Input">
+   </LINK>
    </PATCH>
