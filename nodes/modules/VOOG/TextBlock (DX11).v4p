@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\GUI\TextBlock (DX11).v4p" systemname="TextBlock (DX11)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\TextBlock (DX11).v4p" scrollx="0" scrolly="3810">
-   <BOUNDS type="Window" left="4365" top="2580" width="14970" height="10140">
+   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\VOOG\TextBlock (DX11).v4p" systemname="TextBlock (DX11)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\TextBlock (DX11).v4p" scrollx="0" scrolly="2610">
+   <BOUNDS type="Window" left="5910" top="4695" width="14970" height="10140">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
    </PACK>
@@ -57,7 +57,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="6180" top="5145" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Color Input" slicecount="1" visible="1" values="|0.71455,0.71455,0.71455,1.00000|">
+   <PIN pinname="Color Input" slicecount="1" visible="1" values="|1.00000,1.00000,1.00000,1.00000|">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="Color">
    </PIN>
@@ -331,7 +331,7 @@
    <LINK srcnodeid="31" srcpinname="Output Node" dstnodeid="24" dstpinname="Format">
    </LINK>
    <NODE systemname="Blend (DX11.RenderState)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Blend (DX11.RenderState)" componentmode="Hidden" id="34">
-   <BOUNDS type="Node" left="2130" top="8760" width="100" height="100">
+   <BOUNDS type="Node" left="1695" top="8700" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Mode" slicecount="1" visible="1" values="TextDefault">
    </PIN>
@@ -339,15 +339,13 @@
    </PIN>
    </NODE>
    <NODE systemname="DepthStencil (DX11.RenderState)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DepthStencil (DX11.RenderState)" componentmode="Hidden" id="35">
-   <BOUNDS type="Node" left="1965" top="9540" width="100" height="100">
+   <BOUNDS type="Node" left="1530" top="9480" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Render State" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Mode" slicecount="1" values="LessRead">
    </PIN>
    </NODE>
-   <LINK srcnodeid="35" srcpinname="Render State" dstnodeid="26" dstpinname="Render State">
-   </LINK>
    <NODE systemname="Translate (Transform)" nodename="Translate (Transform)" componentmode="Hidden" id="36">
    <BOUNDS type="Node" left="4200" top="3795" width="100" height="100">
    </BOUNDS>
@@ -367,7 +365,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="8805" top="4215" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="-0.02">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -411,9 +409,9 @@
    <LINK srcnodeid="39" srcpinname="Y Output Value" dstnodeid="26" dstpinname="Enabled">
    </LINK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="40" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="2505" top="8385" width="1170" height="240">
+   <BOUNDS type="Box" left="2070" top="8325" width="1170" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="2505" top="8385" width="0" height="0">
+   <BOUNDS type="Node" left="2070" top="8325" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Enum" slicecount="1" visible="1" values="TextDefault">
    </PIN>
@@ -607,7 +605,7 @@
    <LINK srcnodeid="46" srcpinname="Layer" dstnodeid="51" dstpinname="Layer 2">
    </LINK>
    <NODE systemname="Blend (DX11.RenderState Advanced)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Blend (DX11.RenderState Advanced)" componentmode="Hidden" id="55">
-   <BOUNDS type="Node" left="1605" top="8040" width="100" height="100">
+   <BOUNDS type="Node" left="1605" top="7935" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Enabled" slicecount="1" values="0">
    </PIN>
@@ -629,7 +627,7 @@
    </PIN>
    </NODE>
    <NODE systemname="Switch (Node Input)" nodename="Switch (Node Input)" componentmode="Hidden" id="56">
-   <BOUNDS type="Node" left="1920" top="9195" width="100" height="100">
+   <BOUNDS type="Node" left="1485" top="9135" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input 2" visible="1">
    </PIN>
@@ -647,9 +645,9 @@
    <LINK srcnodeid="56" srcpinname="Output" dstnodeid="35" dstpinname="Render State">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="57" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="435" top="7740" width="480" height="480">
+   <BOUNDS type="Box" left="165" top="7560" width="480" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="435" top="7740" width="0" height="0">
+   <BOUNDS type="Node" left="165" top="7560" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
@@ -665,5 +663,49 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="57" srcpinname="Y Output Value" dstnodeid="56" dstpinname="Switch">
+   </LINK>
+   <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="58">
+   <BOUNDS type="Node" left="345" top="8490" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="345" top="8490" width="480" height="480">
+   </BOUNDS>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Custom RenderState|">
+   </PIN>
+   </NODE>
+   <NODE systemname="Switch (Node Input)" nodename="Switch (Node Input)" componentmode="Hidden" id="59">
+   <BOUNDS type="Node" left="1320" top="10035" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Switch" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="35" srcpinname="Render State" dstnodeid="59" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="59" srcpinname="Output" dstnodeid="26" dstpinname="Render State">
+   </LINK>
+   <LINK srcnodeid="58" srcpinname="Y Output Value" dstnodeid="59" dstpinname="Switch">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="60" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="570" top="9285" width="600" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="570" top="9285" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="RenderState">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="60" srcpinname="Output Node" dstnodeid="59" dstpinname="Input 2">
    </LINK>
    </PATCH>

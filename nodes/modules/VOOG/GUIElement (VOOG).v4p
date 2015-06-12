@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\VObject\nodes\modules\VOOG\GUIElement (VOOG).v4p" systemname="GUIElement" filename="C:\Users\Intel\Desktop\MG-3-PUMA-CES\ProgramFiles\GUIElement.v4p" scrollx="0" scrolly="795">
-   <BOUNDS type="Window" left="29085" top="2790" width="14760" height="10125">
+   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\VOOG\GUIElement (VOOG).v4p" systemname="GUIElement" filename="C:\Users\Intel\Desktop\MG-3-PUMA-CES\ProgramFiles\GUIElement.v4p" scrollx="0" scrolly="0">
+   <BOUNDS type="Window" left="29085" top="0" width="14760" height="16200">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
    </PACK>

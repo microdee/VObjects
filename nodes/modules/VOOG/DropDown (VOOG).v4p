@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\VObject\nodes\modules\VOOG\DropDown (VOOG).v4p" systemname="DropDown (VOOG)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\DropDown (VOOG).v4p" scrollx="2970" scrolly="15390">
-   <BOUNDS type="Window" left="-1050" top="4485" width="13230" height="9090">
+   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\VOOG\DropDown (VOOG).v4p" systemname="DropDown (VOOG)" filename="C:\vvvv\libs\VObjects\nodes\modules\GUI\DropDown (VOOG).v4p" scrollx="0" scrolly="0">
+   <BOUNDS type="Window" left="315" top="3525" width="16380" height="12195">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
    </PACK>
@@ -149,11 +149,13 @@
    </PIN>
    <PIN pinname="Source" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="Add" visible="1" slicecount="4" values="0,0,0,0">
+   <PIN pinname="Add" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Name" visible="1">
    </PIN>
    <PIN pinname="Added" visible="1">
+   </PIN>
+   <PIN pinname="Manage Existing Object" slicecount="1" visible="1" values="Ignore">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="12" systemname="IOBox (String)">
@@ -1761,7 +1763,7 @@
    <LINK srcnodeid="230" srcpinname="Output" dstnodeid="129" dstpinname="Input">
    </LINK>
    <NODE systemname="PrimitiveObject (VObject Construct)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (VObject Construct)" componentmode="Hidden" id="14">
-   <BOUNDS type="Node" left="3030" top="3930" width="1110" height="270">
+   <BOUNDS type="Node" left="3210" top="3960" width="1110" height="270">
    </BOUNDS>
    <PIN pinname="Configuration" slicecount="1" values="|string Items, int Selected|">
    </PIN>
@@ -2054,20 +2056,14 @@
    <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
    </NODE>
-   <LINK srcnodeid="8" srcpinname="Y Output Value" dstnodeid="14" dstpinname="Construct">
-   </LINK>
    <NODE systemname="TogEdge (Animation)" nodename="TogEdge (Animation)" componentmode="Hidden" id="233">
-   <BOUNDS type="Node" left="3225" top="4605" width="100" height="100">
+   <BOUNDS type="Node" left="2295" top="3630" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Input" visible="1">
+   <PIN pinname="Input" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Up Edge" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="10" srcpinname="GUI Element Added" dstnodeid="233" dstpinname="Input">
-   </LINK>
-   <LINK srcnodeid="233" srcpinname="Up Edge" dstnodeid="13" dstpinname="Add">
-   </LINK>
    <NODE systemname="Info (VObjectCollection)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Info (VObjectCollection)" componentmode="Hidden" id="234">
    <BOUNDS type="Node" left="10185" top="12285" width="100" height="100">
    </BOUNDS>
@@ -2077,5 +2073,129 @@
    <LINK srcnodeid="153" srcpinname="Output" dstnodeid="234" dstpinname="Input">
    </LINK>
    <LINK srcnodeid="139" srcpinname="Output" dstnodeid="82" dstpinname="Construct">
+   </LINK>
+   <NODE systemname="Formular (PrimitiveObject)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Formular (PrimitiveObject)" componentmode="Hidden" id="235">
+   <BOUNDS type="Node" left="5100" top="4950" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Formular Name" visible="1">
+   </PIN>
+   <PIN pinname="Definition" visible="1">
+   </PIN>
+   <PIN pinname="Update" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Formular (PrimitiveObject Individual)" filename="..\PrimitiveObjects\Formular (PrimitiveObject Individual).v4p" nodename="Formular (PrimitiveObject Individual)" componentmode="Hidden" id="236">
+   <BOUNDS type="Node" left="6045" top="5565" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Prefix" visible="1">
+   </PIN>
+   <PIN pinname="Definition" visible="1">
+   </PIN>
+   <PIN pinname="Update" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="237" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="5535" top="4365" width="1410" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5535" top="4365" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="VOOG.Dropdown">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="Formular">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="237" srcpinname="Output String" dstnodeid="235" dstpinname="Formular Name">
+   </LINK>
+   <NODE systemname="Add (String)" nodename="Add (String)" componentmode="Hidden" id="238">
+   <BOUNDS type="Node" left="5895" top="5025" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 2" slicecount="1" values=".">
+   </PIN>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="237" srcpinname="Output String" dstnodeid="238" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="238" srcpinname="Output" dstnodeid="236" dstpinname="Prefix">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="239" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="5835" top="3810" width="1920" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5835" top="3810" width="1920" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|string Items, int Selected|">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="239" srcpinname="Output String" dstnodeid="235" dstpinname="Definition">
+   </LINK>
+   <LINK srcnodeid="239" srcpinname="Output String" dstnodeid="236" dstpinname="Definition">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="240" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="7515" top="4530" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="7515" top="4530" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="240" srcpinname="Y Output Value" dstnodeid="235" dstpinname="Update">
+   </LINK>
+   <LINK srcnodeid="240" srcpinname="Y Output Value" dstnodeid="236" dstpinname="Update">
+   </LINK>
+   <NODE systemname="MonoFlop (Animation Framebased)" filename="%VVVV%\addonpack\lib\nodes\plugins\MonoFlop.dll" nodename="MonoFlop (Animation Framebased)" componentmode="Hidden" id="241">
+   <BOUNDS type="Node" left="2280" top="4080" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Reset" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Frames" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Set" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="233" srcpinname="Up Edge" dstnodeid="241" dstpinname="Set">
+   </LINK>
+   <LINK srcnodeid="241" srcpinname="Output" dstnodeid="13" dstpinname="Add">
+   </LINK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="242" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="3675" top="5580" width="960" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3675" top="5580" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="Ignore">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="242" srcpinname="Output Enum" dstnodeid="13" dstpinname="Manage Existing Object">
+   </LINK>
+   <LINK srcnodeid="8" srcpinname="Y Output Value" dstnodeid="14" dstpinname="Construct">
+   </LINK>
+   <LINK srcnodeid="8" srcpinname="Y Output Value" dstnodeid="233" dstpinname="Input">
    </LINK>
    </PATCH>
