@@ -113,7 +113,7 @@ namespace VVVV.Nodes.VObjects
             {
                 if (FExistObjMan[this.CurrParent] == ManageExistingObject.Overwrite)
                 {
-                    Content[FName[this.CurrParent][this.CurrSource]].Dispose();
+                    //Content[FName[this.CurrParent][this.CurrSource]].Dispose();
                     Content[FName[this.CurrParent][this.CurrSource]] = Source;
                 }
             }
