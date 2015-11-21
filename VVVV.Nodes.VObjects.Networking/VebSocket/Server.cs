@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Linq;
-using System.ComponentModel.Composition;
-using System.IO;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Security.Cryptography.X509Certificates;
 using System.Security.Principal;
 using VVVV.Packs.VObjects;
 using VVVV.PluginInterfaces.V2;

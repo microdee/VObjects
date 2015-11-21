@@ -1,22 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Diagnostics;
-using System.IO;
-using VVVV.Utils.VColor;
-using VVVV.Utils.VMath;
-
-using VVVV.Hosting;
-using VVVV.PluginInterfaces.V1;
+﻿using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
-using VVVV.Core.Logging;
 
 using VVVV.Packs.VObjects;
-
-using WebSocketSharp;
 
 namespace VVVV.Nodes.VObjects
 {
@@ -32,7 +17,7 @@ namespace VVVV.Nodes.VObjects
     public class VebSocketClientLogNode : IPluginEvaluate
     {
         [Input("Input")]
-        public Pin<VebSocketClientWrap> FInput;
+        public Pin<VObject> FInput;
 
         [Output("Output")]
         public ISpread<ISpread<string>> FOutput;
@@ -47,12 +32,15 @@ namespace VVVV.Nodes.VObjects
                 FFile.SliceCount = SpreadMax;
                 for (int i = 0; i < SpreadMax; i++)
                 {
-                    VebSocketClient vs = FInput[i].Content as VebSocketClient;
-                    FFile[i] = vs.Client.Log.File;
-                    FOutput[i].SliceCount = 0;
-                    foreach(string s in vs.LogMessages.Values)
+                    if (FInput[i] is VebSocketClientWrap)
                     {
-                        FOutput[i].Add(s);
+                        VebSocketClient vs = FInput[i].Content as VebSocketClient;
+                        FFile[i] = vs.Client.Log.File;
+                        FOutput[i].SliceCount = 0;
+                        foreach (string s in vs.LogMessages.Values)
+                        {
+                            FOutput[i].Add(s);
+                        }
                     }
                 }
             }

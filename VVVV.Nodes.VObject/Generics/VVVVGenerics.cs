@@ -1,5 +1,4 @@
-﻿using System;
-using VVVV.Nodes.Generic;
+﻿using VVVV.Nodes.Generic;
 using VVVV.PluginInterfaces.V2;
 using VVVV.Utils.Streams;
 

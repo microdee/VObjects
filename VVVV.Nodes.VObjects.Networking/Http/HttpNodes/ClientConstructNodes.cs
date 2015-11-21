@@ -1,16 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
 
-using VVVV.Hosting;
 using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
-using VVVV.Core.Logging;
 
 using VVVV.Packs.VObjects;
 
@@ -24,7 +16,7 @@ namespace VVVV.Nodes.VObjects
         Tags = "microdee"
     )]
     #endregion PluginInfo
-    public class HttpClientConstructor : ConstructVObjectNode<HttpClientWrap>
+    public class HttpClientConstructor : ConstructVObjectNode
     {
         [Input("Base Url", DefaultString = "http://localhost")]
         public ISpread<string> FUrl;
@@ -43,7 +35,7 @@ namespace VVVV.Nodes.VObjects
         [Output("Error")]
         public ISpread<string> FError;
 
-        public override HttpClientWrap ConstructVObject()
+        public override VObject ConstructVObject()
         {
             try
             {

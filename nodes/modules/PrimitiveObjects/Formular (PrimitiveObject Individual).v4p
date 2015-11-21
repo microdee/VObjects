@@ -1,12 +1,12 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\VObjects\nodes\modules\PrimitiveObjects\Formular (PrimitiveObject Individual).v4p" systemname="Formular (PrimitiveObject Individual)" filename="C:\vvvv\libs\VObjects\nodes\modules\PrimitiveObjects\Formular (PrimitiveObject Individual).v4p" scrollx="0" scrolly="0">
-   <BOUNDS type="Window" left="15555" top="6570" width="9000" height="6000">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.1.dtd" >
+   <PATCH nodename="C:\vvvv\libs\mcropack\packs\VObjects\nodes\modules\PrimitiveObjects\Formular (PrimitiveObject Individual).v4p" systemname="Formular (PrimitiveObject Individual)" filename="C:\vvvv\libs\VObjects\nodes\modules\PrimitiveObjects\Formular (PrimitiveObject Individual).v4p" scrollx="0" scrolly="0">
+   <BOUNDS type="Window" left="9510" top="7575" width="9000" height="6000">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
-   <PACK Name="addonpack" Version="33.7.0">
+   <PACK Name="addonpack" Version="34.1.0">
    </PACK>
-   <NODE systemname="Formular (PrimitiveObject)" filename="..\..\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Formular (PrimitiveObject)" componentmode="Hidden" id="1">
+   <NODE systemname="Formular (PrimitiveObject)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Formular (PrimitiveObject)" componentmode="Hidden" id="1">
    <BOUNDS type="Node" left="3105" top="3885" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Update" visible="1" slicecount="1" values="0">
@@ -33,13 +33,15 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="Update">
    </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="0" srcpinname="Y Output Value" dstnodeid="1" dstpinname="Update">
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="2" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="1920" top="1125" width="795" height="240">
+   <BOUNDS type="Box" left="810" top="840" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="1920" top="1125" width="0" height="0">
+   <BOUNDS type="Node" left="810" top="840" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="1" values="||">
    </PIN>
@@ -61,14 +63,14 @@
    </PIN>
    <PIN pinname="Input 2" visible="1">
    </PIN>
-   <PIN pinname="Intersperse" slicecount="1" values="None">
+   <PIN pinname="Intersperse" slicecount="1" values="None" visible="1">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="2" srcpinname="Output String" dstnodeid="3" dstpinname="Input 1">
    </LINK>
-   <NODE systemname="Separate (String)" nodename="Separate (String)" componentmode="Hidden" id="4">
+   <NODE systemname="Separate (String Legacy)" nodename="Separate (String)" componentmode="Hidden" id="4">
    <BOUNDS type="Node" left="3165" top="1245" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1">
@@ -112,7 +114,7 @@
    </LINK>
    <LINK srcnodeid="6" srcpinname="Output" dstnodeid="1" dstpinname="Definition">
    </LINK>
-   <NODE systemname="Separate (String)" nodename="Separate (String)" componentmode="Hidden" id="7">
+   <NODE systemname="Separate (String Legacy)" nodename="Separate (String)" componentmode="Hidden" id="7">
    <BOUNDS type="Node" left="2940" top="2085" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1" slicecount="1" values="text">
@@ -149,5 +151,81 @@
    <LINK srcnodeid="9" srcpinname="Output" dstnodeid="3" dstpinname="Input 2">
    </LINK>
    <LINK srcnodeid="3" srcpinname="Output" dstnodeid="1" dstpinname="Formular Name">
+   </LINK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="10" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="1935" top="795" width="855" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1935" top="795" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="None">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Intersperse">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="10" srcpinname="Output Enum" dstnodeid="3" dstpinname="Intersperse">
+   </LINK>
+   <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="11">
+   <BOUNDS type="Node" left="4725" top="585" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4725" top="585" width="480" height="480">
+   </BOUNDS>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Create Full Formular Too|">
+   </PIN>
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Formular (PrimitiveObject)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Formular (PrimitiveObject)" componentmode="Hidden" id="12">
+   <BOUNDS type="Node" left="2100" top="3945" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Update" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Formular Name" visible="1">
+   </PIN>
+   <PIN pinname="Definition" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="AND (Boolean)" nodename="AND (Boolean)" componentmode="Hidden" id="13">
+   <BOUNDS type="Node" left="4740" top="3195" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="Y Output Value" dstnodeid="13" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="11" srcpinname="Y Output Value" dstnodeid="13" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="13" srcpinname="Output" dstnodeid="12" dstpinname="Update">
+   </LINK>
+   <LINK srcnodeid="2" srcpinname="Output String" dstnodeid="12" dstpinname="Formular Name">
+   </LINK>
+   <LINK srcnodeid="5" srcpinname="Output String" dstnodeid="12" dstpinname="Definition">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="14" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="2985" top="4680" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2985" top="4680" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="text">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Formulars">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Output" dstnodeid="14" dstpinname="Input String">
    </LINK>
    </PATCH>

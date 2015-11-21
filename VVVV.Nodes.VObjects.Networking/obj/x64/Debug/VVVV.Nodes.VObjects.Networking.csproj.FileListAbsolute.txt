@@ -10,3 +10,9 @@ C:\vvvv\libs\VObject\nodes\plugins\x64\VVVV.Nodes.VObjects.Networking.pdb
 C:\vvvv\libs\VObject\VVVV.Nodes.VObjects.Networking\obj\x64\Debug\VVVV.Nodes.VObjects.Networking.csprojResolveAssemblyReference.cache
 C:\vvvv\libs\VObject\VVVV.Nodes.VObjects.Networking\obj\x64\Debug\VVVV.Nodes.VObjects.Networking.dll
 C:\vvvv\libs\VObject\VVVV.Nodes.VObjects.Networking\obj\x64\Debug\VVVV.Nodes.VObjects.Networking.pdb
+C:\vvvv\libs\mcropack\packs\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.Networking.dll.config
+C:\vvvv\libs\mcropack\packs\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.Networking.dll
+C:\vvvv\libs\mcropack\packs\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.Networking.pdb
+C:\vvvv\libs\mcropack\packs\VObjects\VVVV.Nodes.VObjects.Networking\obj\x64\Debug\VVVV.Nodes.VObjects.Networking.csprojResolveAssemblyReference.cache
+C:\vvvv\libs\mcropack\packs\VObjects\VVVV.Nodes.VObjects.Networking\obj\x64\Debug\VVVV.Nodes.VObjects.Networking.dll
+C:\vvvv\libs\mcropack\packs\VObjects\VVVV.Nodes.VObjects.Networking\obj\x64\Debug\VVVV.Nodes.VObjects.Networking.pdb

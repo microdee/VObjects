@@ -1,23 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Diagnostics;
-using System.IO;
-using VVVV.Utils.VColor;
-using VVVV.Utils.VMath;
-
-using VVVV.Hosting;
-using VVVV.PluginInterfaces.V1;
+﻿using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
-using VVVV.Core.Logging;
 
 using VVVV.Packs.VObjects;
 
 using WebSocketSharp;
-using WebSocketSharp.Net;
 
 namespace VVVV.Nodes.VObjects
 {
@@ -34,7 +20,7 @@ namespace VVVV.Nodes.VObjects
     public class VebSocketClientSendMessagesNode : IPluginEvaluate
     {
         [Input("Input")]
-        public Pin<VebSocketClientWrap> FInput;
+        public Pin<VObject> FInput;
         [Input("Message")]
         public ISpread<ISpread<ClientMessageWrap>> FMessage;
         [Input("Send", IsBang = true)]  
@@ -58,42 +44,45 @@ namespace VVVV.Nodes.VObjects
 
                 for (int i = 0; i < FInput.SliceCount; i++)
                 {
-                    FSending[i].SliceCount = 0;
-                    FSent[i].SliceCount = 0;
-                    FError[i].SliceCount = 0;
-                    VebSocketClient vs = FInput[i].Content as VebSocketClient;
-
-                    for (int j = 0; j < FMessage.SliceCount; j++)
+                    if (FInput[i] is VebSocketClientWrap)
                     {
-                        if (FSend[i][j])
+                        FSending[i].SliceCount = 0;
+                        FSent[i].SliceCount = 0;
+                        FError[i].SliceCount = 0;
+                        VebSocketClient vs = FInput[i].Content as VebSocketClient;
+
+                        for (int j = 0; j < FMessage.SliceCount; j++)
                         {
-                            ClientMessage cm = FMessage[i][j].Content as ClientMessage;
-                            if (cm.Type == Opcode.Text)
+                            if (FSend[i][j])
                             {
-                                vs.Send(cm.Text);
-                            }
-                            else
-                            {
-                                vs.Send(cm.Raw);
+                                ClientMessage cm = FMessage[i][j].Content as ClientMessage;
+                                if (cm.Type == Opcode.Text)
+                                {
+                                    vs.Send(cm.Text);
+                                }
+                                else
+                                {
+                                    vs.Send(cm.Raw);
+                                }
                             }
                         }
-                    }
 
-                    FSending[i].SliceCount = 0;
-                    foreach(ClientMessage cm in vs.SendingMessages.Values)
-                    {
-                        FSending[i].Add(new ClientMessageWrap(cm));
-                    }
-                    FSent[i].SliceCount = 0;
-                    foreach (ClientMessage cm in vs.SentMessages.Values)
-                    {
-                        FSent[i].Add(new ClientMessageWrap(cm));
-                    }
-                    FError[i].SliceCount = 0;
-                    foreach (VebSocketError e in vs.Errors)
-                    {
-                        if (e.Exception != null) FError[i].Add(e.Message + "\n" + e.Exception.Message);
-                        else FError[i].Add(e.Message);
+                        FSending[i].SliceCount = 0;
+                        foreach (ClientMessage cm in vs.SendingMessages.Values)
+                        {
+                            FSending[i].Add(new ClientMessageWrap(cm));
+                        }
+                        FSent[i].SliceCount = 0;
+                        foreach (ClientMessage cm in vs.SentMessages.Values)
+                        {
+                            FSent[i].Add(new ClientMessageWrap(cm));
+                        }
+                        FError[i].SliceCount = 0;
+                        foreach (VebSocketError e in vs.Errors)
+                        {
+                            if (e.Exception != null) FError[i].Add(e.Message + "\n" + e.Exception.Message);
+                            else FError[i].Add(e.Message);
+                        }
                     }
                 }
             }

@@ -1,18 +1,11 @@
 ﻿// Credits: Sanch's original JObject implementation: 
 
-using System;
-using System.ComponentModel.Composition;
 using System.IO;
 
 using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
-using VVVV.Utils.VColor;
-using VVVV.Utils.VMath;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-using VVVV.Core.Logging;
-using System.Collections.Generic;
 using VVVV.Packs.VObjects;
 
 namespace VVVV.Nodes.VObjects
@@ -37,9 +30,6 @@ namespace VVVV.Nodes.VObjects
         }
     }
 
-    [PluginInfo(Name = "Cast", Category = "To", Version = "JSON")]
-    public class ToJSONCastNode : CastToNode<JObjectWrap> { }
-
     [PluginInfo(Name = "JsonParser", Category = "JSON", Help = "parse json string", Tags = "")]
     public class JsonParser : IPluginEvaluate
     {
@@ -53,8 +43,6 @@ namespace VVVV.Nodes.VObjects
         [Output("Valid")]
         public ISpread<bool> FValid;
 
-        [Import()]
-        public ILogger FLogger;
         #endregion fields & pins
         //called when data for any output pin is requested
 
@@ -82,7 +70,7 @@ namespace VVVV.Nodes.VObjects
     {
         #region fields & pins
         [Input("JObject")]
-        public Pin<JObjectWrap> FInput;
+        public Pin<VObject> FInput;
 
         [Input("path")]
         public ISpread<ISpread<string>> FInputp;
@@ -96,8 +84,6 @@ namespace VVVV.Nodes.VObjects
         [Output("Output Object")]
         public ISpread<ISpread<JObjectWrap>> FObjectOut;
 
-        [Import()]
-        public ILogger FLogger;
         #endregion fields & pins
         //called when data for any output pin is requested
 
@@ -113,21 +99,24 @@ namespace VVVV.Nodes.VObjects
                 {
                     for (int i = 0; i < FInput.SliceCount; i++)
                     {
-                        JToken ThisContent = FInput[i].Content as JToken;
-                        FOutput[i].SliceCount = FInputp[i].SliceCount;
-                        FObjectOut[i].SliceCount = 0;
-                        for (int j = 0; j < FInputp[i].SliceCount; j++)
+                        if (FInput[i] is JObjectWrap)
                         {
-                            if (ThisContent.SelectToken(FInputp[i][j]) != null && ThisContent != null)
+                            JToken ThisContent = FInput[i].Content as JToken;
+                            FOutput[i].SliceCount = FInputp[i].SliceCount;
+                            FObjectOut[i].SliceCount = 0;
+                            for (int j = 0; j < FInputp[i].SliceCount; j++)
                             {
-                                JToken st = ThisContent.SelectToken(FInputp[i][j]);
-                                FOutput[i][j] = st.ToString();
-                                JObjectWrap jow = new JObjectWrap(st);
-                                FObjectOut[i].Add(jow);
-                            }
-                            else
-                            {
-                                FOutput[i][j] = "";
+                                if (ThisContent.SelectToken(FInputp[i][j]) != null && ThisContent != null)
+                                {
+                                    JToken st = ThisContent.SelectToken(FInputp[i][j]);
+                                    FOutput[i][j] = st.ToString();
+                                    JObjectWrap jow = new JObjectWrap(st);
+                                    FObjectOut[i].Add(jow);
+                                }
+                                else
+                                {
+                                    FOutput[i][j] = "";
+                                }
                             }
                         }
                     }
@@ -141,7 +130,7 @@ namespace VVVV.Nodes.VObjects
     {
         #region fields & pins
         [Input("Jobject")]
-        public Pin<JObjectWrap> FInput;
+        public Pin<VObject> FInput;
 
         [Input("path")]
         public IDiffSpread<string> FInputp;
@@ -161,8 +150,6 @@ namespace VVVV.Nodes.VObjects
         // [Output("Output json")]
         //ISpread<Vson> FJOutput;
 
-        [Import()]
-        public ILogger FLogger;
         #endregion fields & pins
         //called when data for any output pin is requested
         public void Evaluate(int SpreadMax)
@@ -176,24 +163,27 @@ namespace VVVV.Nodes.VObjects
                     //if(FInputp.IsChanged || FInputk.IsChanged)
                     for (int i = 0; i < SpreadMax; i++)
                     {
-                        JObject ThisContent = FInput[i].Content as JObject;
-                        FOutput[i].SliceCount = 0;
-                        FObjectOut[i].SliceCount = 0;
-                        if (ThisContent.SelectToken(FInputp[i]) != null)
+                        if (FInput[i] is JObjectWrap)
                         {
-                            var results = ThisContent.SelectToken(FInputp[i]);
-                            foreach (JToken child in results.Children())
+                            JObject ThisContent = FInput[i].Content as JObject;
+                            FOutput[i].SliceCount = 0;
+                            FObjectOut[i].SliceCount = 0;
+                            if (ThisContent.SelectToken(FInputp[i]) != null)
                             {
-                                if (child.SelectToken(FInputk[0]) != null)
+                                var results = ThisContent.SelectToken(FInputp[i]);
+                                foreach (JToken child in results.Children())
                                 {
-                                    JToken st = child.SelectToken(FInputk[0]);
-                                    FOutput[i].Add(st.ToString());
-                                    JObjectWrap jow = new JObjectWrap(st);
-                                    FObjectOut[i].Add(jow);
-                                }
-                                else
-                                {
-                                    FOutput[i].Add("");
+                                    if (child.SelectToken(FInputk[0]) != null)
+                                    {
+                                        JToken st = child.SelectToken(FInputk[0]);
+                                        FOutput[i].Add(st.ToString());
+                                        JObjectWrap jow = new JObjectWrap(st);
+                                        FObjectOut[i].Add(jow);
+                                    }
+                                    else
+                                    {
+                                        FOutput[i].Add("");
+                                    }
                                 }
                             }
                         }
@@ -214,7 +204,7 @@ namespace VVVV.Nodes.VObjects
     {
         #region fields & pins
         [Input("JObject")]
-        public Pin<JObjectWrap> FInput;
+        public Pin<VObject> FInput;
         [Input("Path")]
         public IDiffSpread<string> FInputp;
         [Input("Parse", DefaultBoolean = true)]
@@ -231,8 +221,6 @@ namespace VVVV.Nodes.VObjects
         [Output("Type")]
         public ISpread<ISpread<string>> FType;
 
-        [Import()]
-        public ILogger FLogger;
         #endregion fields & pins
         //called when data for any output pin is requested
 
@@ -291,20 +279,23 @@ namespace VVVV.Nodes.VObjects
                 {
                     for (int i = 0; i < FInput.SliceCount; i++)
                     {
-                        JObject ThisContent = FInput[i].Content as JObject;
-                        JToken ThisPath = ThisContent.SelectToken(FInputp[i]);
-                        FOutput[i].SliceCount = 0;
-                        FType[i].SliceCount = 0;
-                        if (ThisPath != null)
+                        if (FInput[i] is JObjectWrap)
                         {
-                            CurrObj = i;
-                            if (FRecursive[i]) WalkNode(ThisPath);
-                            else
+                            JObject ThisContent = FInput[i].Content as JObject;
+                            JToken ThisPath = ThisContent.SelectToken(FInputp[i]);
+                            FOutput[i].SliceCount = 0;
+                            FType[i].SliceCount = 0;
+                            if (ThisPath != null)
                             {
-                                foreach (JToken jt in ThisPath.Children())
+                                CurrObj = i;
+                                if (FRecursive[i]) WalkNode(ThisPath);
+                                else
                                 {
-                                    FOutput[i].Add(jt.Path);
-                                    FType[i].Add(jt.Type.ToString());
+                                    foreach (JToken jt in ThisPath.Children())
+                                    {
+                                        FOutput[i].Add(jt.Path);
+                                        FType[i].Add(jt.Type.ToString());
+                                    }
                                 }
                             }
                         }

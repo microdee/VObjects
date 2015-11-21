@@ -1,23 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Diagnostics;
-using System.IO;
-using VVVV.Utils.VColor;
-using VVVV.Utils.VMath;
-
-using VVVV.Hosting;
+﻿using System.Collections.Generic;
 using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
-using VVVV.Core.Logging;
 
 using VVVV.Packs.VObjects;
-
-using WebSocketSharp;
-using WebSocketSharp.Net;
 using WebSocketSharp.Server;
 
 namespace VVVV.Nodes.VObjects

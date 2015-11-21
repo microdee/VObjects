@@ -1,11 +1,8 @@
 ﻿using System;
-using System.ComponentModel.Composition;
-using System.IO;
 using System.Collections.Generic;
 using System.Diagnostics;
 using VVVV.Packs.VObjects;
 using VVVV.PluginInterfaces.V2;
-using VVVV.Hosting;
 
 using WebSocketSharp;
 

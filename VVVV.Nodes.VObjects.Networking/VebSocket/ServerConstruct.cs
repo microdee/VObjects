@@ -1,27 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Diagnostics;
-using System.IO;
-using System.Security;
-using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
-using System.Configuration;
-using System.Net.Security;
-using VVVV.Utils.VColor;
-using VVVV.Utils.VMath;
-
-using VVVV.Hosting;
 using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
-using VVVV.Core.Logging;
 
 using VVVV.Packs.VObjects;
-
-using WebSocketSharp;
 using WebSocketSharp.Net;
 using WebSocketSharp.Server;
 
@@ -35,7 +18,7 @@ namespace VVVV.Nodes.VObjects
         Tags = "microdee"
     )]
     #endregion PluginInfo
-    public class VebSocketServerConstructor : ConstructVObjectNode<VebSocketServerWrap>
+    public class VebSocketServerConstructor : ConstructVObjectNode
     {
         [Import]
         public IHDEHost FHDEHost;
@@ -61,7 +44,7 @@ namespace VVVV.Nodes.VObjects
         [Input("Custom Service Behaviors")]
         public ISpread<ISpread<VObject>> FServiceBehaviors;
 
-        public override VebSocketServerWrap ConstructVObject()
+        public override VObject ConstructVObject()
         {
             VebSocketServer newServer = new VebSocketServer(FPort[this.CurrObj], FSecure[this.CurrObj]);
             VebSocketServerWrap newWrap = new VebSocketServerWrap(newServer);

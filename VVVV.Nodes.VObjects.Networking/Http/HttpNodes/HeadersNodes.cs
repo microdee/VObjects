@@ -1,18 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Threading.Tasks;
-using System.Net.Http;
+﻿using System.Collections.Generic;
 using System.Net.Http.Headers;
 
-using VVVV.Hosting;
 using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
-using VVVV.Core.Logging;
-
-using VVVV.Packs.VObjects;
 
 namespace VVVV.Nodes.VObjects
 {

@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.IO;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net.Http.Headers;
-
-using VVVV.Hosting;
 using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
-using VVVV.Core.Logging;
-
 using VVVV.Packs.VObjects;
 
 namespace VVVV.Nodes.VObjects.Http.HttpNodes
@@ -26,7 +20,7 @@ namespace VVVV.Nodes.VObjects.Http.HttpNodes
     public class HttpClientSendNode : IPluginEvaluate
     {
         [Input("Client")]
-        public Pin<HttpClientWrap> FClient;
+        public Pin<VObject> FClient;
 
         [Input("Path")]
         public ISpread<ISpread<string>> FPath;
@@ -83,45 +77,48 @@ namespace VVVV.Nodes.VObjects.Http.HttpNodes
                 FCompleted.SliceCount = FClient.SliceCount;
                 for (int i = 0; i < FClient.SliceCount; i++)
                 {
-                    int cSpreadMax = 0;
-                    cSpreadMax = Math.Max(cSpreadMax, FPath[i].SliceCount);
-                    cSpreadMax = Math.Max(cSpreadMax, FContentIn[i].SliceCount);
-                    cSpreadMax = Math.Max(cSpreadMax, FMethod[i].SliceCount);
-                    cSpreadMax = Math.Max(cSpreadMax, FMediaType[i].SliceCount);
-
-                    FTask[i].SliceCount = cSpreadMax;
-                    FHeaders[i].SliceCount = cSpreadMax;
-                    FContent[i].SliceCount = cSpreadMax;
-                    FStatus[i].SliceCount = cSpreadMax;
-                    FReason[i].SliceCount = cSpreadMax;
-                    FSending[i].SliceCount = cSpreadMax;
-                    FCompleted[i].SliceCount = cSpreadMax;
-
-                    HttpClientContainer hcc = FClient[i].Content as HttpClientContainer;
-                    for (int j = 0; j < cSpreadMax; j++)
+                    if (FClient[i] is HttpClientWrap)
                     {
-                        FCompleted[i][j] = false;
+                        int cSpreadMax = 0;
+                        cSpreadMax = Math.Max(cSpreadMax, FPath[i].SliceCount);
+                        cSpreadMax = Math.Max(cSpreadMax, FContentIn[i].SliceCount);
+                        cSpreadMax = Math.Max(cSpreadMax, FMethod[i].SliceCount);
+                        cSpreadMax = Math.Max(cSpreadMax, FMediaType[i].SliceCount);
 
-                        if(FSend[i][j])
-                        {
-                            this.Send(i, i, hcc);
-                        }
+                        FTask[i].SliceCount = cSpreadMax;
+                        FHeaders[i].SliceCount = cSpreadMax;
+                        FContent[i].SliceCount = cSpreadMax;
+                        FStatus[i].SliceCount = cSpreadMax;
+                        FReason[i].SliceCount = cSpreadMax;
+                        FSending[i].SliceCount = cSpreadMax;
+                        FCompleted[i].SliceCount = cSpreadMax;
 
-                        if(FTask[i][j] != null)
+                        HttpClientContainer hcc = FClient[i].Content as HttpClientContainer;
+                        for (int j = 0; j < cSpreadMax; j++)
                         {
-                            if(FTask[i][j].IsCompleted)
+                            FCompleted[i][j] = false;
+
+                            if (FSend[i][j])
                             {
-                                Stream tmp = new MemoryStream();
-                                if (FSending[i][j]) FCompleted[i][j] = true;
-                                FHeaders[i][j] = FTask[i][j].Result.Headers;
-                                FContent[i][j] = FTask[i][j].Result.Content.ReadAsStreamAsync().Result;
-                                FStatus[i][j] = FTask[i][j].Result.StatusCode.ToString();
-                                FReason[i][j] = FTask[i][j].Result.ReasonPhrase;
-                                FSending[i][j] = false;
+                                this.Send(i, i, hcc);
+                            }
 
-                                if(FLongPoll[i])
+                            if (FTask[i][j] != null)
+                            {
+                                if (FTask[i][j].IsCompleted)
                                 {
-                                    this.Send(i, i, hcc);
+                                    Stream tmp = new MemoryStream();
+                                    if (FSending[i][j]) FCompleted[i][j] = true;
+                                    FHeaders[i][j] = FTask[i][j].Result.Headers;
+                                    FContent[i][j] = FTask[i][j].Result.Content.ReadAsStreamAsync().Result;
+                                    FStatus[i][j] = FTask[i][j].Result.StatusCode.ToString();
+                                    FReason[i][j] = FTask[i][j].Result.ReasonPhrase;
+                                    FSending[i][j] = false;
+
+                                    if (FLongPoll[i])
+                                    {
+                                        this.Send(i, i, hcc);
+                                    }
                                 }
                             }
                         }

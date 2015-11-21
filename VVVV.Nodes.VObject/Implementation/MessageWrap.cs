@@ -1,16 +1,8 @@
-﻿
-using System;
-using System.Linq;
-using System.ComponentModel.Composition;
-using System.IO;
+﻿using System.IO;
 
 using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
-using VVVV.Utils.VColor;
-using VVVV.Utils.VMath;
 
-using VVVV.Core.Logging;
-using System.Collections.Generic;
 using VVVV.Packs.VObjects;
 using VVVV.Packs.Messaging;
 using VVVV.Packs.Messaging.Serializing;
@@ -45,11 +37,7 @@ namespace VVVV.Nodes.VObjects
             return mc;
         }
     }
-
-    [PluginInfo(Name = "Cast", Category = "To", Version = "Message")]
-    public class ToMessageCastNode : CastToNode<MessageWrap> { }
-
-
+    
     [PluginInfo(Name = "Wrap", Category = "Message", Version = "VObject")]
     public class MessageWrapperNode : IPluginEvaluate
     {
@@ -59,9 +47,6 @@ namespace VVVV.Nodes.VObjects
 
         [Output("Output")]
         public ISpread<MessageWrap> FOutput;
-
-        [Import()]
-        public ILogger FLogger;
         #endregion fields & pins
         //called when data for any output pin is requested
 
@@ -94,9 +79,6 @@ namespace VVVV.Nodes.VObjects
 
         [Output("Valid")]
         public ISpread<bool> FValid;
-
-        [Import()]
-        public ILogger FLogger;
         #endregion fields & pins
         //called when data for any output pin is requested
 

@@ -10,11 +10,11 @@ using System.IO;
 namespace VVVV.Packs.VObjects
 {
     // class for high level object management in VVVV
-    public class VObjectDictionary : VPathQueryable
+    public class VObjectCollection : VPathQueryable
     {
         public Dictionary<string, VObjectCollectionWrap> Objects = new Dictionary<string, VObjectCollectionWrap>();
         public List<string> RemoveList = new List<string>();
-        public VObjectDictionary() { }
+        public VObjectCollection() { }
 
         public void RemoveObject(string k)
         {
@@ -59,19 +59,19 @@ namespace VVVV.Packs.VObjects
     public class VObjectDictionaryWrap : VObject
     {
         public VObjectDictionaryWrap() : base() { }
-        public VObjectDictionaryWrap(VObjectDictionary o) : base(o) { }
+        public VObjectDictionaryWrap(VObjectCollection o) : base(o) { }
         public VObjectDictionaryWrap(Stream s) : base(s) { }
 
         public override void Dispose()
         {
-            VObjectDictionary ThisContent = this.Content as VObjectDictionary;
+            VObjectCollection ThisContent = this.Content as VObjectCollection;
             ThisContent.Clear();
             base.Dispose();
         }
         public override void Serialize()
         {
             base.Serialize();
-            VObjectDictionary ThisContent = this.Content as VObjectDictionary;
+            VObjectCollection ThisContent = this.Content as VObjectCollection;
             Stream dest = this.Serialized;
 
             dest.WriteUint((uint)ThisContent.Objects.Count); // 0 | 4
@@ -95,7 +95,7 @@ namespace VVVV.Packs.VObjects
         public override void DeSerialize(Stream Input)
         {
             base.DeSerialize(Input);
-            VObjectDictionary ThisContent = new VObjectDictionary();
+            VObjectCollection ThisContent = new VObjectCollection();
 
             uint Count = this.Serialized.ReadUint();
 
@@ -119,8 +119,8 @@ namespace VVVV.Packs.VObjects
         }
         public override VObject DeepCopy()
         {
-            VObjectDictionary ThisContent = (VObjectDictionary)this.Content;
-            VObjectDictionary NewObject = new VObjectDictionary();
+            VObjectCollection ThisContent = (VObjectCollection)this.Content;
+            VObjectCollection NewObject = new VObjectCollection();
             foreach(KeyValuePair<string, VObjectCollectionWrap> kvp in ThisContent.Objects)
             {
                 VObjectCollectionWrap NewCollection = (VObjectCollectionWrap)kvp.Value.DeepCopy();

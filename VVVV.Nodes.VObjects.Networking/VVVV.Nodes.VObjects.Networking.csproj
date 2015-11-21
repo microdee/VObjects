@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\VVVV.Packs.VObject\packages\VVVV.SlimDX.1.0.1\build\net40\VVVV.SlimDX.props" Condition="Exists('..\VVVV.Packs.VObject\packages\VVVV.SlimDX.1.0.1\build\net40\VVVV.SlimDX.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -13,6 +12,8 @@
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -75,12 +76,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\VVVV.Packs.VObject\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="SlimDX">
-      <HintPath>..\VVVV.Packs.VObject\packages\VVVV.SlimDX.1.0.1\build\net40\lib\x86\SlimDX.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\VVVV.Packs.VObject\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition.CodePlex">
@@ -96,6 +94,22 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Reactive.Core, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\VVVV.Packs.VObject\packages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\VVVV.Packs.VObject\packages\Rx-Interfaces.2.2.5\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Linq, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\VVVV.Packs.VObject\packages\Rx-Linq.2.2.5\lib\net45\System.Reactive.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\VVVV.Packs.VObject\packages\Rx-PlatformServices.2.2.5\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Reflection.Context.CodePlex">
       <HintPath>..\VVVV.Packs.VObject\packages\VVVV.System.ComponentModel.Composition.Codeplex.2.5.0\lib\net40\System.Reflection.Context.CodePlex.dll</HintPath>
     </Reference>
@@ -104,12 +118,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="VVVV.Core">
-      <HintPath>..\VVVV.Packs.VObject\packages\VVVV.Core.33.2.0-develop-477\lib\net40\VVVV.Core.dll</HintPath>
+    <Reference Include="VVVV.Core, Version=34.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\VVVV.Packs.VObject\packages\VVVV.Core.34.2.0\lib\net40\VVVV.Core.dll</HintPath>
       <Private>False</Private>
-    </Reference>
-    <Reference Include="VVVV.Hosting">
-      <HintPath>..\VVVV.Packs.VObject\packages\VVVV.Hosting.33.2.0-develop-477\build\net40\lib\x86\VVVV.Hosting.dll</HintPath>
     </Reference>
     <Reference Include="VVVV.Nodes.Generic">
       <HintPath>..\VVVV.Packs.VObject\packages\VVVV.Nodes.Generic.33.2.0-develop-477\build\net40\lib\x86\VVVV.Nodes.Generic.dll</HintPath>
@@ -117,15 +128,12 @@
     <Reference Include="VVVV.PluginInterfaces">
       <HintPath>..\VVVV.Packs.VObject\packages\VVVV.PluginInterfaces.33.2.0-develop-477\build\net40\lib\x86\VVVV.PluginInterfaces.dll</HintPath>
     </Reference>
-    <Reference Include="VVVV.Utils">
-      <HintPath>..\VVVV.Packs.VObject\packages\VVVV.Utils.33.7.0\lib\net40\VVVV.Utils.dll</HintPath>
+    <Reference Include="VVVV.Utils, Version=34.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\VVVV.Packs.VObject\packages\VVVV.Utils.34.2.0\lib\net40\VVVV.Utils.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="VVVV.Utils3rdParty">
-      <HintPath>..\VVVV.Packs.VObject\packages\VVVV.Utils3rdParty.33.2.0-develop-477\build\net40\lib\x86\VVVV.Utils3rdParty.dll</HintPath>
-    </Reference>
-    <Reference Include="VVVV.UtilsIL">
-      <HintPath>..\VVVV.Packs.VObject\packages\VVVV.UtilsIL.33.2.0-develop-477\lib\net40\VVVV.UtilsIL.dll</HintPath>
+    <Reference Include="VVVV.UtilsIL, Version=34.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\VVVV.Packs.VObject\packages\VVVV.UtilsIL.34.2.0\lib\net40\VVVV.UtilsIL.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="websocket-sharp, Version=1.0.2.13716, Culture=neutral, PublicKeyToken=5660b08a1845a91e, processorArchitecture=MSIL">
@@ -170,12 +178,20 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\VVVV.Packs.VObject\packages\VVVV.SlimDX.1.0.1\build\net40\VVVV.SlimDX.targets" Condition="Exists('..\VVVV.Packs.VObject\packages\VVVV.SlimDX.1.0.1\build\net40\VVVV.SlimDX.targets')" />
-  <Import Project="..\VVVV.Packs.VObject\packages\VVVV.PluginInterfaces.33.2.0-develop-477\build\net40\VVVV.PluginInterfaces.targets" Condition="Exists('..\VVVV.Packs.VObject\packages\VVVV.PluginInterfaces.33.2.0-develop-477\build\net40\VVVV.PluginInterfaces.targets')" />
-  <Import Project="..\VVVV.Packs.VObject\packages\VVVV.Utils3rdParty.33.2.0-develop-477\build\net40\VVVV.Utils3rdParty.targets" Condition="Exists('..\VVVV.Packs.VObject\packages\VVVV.Utils3rdParty.33.2.0-develop-477\build\net40\VVVV.Utils3rdParty.targets')" />
-  <Import Project="..\VVVV.Packs.VObject\packages\VVVV.Hosting.33.2.0-develop-477\build\net40\VVVV.Hosting.targets" Condition="Exists('..\VVVV.Packs.VObject\packages\VVVV.Hosting.33.2.0-develop-477\build\net40\VVVV.Hosting.targets')" />
-  <Import Project="..\VVVV.Packs.VObject\packages\VVVV.Nodes.Generic.33.2.0-develop-477\build\net40\VVVV.Nodes.Generic.targets" Condition="Exists('..\VVVV.Packs.VObject\packages\VVVV.Nodes.Generic.33.2.0-develop-477\build\net40\VVVV.Nodes.Generic.targets')" />
   <Import Project="..\VVVV.Packs.VObject\packages\VVVV.Packs.Time.0.5.5\build\net40\VVVV.Packs.Time.targets" Condition="Exists('..\VVVV.Packs.VObject\packages\VVVV.Packs.Time.0.5.5\build\net40\VVVV.Packs.Time.targets')" />
+  <Import Project="..\VVVV.Packs.VObject\packages\VVVV.PluginInterfaces.34.2.0\build\net40\VVVV.PluginInterfaces.targets" Condition="Exists('..\VVVV.Packs.VObject\packages\VVVV.PluginInterfaces.34.2.0\build\net40\VVVV.PluginInterfaces.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\VVVV.Packs.VObject\packages\VVVV.PluginInterfaces.34.2.0\build\net40\VVVV.PluginInterfaces.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\VVVV.Packs.VObject\packages\VVVV.PluginInterfaces.34.2.0\build\net40\VVVV.PluginInterfaces.targets'))" />
+    <Error Condition="!Exists('..\VVVV.Packs.VObject\packages\VVVV.Utils3rdParty.34.2.0\build\net40\VVVV.Utils3rdParty.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\VVVV.Packs.VObject\packages\VVVV.Utils3rdParty.34.2.0\build\net40\VVVV.Utils3rdParty.targets'))" />
+    <Error Condition="!Exists('..\VVVV.Packs.VObject\packages\VVVV.Hosting.34.2.0\build\net40\VVVV.Hosting.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\VVVV.Packs.VObject\packages\VVVV.Hosting.34.2.0\build\net40\VVVV.Hosting.targets'))" />
+    <Error Condition="!Exists('..\VVVV.Packs.VObject\packages\VVVV.Nodes.Generic.34.2.0\build\net40\VVVV.Nodes.Generic.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\VVVV.Packs.VObject\packages\VVVV.Nodes.Generic.34.2.0\build\net40\VVVV.Nodes.Generic.targets'))" />
+  </Target>
+  <Import Project="..\VVVV.Packs.VObject\packages\VVVV.Utils3rdParty.34.2.0\build\net40\VVVV.Utils3rdParty.targets" Condition="Exists('..\VVVV.Packs.VObject\packages\VVVV.Utils3rdParty.34.2.0\build\net40\VVVV.Utils3rdParty.targets')" />
+  <Import Project="..\VVVV.Packs.VObject\packages\VVVV.Hosting.34.2.0\build\net40\VVVV.Hosting.targets" Condition="Exists('..\VVVV.Packs.VObject\packages\VVVV.Hosting.34.2.0\build\net40\VVVV.Hosting.targets')" />
+  <Import Project="..\VVVV.Packs.VObject\packages\VVVV.Nodes.Generic.34.2.0\build\net40\VVVV.Nodes.Generic.targets" Condition="Exists('..\VVVV.Packs.VObject\packages\VVVV.Nodes.Generic.34.2.0\build\net40\VVVV.Nodes.Generic.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

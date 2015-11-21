@@ -1,18 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Diagnostics;
-using System.IO;
-using VVVV.Utils.VColor;
-using VVVV.Utils.VMath;
-
-using VVVV.Hosting;
-using VVVV.PluginInterfaces.V1;
+﻿using System.Collections.Generic;
 using VVVV.PluginInterfaces.V2;
-using VVVV.Core.Logging;
 
 using VVVV.Packs.VObjects;
 
@@ -40,7 +27,7 @@ namespace VVVV.Nodes.VObjects
         public IDiffSpread<bool> FClear;
 
         [Output("Output", Order = 0)]
-        public ISpread<ParentObject> FOutput;
+        public ISpread<VObject> FOutput;
 
         // You have to construct your parent object when the node is being constructed
         public virtual void Cast() { }
@@ -55,14 +42,14 @@ namespace VVVV.Nodes.VObjects
             this.Cast();
         }
     }
-    public abstract class ConstructVObjectNode<ResultObject> : IPluginEvaluate where ResultObject : VObject
+    public abstract class ConstructVObjectNode : IPluginEvaluate
     {
         [Input("Construct", IsBang = true, Order = 0)]
         public ISpread<bool> FConstruct;
         [Input("Auto Clear", DefaultBoolean = true, Order = 1)]
         public ISpread<bool> FAutoClear;
         [Output("Output", Order = 0)]
-        public ISpread<ResultObject> FOutput;
+        public ISpread<VObject> FOutput;
 
         private List<int> Removables = new List<int>();
         public int CurrObj;
@@ -77,7 +64,7 @@ namespace VVVV.Nodes.VObjects
             return;
         }
 
-        public virtual ResultObject ConstructVObject()
+        public virtual VObject ConstructVObject()
         {
             return null;
         }
@@ -104,7 +91,7 @@ namespace VVVV.Nodes.VObjects
                 this.CurrObj = i;
                 if (FConstruct[i])
                 {
-                    ResultObject ro = ConstructVObject();
+                    VObject ro = ConstructVObject();
                     if (ro != null) FOutput.Add(ro);
                 }
             }
@@ -120,7 +107,7 @@ namespace VVVV.Nodes.VObjects
                 FOutput.RemoveAt(Removables[i]);
         }
     }
-    public abstract class ConstructAndSetVObjectNode<ResultObject> : IPluginEvaluate where ResultObject : VObject
+    public abstract class ConstructAndSetVObjectNode : IPluginEvaluate
     {
         [Input("Construct", IsBang = true, Order = 0)]
         public ISpread<bool> FConstruct;
@@ -129,7 +116,7 @@ namespace VVVV.Nodes.VObjects
         [Input("Set", IsBang = true, Order = 0)]
         public ISpread<bool> FSet;
         [Output("Output", Order = 0)]
-        public ISpread<ResultObject> FOutput;
+        public ISpread<VObject> FOutput;
 
         private List<int> Removables = new List<int>();
         public int CurrObj;
@@ -144,11 +131,11 @@ namespace VVVV.Nodes.VObjects
             return;
         }
 
-        public virtual ResultObject ConstructVObject()
+        public virtual VObject ConstructVObject()
         {
             return null;
         }
-        public virtual void SetVObject(ResultObject Obj)
+        public virtual void SetVObject(VObject Obj)
         {
             return;
         }
@@ -184,7 +171,7 @@ namespace VVVV.Nodes.VObjects
                 this.CurrObj = i;
                 if (FConstruct[i] || (FSet[i] && empty))
                 {
-                    ResultObject ro = ConstructVObject();
+                    VObject ro = ConstructVObject();
                     if (ro != null) FOutput.Add(ro);
                 }
             }
@@ -206,10 +193,10 @@ namespace VVVV.Nodes.VObjects
                 FOutput.RemoveAt(Removables[i]);
         }
     }
-    public abstract class ConstructToParentVObjectNode<ParentObject> : IPluginEvaluate where ParentObject : VObject
+    public abstract class ConstructToParentVObjectNode : IPluginEvaluate
     {
         [Input("Parent", Order = 0)]
-        public Pin<ParentObject> FParent;
+        public Pin<VObject> FParent;
         [Input("Construct", Order = 1, IsBang = true)]
         public ISpread<ISpread<bool>> FConstruct;
 
@@ -229,7 +216,7 @@ namespace VVVV.Nodes.VObjects
             }
         }
 
-        public virtual void ConstructVObject(ParentObject Parent) { }
+        public virtual void ConstructVObject(VObject Parent) { }
 
         public void Evaluate(int SpreadMax)
         {
@@ -263,10 +250,10 @@ namespace VVVV.Nodes.VObjects
             }
         }
     }
-    public abstract class AddVObjectNode<ParentObject> : IPluginEvaluate where ParentObject : VObject
+    public abstract class AddVObjectNode : IPluginEvaluate
     {
         [Input("Parent", Order = 0)]
-        public Pin<ParentObject> FParent;
+        public Pin<VObject> FParent;
         [Input("Source", Order = 1)]
         public ISpread<ISpread<VObject>> FSource;
         [Input("Add", IsBang = true, Order = 2)]
@@ -278,7 +265,7 @@ namespace VVVV.Nodes.VObjects
         public int CurrParent;
         public int CurrSource;
 
-        public virtual void AddVObject(ParentObject Parent, VObject Source) { }
+        public virtual void AddVObject(VObject Parent, VObject Source) { }
         public virtual void InitializeFrame() { }
 
         public void Evaluate(int SpreadMax)
@@ -305,10 +292,10 @@ namespace VVVV.Nodes.VObjects
             }
         }
     }
-    public abstract class RemoveVObjectNode<ParentObject> : IPluginEvaluate where ParentObject : VObject
+    public abstract class RemoveVObjectNode : IPluginEvaluate
     {
         [Input("Parent", Order = 0)]
-        public Pin<ParentObject> FParent;
+        public Pin<VObject> FParent;
         [Input("Remove", IsBang = true, Order = 1)]
         public ISpread<ISpread<bool>> FRemove;
 
@@ -325,7 +312,7 @@ namespace VVVV.Nodes.VObjects
             }
         }
 
-        public virtual void RemoveVObject(ParentObject Parent) { }
+        public virtual void RemoveVObject(VObject Parent) { }
 
         public void Evaluate(int SpreadMax)
         {
@@ -347,16 +334,16 @@ namespace VVVV.Nodes.VObjects
             }
         }
     }
-    public abstract class DestroyVObjectNode<SourceObject> : IPluginEvaluate where SourceObject : VObject
+    public abstract class DestroyVObjectNode : IPluginEvaluate
     {
         [Input("Source", Order = 0)]
-        public Pin<SourceObject> FInput;
+        public Pin<VObject> FInput;
         [Input("Destroy", IsBang = true, Order = 1)]
         public ISpread<bool> FDestroy;
 
         public int CurrSource;
 
-        public virtual void DestroyVObject(SourceObject Source) { }
+        public virtual void DestroyVObject(VObject Source) { }
         public virtual void InitializeFrame() { }
 
         public void Evaluate(int SpreadMax)
@@ -373,15 +360,15 @@ namespace VVVV.Nodes.VObjects
         }
     }
 
-    public abstract class ToSpreadNode<SourceObject> : IPluginEvaluate where SourceObject : VObject
+    public abstract class ToSpreadNode : IPluginEvaluate
     {
         [Input("Source", Order = 0)]
-        public Pin<SourceObject> FInput;
+        public Pin<VObject> FInput;
 
         [Output("Output", Order = 0)]
         public ISpread<ISpread<VObject>> FOutput;
 
-        public virtual Spread<VObject> ToSpread(SourceObject Source)
+        public virtual Spread<VObject> ToSpread(VObject Source)
         {
             return new Spread<VObject>();
         }
@@ -406,10 +393,10 @@ namespace VVVV.Nodes.VObjects
         }
     }
 
-    public abstract class SiftNode<SourceObject> : IPluginEvaluate where SourceObject : VObject
+    public abstract class SiftNode : IPluginEvaluate
     {
         [Input("Source", Order = 0)]
-        public Pin<SourceObject> FInput;
+        public Pin<VObject> FInput;
         [Input("Filter", Order = 1)]
         public ISpread<ISpread<string>> FFilter;
         [Input("Contains", Order = 2)]
@@ -424,7 +411,7 @@ namespace VVVV.Nodes.VObjects
         [Output("Filter Index", Order = 1)]
         public ISpread<ISpread<int>> FFormerIndex;
 
-        public virtual void Sift(SourceObject Source, string Filter, bool Contains, bool Exclude, List<int> MatchingIndices, List<VObject> Output) { }
+        public virtual void Sift(VObject Source, string Filter, bool Contains, bool Exclude, List<int> MatchingIndices, List<VObject> Output) { }
         private List<VObject> Objects = new List<VObject>();
         private List<int> Indices = new List<int>();
         public virtual void InitializeFrame() { }

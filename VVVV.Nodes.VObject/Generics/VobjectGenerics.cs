@@ -1,18 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Diagnostics;
-using System.IO;
-using VVVV.Utils.VColor;
-using VVVV.Utils.VMath;
-
-using VVVV.Hosting;
+﻿using System.Collections.Generic;
 using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
-using VVVV.Core.Logging;
 
 using VVVV.Packs.VObjects;
 
@@ -99,92 +87,7 @@ namespace VVVV.Nodes.VObjects
             }
         }
     }
-
-    #region PluginInfo
-    [PluginInfo(Name = "Serialize", Category = "VObject", Help = "Convert VObject to Raw", Tags = "microdee")]
-    #endregion PluginInfo
-    public class VObjectSerializeNode : IPluginEvaluate
-    {
-        [Input("Input")]
-        public Pin<VObject> FInput;
-        [Input("Serialize", IsBang = true)]
-        public ISpread<bool> FSerialize;
-
-        [Output("Output")]
-        public ISpread<Stream> FOut;
-
-        public void Evaluate(int SpreadMax)
-        {
-            if (FInput.IsConnected)
-            {
-                FOut.SliceCount = FInput.SliceCount;
-                for (int i = 0; i < FInput.SliceCount; i++)
-                {
-                    if (FSerialize[i]) FInput[i].Serialize();
-                    FOut[i] = FInput[i].Serialized;
-                }
-            }
-            else
-            {
-                FOut.SliceCount = 0;
-            }
-        }
-    }
-    /*
-    #region PluginInfo
-    [PluginInfo(Name = "DeSerialize", Category = "VObject", Version = "Generic", Help = "Convert Raw to VObject", Tags = "microdee")]
-    #endregion PluginInfo
-    public class GenericVObjectDeSerializeNode : IPluginEvaluate
-    {
-        [Input("Input")]
-        public ISpread<Stream> FInput;
-        [Input("DeSerialize", IsBang = true)]
-        public ISpread<bool> FDeSerialize;
-
-        [Output("Output")]
-        public ISpread<VObject> FOut;
-        [Output("Error")]
-        public ISpread<string> FError;
-        [Output("Type")]
-        public ISpread<string> FType;
-
-        int fc = 0;
-        // List<int> ToBeRemoved = new List<int>();
-
-        public void Evaluate(int SpreadMax)
-        {
-            FError.SliceCount = FInput.SliceCount;
-            FType.SliceCount = FInput.SliceCount;
-            bool clear = false;
-            for (int i = 0; i < FInput.SliceCount; i++)
-            {
-                if (FDeSerialize[i]) clear = true;
-            }
-            if (clear || fc==0) FOut.SliceCount = 0;
-            fc++;
-            // ToBeRemoved.Clear();
-            for(int i=0; i<FInput.SliceCount; i++)
-            {
-                if (FDeSerialize[i])
-                {
-                    FInput[i].Position = 0;
-                    uint typeL = FInput[i].ReadUint();
-                    FType[i] = FInput[i].ReadUnicode((int)typeL);
-                    Type ObjType = Type.GetType(FType[i]);
-                        
-                    FInput[i].Position = 0;
-                    Stream temp = new MemoryStream();
-                    temp.SetLength(0);
-                    FInput[i].CopyTo(temp);
-                    temp.Position = 0;
-                    VObject NewObject = DynamicConstruct.ActivatorCreateInstance(temp);
-
-                    FOut.Add(NewObject);
-                }
-            }
-        }
-    }
-    */
+    
     [PluginInfo(Name = "VPath", Category = "VObject")]
     public class VObjectGenericVPathNode : VPathNode
     {

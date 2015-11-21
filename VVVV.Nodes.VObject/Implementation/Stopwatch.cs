@@ -1,18 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO;
-using VVVV.Utils.VColor;
-using VVVV.Utils.VMath;
-
-using VVVV.Hosting;
 using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
-using VVVV.Core.Logging;
 
 using VVVV.Packs.VObjects;
 
@@ -44,16 +33,13 @@ namespace VVVV.Nodes.VObjects
         }
     }
 
-    [PluginInfo(Name = "Cast", Category = "To", Version = "Stopwatch")]
-    public class ToStopwatchCastNode : CastToNode<StopwatchWrap> { }
-
     [PluginInfo(Name = "Construct", Category = "Stopwatch", AutoEvaluate = true)]
-    public class StopwatchConstructNode : ConstructVObjectNode<StopwatchWrap>
+    public class StopwatchConstructNode : ConstructVObjectNode
     {
         [Input("Start", Order = 10)]
         public ISpread<bool> FStart;
 
-        public override StopwatchWrap ConstructVObject()
+        public override VObject ConstructVObject()
         {
             Stopwatch NewObj = new Stopwatch();
             if (FStart[this.CurrObj]) NewObj.Start();
@@ -66,7 +52,7 @@ namespace VVVV.Nodes.VObjects
     public class StopwatchStopwatchNode : IPluginEvaluate
     {
         [Input("Input")]
-        public Pin<StopwatchWrap> FInput;
+        public Pin<VObject> FInput;
         [Input("Start", IsBang = true)]
         public ISpread<bool> FStart;
         [Input("Restart", IsBang = true)]
@@ -89,13 +75,16 @@ namespace VVVV.Nodes.VObjects
                 FRunning.SliceCount = FInput.SliceCount;
                 for (int i = 0; i < FInput.SliceCount; i++)
                 {
-                    Stopwatch Content = FInput[i].Content as Stopwatch;
-                    FSeconds[i] = Content.Elapsed.TotalSeconds;
-                    FRunning[i] = Content.IsRunning;
-                    if (FStart[i]) Content.Start();
-                    if (FRestart[i]) Content.Restart();
-                    if (FStop[i]) Content.Stop();
-                    if (FReset[i]) Content.Reset();
+                    if (FInput[i] is StopwatchWrap)
+                    {
+                        Stopwatch Content = FInput[i].Content as Stopwatch;
+                        FSeconds[i] = Content.Elapsed.TotalSeconds;
+                        FRunning[i] = Content.IsRunning;
+                        if (FStart[i]) Content.Start();
+                        if (FRestart[i]) Content.Restart();
+                        if (FStop[i]) Content.Stop();
+                        if (FReset[i]) Content.Reset();
+                    }
                 }
             }
             else

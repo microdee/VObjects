@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VVVV.Packs.VObjects", "VVVV.Packs.VObjects.csproj", "{390D16C4-7CF2-4C3C-9234-AAB235C8F181}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VVVV.Nodes.VObjects", "..\VVVV.Nodes.VObject\VVVV.Nodes.VObjects.csproj", "{85A22185-CEDD-4AD2-B71D-18BE81B689AA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VVVV.Nodes.VObjects.Networking", "..\VVVV.Nodes.VObjects.Networking\VVVV.Nodes.VObjects.Networking.csproj", "{2B61E4A6-8589-43F9-A7D5-E1562552D0CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VVVV.Nodes.VObjects.FBX", "..\VVVV.Nodes.VObjects.FBX\VVVV.Nodes.VObjects.FBX.csproj", "{4C9724D7-9289-4B22-8F8B-9C457DB4D4E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +69,21 @@ Global
 		{2B61E4A6-8589-43F9-A7D5-E1562552D0CA}.Release|x64.Build.0 = Release|x64
 		{2B61E4A6-8589-43F9-A7D5-E1562552D0CA}.Release|x86.ActiveCfg = Release|x86
 		{2B61E4A6-8589-43F9-A7D5-E1562552D0CA}.Release|x86.Build.0 = Release|x86
+		{4C9724D7-9289-4B22-8F8B-9C457DB4D4E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C9724D7-9289-4B22-8F8B-9C457DB4D4E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C9724D7-9289-4B22-8F8B-9C457DB4D4E4}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{4C9724D7-9289-4B22-8F8B-9C457DB4D4E4}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{4C9724D7-9289-4B22-8F8B-9C457DB4D4E4}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4C9724D7-9289-4B22-8F8B-9C457DB4D4E4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4C9724D7-9289-4B22-8F8B-9C457DB4D4E4}.Debug|x86.Build.0 = Debug|Any CPU
+		{4C9724D7-9289-4B22-8F8B-9C457DB4D4E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C9724D7-9289-4B22-8F8B-9C457DB4D4E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C9724D7-9289-4B22-8F8B-9C457DB4D4E4}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{4C9724D7-9289-4B22-8F8B-9C457DB4D4E4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{4C9724D7-9289-4B22-8F8B-9C457DB4D4E4}.Release|x64.ActiveCfg = Release|Any CPU
+		{4C9724D7-9289-4B22-8F8B-9C457DB4D4E4}.Release|x64.Build.0 = Release|Any CPU
+		{4C9724D7-9289-4B22-8F8B-9C457DB4D4E4}.Release|x86.ActiveCfg = Release|Any CPU
+		{4C9724D7-9289-4B22-8F8B-9C457DB4D4E4}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

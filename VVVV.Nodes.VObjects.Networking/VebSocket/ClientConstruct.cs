@@ -1,22 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Diagnostics;
-using System.IO;
-using System.Security;
-using System.Security.Cryptography;
-using System.Security.Cryptography.X509Certificates;
+﻿using System.ComponentModel.Composition;
 using System.Net.Security;
-using VVVV.Utils.VColor;
-using VVVV.Utils.VMath;
-
-using VVVV.Hosting;
 using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
-using VVVV.Core.Logging;
 
 using VVVV.Packs.VObjects;
 
@@ -25,9 +10,6 @@ using WebSocketSharp.Net;
 
 namespace VVVV.Nodes.VObjects
 {
-    [PluginInfo(Name = "Cast", Category = "To", Version = "VebSocketClient")]
-    public class ToVebSocketClientCastNode : CastToNode<VebSocketClientWrap> { }
-
     #region PluginInfo
     [PluginInfo(
         Name = "Client",
@@ -36,7 +18,7 @@ namespace VVVV.Nodes.VObjects
         Tags = "microdee"
     )]
     #endregion PluginInfo
-    public class VebSocketClientConstructor : ConstructVObjectNode<VebSocketClientWrap>
+    public class VebSocketClientConstructor : ConstructVObjectNode
     {
         [Import]
         public IHDEHost FHDEHost;
@@ -63,7 +45,7 @@ namespace VVVV.Nodes.VObjects
         [Input("Auto Connect", DefaultBoolean = true)]
         public ISpread<bool> FAutoConnect;
 
-        public override VebSocketClientWrap ConstructVObject()
+        public override VObject ConstructVObject()
         {
             string[] protocols;
             if(FProtocols[this.CurrObj][0] != "")

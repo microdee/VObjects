@@ -1,10 +1,10 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\VObjects\girlpower\VebSocket\Server\Echo.v4p" scrollx="45" scrolly="90" systemname="Echo" filename="C:\vvvv\libs\VObjects\girlpower\VebSocket\Server\Echo.v4p">
-   <BOUNDS type="Window" left="6330" top="3915" width="9000" height="9495">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.1.dtd" >
+   <PATCH nodename="C:\vvvv\libs\mcropack\packs\VObjects\girlpower\VebSocket\Server\Echo.v4p" scrollx="0" scrolly="-360" systemname="Echo" filename="C:\vvvv\libs\VObjects\girlpower\VebSocket\Server\Echo.v4p">
+   <BOUNDS type="Window" left="2145" top="4110" width="9000" height="9495">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
-   <PACK Name="addonpack" Version="33.7.0">
+   <PACK Name="addonpack" Version="34.1.0">
    </PACK>
    <NODE systemname="Server (VebSocket)" filename="..\..\..\nodes\plugins\x64\VVVV.Nodes.VObjects.Networking.dll" nodename="Server (VebSocket)" componentmode="Hidden" id="0">
    <BOUNDS type="Node" left="1635" top="1560" width="100" height="100">
@@ -19,9 +19,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="1" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="1305" top="405" width="795" height="240">
+   <BOUNDS type="Box" left="1275" top="480" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="1305" top="405" width="0" height="0">
+   <BOUNDS type="Node" left="1275" top="480" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="6666">
    </PIN>
@@ -35,15 +35,15 @@
    <LINK srcnodeid="1" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Port">
    </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="2" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="1485" top="2625" width="795" height="240">
+   <BOUNDS type="Box" left="1050" top="2175" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="1485" top="2625" width="0" height="0">
+   <BOUNDS type="Node" left="1050" top="2175" width="0" height="0">
    </BOUNDS>
    </NODE>
    <LINK srcnodeid="0" srcpinname="Output" dstnodeid="2" dstpinname="Input Node">
    </LINK>
    <NODE systemname="VPath (VObject)" filename="..\..\..\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="VPath (VObject)" componentmode="Hidden" id="3">
-   <BOUNDS type="Node" left="1620" top="3630" width="100" height="100">
+   <BOUNDS type="Node" left="1650" top="3615" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Source" visible="1">
    </PIN>
@@ -111,7 +111,7 @@
    <LINK srcnodeid="6" srcpinname="Path" dstnodeid="7" dstpinname="Input String">
    </LINK>
    <NODE systemname="Service (VebSocket Split)" filename="..\..\..\nodes\plugins\x64\VVVV.Nodes.VObjects.Networking.dll" nodename="Service (VebSocket Split)" componentmode="Hidden" id="8">
-   <BOUNDS type="Node" left="3195" top="4815" width="100" height="100">
+   <BOUNDS type="Node" left="3180" top="4350" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1">
    </PIN>
@@ -125,9 +125,9 @@
    <LINK srcnodeid="3" srcpinname="Output" dstnodeid="8" dstpinname="Input">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="9" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="3690" top="5295" width="795" height="240">
+   <BOUNDS type="Box" left="3360" top="5070" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="3690" top="5295" width="0" height="0">
+   <BOUNDS type="Node" left="3360" top="5070" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -161,9 +161,9 @@
    <LINK srcnodeid="10" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Construct">
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="11" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="2910" top="870" width="735" height="240">
+   <BOUNDS type="Box" left="2895" top="345" width="585" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="2910" top="870" width="0" height="0">
+   <BOUNDS type="Node" left="2895" top="345" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="1" values="/echo">
    </PIN>
@@ -217,9 +217,9 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="8" srcpinname="Clients" dstnodeid="15" dstpinname="Input" linkstyle="VHV">
-   <LINKPOINT x="3225" y="5490">
+   <LINKPOINT x="3215" y="5180">
    </LINKPOINT>
-   <LINKPOINT x="3000" y="5490">
+   <LINKPOINT x="2995" y="5335">
    </LINKPOINT>
    </LINK>
    <NODE systemname="ClientMessage (Join String)" filename="..\..\..\nodes\plugins\x64\VVVV.Nodes.VObjects.Networking.dll" nodename="ClientMessage (Join String)" componentmode="Hidden" id="16">
@@ -247,7 +247,7 @@
    <LINK srcnodeid="18" srcpinname="Output" dstnodeid="15" dstpinname="Send">
    </LINK>
    <NODE systemname="MainLoop (VVVV)" nodename="MainLoop (VVVV)" componentmode="Hidden" id="-6">
-   <BOUNDS type="Node" left="3390" top="3345" width="100" height="100">
+   <BOUNDS type="Node" left="4410" top="2355" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Maximum forground fps" visible="1">
    </PIN>
@@ -255,9 +255,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="19" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="3390" top="2610" width="795" height="240">
+   <BOUNDS type="Box" left="4410" top="1620" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="3390" top="2610" width="0" height="0">
+   <BOUNDS type="Node" left="4410" top="1620" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="60">
    </PIN>
@@ -275,7 +275,7 @@
    <LINK srcnodeid="19" srcpinname="Y Output Value" dstnodeid="-6" dstpinname="Maximum background fpsS">
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="20" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="825" top="5835" width="2985" height="240">
+   <BOUNDS type="Box" left="825" top="5835" width="3075" height="240">
    </BOUNDS>
    <BOUNDS type="Node" left="825" top="5835" width="0" height="0">
    </BOUNDS>
@@ -337,9 +337,9 @@
    <LINK srcnodeid="6" srcpinname="Inactive ID&apos;s Bin Size" dstnodeid="23" dstpinname="Y Input Value">
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="24" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="5085" top="5055" width="2895" height="240">
+   <BOUNDS type="Box" left="4245" top="5055" width="3060" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="5085" top="5055" width="0" height="0">
+   <BOUNDS type="Node" left="4245" top="5055" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Default" slicecount="1" values="||">
    </PIN>
