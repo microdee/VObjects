@@ -18,8 +18,8 @@ namespace VVVV.Nodes.VObjects
     #endregion PluginInfo
     public class VebSocketClientReceivedMessagesNode : IPluginEvaluate
     {
-        [Input("Input")]
-        public Pin<VObject> FInput;
+        [Input("Input Client")]
+        public Pin<object> FInput;
 
         [Output("Text Message")]
         public ISpread<ISpread<string>> FTextMessage;
@@ -41,13 +41,13 @@ namespace VVVV.Nodes.VObjects
 
                 for (int i = 0; i < FInput.SliceCount; i++)
                 {
-                    if (FInput[i] is VebSocketClientWrap)
+                    if (FInput[i] is VebSocketClient)
                     {
                         FTextMessage[i].SliceCount = 0;
                         FRawMessage[i].SliceCount = 0;
                         FMessageType[i].SliceCount = 0;
                         FError[i].SliceCount = 0;
-                        VebSocketClient vs = FInput[i].Content as VebSocketClient;
+                        VebSocketClient vs = FInput[i] as VebSocketClient;
 
                         foreach (ClientMessage cm in vs.ReceivedMessages.Values)
                         {
@@ -84,11 +84,11 @@ namespace VVVV.Nodes.VObjects
     #endregion PluginInfo
     public class VebSocketClientReceivedMessagesAdvancedNode : IPluginEvaluate
     {
-        [Input("Input")]
-        public Pin<VObject> FInput;
+        [Input("Input Client")]
+        public Pin<object> FInput;
 
         [Output("Raw Message")]
-        public ISpread<ISpread<ClientMessageWrap>> FMessage;
+        public ISpread<ISpread<ClientMessage>> FMessage;
         [Output("Message Type")]
         public ISpread<ISpread<string>> FMessageType;
         [Output("Error")]
@@ -104,16 +104,16 @@ namespace VVVV.Nodes.VObjects
 
                 for (int i = 0; i < FInput.SliceCount; i++)
                 {
-                    if (FInput[i] is VebSocketClientWrap)
+                    if (FInput[i] is VebSocketClient)
                     {
                         FMessage[i].SliceCount = 0;
                         FMessageType[i].SliceCount = 0;
                         FError[i].SliceCount = 0;
-                        VebSocketClient vs = FInput[i].Content as VebSocketClient;
+                        VebSocketClient vs = FInput[i] as VebSocketClient;
 
                         foreach (ClientMessage cm in vs.ReceivedMessages.Values)
                         {
-                            FMessage[i].Add(new ClientMessageWrap(cm));
+                            FMessage[i].Add(cm);
                             FMessageType[i].Add(cm.Type.ToString());
                         }
                         foreach (VebSocketError e in vs.Errors)
@@ -145,7 +145,7 @@ namespace VVVV.Nodes.VObjects
     public class VebSocketClientInfoNode : IPluginEvaluate
     {
         [Input("Input")]
-        public Pin<VObject> FInput;
+        public Pin<object> FInput;
 
         [Output("Url")]
         public ISpread<string> FUrl;
@@ -187,9 +187,9 @@ namespace VVVV.Nodes.VObjects
 
                 for (int i = 0; i < FInput.SliceCount; i++)
                 {
-                    if (FInput[i] is VebSocketClientWrap)
+                    if (FInput[i] is VebSocketClient)
                     {
-                        VebSocketClient vs = FInput[i].Content as VebSocketClient;
+                        VebSocketClient vs = FInput[i] as VebSocketClient;
                         FUrl[i] = vs.Client.Url.ToString();
                         FOrigin[i] = vs.Client.Origin;
                         FProtocol[i] = vs.Client.Protocol;

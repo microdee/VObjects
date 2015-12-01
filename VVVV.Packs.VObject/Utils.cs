@@ -6,7 +6,33 @@ using System.IO;
 
 namespace VVVV.Packs.VObjects
 {
-    public static class Helper
+
+    public static class ObjectHelper
+    {
+        public static void DisposeDisposable(object obj)
+        {
+            if (obj is IDisposable)
+            {
+                var t = obj as IDisposable;
+                t.Dispose();
+            }
+        }
+
+        public static Type ForceGetType(string typeName)
+        {
+            var type = Type.GetType(typeName);
+            if (type != null) return type;
+            foreach (var a in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                type = a.GetType(typeName);
+                if (type != null)
+                    return type;
+            }
+            return null;
+        }
+    }
+
+    public static class StreamHelper
     {
         public static bool ReadBool(this Stream input)
         {
@@ -123,5 +149,14 @@ namespace VVVV.Packs.VObjects
             s.Read(b,0,b.Length);
             return s;
         }
+    }
+
+    public class ObjectIsNotCloneableException : Exception
+    {
+        public ObjectIsNotCloneableException() { }
+
+        public ObjectIsNotCloneableException(string message) : base(message) { }
+
+        public ObjectIsNotCloneableException(string message, Exception inner) : base(message, inner) { }
     }
 }

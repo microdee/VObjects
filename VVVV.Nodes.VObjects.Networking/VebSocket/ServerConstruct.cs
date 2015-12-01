@@ -18,7 +18,7 @@ namespace VVVV.Nodes.VObjects
         Tags = "microdee"
     )]
     #endregion PluginInfo
-    public class VebSocketServerConstructor : ConstructVObjectNode
+    public class VebSocketServerConstructor : ConstructObjectNode
     {
         [Import]
         public IHDEHost FHDEHost;
@@ -42,12 +42,11 @@ namespace VVVV.Nodes.VObjects
         [Input("Services")]
         public ISpread<ISpread<string>> FServices;
         [Input("Custom Service Behaviors")]
-        public ISpread<ISpread<VObject>> FServiceBehaviors;
+        public ISpread<ISpread<object>> FServiceBehaviors;
 
-        public override VObject ConstructVObject()
+        public override object ConstructObject()
         {
             VebSocketServer newServer = new VebSocketServer(FPort[this.CurrObj], FSecure[this.CurrObj]);
-            VebSocketServerWrap newWrap = new VebSocketServerWrap(newServer);
 
             newServer.HDEHost = FHDEHost;
             newServer.Server.WaitTime = TimeSpan.FromSeconds(FWaitTime[this.CurrObj]);
@@ -67,14 +66,14 @@ namespace VVVV.Nodes.VObjects
             {
                 if (FServiceBehaviors[this.CurrObj][i] != null)
                 {
-                    Action<WebSocketServer, string> sb = FServiceBehaviors[this.CurrObj][i].Content as Action<WebSocketServer, string>;
+                    Action<WebSocketServer, string> sb = FServiceBehaviors[this.CurrObj][i] as Action<WebSocketServer, string>;
                     newServer.AddService(FServices[this.CurrObj][i], sb);
                 }
                 else newServer.AddService(FServices[this.CurrObj][i]);
             }
 
             newServer.Server.Start();
-            return newWrap;
+            return newServer;
         }
     }
 }

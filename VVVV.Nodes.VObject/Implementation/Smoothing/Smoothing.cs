@@ -11,7 +11,7 @@ namespace VVVV.Nodes.VObjects
     public class Smoothing
     {
         public IHDEHost HDEHost;
-        public List<ObjectTypePair> TargetValues = new List<ObjectTypePair>();
+        public List<List<object>> TargetValues = new List<List<object>>();
         public List<List<double>> CurrentValues = new List<List<double>>();
         private Stopwatch InternalTime = new Stopwatch();
         private double LastTotalSeconds = 0;
@@ -34,15 +34,16 @@ namespace VVVV.Nodes.VObjects
         public void CheckPath()
         {
             List<object> VPathRes = this.Root.VPath(this.VPath, this.VPathSeparator);
-            foreach (ObjectTypePair otp in VPathRes)
+            foreach (object o in VPathRes)
             {
-                if (otp is ObjectTypePair)
+                if (o is List<object>)
                 {
-                    if((otp.Type == typeof(double)) || (otp.Type == typeof(float)))
+                    var t = o as List<object>;
+                    if ((t[0].GetType() == typeof(double)) || (t[0].GetType() == typeof(float)))
                     {
                         List<double> tmplist = new List<double>();
-                        this.TargetValues.Add(otp);
-                        foreach(object obj in otp.Objects)
+                        this.TargetValues.Add(t);
+                        foreach(object obj in t)
                         {
                             if(obj is float) tmplist.Add((float)obj);
                             if(obj is double) tmplist.Add((double)obj);
@@ -57,39 +58,39 @@ namespace VVVV.Nodes.VObjects
             double frametime = this.InternalTime.Elapsed.TotalSeconds - this.LastTotalSeconds;
             for(int i=0; i<this.CurrentValues.Count; i++)
             {
-                ObjectTypePair otp = this.TargetValues[i];
+                List<object> otp = this.TargetValues[i];
                 for(int j=0; j<this.CurrentValues[i].Count; j++)
                 {
                     if (this.Algorithm == null)
                     {
-                        if (this.TargetValues[i].Objects[j] is double)
+                        if (this.TargetValues[i][j] is double)
                         {
-                            double target = (double)this.TargetValues[i].Objects[j];
+                            double target = (double)this.TargetValues[i][j];
                             double dist = target - this.CurrentValues[i][j];
                             this.CurrentValues[i][j] += dist * frametime / FilterTime * 6;
                         }
-                        if (this.TargetValues[i].Objects[j] is float)
+                        if (this.TargetValues[i][j] is float)
                         {
-                            float target = (float)this.TargetValues[i].Objects[j];
+                            float target = (float)this.TargetValues[i][j];
                             float dist = target - (float)this.CurrentValues[i][j];
                             this.CurrentValues[i][j] += dist * frametime / FilterTime * 6;
                         }
                     }
                     else
                     {
-                        if (this.TargetValues[i].Objects[j] is double)
+                        if (this.TargetValues[i][j] is double)
                         {
                             this.CurrentValues[i][j] =
                                 this.Algorithm.Algorithm(
-                                    (double)this.TargetValues[i].Objects[j],
+                                    (double)this.TargetValues[i][j],
                                     this.CurrentValues[i][j],
                                     frametime,
                                     this.FilterTime
                                 );
                         }
-                        if (this.TargetValues[i].Objects[j] is float)
+                        if (this.TargetValues[i][j] is float)
                         {
-                            float TempVal = (float)this.TargetValues[i].Objects[j];
+                            float TempVal = (float)this.TargetValues[i][j];
                             this.CurrentValues[i][j] =
                                 this.Algorithm.Algorithm(
                                     (double)TempVal,
@@ -102,33 +103,6 @@ namespace VVVV.Nodes.VObjects
                 }
             }
             this.LastTotalSeconds = this.InternalTime.Elapsed.TotalSeconds;
-        }
-    }
-    public class SmoothingWrap : VObject
-    {
-        public SmoothingWrap() : base() { }
-        public SmoothingWrap(Smoothing o) : base(o) { }
-
-        public SmoothingWrap(Stream s) : base(s) { }
-
-        public override void DeSerialize(Stream Input)
-        {
-            base.DeSerialize(Input);
-            Stopwatch st = new Stopwatch();
-            this.Content = st;
-        }
-        public override void Dispose()
-        {
-            Smoothing tc = this.Content as Smoothing;
-            tc.HDEHost.MainLoop.OnPrepareGraph -= tc.EveryFrame;
-            base.Dispose();
-        }
-
-        public override VObject DeepCopy()
-        {
-            Stopwatch st = new Stopwatch();
-            StopwatchWrap stw = new StopwatchWrap(st);
-            return stw;
         }
     }
 }

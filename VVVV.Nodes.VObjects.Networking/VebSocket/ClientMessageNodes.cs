@@ -22,7 +22,7 @@ namespace VVVV.Nodes.VObjects
         public IDiffSpread<string> FInput;
 
         [Output("Output")]
-        public ISpread<ClientMessageWrap> FOutput;
+        public ISpread<ClientMessage> FOutput;
 
         public void Evaluate(int SpreadMax)
         {
@@ -35,8 +35,7 @@ namespace VVVV.Nodes.VObjects
                     cm.Type = Opcode.Text;
                     cm.Text = FInput[i];
                     cm.Raw = new byte[0];
-                    ClientMessageWrap cmw = new ClientMessageWrap(cm);
-                    FOutput[i] = cmw;
+                    FOutput[i] = cm;
                 }
             }
         }
@@ -56,7 +55,7 @@ namespace VVVV.Nodes.VObjects
         public IDiffSpread<Stream> FInput;
 
         [Output("Output")]
-        public ISpread<ClientMessageWrap> FOutput;
+        public ISpread<ClientMessage> FOutput;
 
         public void Evaluate(int SpreadMax)
         {
@@ -72,8 +71,7 @@ namespace VVVV.Nodes.VObjects
                     byte[] tmp = new byte[(int)sl];
                     FInput[i].Read(tmp, 0, (int)sl);
                     cm.Raw = tmp;
-                    ClientMessageWrap cmw = new ClientMessageWrap(cm);
-                    FOutput[i] = cmw;
+                    FOutput[i] = cm;
                 }
             }
         }
@@ -88,8 +86,8 @@ namespace VVVV.Nodes.VObjects
     #endregion PluginInfo
     public class VebSocketClientMessageSplitNode : IPluginEvaluate
     {
-        [Input("Input")]
-        public Pin<VObject> FInput;
+        [Input("Input Message")]
+        public Pin<object> FInput;
 
         [Output("Text")]
         public ISpread<string> FText;
@@ -108,9 +106,9 @@ namespace VVVV.Nodes.VObjects
 
                 for (int i = 0; i < SpreadMax; i++)
                 {
-                    if (FInput[i] is ClientMessageWrap)
+                    if (FInput[i] is ClientMessage)
                     {
-                        ClientMessage cm = FInput[i].Content as ClientMessage;
+                        ClientMessage cm = FInput[i] as ClientMessage;
                         FText[i] = cm.Text;
                         FBinary[i] = cm.Raw.ToStream();
                         FType[i] = cm.Type.ToString();

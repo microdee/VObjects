@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace VVVV.Packs.VObjects
 {
@@ -56,15 +52,6 @@ namespace VVVV.Packs.VObjects
         private void VPathNextStep(string CurrentLevel, string NextPath, List<object> Results, string Separator)
         {
             object tempObject = VPathGetItem(CurrentLevel);
-            if (tempObject is VObject)
-            {
-                VObject tempVObject = tempObject as VObject;
-                if (tempVObject.Content is VPathQueryable)
-                {
-                    VPathQueryable vpq = tempVObject.Content as VPathQueryable;
-                    vpq.VPath(NextPath, Results, Separator);
-                }
-            }
             if (tempObject is VPathQueryable)
             {
                 VPathQueryable vpq = tempObject as VPathQueryable;

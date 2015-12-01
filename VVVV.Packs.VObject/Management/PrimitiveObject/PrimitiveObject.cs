@@ -1,66 +1,58 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Diagnostics;
-using System.IO;
-using VVVV.Utils.VColor;
-using VVVV.Utils.VMath;
 
 namespace VVVV.Packs.VObjects
 {
     public class PrimitiveObject : VPathQueryable
     {
-        public Dictionary<string, ObjectTypePair> Fields = new Dictionary<string, ObjectTypePair>();
+        public Dictionary<string, List<object>> Fields = new Dictionary<string, List<object>>();
 
         public PrimitiveObject() { }
         public void Add(string name, object Field)
         {
             if (!this.Fields.ContainsKey(name))
             {
-                if (Field is ObjectTypePair)
+                if (Field is List<object>)
                 {
-                    this.Fields.Add(name, (ObjectTypePair)Field);
-                    return;
+                    List<object> objl = Field as List<object>;
+                    if (TypeIdentity.Instance.ContainsKey(objl[0].GetType()))
+                    {
+                        this.Fields.Add(name, (List<object>)Field);
+                        return;
+                    }
                 }
                 if (TypeIdentity.Instance.ContainsKey(Field.GetType()))
                 {
-                    ObjectTypePair obj = new ObjectTypePair();
-                    obj.Objects.Add(Field);
-                    obj.Type = Field.GetType();
-                }
-            }
-        }
-        public void Add(string name, List<object> Field)
-        {
-            if (!this.Fields.ContainsKey(name))
-            {
-                if (TypeIdentity.Instance.ContainsKey(Field[0].GetType()))
-                {
-                    ObjectTypePair obj = new ObjectTypePair();
-                    foreach (object o in Field)
-                    {
-                        obj.Objects.Add(o);
-                    }
-                    obj.Type = Field[0].GetType();
-                    this.Fields.Add(name, obj);
+                    List<object> obj = new List<object>();
+                    obj.Add(Field);
                 }
             }
         }
         public string GetConfig()
         {
             string conf = "";
-            foreach(KeyValuePair<string, ObjectTypePair> kvp in this.Fields)
+            foreach(KeyValuePair<string, List<object>> kvp in this.Fields)
             {
-                conf += kvp.Value.Type.ToString() + " ";
+                conf += kvp.Value[0].GetType().ToString() + " ";
                 conf += kvp.Key + ", ";
             }
             return conf;
         }
 
-        public ObjectTypePair this[string name]
+        protected void DisposeDisposable(List<object> objl)
+        {
+            if (objl[0] is IDisposable)
+            {
+                foreach (object o in objl)
+                {
+                    var t = o as IDisposable;
+                    t.Dispose();
+                }
+            }
+        }
+
+        public List<object> this[string name]
         {
             get
             {
@@ -71,9 +63,9 @@ namespace VVVV.Packs.VObjects
         }
         public void Clear()
         {
-            foreach(KeyValuePair<string, ObjectTypePair> kvp in this.Fields)
+            foreach(KeyValuePair<string, List<object>> kvp in this.Fields)
             {
-                kvp.Value.Dispose();
+                DisposeDisposable(kvp.Value);
             }
             this.Fields.Clear();
         }
@@ -82,19 +74,22 @@ namespace VVVV.Packs.VObjects
         {
             if(match)
             {
-                if (this.Fields.ContainsKey(key))
-                    this.Fields.Remove(key);
+                if (Fields.ContainsKey(key))
+                {
+                    DisposeDisposable(Fields[key]);
+                    Fields.Remove(key);
+                }
             }
             else
             {
                 List<string> ToBeRemoved = new List<string>();
-                foreach (KeyValuePair<string, ObjectTypePair> kvp in this.Fields)
+                foreach (KeyValuePair<string, List<object>> kvp in this.Fields)
                 {
                     if(kvp.Key.Contains(key)) ToBeRemoved.Add(kvp.Key);
                 }
                 foreach(string k in ToBeRemoved)
                 {
-                    this.Fields[k].Dispose();
+                    DisposeDisposable(Fields[k]);
                     this.Fields.Remove(k);
                 }
                 ToBeRemoved.Clear();
@@ -111,86 +106,6 @@ namespace VVVV.Packs.VObjects
         public override string[] VPathQueryKeys()
         {
             return this.Fields.Keys.ToArray();
-        }
-    }
-
-    public class PrimitiveObjectWrap : VObject
-    {
-        public PrimitiveObjectWrap() : base() { }
-        public PrimitiveObjectWrap(PrimitiveObject o) : base(o) { }
-        //public PrimitiveObjectWrap(Stream s) : base(s) { }
-
-        public override void Dispose()
-        {
-            PrimitiveObject ThisContent = this.Content as PrimitiveObject;
-            ThisContent.Clear();
-            base.Dispose();
-        }
-        
-        public override void Serialize()
-        {
-            base.Serialize();
-            PrimitiveObject ThisContent = this.Content as PrimitiveObject;
-            Stream dest = this.Serialized;
-
-            dest.WriteUint((uint)ThisContent.Fields.Count);
-
-            foreach (KeyValuePair<string, ObjectTypePair> kvp in ThisContent.Fields)
-            {
-                kvp.Value.Serialize();
-                uint l = (uint)kvp.Value.Serialized.Length;
-                l += kvp.Key.UnicodeLength() + 4;
-                dest.WriteUint(l);
-            }
-
-            foreach (KeyValuePair<string, ObjectTypePair> kvp in ThisContent.Fields) // 12 + CC*4 + NL + DL
-            {
-                dest.WriteUint(kvp.Key.UnicodeLength()); // 0 | 4
-                dest.WriteUnicode(kvp.Key); // 4 | KL
-                kvp.Value.Serialized.CopyTo(dest); // 4 + KL | CL // using the stream created above
-            }
-        }
-
-        public override void DeSerialize(Stream Input)
-        {
-            base.DeSerialize(Input);
-            PrimitiveObject ThisContent = new PrimitiveObject();
-            Stream dest = this.Serialized;
-
-            uint Count = dest.ReadUint();
-            List<int> lengths = new List<int>();
-            
-            for(int i=0; i<Count; i++)
-            {
-                lengths.Add((int)dest.ReadUint());
-            }
-
-            for (int i = 0; i < Count; i++)
-            {
-                int nameL = (int)dest.ReadUint();
-                string name = dest.ReadUnicode(nameL);
-                int l = lengths[i]-4-nameL;
-
-                Stream CurrObj = new MemoryStream();
-                CurrObj.SetLength(0);
-                dest.CopyTo(CurrObj, l);
-
-                ObjectTypePair otp = new ObjectTypePair(CurrObj);
-                ThisContent.Add(name, otp);
-            }
-        }
-        
-        public override VObject DeepCopy()
-        {
-            PrimitiveObject ThisContent = (PrimitiveObject)this.Content;
-            PrimitiveObject NewObject = new PrimitiveObject();
-            foreach (KeyValuePair<string, ObjectTypePair> kvp in ThisContent.Fields)
-            {
-                ObjectTypePair NewCollection = kvp.Value.DeepCopy();
-                NewObject.Add(kvp.Key, NewCollection);
-            }
-            PrimitiveObjectWrap NewWrap = new PrimitiveObjectWrap(NewObject);
-            return (VObject)NewWrap;
         }
     }
 }

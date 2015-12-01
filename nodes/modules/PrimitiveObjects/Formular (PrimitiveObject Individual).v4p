@@ -1,19 +1,19 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.1.dtd" >
-   <PATCH nodename="C:\vvvv\libs\mcropack\packs\VObjects\nodes\modules\PrimitiveObjects\Formular (PrimitiveObject Individual).v4p" systemname="Formular (PrimitiveObject Individual)" filename="C:\vvvv\libs\VObjects\nodes\modules\PrimitiveObjects\Formular (PrimitiveObject Individual).v4p" scrollx="0" scrolly="0">
-   <BOUNDS type="Window" left="9510" top="7575" width="9000" height="6000">
+   <PATCH nodename="C:\vvvv\libs\mcropack\packs\VObjects\nodes\modules\PrimitiveObjects\Formular (PrimitiveObject Individual).v4p" systemname="Formular (PrimitiveObject Individual)" filename="C:\vvvv\libs\VObjects\nodes\modules\PrimitiveObjects\Formular (PrimitiveObject Individual).v4p" scrollx="0" scrolly="720">
+   <BOUNDS type="Window" left="9690" top="7515" width="9000" height="6000">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
    <PACK Name="addonpack" Version="34.1.0">
    </PACK>
    <NODE systemname="Formular (PrimitiveObject)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Formular (PrimitiveObject)" componentmode="Hidden" id="1">
-   <BOUNDS type="Node" left="3105" top="3885" width="100" height="100">
+   <BOUNDS type="Node" left="3105" top="5085" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Update" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Formular Name" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="Definition" visible="1" slicecount="3" values="|double Value|,|double Foo|,|Transform Transform|">
+   <PIN pinname="Definition" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="0" systemname="IOBox (Value Advanced)">
@@ -57,19 +57,17 @@
    </PIN>
    </NODE>
    <NODE systemname="Add (String)" nodename="Add (String)" componentmode="Hidden" id="3">
-   <BOUNDS type="Node" left="2760" top="3195" width="100" height="100">
+   <BOUNDS type="Node" left="2760" top="4395" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Input 1" visible="1">
+   <PIN pinname="Input 1" visible="1" slicecount="3" values="Options,PosList,Result">
    </PIN>
    <PIN pinname="Input 2" visible="1">
    </PIN>
-   <PIN pinname="Intersperse" slicecount="1" values="None" visible="1">
+   <PIN pinname="Intersperse" slicecount="1" visible="1" values="None">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="2" srcpinname="Output String" dstnodeid="3" dstpinname="Input 1">
-   </LINK>
    <NODE systemname="Separate (String Legacy)" nodename="Separate (String)" componentmode="Hidden" id="4">
    <BOUNDS type="Node" left="3165" top="1245" width="100" height="100">
    </BOUNDS>
@@ -80,6 +78,8 @@
    <PIN pinname="Ignore between" slicecount="1" values="None">
    </PIN>
    <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Former Index" visible="1">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="5" systemname="IOBox (String)">
@@ -112,8 +112,6 @@
    </NODE>
    <LINK srcnodeid="4" srcpinname="Output" dstnodeid="6" dstpinname="Input">
    </LINK>
-   <LINK srcnodeid="6" srcpinname="Output" dstnodeid="1" dstpinname="Definition">
-   </LINK>
    <NODE systemname="Separate (String Legacy)" nodename="Separate (String)" componentmode="Hidden" id="7">
    <BOUNDS type="Node" left="2940" top="2085" width="100" height="100">
    </BOUNDS>
@@ -129,7 +127,7 @@
    <LINK srcnodeid="6" srcpinname="Output" dstnodeid="7" dstpinname="Input">
    </LINK>
    <NODE systemname="Unzip (String)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Unzip (String)" componentmode="Hidden" id="8">
-   <BOUNDS type="Node" left="2865" top="2550" width="100" height="100">
+   <BOUNDS type="Node" left="2940" top="2505" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1">
    </PIN>
@@ -139,7 +137,7 @@
    <LINK srcnodeid="7" srcpinname="Output" dstnodeid="8" dstpinname="Input">
    </LINK>
    <NODE systemname="Clean (String)" nodename="Clean (String)" componentmode="Hidden" id="9">
-   <BOUNDS type="Node" left="3780" top="2655" width="100" height="100">
+   <BOUNDS type="Node" left="2955" top="3060" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1" slicecount="1" values="text">
    </PIN>
@@ -150,14 +148,12 @@
    </LINK>
    <LINK srcnodeid="9" srcpinname="Output" dstnodeid="3" dstpinname="Input 2">
    </LINK>
-   <LINK srcnodeid="3" srcpinname="Output" dstnodeid="1" dstpinname="Formular Name">
-   </LINK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="10" systemname="IOBox (Enumerations)">
    <BOUNDS type="Box" left="1935" top="795" width="855" height="240">
    </BOUNDS>
    <BOUNDS type="Node" left="1935" top="795" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="None">
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="Dot">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="Intersperse">
    </PIN>
@@ -183,17 +179,17 @@
    </PIN>
    </NODE>
    <NODE systemname="Formular (PrimitiveObject)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Formular (PrimitiveObject)" componentmode="Hidden" id="12">
-   <BOUNDS type="Node" left="2100" top="3945" width="100" height="100">
+   <BOUNDS type="Node" left="2100" top="5145" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Update" visible="1" slicecount="1" values="0">
    </PIN>
-   <PIN pinname="Formular Name" visible="1">
+   <PIN pinname="Formular Name" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="Definition" visible="1">
+   <PIN pinname="Definition" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
    <NODE systemname="AND (Boolean)" nodename="AND (Boolean)" componentmode="Hidden" id="13">
-   <BOUNDS type="Node" left="4740" top="3195" width="100" height="100">
+   <BOUNDS type="Node" left="4740" top="3645" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input 2" visible="1">
    </PIN>
@@ -208,14 +204,10 @@
    </LINK>
    <LINK srcnodeid="13" srcpinname="Output" dstnodeid="12" dstpinname="Update">
    </LINK>
-   <LINK srcnodeid="2" srcpinname="Output String" dstnodeid="12" dstpinname="Formular Name">
-   </LINK>
-   <LINK srcnodeid="5" srcpinname="Output String" dstnodeid="12" dstpinname="Definition">
-   </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="14" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="2985" top="4680" width="795" height="240">
+   <BOUNDS type="Box" left="2745" top="6645" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="2985" top="4680" width="0" height="0">
+   <BOUNDS type="Node" left="2745" top="6645" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Default" slicecount="1" values="text">
    </PIN>
@@ -227,5 +219,53 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="3" srcpinname="Output" dstnodeid="14" dstpinname="Input String">
+   </LINK>
+   <NODE systemname="CountIndices (Spreads)" nodename="CountIndices (Spreads)" componentmode="Hidden" id="15">
+   <BOUNDS type="Node" left="3630" top="3135" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Spread Count" visible="1">
+   </PIN>
+   <PIN pinname="Indices" visible="1">
+   </PIN>
+   <PIN pinname="Index Hit Count" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Count (String)" nodename="Count (String)" componentmode="Hidden" id="16">
+   <BOUNDS type="Node" left="1665" top="1365" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Count" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="2" srcpinname="Output String" dstnodeid="16" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="16" srcpinname="Count" dstnodeid="15" dstpinname="Spread Count">
+   </LINK>
+   <LINK srcnodeid="4" srcpinname="Former Index" dstnodeid="15" dstpinname="Indices">
+   </LINK>
+   <NODE systemname="Select (String)" nodename="Select (String)" componentmode="Hidden" id="17">
+   <BOUNDS type="Node" left="2760" top="3930" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Select" visible="1">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="15" srcpinname="Index Hit Count" dstnodeid="17" dstpinname="Select">
+   </LINK>
+   <LINK srcnodeid="2" srcpinname="Output String" dstnodeid="17" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="17" srcpinname="Output" dstnodeid="3" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="2" srcpinname="Output String" dstnodeid="12" dstpinname="Formular Name">
+   </LINK>
+   <LINK srcnodeid="5" srcpinname="Output String" dstnodeid="12" dstpinname="Definition">
+   </LINK>
+   <LINK srcnodeid="3" srcpinname="Output" dstnodeid="1" dstpinname="Formular Name">
+   </LINK>
+   <LINK srcnodeid="6" srcpinname="Output" dstnodeid="1" dstpinname="Definition">
    </LINK>
    </PATCH>

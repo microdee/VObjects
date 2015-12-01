@@ -1,4 +1,5 @@
-﻿using VVVV.Nodes.Generic;
+﻿using System;
+using VVVV.Nodes.Generic;
 using VVVV.PluginInterfaces.V2;
 using VVVV.Utils.Streams;
 
@@ -8,185 +9,183 @@ namespace VVVV.Nodes.VObjects
 {
     #region basics
     [PluginInfo(Name = "Cons",
-                Category = "VObject",
+                Category = "Object",
                 Help = "Concatenates all input spreads to one output spread.",
                 Tags = "generic, spreadop"
                 )]
-    public class VObjectConsNode : Cons<VObject> { }
+    public class VObjectConsNode : Cons<object> { }
 
     [PluginInfo(Name = "CAR",
-                Category = "VObject",
+                Category = "Object",
                 Version = "Bin",
                 Help = "Splits a given spread into first slice and remainder.",
-                Tags = "split, generic, spreadop",
-                Author = "woei"
+                Tags = "split, generic, spreadop"
                )]
-    public class VObjectCARBinNode : CARBin<VObject> { }
+    public class VObjectCARBinNode : CARBin<object> { }
 
     [PluginInfo(Name = "CDR",
-                Category = "VObject",
+                Category = "Object",
                 Version = "Bin",
                 Help = "Splits a given spread into remainder and last slice.",
-                Tags = "split, generic, spreadop",
-                Author = "woei"
+                Tags = "split, generic, spreadop"
                )]
-    public class VObjectCDRBinNode : CDRBin<VObject> { }
+    public class VObjectCDRBinNode : CDRBin<object> { }
 
     [PluginInfo(Name = "Reverse",
-                Category = "VObject",
+                Category = "Object",
                 Version = "Bin",
                 Help = "Reverses the order of slices in a given spread.",
-                Tags = "invert, generic, spreadop",
-                Author = "woei"
+                Tags = "invert, generic, spreadop"
                )]
-    public class VObjectReverseBinNode : ReverseBin<VObject> { }
+    public class VObjectReverseBinNode : ReverseBin<object> { }
 
     [PluginInfo(Name = "Shift",
-                Category = "VObject",
+                Category = "Object",
                 Version = "Bin",
                 Help = "Shifts the slices in a spread upwards by the given phase.",
-                Tags = "generic, spreadop",
-                Author = "woei"
+                Tags = "generic, spreadop"
                )]
-    public class VObjectShiftBinNode : ShiftBin<VObject> { }
+    public class VObjectShiftBinNode : ShiftBin<object> { }
 
     [PluginInfo(Name = "SetSlice",
-                Category = "VObject",
+                Category = "Object",
                 Version = "Bin",
                 Help = "Replaces individual slices of a spread with the given input",
-                Tags = "generic, spreadop",
-                Author = "woei"
+                Tags = "generic, spreadop"
                )]
-    public class VObjectSetSliceNode : SetSlice<VObject> { }
+    public class VObjectSetSliceNode : SetSlice<object> { }
 
     [PluginInfo(Name = "Select",
-                Category = "VObject",
+                Category = "Object",
                 Help = "Select which slices and how many form the output spread.",
                 Tags = "resample, generic, spreadop"
                )]
-    public class VObjectSelectNode : Select<VObject> { }
+    public class VObjectSelectNode : Select<object> { }
 
     [PluginInfo(Name = "Select",
-                Category = "VObject",
+                Category = "Object",
                 Version = "Bin",
                 Help = "Select the slices which form the new spread.",
-                Tags = "repeat, generic, spreadop",
-                Author = "woei"
+                Tags = "repeat, generic, spreadop"
             )]
-    public class VObjectSelectBinNode : SelectBin<VObject> { }
+    public class VObjectSelectBinNode : SelectBin<object> { }
 
     [PluginInfo(Name = "Unzip",
-                Category = "VObject",
+                Category = "Object",
                 Help = "Unzips a spread into multiple spreads.",
                 Tags = "split, generic, spreadop"
                )]
-    public class VObjectUnzipNode : Unzip<VObject> { }
+    public class VObjectUnzipNode : Unzip<object> { }
 
     [PluginInfo(Name = "Unzip",
-                Category = "VObject",
+                Category = "Object",
                 Version = "Bin",
                 Help = "Unzips a spread into multiple spreads.",
                 Tags = "split, generic, spreadop"
                )]
-    public class VObjectUnzipBinNode : Unzip<IInStream<VObject>> { }
+    public class VObjectUnzipBinNode : Unzip<IInStream<object>> { }
 
     [PluginInfo(Name = "Zip",
-                Category = "VObject",
+                Category = "Object",
                 Help = "Zips spreads together.",
                 Tags = "join, generic, spreadop"
                )]
-    public class VObjectZipNode : Zip<VObject> { }
+    public class VObjectZipNode : Zip<object> { }
 
     [PluginInfo(Name = "Zip",
-                Category = "VObject",
+                Category = "Object",
                 Version = "Bin",
                 Help = "Zips spreads together.",
                 Tags = "join, generic, spreadop"
                )]
-    public class VObjectZipBinNode : Zip<IInStream<VObject>> { }
+    public class VObjectZipBinNode : Zip<IInStream<object>> { }
 
     [PluginInfo(Name = "GetSpread",
-                Category = "VObject",
+                Category = "Object",
                 Version = "Bin",
                 Help = "Returns sub-spreads from the input specified via offset and count",
-                Tags = "generic, spreadop",
-                Author = "woei")]
-    public class VObjectGetSpreadNode : GetSpreadAdvanced<VObject> { }
+                Tags = "generic, spreadop"
+            )]
+    public class VObjectGetSpreadNode : GetSpreadAdvanced<object> { }
 
     [PluginInfo(Name = "SetSpread",
-                Category = "VObject",
+                Category = "Object",
                 Version = "Bin",
                 Help = "Allows to set sub-spreads into a given spread.",
-                Tags = "generic, spreadop",
-                Author = "woei"
+                Tags = "generic, spreadop"
                )]
-    public class VObjectSetSpreadNode : SetSpread<VObject> { }
+    public class VObjectSetSpreadNode : SetSpread<object> { }
 
     [PluginInfo(Name = "Pairwise",
-                Category = "VObject",
+                Category = "Object",
                 Help = "Returns all pairs of successive slices. From an input ABCD returns AB, BC, CD.",
                 Tags = "generic, spreadop"
                 )]
-    public class VObjectPairwiseNode : Pairwise<VObject> { }
+    public class VObjectPairwiseNode : Pairwise<object> { }
 
     [PluginInfo(Name = "SplitAt",
-                Category = "VObject",
+                Category = "Object",
                 Help = "Splits a spread at the given index.",
                 Tags = "generic, spreadop"
                 )]
-    public class VObjectSplitAtNode : SplitAtNode<VObject> { }
+    public class VObjectSplitAtNode : SplitAtNode<object> { }
 
     [PluginInfo(Name = "Buffer",
-                Category = "VObject",
+                Category = "Object",
                 Help = "Inserts the input at the given index.",
                 Tags = "generic, spreadop, collection",
                 AutoEvaluate = true
                )]
-    public class VObjectBufferNode : BufferNode<VObject> { }
+    public class VObjectBufferNode : BufferNode<object> { }
 
     [PluginInfo(Name = "Queue",
-                Category = "VObject",
+                Category = "Object",
                 Help = "Inserts the input at index 0 and drops the oldest slice in a FIFO (First In First Out) fashion.",
                 Tags = "generic, spreadop, collection",
                 AutoEvaluate = true
                )]
-    public class VObjectQueueNode : QueueNode<VObject> { }
+    public class VObjectQueueNode : QueueNode<object> { }
 
     [PluginInfo(Name = "RingBuffer",
-                Category = "VObject",
+                Category = "Object",
                 Help = "Inserts the input at the ringbuffer position.",
                 Tags = "generic, spreadop, collection",
                 AutoEvaluate = true
                )]
-    public class VObjectRingBufferNode : RingBufferNode<VObject> { }
+    public class VObjectRingBufferNode : RingBufferNode<object> { }
 
     [PluginInfo(Name = "Store",
-                Category = "VObject",
+                Category = "Object",
                 Help = "Stores a spread and sets/removes/inserts slices.",
                 Tags = "add, insert, remove, generic, spreadop, collection",
-                Author = "woei",
                 AutoEvaluate = true
                )]
-    public class VObjectStoreNode : Store<VObject> { }
+    public class VObjectStoreNode : Store<object> { }
 
     [PluginInfo(Name = "Stack",
-                Category = "VObject",
+                Category = "Object",
                 Help = "Stack data structure implementation using the LIFO (Last In First Out) paradigm.",
-                Tags = "generic, spreadop, collection",
-                Author = "vux"
+                Tags = "generic, spreadop, collection"
                 )]
-    public class VObjectStackNode : StackNode<VObject> { }
+    public class VObjectStackNode : StackNode<object> { }
     #endregion basics
 
     [PluginInfo(Name = "FrameDelay",
-                Category = "VObject",
-                Author = "vux"
+                Category = "Object"
                 )]
-    public class VObjectFrameDelayNode : FrameDelayNode<VObject>
+    public class VObjectFrameDelayNode : FrameDelayNode<object>
     {
-        protected override VObject CloneSlice(VObject slice)
+        protected override object CloneSlice(object slice)
         {
-            return slice.DeepCopy();
+            if (slice is ICloneable)
+            {
+                var t = slice as ICloneable;
+                return t.Clone();
+            }
+            else
+            {
+                throw new ObjectIsNotCloneableException("Object does not implement ICloneable.");
+            }
         }
     }
 }

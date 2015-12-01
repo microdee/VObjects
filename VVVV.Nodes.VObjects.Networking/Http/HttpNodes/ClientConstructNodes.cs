@@ -16,7 +16,7 @@ namespace VVVV.Nodes.VObjects
         Tags = "microdee"
     )]
     #endregion PluginInfo
-    public class HttpClientConstructor : ConstructVObjectNode
+    public class HttpClientConstructor : ConstructObjectNode
     {
         [Input("Base Url", DefaultString = "http://localhost")]
         public ISpread<string> FUrl;
@@ -35,7 +35,7 @@ namespace VVVV.Nodes.VObjects
         [Output("Error")]
         public ISpread<string> FError;
 
-        public override VObject ConstructVObject()
+        public override object ConstructObject()
         {
             try
             {
@@ -45,7 +45,6 @@ namespace VVVV.Nodes.VObjects
                         (sender, cert, chain, sslPolicyErrors) => true;
                 }
                 HttpClientContainer hcc = new HttpClientContainer();
-                HttpClientWrap hcw = new HttpClientWrap(hcc);
                 hcc.Client.BaseAddress = new Uri(FUrl[this.CurrObj]);
                 double milliseconds = FTimeOut[this.CurrObj] * 1000;
                 hcc.Client.Timeout = new TimeSpan(0, 0, 0, 0, (int)milliseconds);
@@ -59,7 +58,7 @@ namespace VVVV.Nodes.VObjects
                     for (int i = 0; i < cSpreadMax; i++)
                         hcc.Client.DefaultRequestHeaders.Add(FHeaderName[this.CurrObj][i], FHeaderValues[this.CurrObj][i]);
                 }
-                return hcw;
+                return hcc;
             }
             catch(Exception e)
             {

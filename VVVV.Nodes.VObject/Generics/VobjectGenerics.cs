@@ -7,52 +7,47 @@ using VVVV.Packs.VObjects;
 namespace VVVV.Nodes.VObjects
 {
     #region PluginInfo
-    [PluginInfo(Name = "GetType", Category = "VObject", Help = "Get the actual type of the VObject", Tags = "microdee")]
+    [PluginInfo(Name = "GetType", Category = "Object", Tags = "microdee")]
     #endregion PluginInfo
-    public class VObjectGetTypeNode : IPluginEvaluate
+    public class ObjectGetTypeNode : IPluginEvaluate
     {
         [Input("Input")]
-        public Pin<VObject> FInput;
+        public Pin<object> FInput;
 
         [Output("Object Type")]
         public ISpread<string> FType;
-        [Output("Wrapper Type")]
-        public ISpread<string> FWrapType;
 
         public void Evaluate(int SpreadMax)
         {
             if(FInput.IsConnected)
             {
                 FType.SliceCount = FInput.SliceCount;
-                FWrapType.SliceCount = FInput.SliceCount;
                 for(int i=0; i<FInput.SliceCount; i++)
                 {
-                    FType[i] = FInput[i].ObjectType.ToString();
-                    FWrapType[i] = FInput[i].GetType().ToString();
+                    FType[i] = FInput[i].GetType().ToString();
                 }
             }
             else
             {
                 FType.SliceCount = 0;
-                FWrapType.SliceCount = 0;
             }
         }
     }
 
     #region PluginInfo
-    [PluginInfo(Name = "FilterType", Category = "VObject", Help = "Filter VObjects by type", Tags = "microdee")]
+    [PluginInfo(Name = "FilterType", Category = "Object", Help = "Filter objects by type", Tags = "microdee")]
     #endregion PluginInfo
-    public class VObjectFilterTypeNode : IPluginEvaluate
+    public class ObjectFilterTypeNode : IPluginEvaluate
     {
         [Input("Input")]
-        public Pin<VObject> FInput;
+        public Pin<object> FInput;
         [Input("Type")]
         public ISpread<string> FType;
         [Input("Exclude")]
         public ISpread<bool> FExclude;
 
         [Output("Output")]
-        public ISpread<ISpread<VObject>> FOutput;
+        public ISpread<ISpread<object>> FOutput;
 
         public void Evaluate(int SpreadMax)
         {
@@ -66,14 +61,14 @@ namespace VVVV.Nodes.VObjects
                     {
                         if (FExclude[i])
                         {
-                            if ((FType[i] != FInput[j].ObjectType.ToString()) || (FType[i] != FInput[j].GetType().ToString()))
+                            if (FType[i] != FInput[j].GetType().ToString())
                             {
                                 FOutput[i].Add(FInput[j]);
                             }
                         }
                         else
                         {
-                            if ((FType[i] == FInput[j].ObjectType.ToString()) || (FType[i] == FInput[j].GetType().ToString()))
+                            if ((FType[i] == FInput[j].GetType().ToString()) || (FType[i] == FInput[j].GetType().Name))
                             {
                                 FOutput[i].Add(FInput[j]);
                             }
@@ -91,19 +86,16 @@ namespace VVVV.Nodes.VObjects
     [PluginInfo(Name = "VPath", Category = "VObject")]
     public class VObjectGenericVPathNode : VPathNode
     {
-        public override void Sift(VObject Source, string Filter, List<int> MatchingIndices, List<VObject> Output)
+        public override void Sift(object Source, string Filter, List<int> MatchingIndices, List<object> Output)
         {
-            if (Source.Content is VPathQueryable)
+            if (Source is VPathQueryable)
             {
-                VPathQueryable Content = Source.Content as VPathQueryable;
+                VPathQueryable Content = Source as VPathQueryable;
                 List<object> result = Content.VPath(Filter, FSeparator[0]);
                 foreach (object o in result)
                 {
-                    if (o is VObject)
-                    {
-                        Output.Add(o as VObject);
-                        MatchingIndices.Add(this.CurrentAbsIndex);
-                    }
+                    Output.Add(o);
+                    MatchingIndices.Add(this.CurrentAbsIndex);
                 }
             }
         }

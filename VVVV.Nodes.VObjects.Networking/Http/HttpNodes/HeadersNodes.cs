@@ -15,7 +15,7 @@ namespace VVVV.Nodes.VObjects
     )]
     public class HttpHeadersSplitNode : IPluginEvaluate
     {
-        [Input("Output")]
+        [Input("Input Headers")]
         public Pin<HttpHeaders> FIn;
 
         [Output("Name")]

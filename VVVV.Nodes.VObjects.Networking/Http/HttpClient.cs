@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Net.Http;
-
-using VVVV.Packs.VObjects;
 
 namespace VVVV.Nodes.VObjects
 {
@@ -16,7 +15,7 @@ namespace VVVV.Nodes.VObjects
         Put,
         Trace
     }
-    public class HttpClientContainer
+    public class HttpClientContainer : IDisposable
     {
         public HttpClient Client = new HttpClient();
         public List<Task<HttpResponseMessage>> OngoingRequests = new List<Task<HttpResponseMessage>>();
@@ -35,19 +34,6 @@ namespace VVVV.Nodes.VObjects
             this.OngoingRequests.Clear();
             this.Client.CancelPendingRequests();
             this.Client.Dispose();
-        }
-    }
-
-    public class HttpClientWrap : VObject
-    {
-        public HttpClientWrap() : base() { }
-        public HttpClientWrap(HttpClientContainer o) : base(o) { }
-
-        public override void Dispose()
-        {
-            HttpClientContainer hc = this.Content as HttpClientContainer;
-            hc.Dispose();
-            base.Dispose();
         }
     }
 }

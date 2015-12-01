@@ -22,57 +22,55 @@ namespace VVVV.Nodes.VObjects
         public ISpread<bool> FAutoClear;
         [Input("Set", IsBang = true, Order = 2)]
         public ISpread<bool> FSet;
-        [Output("Output", Order = 0)]
-        public ISpread<VObject> FOutput;
+        [Output("Output Object", Order = 0)]
+        public ISpread<object> FOutput;
 
         public int CurrObj;
         public int SliceCount = 0;
         public int fc = 0;
 
-        public PrimitiveObjectWrap ConstructVObject()
+        public PrimitiveObject ConstructObject()
         {
             int i = CurrObj;
             PrimitiveObject pro = new PrimitiveObject();
             for (int ii = 0; ii < Spreads.Count; ii++)
             {
-                ObjectTypePair otp = new ObjectTypePair();
+                List<object> objl = new List<object>();
                 string type = TypesAndFields[ii][0];
                 string name = TypesAndFields[ii][1];
-                otp.Type = IdentityType.Instance[type];
                 NGISpread currspread = (NGISpread)Spreads[name][i];
-                otp.Objects.Clear();
+                objl.Clear();
                 for (int j = 0; j < currspread.SliceCount; j++)
                 {
-                    otp.Objects.Add(currspread[j]);
+                    objl.Add(currspread[j]);
                 }
-                pro.Fields.Add(TypesAndFields[ii][1], otp);
+                pro.Fields.Add(TypesAndFields[ii][1], objl);
             }
-            return new PrimitiveObjectWrap(pro);
+            return pro;
         }
 
-        public void SetVObject(PrimitiveObjectWrap Obj)
+        public void SetObject(PrimitiveObject pro)
         {
             int i = CurrObj;
-            PrimitiveObject pro = Obj.Content as PrimitiveObject;
             for (int ii = 0; ii < Spreads.Count; ii++)
             {
                 string name = TypesAndFields[ii][1];
                 NGISpread currspread = (NGISpread)Spreads[name][i];
 
-                ObjectTypePair otp = pro[name];
-                if (currspread.SliceCount != otp.Objects.Count)
+                List<object> objl = pro[name];
+                if (currspread.SliceCount != objl.Count)
                 {
-                    otp.Objects.Clear();
+                    objl.Clear();
                     for (int j = 0; j < currspread.SliceCount; j++)
                     {
-                        otp.Objects.Add(currspread[j]);
+                        objl.Add(currspread[j]);
                     }
                 }
                 else
                 {
                     for (int j = 0; j < currspread.SliceCount; j++)
                     {
-                        otp.Objects[j] = currspread[j];
+                        objl[j] = currspread[j];
                     }
                 }
             }
@@ -86,8 +84,7 @@ namespace VVVV.Nodes.VObjects
 
             this.SliceCount = smax;
         }
-
-        private List<int> Removables = new List<int>();
+        
         public override void OnEval()
         {
             this.SetSliceCount();
@@ -110,25 +107,18 @@ namespace VVVV.Nodes.VObjects
                 this.CurrObj = i;
                 if (FConstruct[i] || (FSet[i] && empty))
                 {
-                    PrimitiveObjectWrap ro = ConstructVObject();
+                    PrimitiveObject ro = ConstructObject();
                     if (ro != null) FOutput.Add(ro);
                 }
             }
-            Removables.Clear();
             for (int i = 0; i < FOutput.SliceCount; i++)
             {
-                if (FOutput[i].Disposed)
-                    Removables.Add(i);
-
                 this.CurrObj = i;
                 if (FSet[i])
                 {
-                    SetVObject(FOutput[i] as PrimitiveObjectWrap);
+                    SetObject(FOutput[i] as PrimitiveObject);
                 }
             }
-
-            for (int i = 0; i < Removables.Count; i++)
-                FOutput.RemoveAt(Removables[i]);
         }
     }
 }

@@ -7,52 +7,25 @@ using VVVV.Packs.VObjects;
 
 namespace VVVV.Nodes.VObjects
 {
-    public class StopwatchWrap : VObject
-    {
-        public StopwatchWrap() : base() { }
-        public StopwatchWrap(Stopwatch o) : base(o) { }
-        
-        public StopwatchWrap(Stream s) : base(s) { }
-
-        public override void DeSerialize(Stream Input)
-        {
-            base.DeSerialize(Input);
-            Stopwatch st = new Stopwatch();
-            this.Content = st;
-        }
-        public override void Dispose()
-        {
-            base.Dispose();
-        }
-        
-        public override VObject DeepCopy()
-        {
-            Stopwatch st = new Stopwatch();
-            StopwatchWrap stw = new StopwatchWrap(st);
-            return stw;
-        }
-    }
-
     [PluginInfo(Name = "Construct", Category = "Stopwatch", AutoEvaluate = true)]
-    public class StopwatchConstructNode : ConstructVObjectNode
+    public class StopwatchConstructNode : ConstructObjectNode
     {
         [Input("Start", Order = 10)]
         public ISpread<bool> FStart;
 
-        public override VObject ConstructVObject()
+        public override object ConstructObject()
         {
             Stopwatch NewObj = new Stopwatch();
             if (FStart[this.CurrObj]) NewObj.Start();
-            StopwatchWrap NewWrap = new StopwatchWrap(NewObj);
-            return NewWrap;
+            return NewObj;
         }
     }
 
     [PluginInfo(Name = "Stopwatch", Category = "Stopwatch", AutoEvaluate = true)]
     public class StopwatchStopwatchNode : IPluginEvaluate
     {
-        [Input("Input")]
-        public Pin<VObject> FInput;
+        [Input("Input Stopwatch")]
+        public Pin<object> FInput;
         [Input("Start", IsBang = true)]
         public ISpread<bool> FStart;
         [Input("Restart", IsBang = true)]
@@ -75,9 +48,9 @@ namespace VVVV.Nodes.VObjects
                 FRunning.SliceCount = FInput.SliceCount;
                 for (int i = 0; i < FInput.SliceCount; i++)
                 {
-                    if (FInput[i] is StopwatchWrap)
+                    if (FInput[i] is Stopwatch)
                     {
-                        Stopwatch Content = FInput[i].Content as Stopwatch;
+                        Stopwatch Content = FInput[i] as Stopwatch;
                         FSeconds[i] = Content.Elapsed.TotalSeconds;
                         FRunning[i] = Content.IsRunning;
                         if (FStart[i]) Content.Start();

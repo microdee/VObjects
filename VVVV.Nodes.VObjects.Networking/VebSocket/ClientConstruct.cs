@@ -18,7 +18,7 @@ namespace VVVV.Nodes.VObjects
         Tags = "microdee"
     )]
     #endregion PluginInfo
-    public class VebSocketClientConstructor : ConstructVObjectNode
+    public class VebSocketClientConstructor : ConstructObjectNode
     {
         [Import]
         public IHDEHost FHDEHost;
@@ -45,7 +45,7 @@ namespace VVVV.Nodes.VObjects
         [Input("Auto Connect", DefaultBoolean = true)]
         public ISpread<bool> FAutoConnect;
 
-        public override VObject ConstructVObject()
+        public override object ConstructObject()
         {
             string[] protocols;
             if(FProtocols[this.CurrObj][0] != "")
@@ -60,7 +60,6 @@ namespace VVVV.Nodes.VObjects
 
             WebSocketSharp.WebSocket newWebSocket = new WebSocketSharp.WebSocket(FUrl[this.CurrObj], protocols);
             VebSocketHostedClient newVebSocketClient = new VebSocketHostedClient(newWebSocket);
-            VebSocketClientWrap newWrap = new VebSocketClientWrap(newVebSocketClient as VebSocketClient);
 
             newVebSocketClient.SubscribeToMainloop(this.FHDEHost);
 
@@ -79,7 +78,7 @@ namespace VVVV.Nodes.VObjects
             if (FAutoConnect[this.CurrObj])
                 newWebSocket.ConnectAsync();
 
-            return newWrap;
+            return newVebSocketClient;
         }
     }
 }

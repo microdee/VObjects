@@ -104,10 +104,6 @@
     <Reference Include="VVVV.Nodes.Generic">
       <HintPath>..\VVVV.Packs.VObject\packages\VVVV.Nodes.Generic.33.2.0-develop-477\build\net40\lib\x86\VVVV.Nodes.Generic.dll</HintPath>
     </Reference>
-    <Reference Include="VVVV.Packs.Messaging, Version=1.0.5592.25490, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\VVVV.Packs.VObject\packages\VVVV.Packs.Message.2.0.1\build\net40\x64\VVVV.Packs.Messaging.dll</HintPath>
-    </Reference>
     <Reference Include="VVVV.PluginInterfaces">
       <HintPath>..\VVVV.Packs.VObject\packages\VVVV.PluginInterfaces.33.2.0-develop-477\build\net40\lib\x86\VVVV.PluginInterfaces.dll</HintPath>
     </Reference>
@@ -124,7 +120,6 @@
     <Compile Include="Generics\VObjectGenerics.cs" />
     <Compile Include="Generics\VVVVGenerics.cs" />
     <Compile Include="Implementation\JSON.cs" />
-    <Compile Include="Implementation\MessageWrap.cs" />
     <Compile Include="Implementation\PrimitiveObject\AbstractDynamicNode.cs" />
     <Compile Include="Implementation\PrimitiveObject\ConstructNode.cs" />
     <Compile Include="Implementation\PrimitiveObject\SetSplitNodes.cs" />

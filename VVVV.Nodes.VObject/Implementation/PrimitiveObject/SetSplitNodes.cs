@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
 using NGISpread = VVVV.PluginInterfaces.V2.NonGeneric.ISpread;
@@ -16,7 +17,7 @@ namespace VVVV.Nodes.VObjects
     public class SetPrimitiveObjectNode : DynamicPrimitiveObjectNode
     {
         [Input("Primitive Object")]
-        public Pin<VObject> FInput;
+        public Pin<object> FInput;
         [Input("Not-Existing Behavior", DefaultEnumEntry = "Create")]
         public IDiffSpread<ManageNotExisting> FNotExist;
         [Input("Set", IsBang = true)]
@@ -27,10 +28,9 @@ namespace VVVV.Nodes.VObjects
 
         public int CurrObj = 0;
 
-        public void SetObject(PrimitiveObjectWrap Obj)
+        public void SetObject(PrimitiveObject pro)
         {
             int i = CurrObj;
-            PrimitiveObject pro = Obj.Content as PrimitiveObject;
             for (int ii = 0; ii < Spreads.Count; ii++)
             {
                 Type type = IdentityType.Instance[TypesAndFields[ii][0]];
@@ -39,20 +39,20 @@ namespace VVVV.Nodes.VObjects
 
                 if (pro.Fields.ContainsKey(name))
                 {
-                    ObjectTypePair otp = pro[name];
-                    if (currspread.SliceCount != otp.Objects.Count)
+                    List<object> objl = pro[name];
+                    if (currspread.SliceCount != objl.Count)
                     {
-                        otp.Objects.Clear();
+                        objl.Clear();
                         for (int j = 0; j < currspread.SliceCount; j++)
                         {
-                            otp.Objects.Add(currspread[j]);
+                            objl.Add(currspread[j]);
                         }
                     }
                     else
                     {
                         for (int j = 0; j < currspread.SliceCount; j++)
                         {
-                            otp.Objects[j] = currspread[j];
+                            objl[j] = currspread[j];
                         }
                     }
                 }
@@ -60,12 +60,12 @@ namespace VVVV.Nodes.VObjects
                 {
                     if (FNotExist[0] == ManageNotExisting.Create)
                     {
-                        ObjectTypePair otp = new ObjectTypePair();
-                        otp.Type = type;
+                        List<object> objl = new List<object>();
                         for (int j = 0; j < currspread.SliceCount; j++)
                         {
-                            otp.Objects.Add(currspread[j]);
+                            objl.Add(currspread[j]);
                         }
+                        pro.Add(name, objl);
                     }
                 }
             }
@@ -78,12 +78,12 @@ namespace VVVV.Nodes.VObjects
                 FValid.SliceCount = FInput.SliceCount;
                 for(int i=0; i<FInput.SliceCount; i++)
                 {
-                    FValid[i] = FInput[i] is PrimitiveObjectWrap;
+                    FValid[i] = FInput[i] is PrimitiveObject;
                     if(FValid[i])
                     {
                         CurrObj = i;
                         if(FSet[i])
-                            SetObject(FInput[i] as PrimitiveObjectWrap);
+                            SetObject(FInput[i] as PrimitiveObject);
                     }
                 }
             }
@@ -99,7 +99,7 @@ namespace VVVV.Nodes.VObjects
     public class GetPrimitiveObjectNode : DynamicPrimitiveObjectNode, IPluginEvaluate
     {
         [Input("Primitive Object")]
-        public Pin<VObject> FInput;
+        public Pin<object> FInput;
 
         [Output("Valid")]
         public ISpread<bool> FValid;
@@ -115,10 +115,9 @@ namespace VVVV.Nodes.VObjects
 
         public int CurrObj = 0;
 
-        public void GetObject(PrimitiveObjectWrap Obj)
+        public void GetObject(PrimitiveObject pro)
         {
             int i = CurrObj;
-            PrimitiveObject pro = Obj.Content as PrimitiveObject;
             for (int ii = 0; ii < TypesAndFields.Count; ii++)
             {
                 Type type = IdentityType.Instance[TypesAndFields[ii][0]];
@@ -129,12 +128,12 @@ namespace VVVV.Nodes.VObjects
 
                 if (pro.Fields.ContainsKey(name))
                 {
-                    ObjectTypePair otp = pro[name];
-                    currvalues.SliceCount = otp.Objects.Count;
+                    List<object> objl = pro[name];
+                    currvalues.SliceCount = objl.Count;
 
                     for (int j = 0; j < currvalues.SliceCount; j++)
                     {
-                        currvalues[j] = otp.Objects[j];
+                        currvalues[j] = objl[j];
                     }
                 }
                 else
@@ -151,11 +150,11 @@ namespace VVVV.Nodes.VObjects
                 FValid.SliceCount = FInput.SliceCount;
                 for (int i = 0; i < FInput.SliceCount; i++)
                 {
-                    FValid[i] = FInput[i] is PrimitiveObjectWrap;
+                    FValid[i] = FInput[i] is PrimitiveObject;
                     if (FValid[i])
                     {
                         CurrObj = i;
-                        GetObject(FInput[i] as PrimitiveObjectWrap);
+                        GetObject(FInput[i] as PrimitiveObject);
                     }
                 }
             }

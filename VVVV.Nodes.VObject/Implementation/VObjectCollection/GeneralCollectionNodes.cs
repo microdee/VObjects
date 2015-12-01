@@ -8,8 +8,8 @@ namespace VVVV.Nodes.VObjects
     [PluginInfo(Name = "Info", Category = "VObjectCollection")]
     public class VObjectCollectionInfoNode : IPluginEvaluate
     {
-        [Input("Input")]
-        public Pin<VObject> FInput;
+        [Input("Input Collection")]
+        public Pin<object> FInput;
 
         [Output("Name")]
         public ISpread<string> FName;
@@ -30,9 +30,9 @@ namespace VVVV.Nodes.VObjects
                 FChildren.SliceCount = FInput.SliceCount;
                 for(int i=0; i<FInput.SliceCount; i++)
                 {
-                    if (FInput[i] is VObjectCollectionWrap)
+                    if (FInput[i] is VObjectCollection)
                     {
-                        VObjectCollection Content = FInput[i].Content as VObjectCollection;
+                        VObjectCollection Content = FInput[i] as VObjectCollection;
                         FName[i] = Content.Name;
                         FDebug[i] = Content.Debug;
                         FAge[i] = Content.Age.Elapsed.TotalSeconds;
@@ -57,8 +57,8 @@ namespace VVVV.Nodes.VObjects
     [PluginInfo(Name = "ResetAge", Category = "VObjectCollection", AutoEvaluate = true)]
     public class VObjectCollectionAgeNode : IPluginEvaluate
     {
-        [Input("Input")]
-        public Pin<VObject> FInput;
+        [Input("Input Collection")]
+        public Pin<object> FInput;
         [Input("Reset", IsBang = true)]
         public ISpread<bool> FReset;
 
@@ -72,9 +72,9 @@ namespace VVVV.Nodes.VObjects
                 FAge.SliceCount = FInput.SliceCount;
                 for (int i = 0; i < FInput.SliceCount; i++)
                 {
-                    if (FInput[i] is VObjectCollectionWrap)
+                    if (FInput[i] is VObjectCollection)
                     {
-                        VObjectCollection Content = FInput[i].Content as VObjectCollection;
+                        VObjectCollection Content = FInput[i] as VObjectCollection;
                         FAge[i] = Content.Age.Elapsed.TotalSeconds;
                         if (FReset[i]) Content.Age.Restart();
                     }
@@ -90,8 +90,8 @@ namespace VVVV.Nodes.VObjects
     [PluginInfo(Name = "Debug", Category = "VObjectCollection", AutoEvaluate = true)]
     public class VObjectCollectionDebugNode : IPluginEvaluate
     {
-        [Input("Input")]
-        public Pin<VObject> FInput;
+        [Input("Input Collection")]
+        public Pin<object> FInput;
         [Input("Debug")]
         public ISpread<string> FDebug;
         [Input("Set", IsBang = true)]
@@ -107,9 +107,9 @@ namespace VVVV.Nodes.VObjects
                 FDebugOut.SliceCount = FInput.SliceCount;
                 for (int i = 0; i < FInput.SliceCount; i++)
                 {
-                    if (FInput[i] is VObjectCollectionWrap)
+                    if (FInput[i] is VObjectCollection)
                     {
-                        VObjectCollection Content = FInput[i].Content as VObjectCollection;
+                        VObjectCollection Content = FInput[i] as VObjectCollection;
                         if (FSet[i]) Content.Debug = FDebug[i];
                         FDebugOut[i] = Content.Debug;
                     }

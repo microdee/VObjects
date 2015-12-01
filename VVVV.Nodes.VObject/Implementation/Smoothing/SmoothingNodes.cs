@@ -7,7 +7,7 @@ using VVVV.Packs.VObjects;
 namespace VVVV.Nodes.VObjects
 {
     [PluginInfo(Name = "Construct", Category = "Smoothing", AutoEvaluate = true)]
-    public class SmoothingConstructNode : ConstructVObjectNode
+    public class SmoothingConstructNode : ConstructObjectNode
     {
         [Import]
         public IHDEHost FHDEHost;
@@ -19,20 +19,19 @@ namespace VVVV.Nodes.VObjects
         [Input("VPath Separator", Order = 12, DefaultString = "¦")]
         public ISpread<string> FVPathSep;
         [Input("Root Collection", Order = 13)]
-        public ISpread<VObject> FRoot;
+        public ISpread<object> FRoot;
         [Input("Smoothing Algorithm", Order = 14)]
         public ISpread<SmoothingAlgorithm> FAlgorithm;
 
-        public override VObject ConstructVObject()
+        public override object ConstructObject()
         {
-            if (FRoot[this.CurrObj] is VObjectCollectionWrap)
+            if (FRoot[this.CurrObj] is VObjectCollection)
             {
-                VObjectCollection vc = FRoot[this.CurrObj].Content as VObjectCollection;
+                VObjectCollection vc = FRoot[this.CurrObj] as VObjectCollection;
                 Smoothing NewObj = new Smoothing(FHDEHost, FVPath[this.CurrObj], FVPathSep[this.CurrObj], vc);
                 NewObj.Algorithm = FAlgorithm[this.CurrObj];
                 NewObj.FilterTime = FFilterTime[this.CurrObj];
-                SmoothingWrap NewWrap = new SmoothingWrap(NewObj);
-                return NewWrap;
+                return NewObj;
             }
             else return null;
         }
@@ -41,8 +40,8 @@ namespace VVVV.Nodes.VObjects
     [PluginInfo(Name = "Smoothing", Category = "Smoothing", AutoEvaluate = true)]
     public class SmoothingSmoothingNode : IPluginEvaluate
     {
-        [Input("Input")]
-        public Pin<VObject> FInput;
+        [Input("Input Smoothing")]
+        public Pin<object> FInput;
         [Input("Filter Time", IsBang = true)]
         public ISpread<double> FFilterTime;
         [Input("Set", IsBang = true)]
@@ -63,21 +62,21 @@ namespace VVVV.Nodes.VObjects
                 FTarget.SliceCount = 0;
                 for (int i = 0; i < FInput.SliceCount; i++)
                 {
-                    if (FInput[i] is SmoothingWrap)
+                    if (FInput[i] is Smoothing)
                     {
-                        Smoothing Content = FInput[i].Content as Smoothing;
+                        Smoothing Content = FInput[i] as Smoothing;
                         for (int j = 0; j < Content.CurrentValues.Count; j++)
                         {
                             for (int k = 0; k < Content.CurrentValues[j].Count; k++)
                             {
-                                if (Content.TargetValues[j].Objects[k] is double)
+                                if (Content.TargetValues[j][k] is double)
                                 {
-                                    FTarget.Add((double)Content.TargetValues[j].Objects[k]);
+                                    FTarget.Add((double)Content.TargetValues[j][k]);
                                     FCurrent.Add(Content.CurrentValues[j][k]);
                                 }
-                                if (Content.TargetValues[j].Objects[k] is float)
+                                if (Content.TargetValues[j][k] is float)
                                 {
-                                    FTarget.Add((float)Content.TargetValues[j].Objects[k]);
+                                    FTarget.Add((float)Content.TargetValues[j][k]);
                                     FCurrent.Add(Content.CurrentValues[j][k]);
                                 }
                             }

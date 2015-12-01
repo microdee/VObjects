@@ -154,7 +154,6 @@
     </Compile>
     <Compile Include="VebSocket\Client.cs" />
     <Compile Include="VebSocket\ClientConstruct.cs" />
-    <Compile Include="VebSocket\ClientLog.cs" />
     <Compile Include="VebSocket\ClientMessageNodes.cs" />
     <Compile Include="VebSocket\ClientSend.cs" />
     <Compile Include="VebSocket\ClientSplitNodes.cs" />

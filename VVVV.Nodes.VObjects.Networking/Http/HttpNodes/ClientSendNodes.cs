@@ -6,7 +6,6 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
-using VVVV.Packs.VObjects;
 
 namespace VVVV.Nodes.VObjects.Http.HttpNodes
 {
@@ -19,8 +18,8 @@ namespace VVVV.Nodes.VObjects.Http.HttpNodes
     )]
     public class HttpClientSendNode : IPluginEvaluate
     {
-        [Input("Client")]
-        public Pin<VObject> FClient;
+        [Input("HTTP Client")]
+        public Pin<object> FClient;
 
         [Input("Path")]
         public ISpread<ISpread<string>> FPath;
@@ -77,7 +76,7 @@ namespace VVVV.Nodes.VObjects.Http.HttpNodes
                 FCompleted.SliceCount = FClient.SliceCount;
                 for (int i = 0; i < FClient.SliceCount; i++)
                 {
-                    if (FClient[i] is HttpClientWrap)
+                    if (FClient[i] is HttpClientContainer)
                     {
                         int cSpreadMax = 0;
                         cSpreadMax = Math.Max(cSpreadMax, FPath[i].SliceCount);
@@ -93,7 +92,7 @@ namespace VVVV.Nodes.VObjects.Http.HttpNodes
                         FSending[i].SliceCount = cSpreadMax;
                         FCompleted[i].SliceCount = cSpreadMax;
 
-                        HttpClientContainer hcc = FClient[i].Content as HttpClientContainer;
+                        HttpClientContainer hcc = FClient[i] as HttpClientContainer;
                         for (int j = 0; j < cSpreadMax; j++)
                         {
                             FCompleted[i][j] = false;

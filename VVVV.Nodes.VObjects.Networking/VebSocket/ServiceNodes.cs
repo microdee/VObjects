@@ -18,18 +18,18 @@ namespace VVVV.Nodes.VObjects
     #endregion PluginInfo
     public class VebSocketServiceSplitNode : IPluginEvaluate
     {
-        [Input("Input")]
-        public Pin<VObject> FInput;
+        [Input("Input Server")]
+        public Pin<object> FInput;
 
         [Output("Clients")]
-        public ISpread<ISpread<VebSocketClientWrap>> FClients;
+        public ISpread<ISpread<VebSocketClient>> FClients;
         [Output("Client ID", BinVisibility = PinVisibility.OnlyInspector)]
         public ISpread<ISpread<string>> FClientID;
         [Output("Sessions", BinVisibility = PinVisibility.OnlyInspector)]
         public ISpread<ISpread<IWebSocketSession>> FSessions;
 
         [Output("New Clients")]
-        public ISpread<ISpread<VebSocketClientWrap>> FNewClients;
+        public ISpread<ISpread<VebSocketClient>> FNewClients;
         [Output("New Client ID", BinVisibility = PinVisibility.OnlyInspector)]
         public ISpread<ISpread<string>> FNewClientID;
         [Output("New Sessions", BinVisibility = PinVisibility.OnlyInspector)]
@@ -52,14 +52,14 @@ namespace VVVV.Nodes.VObjects
 
                 for (int i = 0; i < FInput.SliceCount; i++)
                 {
-                    if (FInput[i].Content is VebSocketService)
+                    if (FInput[i] is VebSocketService)
                     {
-                        VebSocketService vs = FInput[i].Content as VebSocketService;
+                        VebSocketService vs = FInput[i] as VebSocketService;
                         FClients[i].SliceCount = vs.Clients.Count;
                         FClientID[i].SliceCount = vs.Clients.Count;
                         FSessions[i].SliceCount = vs.Sessions.Count;
                         int j = 0;
-                        foreach(KeyValuePair<string, VebSocketClientWrap> kvp in vs.Clients)
+                        foreach(KeyValuePair<string, VebSocketClient> kvp in vs.Clients)
                         {
                             FClients[i][j] = kvp.Value;
                             FClientID[i][j] = kvp.Key;
@@ -71,7 +71,7 @@ namespace VVVV.Nodes.VObjects
                         FNewClientID[i].SliceCount = vs.NewClients.Count;
                         FNewSessions[i].SliceCount = vs.NewSessions.Count;
                         j = 0;
-                        foreach (KeyValuePair<string, VebSocketClientWrap> kvp in vs.NewClients)
+                        foreach (KeyValuePair<string, VebSocketClient> kvp in vs.NewClients)
                         {
                             FNewClients[i][j] = kvp.Value;
                             FNewClientID[i][j] = kvp.Key;
@@ -114,8 +114,8 @@ namespace VVVV.Nodes.VObjects
     #endregion PluginInfo
     public class VebSocketServiceInfoNode : IPluginEvaluate
     {
-        [Input("Input")]
-        public Pin<VObject> FInput;
+        [Input("Input Service")]
+        public Pin<object> FInput;
 
         [Output("Path")]
         public ISpread<string> FPath;
@@ -138,9 +138,9 @@ namespace VVVV.Nodes.VObjects
                     FActiveIDs[i].SliceCount = 0;
                     FInActiveIDs[i].SliceCount = 0;
 
-                    if (FInput[i].Content is VebSocketService)
+                    if (FInput[i] is VebSocketService)
                     {
-                        VebSocketService vs = FInput[i].Content as VebSocketService;
+                        VebSocketService vs = FInput[i] as VebSocketService;
                         FPath[i] = vs.Service.Path;
 
                         foreach (string id in vs.Service.Sessions.ActiveIDs)

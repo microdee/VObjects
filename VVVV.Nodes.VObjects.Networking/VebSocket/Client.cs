@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using VVVV.Packs.VObjects;
 using VVVV.PluginInterfaces.V2;
 
 using WebSocketSharp;
@@ -56,18 +55,8 @@ namespace VVVV.Nodes.VObjects
             this.Age.Start();
         }
     }
-    public class ClientMessageWrap : VObject
-    {
-        public ClientMessageWrap() : base() { }
-        public ClientMessageWrap(ClientMessage o) : base(o) { }
-        
-        public override void Dispose()
-        {
- 	        base.Dispose();
-        }
-    }
 
-    public class VebSocketClient
+    public class VebSocketClient : IDisposable
     {
         public IHDEHost HDEHost;
 
@@ -123,6 +112,7 @@ namespace VVVV.Nodes.VObjects
         }
         public void Dispose()
         {
+            Client.Close();
             this.HDEHost.MainLoop.OnPrepareGraph -= this.ClearBuffers;
             this.HDEHost.MainLoop.OnUpdateView -= this.IncrementAge;
         }
@@ -285,19 +275,6 @@ namespace VVVV.Nodes.VObjects
         {
             this.Client.ConnectAsync();
             this.Connecting = true;
-        }
-    }
-    public class VebSocketClientWrap : VObject
-    {
-        public VebSocketClientWrap() : base() { }
-        public VebSocketClientWrap(VebSocketClient o) : base(o) { }
-        
-        public override void Dispose()
-        {
-            VebSocketClient hc = this.Content as VebSocketClient;
-            hc.Client.Close();
-            hc.Dispose();
- 	        base.Dispose();
         }
     }
 }

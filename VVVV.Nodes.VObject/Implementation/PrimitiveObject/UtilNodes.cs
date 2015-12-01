@@ -13,8 +13,8 @@ namespace VVVV.Nodes.VObjects
                 )]
     public class PrimitiveObjectInfoNode : IPluginEvaluate
     {
-        [Input("Input")]
-        public Pin<VObject> FInput;
+        [Input("Primitive Object")]
+        public Pin<object> FInput;
 
         [Output("Children")]
         public ISpread<ISpread<string>> FChildren;
@@ -30,19 +30,18 @@ namespace VVVV.Nodes.VObjects
 
                 for (int i = 0; i < FInput.SliceCount; i++)
                 {
-                    if (FInput[i] is PrimitiveObjectWrap)
+                    if (FInput[i] is PrimitiveObject)
                     {
-                        PrimitiveObjectWrap prow = FInput[i] as PrimitiveObjectWrap;
-                        PrimitiveObject pro = prow.Content as PrimitiveObject;
+                        PrimitiveObject pro = FInput[i] as PrimitiveObject;
 
                         FChildren[i].SliceCount = pro.Fields.Count;
                         FType[i].SliceCount = pro.Fields.Count;
-                        List<ObjectTypePair> otpl = pro.Fields.Values.ToList();
+                        List<List<object>> otpl = pro.Fields.Values.ToList();
                         List<string> names = pro.Fields.Keys.ToList();
                         for(int j=0; j<pro.Fields.Count; j++)
                         {
                             FChildren[i][j] = names[j];
-                            FType[i][j] = otpl[j].Type.ToString();
+                            FType[i][j] = otpl[j][0].GetType().ToString();
                         }
                     }
                     else

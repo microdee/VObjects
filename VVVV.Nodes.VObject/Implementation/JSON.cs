@@ -10,26 +10,6 @@ using VVVV.Packs.VObjects;
 
 namespace VVVV.Nodes.VObjects
 {
-    public class JObjectWrap : VObject
-    {
-        public JObjectWrap() : base() { }
-        public JObjectWrap(JToken o) : base(o) { }
-        public JObjectWrap(Stream s) : base(s) { }
-
-        public override void Serialize()
-        {
-            base.Serialize();
-
-        }
-        public override VObject DeepCopy()
-        {
-            JToken ThisContent = (JToken)this.Content;
-            JToken NewObj = JToken.Parse(ThisContent.ToString());
-            JObjectWrap NewWrap = new JObjectWrap(NewObj);
-            return NewWrap;
-        }
-    }
-
     [PluginInfo(Name = "JsonParser", Category = "JSON", Help = "parse json string", Tags = "")]
     public class JsonParser : IPluginEvaluate
     {
@@ -37,8 +17,8 @@ namespace VVVV.Nodes.VObjects
         [Input("JSON", DefaultString = "hello")]
         public IDiffSpread<string> FInput;
 
-        [Output("Output json")]
-        public ISpread<JObjectWrap> FJOutput;
+        [Output("Output JToken")]
+        public ISpread<JToken> FJOutput;
 
         [Output("Valid")]
         public ISpread<bool> FValid;
@@ -56,7 +36,7 @@ namespace VVVV.Nodes.VObjects
                 {
                     if (JToken.Parse(FInput[i]) != null)
                     {
-                        FJOutput.Add(new JObjectWrap(JToken.Parse(FInput[i])));
+                        FJOutput.Add(JToken.Parse(FInput[i]));
                         FValid[i] = true;
                     }
                     else FValid[i] = false;
@@ -69,8 +49,8 @@ namespace VVVV.Nodes.VObjects
     public class SelectToken : IPluginEvaluate
     {
         #region fields & pins
-        [Input("JObject")]
-        public Pin<VObject> FInput;
+        [Input("Input JToken")]
+        public Pin<object> FInput;
 
         [Input("path")]
         public ISpread<ISpread<string>> FInputp;
@@ -81,8 +61,8 @@ namespace VVVV.Nodes.VObjects
         [Output("Output")]
         public ISpread<ISpread<string>> FOutput;
 
-        [Output("Output Object")]
-        public ISpread<ISpread<JObjectWrap>> FObjectOut;
+        [Output("Output JToken")]
+        public ISpread<ISpread<JToken>> FObjectOut;
 
         #endregion fields & pins
         //called when data for any output pin is requested
@@ -99,9 +79,9 @@ namespace VVVV.Nodes.VObjects
                 {
                     for (int i = 0; i < FInput.SliceCount; i++)
                     {
-                        if (FInput[i] is JObjectWrap)
+                        if (FInput[i] is JToken)
                         {
-                            JToken ThisContent = FInput[i].Content as JToken;
+                            JToken ThisContent = FInput[i] as JToken;
                             FOutput[i].SliceCount = FInputp[i].SliceCount;
                             FObjectOut[i].SliceCount = 0;
                             for (int j = 0; j < FInputp[i].SliceCount; j++)
@@ -110,8 +90,7 @@ namespace VVVV.Nodes.VObjects
                                 {
                                     JToken st = ThisContent.SelectToken(FInputp[i][j]);
                                     FOutput[i][j] = st.ToString();
-                                    JObjectWrap jow = new JObjectWrap(st);
-                                    FObjectOut[i].Add(jow);
+                                    FObjectOut[i].Add(st);
                                 }
                                 else
                                 {
@@ -129,8 +108,8 @@ namespace VVVV.Nodes.VObjects
     public class JsonArray : IPluginEvaluate
     {
         #region fields & pins
-        [Input("Jobject")]
-        public Pin<VObject> FInput;
+        [Input("Input JToken")]
+        public Pin<object> FInput;
 
         [Input("path")]
         public IDiffSpread<string> FInputp;
@@ -144,8 +123,8 @@ namespace VVVV.Nodes.VObjects
         [Output("Output")]
         public ISpread<ISpread<string>> FOutput;
 
-        [Output("Output Object")]
-        public ISpread<ISpread<JObjectWrap>> FObjectOut;
+        [Output("Output JToken")]
+        public ISpread<ISpread<JToken>> FObjectOut;
 
         // [Output("Output json")]
         //ISpread<Vson> FJOutput;
@@ -163,9 +142,9 @@ namespace VVVV.Nodes.VObjects
                     //if(FInputp.IsChanged || FInputk.IsChanged)
                     for (int i = 0; i < SpreadMax; i++)
                     {
-                        if (FInput[i] is JObjectWrap)
+                        if (FInput[i] is JToken)
                         {
-                            JObject ThisContent = FInput[i].Content as JObject;
+                            JToken ThisContent = FInput[i] as JToken;
                             FOutput[i].SliceCount = 0;
                             FObjectOut[i].SliceCount = 0;
                             if (ThisContent.SelectToken(FInputp[i]) != null)
@@ -177,8 +156,7 @@ namespace VVVV.Nodes.VObjects
                                     {
                                         JToken st = child.SelectToken(FInputk[0]);
                                         FOutput[i].Add(st.ToString());
-                                        JObjectWrap jow = new JObjectWrap(st);
-                                        FObjectOut[i].Add(jow);
+                                        FObjectOut[i].Add(st);
                                     }
                                     else
                                     {
@@ -203,8 +181,8 @@ namespace VVVV.Nodes.VObjects
     public class ListTokens : IPluginEvaluate
     {
         #region fields & pins
-        [Input("JObject")]
-        public Pin<VObject> FInput;
+        [Input("Input JToken")]
+        public Pin<object> FInput;
         [Input("Path")]
         public IDiffSpread<string> FInputp;
         [Input("Parse", DefaultBoolean = true)]
@@ -279,9 +257,9 @@ namespace VVVV.Nodes.VObjects
                 {
                     for (int i = 0; i < FInput.SliceCount; i++)
                     {
-                        if (FInput[i] is JObjectWrap)
+                        if (FInput[i] is JToken)
                         {
-                            JObject ThisContent = FInput[i].Content as JObject;
+                            JToken ThisContent = FInput[i] as JToken;
                             JToken ThisPath = ThisContent.SelectToken(FInputp[i]);
                             FOutput[i].SliceCount = 0;
                             FType[i].SliceCount = 0;
