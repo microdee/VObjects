@@ -1,15 +1,15 @@
-VVVV.Packs.VObject
-==================
+Update note: for compatible version see branch V1. This version will introduce breaking changes with naming and stuff for a couple of weeks.
 
-A VObject is a generic object wrapper for vvvv and an Object-Oriented-Patching pipeline.
+VObject 2 (VVEETOP)
+===================
 
-It is a base class which contains the actual wrapped object as "Content" and some methods for (de)serialization, cloning (deepcopy) and disposing. A wrapper class for your object needs to inherit from VObject which will contain your actual class. This is necessary so you can handle together radically different types of objects in VVVV in a single spread or a collection.
+VObject or now Weak typed Object Pipeline (VVETOP) is a toolkit for vvvv to handle the base .NET object class. (Instead of being an immediate wrapper base type. That is gone now entirely)
 
-For Management there are 2 main classes, VObjectDictionary and VObjectCollection (which are also inherited from VObject). In VObjectDictionary you can only store VObjectCollections referenced by their string name. VObjectCollections on the other hand can store any kind of VObjects (including both VObjectCollections and dictionaries) which means they can be nested. In theory a collection can even hold itself but it's not tested and may result in undefined behavior.
+There are couple of helper classes which help you organize your objects. First is VObjectCollection which is basically a dictionary with some extra data.
 
-Wrapping primitive datatypes (values, strings, raw (streams), vectors, colors and matrices) is done by PrimitiveObject class and its set of nodes very similar to Velcrome's messages. See girlpower for their usage.
+Second is for wrapping primitive datatypes (values, strings, raw (streams), vectors, colors and matrices) is the PrimitiveObject class and its set of nodes very similar to Velcrome's messages. See girlpower for their usage. However note you can directly cast primitive types to an object with AsWeakObject node from mcropack and use them directly inside a VObjectCollection if you fancy.
 
-Above mentioned classes are all a derived members of the VPathQueryable abstract class which allows for simple retrieval of nested objects by an XPath like syntax. Multiple objects can be queried by a Regex pattern or a single absolute reference can be used in quotes. Nested levels are separated by a user defined separator character, which is ¦ by default, the reason was that this character is the least likely in regex patterns. But if you don't use regex at all you can set a more common character like . or / etc.
+Third: above mentioned classes are all a derived member of the VPathQueryable abstract class which allows for simple retrieval of nested objects by an XPath like syntax if nested containing objects are also derived from this class. Note it can reference an object at the end of the path hierarchy not inheriting VPathQueryable. Multiple objects can be queried by a Regex pattern or a single absolute reference can be used in quotes. Nested levels are separated by a user defined separator character, which is ¦ by default, the reason was that this character is the least likely to turn up in regex patterns. But if you don't use regex at all you can set a more common character like . or / etc.
 
 syntax in practice:
 
@@ -38,26 +38,20 @@ syntax in practice:
 "Parent"/"Child"/"Field"
 ```
 
-Other Implementations
----------------------
+Other Included libraries / wrappers using VVETOP
+------------------------------------------------
 
 **Smoothing**<br />
 Execute a smoothing algorithm on a given value (simple types only yet, no vectors and matrices, however it would be simple to implement). Values are selected from PrimitiveObjects double or float types via VPath.
 
 **JSON**<br />
-There's a JObject wrapper migrated from the JSON nodes of sanch.
+There's a JToken wrapper migrated from the JSON nodes of sanch.
 
 **Stopwatch**<br />
-Simple system stopwatch wrapper so you can define custom time based actions on your set of VObjects
-
-**Messages**<br />
-Wrap and unwrap Velcrome's messages
-
-**VOOG**<br />
-VObject Oriented Gui framework. Implements also a TypeWriter clone which is able to handle text selection too, and Hittest methods from the addonpack. Modules require to have mcropack present
+Simple system stopwatch wrapper so you can define custom time based actions on your set of objects
 
 **WebSockets**<br />
 Websocket-Sharp wrapper which is dubbed VebSocket in VVVV. Both servers and clients are implemented. Server nodes are still kind of experimental.
 
 **HTTP**<br />
-HTTP swiss army knife represented as VObjects so you have total control over sessions. Also supports everything you'd expect + cookies.
+HTTP swiss army knife which allows you to have total control over sessions. Also supports everything you'd expect + cookies.
