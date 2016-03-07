@@ -2,21 +2,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using VVVV.Utils.VMath;
 
 namespace VVVV.Packs.VObjects
 {
-    public class VectorND : ICloneable, IEnumerable<double>
+    public class VectorND : ICloneable, IEnumerable<float>
     {
-        public List<double> Axis = new List<double>();
+        public List<float> Axis = new List<float>();
 
-        public double x
+        public float x
         {
             get { return Axis[0]; }
             set { Axis[0] = value; }
         }
-        public double y
+        public float y
         {
             get
             {
@@ -31,7 +30,7 @@ namespace VVVV.Packs.VObjects
                 else throw new Exception("Vector is not 2D.");
             }
         }
-        public double z
+        public float z
         {
             get
             {
@@ -46,7 +45,7 @@ namespace VVVV.Packs.VObjects
                 else throw new Exception("Vector is not 3D.");
             }
         }
-        public double w
+        public float w
         {
             get
             {
@@ -62,7 +61,7 @@ namespace VVVV.Packs.VObjects
             }
         }
 
-        public double this[int i]
+        public float this[int i]
         {
             get { return Axis[i]; }
             set { Axis[i] = value; }
@@ -71,7 +70,7 @@ namespace VVVV.Packs.VObjects
         {
             get
             {
-                List<double> t = new List<double>();
+                List<float> t = new List<float>();
                 foreach (int i in ii)
                 {
                     t.Add(Axis[i]);
@@ -120,7 +119,7 @@ namespace VVVV.Packs.VObjects
         {
             get
             {
-                List<double> t = new List<double>();
+                List<float> t = new List<float>();
                 foreach (int i in GetIndicesFromPattern(p))
                 {
                     t.Add(Axis[i]);
@@ -143,52 +142,52 @@ namespace VVVV.Packs.VObjects
             return new VectorND(Axis);
         }
 
-        public IEnumerator<double> GetEnumerator()
+        public IEnumerator<float> GetEnumerator()
         {
-            return ((IEnumerable<double>)Axis).GetEnumerator();
+            return ((IEnumerable<float>)Axis).GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return ((IEnumerable<double>)Axis).GetEnumerator();
+            return ((IEnumerable<float>)Axis).GetEnumerator();
         }
 
         public VectorND()
         {
-            Axis.Add(0.0);
+            Axis.Add(0f);
         }
         public VectorND(int d)
         {
             for (int i = 0; i < d; i++)
-                Axis.Add(0);
+                Axis.Add(0f);
         }
-        public VectorND(IEnumerable<double> a)
+        public VectorND(IEnumerable<float> a)
         {
-            foreach (double d in a)
+            foreach (float d in a)
                 Axis.Add(d);
         }
-        public VectorND(params double[] s)
+        public VectorND(params float[] s)
         {
             for (int i = 0; i < s.Length; i++)
                 Axis.Add(s[i]);
         }
         public VectorND(Vector2D v)
         {
-            Axis.Add(v.x);
-            Axis.Add(v.y);
+            Axis.Add((float)v.x);
+            Axis.Add((float)v.y);
         }
         public VectorND(Vector3D v)
         {
-            Axis.Add(v.x);
-            Axis.Add(v.y);
-            Axis.Add(v.z);
+            Axis.Add((float)v.x);
+            Axis.Add((float)v.y);
+            Axis.Add((float)v.z);
         }
         public VectorND(Vector4D v)
         {
-            Axis.Add(v.x);
-            Axis.Add(v.y);
-            Axis.Add(v.z);
-            Axis.Add(v.w);
+            Axis.Add((float)v.x);
+            Axis.Add((float)v.y);
+            Axis.Add((float)v.z);
+            Axis.Add((float)v.w);
         }
     }
 }

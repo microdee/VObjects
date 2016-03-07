@@ -7,26 +7,19 @@ namespace VVVV.Packs.VObjects
     public class PrimitiveObject : VPathQueryable
     {
         public Dictionary<string, List<object>> Fields = new Dictionary<string, List<object>>();
-
-        public PrimitiveObject() { }
+        
         public void Add(string name, object Field)
         {
             if (!this.Fields.ContainsKey(name))
             {
                 if (Field is List<object>)
                 {
-                    List<object> objl = Field as List<object>;
-                    if (TypeIdentity.Instance.ContainsKey(objl[0].GetType()))
-                    {
-                        this.Fields.Add(name, (List<object>)Field);
-                        return;
-                    }
+                    Fields.Add(name, (List<object>)Field);
+                    return;
                 }
-                if (TypeIdentity.Instance.ContainsKey(Field.GetType()))
-                {
-                    List<object> obj = new List<object>();
-                    obj.Add(Field);
-                }
+                List<object> obj = new List<object>();
+                obj.Add(Field);
+                Fields.Add(name, obj);
             }
         }
         public string GetConfig()
@@ -34,7 +27,6 @@ namespace VVVV.Packs.VObjects
             string conf = "";
             foreach(KeyValuePair<string, List<object>> kvp in this.Fields)
             {
-                conf += kvp.Value[0].GetType().ToString() + " ";
                 conf += kvp.Key + ", ";
             }
             return conf;
@@ -42,13 +34,10 @@ namespace VVVV.Packs.VObjects
 
         protected void DisposeDisposable(List<object> objl)
         {
-            if (objl[0] is IDisposable)
+            foreach (object o in objl)
             {
-                foreach (object o in objl)
-                {
-                    var t = o as IDisposable;
-                    t.Dispose();
-                }
+                var t = o as IDisposable;
+                t?.Dispose();
             }
         }
 
@@ -56,18 +45,18 @@ namespace VVVV.Packs.VObjects
         {
             get
             {
-                if (this.Fields.ContainsKey(name)) return this.Fields[name];
-                else return null;
+                if (Fields.ContainsKey(name)) return Fields[name];
+                return null;
             }
-            set { if(this.Fields.ContainsKey(name)) this.Fields[name] = value; }
+            set { if(Fields.ContainsKey(name)) Fields[name] = value; }
         }
         public void Clear()
         {
-            foreach(KeyValuePair<string, List<object>> kvp in this.Fields)
+            foreach(KeyValuePair<string, List<object>> kvp in Fields)
             {
                 DisposeDisposable(kvp.Value);
             }
-            this.Fields.Clear();
+            Fields.Clear();
         }
 
         public void Remove(string key, bool match)
@@ -82,12 +71,8 @@ namespace VVVV.Packs.VObjects
             }
             else
             {
-                List<string> ToBeRemoved = new List<string>();
-                foreach (KeyValuePair<string, List<object>> kvp in this.Fields)
-                {
-                    if(kvp.Key.Contains(key)) ToBeRemoved.Add(kvp.Key);
-                }
-                foreach(string k in ToBeRemoved)
+                var ToBeRemoved = (from kvp in this.Fields where kvp.Key.Contains(key) select kvp.Key).ToList();
+                foreach(var k in ToBeRemoved)
                 {
                     DisposeDisposable(Fields[k]);
                     this.Fields.Remove(k);
@@ -98,14 +83,12 @@ namespace VVVV.Packs.VObjects
 
         public override object VPathGetItem(string key)
         {
-            if (this.Fields.ContainsKey(key))
-                return this.Fields[key];
-            else return null;
+            return Fields.ContainsKey(key) ? Fields[key] : null;
         }
 
         public override string[] VPathQueryKeys()
         {
-            return this.Fields.Keys.ToArray();
+            return Fields.Keys.ToArray();
         }
     }
 }

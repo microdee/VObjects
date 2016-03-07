@@ -1,0 +1,421 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.103.dtd" >
+   <PATCH nodename="E:\vvvv\libs\mcropack\packs\VObjects\girlpower\GenericNodeTest.v4p" scrollx="0" scrolly="0" systemname="GenericNodeTest" filename="E:\vvvv\libs\mcropack\packs\VObjects\girlpower\GenericNodeTest.v4p">
+   <BOUNDS type="Window" left="38565" top="2295" width="13725" height="9240">
+   </BOUNDS>
+   <NODE systemname="Add (VObjectCollection)" filename="..\nodes\plugins\AnyCPU\VVVV.Nodes.VObjects.dll" nodename="Add (VObjectCollection)" componentmode="Hidden" id="0">
+   <BOUNDS type="Node" left="2475" top="3780" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Parent" visible="1">
+   </PIN>
+   <PIN pinname="Name" visible="1">
+   </PIN>
+   <PIN pinname="Source Bin Size X" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Source" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Add" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Dictionary (VObjectCollection)" filename="..\nodes\modules\VObjectCollection\Dictionary (VObjectCollection).v4p" nodename="Dictionary (VObjectCollection)" componentmode="Hidden" id="1">
+   <BOUNDS type="Node" left="6480" top="585" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Clear" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="1" srcpinname="Output" dstnodeid="0" dstpinname="Parent">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="2" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="3300" top="2355" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3300" top="2355" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="Value">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="2" srcpinname="Output String" dstnodeid="0" dstpinname="Name">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="4" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="4920" top="645" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4920" top="645" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="4" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Add">
+   </LINK>
+   <NODE systemname="GetObject (VObjectCollection)" filename="..\nodes\plugins\AnyCPU\VVVV.Nodes.VObjects.dll" nodename="GetObject (VObjectCollection)" componentmode="Hidden" id="5">
+   <BOUNDS type="Node" left="3510" top="4290" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Filter" visible="1">
+   </PIN>
+   <PIN pinname="Source" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="2" srcpinname="Output String" dstnodeid="5" dstpinname="Filter">
+   </LINK>
+   <LINK srcnodeid="1" srcpinname="Output" dstnodeid="5" dstpinname="Source">
+   </LINK>
+   <NODE systemname="Cast (Node)" filename="..\..\mp.essentials\nodes\plugins\generic\VVVV.Nodes.CastToAll.dll" nodename="Cast (Node)" componentmode="Hidden" id="8">
+   <BOUNDS type="Node" left="2370" top="4845" width="1200" height="270">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Double" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="5" srcpinname="Output" dstnodeid="8" dstpinname="Input">
+   </LINK>
+   <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="11">
+   <BOUNDS type="Node" left="2610" top="3060" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2610" top="3060" width="795" height="240">
+   </BOUNDS>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Y Input Value" slicecount="1" values="0.35">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="12" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="2370" top="5475" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2370" top="5475" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Y Input Value" visible="1" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="8" srcpinname="Double" dstnodeid="12" dstpinname="Y Input Value">
+   </LINK>
+   <LINK srcnodeid="11" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Source">
+   </LINK>
+   <PACK Name="VVVV.Packs" Version="0.2.0">
+   </PACK>
+   <PACK Name="addonpack" Version="34.101.0">
+   </PACK>
+   <NODE systemname="Add (VObjectCollection)" filename="..\nodes\plugins\AnyCPU\VVVV.Nodes.VObjects.dll" nodename="Add (VObjectCollection)" componentmode="Hidden" id="18">
+   <BOUNDS type="Node" left="4770" top="3810" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Parent" visible="1">
+   </PIN>
+   <PIN pinname="Name" visible="1">
+   </PIN>
+   <PIN pinname="Source Bin Size X" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Source" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Add" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="1" srcpinname="Output" dstnodeid="18" dstpinname="Parent">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="17" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="5595" top="2385" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5595" top="2385" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="Color">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="17" srcpinname="Output String" dstnodeid="18" dstpinname="Name">
+   </LINK>
+   <LINK srcnodeid="4" srcpinname="Y Output Value" dstnodeid="18" dstpinname="Add">
+   </LINK>
+   <NODE systemname="GetObject (VObjectCollection)" filename="..\nodes\plugins\AnyCPU\VVVV.Nodes.VObjects.dll" nodename="GetObject (VObjectCollection)" componentmode="Hidden" id="16">
+   <BOUNDS type="Node" left="5805" top="4320" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Filter" visible="1">
+   </PIN>
+   <PIN pinname="Source" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="17" srcpinname="Output String" dstnodeid="16" dstpinname="Filter">
+   </LINK>
+   <LINK srcnodeid="1" srcpinname="Output" dstnodeid="16" dstpinname="Source">
+   </LINK>
+   <NODE systemname="Cast (Node)" filename="..\..\mp.essentials\nodes\plugins\generic\VVVV.Nodes.CastToAll.dll" nodename="Cast (Node)" componentmode="Hidden" id="14">
+   <BOUNDS type="Node" left="4665" top="4875" width="1200" height="270">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Double" visible="1">
+   </PIN>
+   <PIN pinname="RGBAColor" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="16" srcpinname="Output" dstnodeid="14" dstpinname="Input">
+   </LINK>
+   <NODE systemname="Add (VObjectCollection)" filename="..\nodes\plugins\AnyCPU\VVVV.Nodes.VObjects.dll" nodename="Add (VObjectCollection)" componentmode="Hidden" id="28">
+   <BOUNDS type="Node" left="6795" top="3840" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Parent" visible="1">
+   </PIN>
+   <PIN pinname="Name" visible="1">
+   </PIN>
+   <PIN pinname="Source Bin Size X" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Source" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Add" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="1" srcpinname="Output" dstnodeid="28" dstpinname="Parent">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="27" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="7620" top="2415" width="1485" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="7620" top="2415" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="RenderSemantic">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="27" srcpinname="Output String" dstnodeid="28" dstpinname="Name">
+   </LINK>
+   <LINK srcnodeid="4" srcpinname="Y Output Value" dstnodeid="28" dstpinname="Add">
+   </LINK>
+   <NODE systemname="GetObject (VObjectCollection)" filename="..\nodes\plugins\AnyCPU\VVVV.Nodes.VObjects.dll" nodename="GetObject (VObjectCollection)" componentmode="Hidden" id="26">
+   <BOUNDS type="Node" left="7830" top="4350" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Filter" visible="1">
+   </PIN>
+   <PIN pinname="Source" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="27" srcpinname="Output String" dstnodeid="26" dstpinname="Filter">
+   </LINK>
+   <LINK srcnodeid="1" srcpinname="Output" dstnodeid="26" dstpinname="Source">
+   </LINK>
+   <NODE systemname="Cast (Node)" filename="..\..\mp.essentials\nodes\plugins\generic\VVVV.Nodes.CastToAll.dll" nodename="Cast (Node)" componentmode="Hidden" id="25">
+   <BOUNDS type="Node" left="6690" top="4905" width="1200" height="270">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Double" visible="1">
+   </PIN>
+   <PIN pinname="IDX11RenderSemantic" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="26" srcpinname="Output" dstnodeid="25" dstpinname="Input">
+   </LINK>
+   <NODE systemname="Add (VObjectCollection)" filename="..\nodes\plugins\AnyCPU\VVVV.Nodes.VObjects.dll" nodename="Add (VObjectCollection)" componentmode="Hidden" id="32">
+   <BOUNDS type="Node" left="8655" top="3750" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Parent" visible="1">
+   </PIN>
+   <PIN pinname="Name" visible="1">
+   </PIN>
+   <PIN pinname="Source Bin Size X" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Source" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Add" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="1" srcpinname="Output" dstnodeid="32" dstpinname="Parent">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="31" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="9480" top="2325" width="1485" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="9480" top="2325" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="Message">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="31" srcpinname="Output String" dstnodeid="32" dstpinname="Name">
+   </LINK>
+   <LINK srcnodeid="4" srcpinname="Y Output Value" dstnodeid="32" dstpinname="Add">
+   </LINK>
+   <NODE systemname="GetObject (VObjectCollection)" filename="..\nodes\plugins\AnyCPU\VVVV.Nodes.VObjects.dll" nodename="GetObject (VObjectCollection)" componentmode="Hidden" id="30">
+   <BOUNDS type="Node" left="9690" top="4260" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Filter" visible="1">
+   </PIN>
+   <PIN pinname="Source" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="31" srcpinname="Output String" dstnodeid="30" dstpinname="Filter">
+   </LINK>
+   <LINK srcnodeid="1" srcpinname="Output" dstnodeid="30" dstpinname="Source">
+   </LINK>
+   <NODE systemname="Cast (Node)" filename="..\..\mp.essentials\nodes\plugins\generic\VVVV.Nodes.CastToAll.dll" nodename="Cast (Node)" componentmode="Hidden" id="29">
+   <BOUNDS type="Node" left="8550" top="4815" width="1200" height="270">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Double" visible="1">
+   </PIN>
+   <PIN pinname="Message" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="30" srcpinname="Output" dstnodeid="29" dstpinname="Input">
+   </LINK>
+   <NODE systemname="IOBox (Color)" nodename="IOBox (Color)" componentmode="InABox" id="33">
+   <BOUNDS type="Node" left="4935" top="3075" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4935" top="3075" width="1005" height="495">
+   </BOUNDS>
+   <PIN pinname="Color Output" visible="1">
+   </PIN>
+   <PIN pinname="Color Input" slicecount="1" values="|0.68041,0.12229,1.00000,1.00000|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="33" srcpinname="Color Output" dstnodeid="18" dstpinname="Source">
+   </LINK>
+   <NODE systemname="RenderSemantic (DX11.Layer Value)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="RenderSemantic (DX11.Layer Value)" componentmode="Hidden" id="34">
+   <BOUNDS type="Node" left="6945" top="3150" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="34" srcpinname="Output" dstnodeid="28" dstpinname="Source">
+   </LINK>
+   <NODE systemname="Create (Message.Keep Formular)" filename="%VVVV%\packs\vvvv-Message_x64\nodes\plugins\VVVV.Nodes.Messaging.dll" nodename="Create (Message.Keep Formular)" componentmode="Hidden" id="35">
+   <BOUNDS type="Node" left="8820" top="3105" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Foo" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="35" srcpinname="Output" dstnodeid="32" dstpinname="Source">
+   </LINK>
+   <NODE nodename="IOBox (Color)" componentmode="InABox" id="36" systemname="IOBox (Color)">
+   <BOUNDS type="Box" left="4500" top="5505" width="1800" height="555">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4500" top="5505" width="0" height="0">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="14" srcpinname="RGBAColor" dstnodeid="36" dstpinname="Color Input">
+   </LINK>
+   <NODE systemname="Semantics (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Semantics (DX11.Layer)" componentmode="Hidden" id="37">
+   <BOUNDS type="Node" left="6675" top="5985" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Custom Semantics" visible="1" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="25" srcpinname="IDX11RenderSemantic" dstnodeid="37" dstpinname="Custom Semantics">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="38" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="9165" top="2745" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="9165" top="2745" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="Bar">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="38" srcpinname="Output String" dstnodeid="35" dstpinname="Foo">
+   </LINK>
+   <NODE systemname="Split (Message Formular)" filename="%VVVV%\packs\vvvv-Message_x64\nodes\plugins\VVVV.Nodes.Messaging.dll" nodename="Split (Message Formular)" componentmode="Hidden" id="39">
+   <BOUNDS type="Node" left="8550" top="5445" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Foo" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="29" srcpinname="Message" dstnodeid="39" dstpinname="Input">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="40" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="8895" top="5910" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8895" top="5910" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="39" srcpinname="Foo" dstnodeid="40" dstpinname="Input String">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="45" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="135" top="3780" width="2055" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="135" top="3780" width="2190" height="285">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|these nodes are the same - &gt;|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="47" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="150" top="4860" width="2055" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="150" top="4860" width="2190" height="285">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|these nodes are the same - &gt;|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   </PATCH>

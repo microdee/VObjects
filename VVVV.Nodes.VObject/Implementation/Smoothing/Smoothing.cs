@@ -39,7 +39,7 @@ namespace VVVV.Nodes.VObjects
                 if (o is List<object>)
                 {
                     var t = o as List<object>;
-                    if ((t[0].GetType() == typeof(double)) || (t[0].GetType() == typeof(float)))
+                    if (t[0] is double || t[0] is float)
                     {
                         List<double> tmplist = new List<double>();
                         this.TargetValues.Add(t);

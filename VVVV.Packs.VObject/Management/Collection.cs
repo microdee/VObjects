@@ -6,7 +6,7 @@ using System.Diagnostics;
 namespace VVVV.Packs.VObjects
 {
     // class for high level and simple object emulation in VVVV
-    public class VObjectCollection : VPathQueryable
+    public class VObjectCollection : IVPathQueryable
     {
         public Dictionary<string, object> Children = new Dictionary<string, object>();
         public string Name = "";
@@ -80,14 +80,14 @@ namespace VVVV.Packs.VObjects
             }
         }
 
-        public override object VPathGetItem(string key)
+        public object VPathGetItem(string key)
         {
             if (this.Children.ContainsKey(key))
                 return this.Children[key];
             else return null;
         }
 
-        public override string[] VPathQueryKeys()
+        public string[] VPathQueryKeys()
         {
             return this.Children.Keys.ToArray();
         }

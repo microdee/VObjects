@@ -1,11 +1,54 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
 
 namespace VVVV.Packs.VObjects
 {
+    public static class ColUtils
+    {
+        public static void Set<TKey, TVal>(this Dictionary<TKey, TVal> d, TKey k, TVal v)
+        {
+            if (d.ContainsKey(k))
+            {
+                d[k] = v;
+            }
+            else
+            {
+                d.Add(k, v);
+            }
+        }
+    }
+    public static class TypeUtils
+    {
+        public static IEnumerable<Type> GetTypes(this Type type)
+        {
+            // is there any base type?
+            if ((type == null) || (type.BaseType == null))
+            {
+                yield break;
+            }
+            yield return type;
+            // return all implemented or inherited interfaces
+            foreach (var i in type.GetInterfaces())
+            {
+                yield return i;
+            }
+
+            // return all inherited types
+            var currentBaseType = type.BaseType;
+            while (currentBaseType != null)
+            {
+                yield return currentBaseType;
+                currentBaseType = currentBaseType.BaseType;
+            }
+        }
+
+        public static string GetName(this Type T, bool full)
+        {
+            if (full) return T.FullName;
+            else return T.Name;
+        }
+    }
 
     public static class ObjectHelper
     {

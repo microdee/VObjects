@@ -104,9 +104,9 @@ namespace VVVV.Nodes.VObjects
         public ISpread<bool> FConstruct;
         [Input("Auto Clear", DefaultBoolean = true, Order = 1)]
         public ISpread<bool> FAutoClear;
-        [Input("Set", IsBang = true, Order = 0)]
+        [Input("Set", IsBang = true, Order = 2)]
         public ISpread<bool> FSet;
-        [Input("Dispose Disposable", Order = 100)]
+        [Input("Dispose Disposable", Order = 3, Visibility = PinVisibility.OnlyInspector)]
         public ISpread<bool> FDisposeDisposable;
         [Output("Output Object", Order = 0)]
         public ISpread<object> FOutput;
@@ -127,7 +127,7 @@ namespace VVVV.Nodes.VObjects
         {
             return null;
         }
-        public virtual void SetVObject(object Obj)
+        public virtual void SetObject()
         {
         }
 
@@ -165,6 +165,12 @@ namespace VVVV.Nodes.VObjects
                     object ro = ConstructObject();
                     if (ro != null) FOutput.Add(ro);
                 }
+            }
+            for (int i = 0; i < FOutput.SliceCount; i++)
+            {
+                if (!FSet[i]) continue;
+                CurrObj = i;
+                SetObject();
             }
         }
     }
@@ -422,10 +428,13 @@ namespace VVVV.Nodes.VObjects
         }
     }
 
-    public abstract class VPathNode : IPluginEvaluate
+    public abstract class VPathNode : IPluginEvaluate, IPartImportsSatisfiedNotification
     {
-        [Input("Source", Order = 0)]
-        public Pin<object> FInput;
+        [Import]
+        public IPluginHost2 FPluginHost;
+
+        protected GenericInput FInput;
+
         [Input("Path", Order = 1, BinOrder = 2)]
         public ISpread<ISpread<string>> FFilter;
         [Input("Separator", Order = 3, IsSingle = true, DefaultString="¦")]
@@ -444,18 +453,24 @@ namespace VVVV.Nodes.VObjects
         public virtual void InitializeFrame() { }
         public int CurrentAbsIndex = 0;
 
+        public void OnImportsSatisfied()
+        {
+            var attr = new InputAttribute("Input");
+            attr.Order = 0;
+            FInput = new GenericInput(FPluginHost, attr);
+        }
         public void Evaluate(int SpreadMax)
         {
-            if (FInput.IsConnected)
+            if (FInput.Connected)
             {
-                FOutput.SliceCount = FInput.SliceCount;
-                FFormerIndex.SliceCount = FInput.SliceCount;
+                FOutput.SliceCount = FInput.Pin.SliceCount;
+                FFormerIndex.SliceCount = FInput.Pin.SliceCount;
 
                 this.InitializeFrame();
 
                 CurrentAbsIndex = 0;
 
-                for (int i = 0; i < FInput.SliceCount; i++)
+                for (int i = 0; i < FInput.Pin.SliceCount; i++)
                 {
                     if (FEnabled[i])
                     {

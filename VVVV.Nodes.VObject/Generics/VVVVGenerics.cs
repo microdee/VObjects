@@ -1,190 +1,280 @@
 ﻿using System;
+using System.CodeDom;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using VVVV.Nodes.Generic;
 using VVVV.PluginInterfaces.V2;
 using VVVV.Utils.Streams;
-
-using VVVV.Packs.VObjects;
+using VVVV.Nodes.PDDN;
 
 namespace VVVV.Nodes.VObjects
 {
-    #region basics
     [PluginInfo(Name = "Cons",
-                Category = "Object",
-                Help = "Concatenates all input spreads to one output spread.",
-                Tags = "generic, spreadop"
-                )]
-    public class VObjectConsNode : Cons<object> { }
-
-    [PluginInfo(Name = "CAR",
-                Category = "Object",
-                Version = "Bin",
-                Help = "Splits a given spread into first slice and remainder.",
-                Tags = "split, generic, spreadop"
-               )]
-    public class VObjectCARBinNode : CARBin<object> { }
-
-    [PluginInfo(Name = "CDR",
-                Category = "Object",
-                Version = "Bin",
-                Help = "Splits a given spread into remainder and last slice.",
-                Tags = "split, generic, spreadop"
-               )]
-    public class VObjectCDRBinNode : CDRBin<object> { }
-
-    [PluginInfo(Name = "Reverse",
-                Category = "Object",
-                Version = "Bin",
-                Help = "Reverses the order of slices in a given spread.",
-                Tags = "invert, generic, spreadop"
-               )]
-    public class VObjectReverseBinNode : ReverseBin<object> { }
-
-    [PluginInfo(Name = "Shift",
-                Category = "Object",
-                Version = "Bin",
-                Help = "Shifts the slices in a spread upwards by the given phase.",
-                Tags = "generic, spreadop"
-               )]
-    public class VObjectShiftBinNode : ShiftBin<object> { }
-
-    [PluginInfo(Name = "SetSlice",
-                Category = "Object",
-                Version = "Bin",
-                Help = "Replaces individual slices of a spread with the given input",
-                Tags = "generic, spreadop"
-               )]
-    public class VObjectSetSliceNode : SetSlice<object> { }
-
-    [PluginInfo(Name = "Select",
-                Category = "Object",
-                Help = "Select which slices and how many form the output spread.",
-                Tags = "resample, generic, spreadop"
-               )]
-    public class VObjectSelectNode : Select<object> { }
-
-    [PluginInfo(Name = "Select",
-                Category = "Object",
-                Version = "Bin",
-                Help = "Select the slices which form the new spread.",
-                Tags = "repeat, generic, spreadop"
-            )]
-    public class VObjectSelectBinNode : SelectBin<object> { }
-
-    [PluginInfo(Name = "Unzip",
-                Category = "Object",
-                Help = "Unzips a spread into multiple spreads.",
-                Tags = "split, generic, spreadop"
-               )]
-    public class VObjectUnzipNode : Unzip<object> { }
-
-    [PluginInfo(Name = "Unzip",
-                Category = "Object",
-                Version = "Bin",
-                Help = "Unzips a spread into multiple spreads.",
-                Tags = "split, generic, spreadop"
-               )]
-    public class VObjectUnzipBinNode : Unzip<IInStream<object>> { }
-
-    [PluginInfo(Name = "Zip",
-                Category = "Object",
-                Help = "Zips spreads together.",
-                Tags = "join, generic, spreadop"
-               )]
-    public class VObjectZipNode : Zip<object> { }
-
-    [PluginInfo(Name = "Zip",
-                Category = "Object",
-                Version = "Bin",
-                Help = "Zips spreads together.",
-                Tags = "join, generic, spreadop"
-               )]
-    public class VObjectZipBinNode : Zip<IInStream<object>> { }
-
-    [PluginInfo(Name = "GetSpread",
-                Category = "Object",
-                Version = "Bin",
-                Help = "Returns sub-spreads from the input specified via offset and count",
-                Tags = "generic, spreadop"
-            )]
-    public class VObjectGetSpreadNode : GetSpreadAdvanced<object> { }
-
-    [PluginInfo(Name = "SetSpread",
-                Category = "Object",
-                Version = "Bin",
-                Help = "Allows to set sub-spreads into a given spread.",
-                Tags = "generic, spreadop"
-               )]
-    public class VObjectSetSpreadNode : SetSpread<object> { }
-
-    [PluginInfo(Name = "Pairwise",
-                Category = "Object",
-                Help = "Returns all pairs of successive slices. From an input ABCD returns AB, BC, CD.",
-                Tags = "generic, spreadop"
-                )]
-    public class VObjectPairwiseNode : Pairwise<object> { }
-
-    [PluginInfo(Name = "SplitAt",
-                Category = "Object",
-                Help = "Splits a spread at the given index.",
-                Tags = "generic, spreadop"
-                )]
-    public class VObjectSplitAtNode : SplitAtNode<object> { }
-
-    [PluginInfo(Name = "Buffer",
-                Category = "Object",
-                Help = "Inserts the input at the given index.",
-                Tags = "generic, spreadop, collection",
-                AutoEvaluate = true
-               )]
-    public class VObjectBufferNode : BufferNode<object> { }
-
-    [PluginInfo(Name = "Queue",
-                Category = "Object",
-                Help = "Inserts the input at index 0 and drops the oldest slice in a FIFO (First In First Out) fashion.",
-                Tags = "generic, spreadop, collection",
-                AutoEvaluate = true
-               )]
-    public class VObjectQueueNode : QueueNode<object> { }
-
-    [PluginInfo(Name = "RingBuffer",
-                Category = "Object",
-                Help = "Inserts the input at the ringbuffer position.",
-                Tags = "generic, spreadop, collection",
-                AutoEvaluate = true
-               )]
-    public class VObjectRingBufferNode : RingBufferNode<object> { }
-
-    [PluginInfo(Name = "Store",
-                Category = "Object",
-                Help = "Stores a spread and sets/removes/inserts slices.",
-                Tags = "add, insert, remove, generic, spreadop, collection",
-                AutoEvaluate = true
-               )]
-    public class VObjectStoreNode : Store<object> { }
-
-    [PluginInfo(Name = "Stack",
-                Category = "Object",
-                Help = "Stack data structure implementation using the LIFO (Last In First Out) paradigm.",
-                Tags = "generic, spreadop, collection"
-                )]
-    public class VObjectStackNode : StackNode<object> { }
-    #endregion basics
-
-    [PluginInfo(Name = "FrameDelay",
-                Category = "Object"
-                )]
-    public class VObjectFrameDelayNode : FrameDelayNode<object>
+        Category = "Object",
+        Help = "Concatenates all input spreads to one output spread.",
+        Tags = "generic, spreadop"
+        )]
+    public class VObjectConsNode : ConfigurableDynamicPinNode<int>, IPluginEvaluate
     {
-        protected override object CloneSlice(object slice)
+        [Import] protected IPluginHost2 FPluginHost;
+        [Import] protected IIOFactory FIOFactory;
+
+        [Config("Count", DefaultValue = 0)] public IDiffSpread<int> FCount;
+        [Output("Output")] public ISpread<ISpread<object>> FOut;
+        
+        List<GenericInput> Inputs = new List<GenericInput>();
+
+        protected override void PreInitialize()
         {
-            if (slice is ICloneable)
+            ConfigPinCopy = FCount;
+        }
+
+        protected override bool IsConfigDefault()
+        {
+            return FCount[0] == 0;
+        }
+
+        protected override void Initialize()
+        {
+            CreatePins(FCount[0]);
+        }
+
+        protected override void OnConfigPinChanged()
+        {
+            if(Inputs.Count == FCount[0]) return;
+            CreatePins(FCount[0]);
+        }
+
+
+        protected void CreatePins(int count)
+        {
+            if (Inputs.Count < count)
             {
-                var t = slice as ICloneable;
-                return t.Clone();
+                for (int i = Inputs.Count; i < count; i++)
+                {
+                    int ii = i + 1;
+                    var attr = new InputAttribute("Input" + ii);
+                    attr.Order = i;
+                    var pin = new GenericInput(FPluginHost, attr);
+                    Inputs.Add(pin);
+                }
+            }
+            if (Inputs.Count > count)
+            {
+                for (int i = Inputs.Count-1; i >= count; i--)
+                {
+                    FPluginHost.DeletePin(Inputs[i].Pin);
+                    Inputs.RemoveAt(i);
+                }
+            }
+        }
+
+        public void Evaluate(int SpreadMax)
+        {
+            FOut.SliceCount = Inputs.Count;
+            for (int i = 0; i < Inputs.Count; i++)
+            {
+                FOut[i].SliceCount = Inputs[i].Pin.SliceCount;
+                for (int j = 0; j < Inputs[i].Pin.SliceCount; j++)
+                {
+                    FOut[i][j] = Inputs[i][j];
+                }
+            }
+        }
+    }
+
+    [PluginInfo(Name = "Zip",
+                Category = "Object",
+                Help = "Zips spreads together.",
+                Tags = "join, generic, spreadop"
+               )]
+    public class VObjectZipNode : ConfigurableDynamicPinNode<int>, IPluginEvaluate
+    {
+        [Import]
+        protected IPluginHost2 FPluginHost;
+        [Import]
+        protected IIOFactory FIOFactory;
+
+        [Config("Count", DefaultValue = 0)]
+        public IDiffSpread<int> FCount;
+        [Config("Allow Empty", DefaultBoolean = true)]
+        public IDiffSpread<bool> FAllowEmtpy;
+
+        [Output("Output")]
+        public ISpread<ISpread<object>> FOut;
+
+        List<GenericInput> Inputs = new List<GenericInput>();
+
+        protected override void PreInitialize()
+        {
+            ConfigPinCopy = FCount;
+        }
+
+        protected override bool IsConfigDefault()
+        {
+            return FCount[0] == 0;
+        }
+
+        protected override void Initialize()
+        {
+            CreatePins(FCount[0]);
+        }
+
+        protected override void OnConfigPinChanged()
+        {
+            if (Inputs.Count == FCount[0]) return;
+            CreatePins(FCount[0]);
+        }
+
+
+        protected void CreatePins(int count)
+        {
+            if (Inputs.Count < count)
+            {
+                for (int i = Inputs.Count; i < count; i++)
+                {
+                    int ii = i + 1;
+                    var attr = new InputAttribute("Input " + ii);
+                    attr.Order = i;
+                    var pin = new GenericInput(FPluginHost, attr);
+                    Inputs.Add(pin);
+                }
+            }
+            if (Inputs.Count > count)
+            {
+                for (int i = Inputs.Count-1; i >= count; i--)
+                {
+                    FPluginHost.DeletePin(Inputs[i].Pin);
+                    Inputs.RemoveAt(i);
+                }
+            }
+        }
+
+        public void Evaluate(int SpreadMax)
+        {
+            int bsc = 0;
+            int sc = 0;
+            if (FAllowEmtpy[0])
+            {
+                for (int i = 0; i < Inputs.Count; i++)
+                {
+                    bool valid = (Inputs[i].Pin.SliceCount != 0) && (Inputs[i].Pin.IsConnected);
+                    if (valid) bsc++;
+                    sc = Math.Max(sc, Inputs[i].Pin.SliceCount);
+                }
+                FOut.SliceCount = sc;
             }
             else
             {
-                throw new ObjectIsNotCloneableException("Object does not implement ICloneable.");
+                for (int i = 0; i < Inputs.Count; i++)
+                {
+                    if (Inputs[i].Pin.SliceCount == 0)
+                    {
+                        FOut.SliceCount = 0;
+                        return;
+                    }
+                    sc = Math.Max(sc, Inputs[i].Pin.SliceCount);
+                }
+                bsc = Inputs.Count;
+            }
+            for (int i = 0; i < sc; i++)
+            {
+                FOut[i].SliceCount = bsc;
+                int ii = 0;
+                for (int j = 0; j < Inputs.Count; j++)
+                {
+                    bool valid = (Inputs[j].Pin.SliceCount != 0) && (Inputs[j].Pin.IsConnected);
+                    if (!valid) continue;
+                    FOut[i][ii] = Inputs[j][i];
+                    ii++;
+                }
+            }
+        }
+    }
+
+    [PluginInfo(Name = "Unzip",
+        Category = "Object",
+        Tags = "split, generic, spreadop"
+        )]
+    public class VObjectUnzipNode : ConfigurableDynamicPinNode<int>, IPluginEvaluate
+    {
+        [Import] protected IPluginHost2 FPluginHost;
+        [Import] protected IIOFactory FIOFactory;
+
+        [Config("Count", DefaultValue = 0)] public IDiffSpread<int> FCount;
+
+        public GenericInput FInput;
+
+        private PinDictionary pd;
+
+        protected override void PreInitialize()
+        {
+            ConfigPinCopy = FCount;
+            var attr = new InputAttribute("Input");
+            attr.Order = 0;
+            FInput = new GenericInput(FPluginHost, attr);
+            pd = new PinDictionary(FIOFactory);
+        }
+
+        protected override bool IsConfigDefault()
+        {
+            return FCount[0] == 0;
+        }
+
+        protected override void Initialize()
+        {
+            CreatePins(FCount[0]);
+        }
+
+        protected override void OnConfigPinChanged()
+        {
+            if (pd.OutputPins.Count == FCount[0]) return;
+            CreatePins(FCount[0]);
+        }
+
+        protected void CreatePins(int count)
+        {
+            if (pd.OutputPins.Count < count)
+            {
+                for (int i = pd.OutputPins.Count; i < count; i++)
+                {
+                    int ii = i + 1;
+                    var attr = new OutputAttribute("Output " + ii);
+                    attr.Order = i*2;
+                    attr.BinOrder = i*2 + 1;
+                    pd.AddOutput(typeof(object), attr);
+                }
+            }
+            if (pd.OutputPins.Count > count)
+            {
+                for (int i = pd.OutputPins.Count - 1; i >= count; i--)
+                {
+                    int ii = i + 1;
+                    string name = "Output " + ii;
+                    pd.RemoveOutput(name);
+                }
+            }
+        }
+
+        public void Evaluate(int SpreadMax)
+        {
+            if (pd.OutputPins.Count == 0) return;
+            foreach (var P in pd.OutputPins.Values)
+            {
+                P.Spread.SliceCount = (int)Math.Ceiling((float)FInput.Pin.SliceCount / (float)pd.OutputPins.Count);
+            }
+            int step = 0;
+            int slice = 0;
+            while (step*pd.OutputPins.Count <= FInput.Pin.SliceCount)
+            {
+                for (int i = 0; i < pd.OutputPins.Count; i++)
+                {
+                    int ii = i + 1;
+                    string name = "Output " + ii;
+                    pd.OutputPins[name].Spread[step] = FInput[slice];
+                    slice++;
+                }
+                step++;
             }
         }
     }

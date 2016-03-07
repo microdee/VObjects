@@ -59,7 +59,7 @@ namespace VVVV.Nodes.VObjects
         }
         public AuthenticationMethod() { }
     }
-    public class VebSocketService : VPathQueryable
+    public class VebSocketService : IVPathQueryable
     {
         public IHDEHost HDEHost;
 
@@ -103,19 +103,19 @@ namespace VVVV.Nodes.VObjects
             this.Clients.Add(e.ID, vc);
             this.NewClients.Add(e.ID, vc);
         }
-        public override object VPathGetItem(string key)
+        public object VPathGetItem(string key)
         {
             if (this.Clients.ContainsKey(key))
                 return this.Clients[key];
             else return null;
         }
-        public override string[] VPathQueryKeys()
+        public string[] VPathQueryKeys()
         {
             return this.Clients.Keys.ToArray();
         }
     }
 
-    public class VebSocketServer : VPathQueryable
+    public class VebSocketServer : IVPathQueryable
     {
         public IHDEHost HDEHost;
 
@@ -155,7 +155,7 @@ namespace VVVV.Nodes.VObjects
             this.Server.AddWebSocketService<VebSocketBehavior>(path);
         }
 
-        public override object VPathGetItem(string key)
+        public object VPathGetItem(string key)
         {
             if (this.Services.ContainsKey(key))
             {
@@ -163,7 +163,7 @@ namespace VVVV.Nodes.VObjects
             }
             else return null;
         }
-        public override string[] VPathQueryKeys()
+        public string[] VPathQueryKeys()
         {
             return this.Services.Keys.ToArray();
         }

@@ -1,0 +1,263 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.1.dtd" >
+   <PATCH nodename="E:\vvvv\libs\mcropack\packs\VObjects\nodes\modules\VObjectCollection\GetObject (VObjectCollection Enum).v4p" systemname="GetObject (VObjectCollection Enum)" filename="C:\vvvv\libs\mcropack\packs\VObjects\nodes\modules\VObjectCollection\GetObject (VObjectCollection Enum).v4p" scrollx="30" scrolly="315">
+   <BOUNDS type="Window" left="-16875" top="2160" width="9000" height="6000">
+   </BOUNDS>
+   <PACK Name="VVVV.Packs" Version="0.2.0">
+   </PACK>
+   <PACK Name="addonpack" Version="34.1.0">
+   </PACK>
+   <NODE systemname="CustomEnum (Enumerations)" filename="..\..\..\..\mp.essentials\nodes\plugins\vvvv\EnumerationsCustomEnum\EnumerationsCustomEnum.csproj" nodename="CustomEnum (Enumerations)" componentmode="Hidden" id="0">
+   <BOUNDS type="Node" left="3285" top="3735" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="EnumName" visible="1">
+   </PIN>
+   <PIN pinname="UpdateEnum" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Enum Entries" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="NodePath (VVVV)" filename="..\..\..\..\mp.essentials\nodes\plugins\vvvv\vvvvNodePath\vvvvNodePath.csproj" nodename="NodePath (VVVV)" componentmode="Hidden" id="1">
+   <BOUNDS type="Node" left="3855" top="2235" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Node Path" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Add (String)" nodename="Add (String)" componentmode="Hidden" id="2">
+   <BOUNDS type="Node" left="3660" top="2970" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" slicecount="1" values="GetObjectAt">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="1" srcpinname="Node Path" dstnodeid="2" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="2" srcpinname="Output" dstnodeid="0" dstpinname="EnumName">
+   </LINK>
+   <NODE systemname="GetObject (VObjectCollection)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="GetObject (VObjectCollection)" componentmode="Hidden" id="3">
+   <BOUNDS type="Node" left="2940" top="4950" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Source" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Filter" visible="1">
+   </PIN>
+   <PIN pinname="Exclude" visible="1">
+   </PIN>
+   <PIN pinname="Enabled" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Output Bin Size" visible="1">
+   </PIN>
+   <PIN pinname="Filter Index" visible="1">
+   </PIN>
+   <PIN pinname="Filter Index Bin Size" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Info (VObjectCollection)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Info (VObjectCollection)" componentmode="Hidden" id="4">
+   <BOUNDS type="Node" left="4005" top="1275" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input Collection" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Children" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="5" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="2070" top="600" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2070" top="600" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Input Collection|">
+   </PIN>
+   <PIN pinname="Output Node" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="5" srcpinname="Output Node" dstnodeid="4" dstpinname="Input Collection">
+   </LINK>
+   <LINK srcnodeid="5" srcpinname="Output Node" dstnodeid="3" dstpinname="Source">
+   </LINK>
+   <NODE systemname="AvoidNIL (String)" filename="%VVVV%\lib\nodes\modules\String\AvoidNIL (String).v4p" nodename="AvoidNIL (String)" componentmode="Hidden" id="7">
+   <BOUNDS type="Node" left="4545" top="1785" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="empty">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="4" srcpinname="Children" dstnodeid="7" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="7" srcpinname="Output" dstnodeid="0" dstpinname="Enum Entries">
+   </LINK>
+   <NODE systemname="Change (String)" nodename="Change (String)" componentmode="Hidden" id="8">
+   <BOUNDS type="Node" left="5310" top="2895" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="OnChange" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="OR (Boolean Spectral)" nodename="OR (Boolean Spectral)" componentmode="Hidden" id="9">
+   <BOUNDS type="Node" left="5550" top="3495" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="7" srcpinname="Output" dstnodeid="8" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="8" srcpinname="OnChange" dstnodeid="9" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="9" srcpinname="Output" dstnodeid="0" dstpinname="UpdateEnum">
+   </LINK>
+   <NODE systemname="NULL (Enumerations)" nodename="NULL (Enumerations)" componentmode="Hidden" id="10">
+   <BOUNDS type="Node" left="5235" top="4755" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Enum" visible="1">
+   </PIN>
+   <PIN pinname="Receive" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="String2Enum (Enumerations)" nodename="String2Enum (Enumerations)" componentmode="Hidden" id="11">
+   <BOUNDS type="Node" left="5235" top="4200" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="String Value" visible="1">
+   </PIN>
+   <PIN pinname="Enum" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="2" srcpinname="Output" dstnodeid="11" dstpinname="String Value">
+   </LINK>
+   <LINK srcnodeid="11" srcpinname="Enum" dstnodeid="10" dstpinname="Enum">
+   </LINK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="12" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="4395" top="765" width="1590" height="270">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4395" top="765" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="MyEnumEntry">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Filter">
+   </PIN>
+   <PIN pinname="Output Enum" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="12" srcpinname="Output Enum" dstnodeid="10" dstpinname="Receive">
+   </LINK>
+   <NODE systemname="Enum2String (Enumerations)" nodename="Enum2String (Enumerations)" componentmode="Hidden" id="13">
+   <BOUNDS type="Node" left="6420" top="2760" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Enum" visible="1">
+   </PIN>
+   <PIN pinname="String Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="12" srcpinname="Output Enum" dstnodeid="13" dstpinname="Enum">
+   </LINK>
+   <LINK srcnodeid="13" srcpinname="String Value" dstnodeid="3" dstpinname="Filter">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="14" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="6255" top="780" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6255" top="780" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Exclude">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="14" srcpinname="Y Output Value" dstnodeid="3" dstpinname="Exclude">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="15" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="6945" top="4095" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6945" top="4095" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Enabled">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="15" srcpinname="Y Output Value" dstnodeid="3" dstpinname="Enabled">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="16" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="2700" top="5685" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2700" top="5685" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Output">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Output" dstnodeid="16" dstpinname="Input Node">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="17" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="3240" top="6330" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3240" top="6330" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Output Bin Size|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Output Bin Size" dstnodeid="17" dstpinname="Y Input Value">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="18" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="3645" top="7035" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3645" top="7035" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Filter Index|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Filter Index" dstnodeid="18" dstpinname="Y Input Value">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="19" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="4395" top="7785" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4395" top="7785" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Filter Index Bin Size|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Filter Index Bin Size" dstnodeid="19" dstpinname="Y Input Value">
+   </LINK>
+   </PATCH>
