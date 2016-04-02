@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
 using VVVV.Nodes.PDDN;
+using NGISpread = VVVV.PluginInterfaces.V2.NonGeneric.ISpread;
+using NGIDiffSpread = VVVV.PluginInterfaces.V2.NonGeneric.IDiffSpread;
 
 using VVVV.Packs.VObjects;
 
@@ -32,7 +35,7 @@ namespace VVVV.Nodes.VObjects
                 FType.SliceCount = FInput.Pin.SliceCount;
                 for(int i=0; i<FInput.Pin.SliceCount; i++)
                 {
-                    FType[i] = FInput[i].GetType().ToString();
+                    FType[i] = FInput[i].GetType().AssemblyQualifiedName;
                 }
             }
             else
@@ -44,57 +47,113 @@ namespace VVVV.Nodes.VObjects
     }
 
     #region PluginInfo
-    [PluginInfo(Name = "FilterType", Category = "Object", Help = "Filter objects by type", Tags = "microdee")]
+    [PluginInfo(
+        Name = "FilterType",
+        Category = "Object",
+        Help = "Filter objects by type",
+        Author = "microdee",
+        AutoEvaluate = true)]
     #endregion PluginInfo
-    public class ObjectFilterTypeNode : IPluginEvaluate, IPartImportsSatisfiedNotification
+    public class ObjectFilterTypeNode : ConfigurableDynamicPinNode<string>, IPluginEvaluate, IPartImportsSatisfiedNotification
     {
         [Import]
         public IPluginHost2 FPluginHost;
+        [Import]
+        public IIOFactory FIOFactory;
 
         protected GenericInput FInput;
+        protected GenericInput FTypeRef;
 
-        [Input("Type")]
-        public ISpread<string> FType;
-        [Input("Exclude")]
-        public ISpread<bool> FExclude;
+        [Config("Type", DefaultString = "")]
+        public IDiffSpread<string> FType;
 
-        [Output("Output")]
-        public ISpread<ISpread<object>> FOutput;
+        public PinDictionary pd;
 
-        public void OnImportsSatisfied()
+        protected override void PreInitialize()
         {
+            pd = new PinDictionary(FIOFactory);
             FInput = new GenericInput(FPluginHost, new InputAttribute("Input"));
+            FInput.Pin.Order = 0;
+            FTypeRef = new GenericInput(FPluginHost, new InputAttribute("Type Reference Object"));
+            FTypeRef.Pin.Order = 1;
+            ConfigPinCopy = FType;
         }
+        private Type CType;
+        protected override bool IsConfigDefault()
+        {
+            return FType[0] == "";
+        }
+
+        protected override void Initialize()
+        {
+            if (FType[0] != "")
+            {
+                CType = Type.GetType(FType[0], true);
+
+                if (FTypeRef.Pin.SliceCount != 0)
+                {
+                    if (FTypeRef[0] != null)
+                    {
+                        Type T = FTypeRef[0].GetType();
+                        if (T != CType)
+                        {
+                            pd.RemoveAllOutput();
+                            pd.AddOutputBinSized(T, new OutputAttribute("Output"));
+                            CType = T;
+                            FType[0] = T.AssemblyQualifiedName;
+                        }
+                    }
+                }
+
+                //RemoveAllOutput();
+                pd.AddOutputBinSized(CType, new OutputAttribute("Output"));
+            }
+        }
+
         public void Evaluate(int SpreadMax)
         {
-            if (FInput.Connected)
+            if (FInput.Connected && FTypeRef.Connected)
             {
-                FOutput.SliceCount = FType.SliceCount;
-                for (int i = 0; i < FType.SliceCount; i++)
+                if (FTypeRef.Pin.SliceCount != 0)
                 {
-                    FOutput[i].SliceCount = 0;
-                    for(int j = 0; j<FInput.Pin.SliceCount; j++)
+                    Type T = FTypeRef[0].GetType();
+                    bool valid = false;
+                    if (CType == null)
+                        valid = true;
+                    else
+                        valid = T != CType;
+                    if (valid)
                     {
-                        if (FExclude[i])
+                        pd.RemoveAllOutput();
+                        pd.AddOutputBinSized(T, new OutputAttribute("Output"));
+                        CType = T;
+                        FType[0] = T.AssemblyQualifiedName;
+                    }
+                }
+                if (pd.OutputPins.ContainsKey("Output"))
+                {
+                    pd.OutputPins["Output"].Spread.SliceCount = FInput.Pin.SliceCount;
+                    for (int i = 0; i < FInput.Pin.SliceCount; i++)
+                    {
+                        var cspread = (NGISpread) pd.OutputPins["Output"].Spread[i];
+                        if (CType == FInput[i].GetType())
                         {
-                            if (FType[i] != FInput[j].GetType().ToString())
-                            {
-                                FOutput[i].Add(FInput[j]);
-                            }
+                            cspread.SliceCount = 1;
+                            cspread[0] = FInput[i];
                         }
                         else
                         {
-                            if ((FType[i] == FInput[j].GetType().ToString()) || (FType[i] == FInput[j].GetType().Name))
-                            {
-                                FOutput[i].Add(FInput[j]);
-                            }
+                            cspread.SliceCount = 0;
                         }
                     }
                 }
             }
             else
             {
-                FOutput.SliceCount = 0;
+                if (pd.OutputPins.ContainsKey("Output"))
+                {
+                    pd.OutputPins["Output"].Spread.SliceCount = 0;
+                }
             }
         }
     }
