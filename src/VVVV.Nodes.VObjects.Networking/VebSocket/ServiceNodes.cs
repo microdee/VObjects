@@ -20,6 +20,8 @@ namespace VVVV.Nodes.VObjects
     {
         [Input("Input Server")]
         public Pin<object> FInput;
+        [Input("Service")]
+        public ISpread<string> FService;
 
         [Output("Clients")]
         public ISpread<ISpread<VebSocketClient>> FClients;
@@ -52,9 +54,10 @@ namespace VVVV.Nodes.VObjects
 
                 for (int i = 0; i < FInput.SliceCount; i++)
                 {
-                    if (FInput[i] is VebSocketService)
+                    if (FInput[i] is VebSocketServer)
                     {
-                        VebSocketService vs = FInput[i] as VebSocketService;
+                        var vss = FInput[i] as VebSocketServer;
+                        var vs = vss.Services[FService[i]];
                         FClients[i].SliceCount = vs.Clients.Count;
                         FClientID[i].SliceCount = vs.Clients.Count;
                         FSessions[i].SliceCount = vs.Sessions.Count;
@@ -114,8 +117,10 @@ namespace VVVV.Nodes.VObjects
     #endregion PluginInfo
     public class VebSocketServiceInfoNode : IPluginEvaluate
     {
-        [Input("Input Service")]
+        [Input("Input Server")]
         public Pin<object> FInput;
+        [Input("Service")]
+        public ISpread<string> FService;
 
         [Output("Path")]
         public ISpread<string> FPath;
@@ -138,9 +143,10 @@ namespace VVVV.Nodes.VObjects
                     FActiveIDs[i].SliceCount = 0;
                     FInActiveIDs[i].SliceCount = 0;
 
-                    if (FInput[i] is VebSocketService)
+                    if (FInput[i] is VebSocketServer)
                     {
-                        VebSocketService vs = FInput[i] as VebSocketService;
+                        var vss = (VebSocketServer)FInput[i];
+                        var vs = vss.Services[FService[i]];
                         FPath[i] = vs.Service.Path;
 
                         foreach (string id in vs.Service.Sessions.ActiveIDs)

@@ -44,16 +44,19 @@ namespace VVVV.Nodes.VObjects
                     if (FInput[i] is VebSocketClient)
                     {
                         FTextMessage[i].SliceCount = 0;
-                        FRawMessage[i].SliceCount = 0;
                         FMessageType[i].SliceCount = 0;
                         FError[i].SliceCount = 0;
                         VebSocketClient vs = FInput[i] as VebSocketClient;
-
+                        FRawMessage[i].ResizeAndDispose(vs.ReceivedMessages.Count, () => new MemoryStream());
+                        int ii = 0;
                         foreach (ClientMessage cm in vs.ReceivedMessages.Values)
                         {
                             FTextMessage[i].Add(cm.Text);
-                            FRawMessage[i].Add(cm.Raw.ToStream());
                             FMessageType[i].Add(cm.Type.ToString());
+                            FRawMessage[i][ii].Position = 0;
+                            FRawMessage[i][ii].SetLength(cm.Raw.Length);
+                            FRawMessage[i][ii].Write(cm.Raw, 0, cm.Raw.Length);
+                            ii++;
                         }
                         foreach (VebSocketError e in vs.Errors)
                         {

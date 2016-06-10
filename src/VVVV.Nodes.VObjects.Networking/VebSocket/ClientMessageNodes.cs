@@ -65,7 +65,7 @@ namespace VVVV.Nodes.VObjects
                 for (int i = 0; i < SpreadMax; i++)
                 {
                     ClientMessage cm = new ClientMessage();
-                    cm.Type = Opcode.Text;
+                    cm.Type = Opcode.Binary;
                     cm.Text = "";
                     long sl = FInput[i].Length;
                     byte[] tmp = new byte[(int)sl];
@@ -101,16 +101,18 @@ namespace VVVV.Nodes.VObjects
             if (FInput.IsConnected)
             {
                 FText.SliceCount = SpreadMax;
-                FBinary.SliceCount = SpreadMax;
+                FBinary.ResizeAndDispose(FInput.SliceCount, () => new MemoryStream());
                 FType.SliceCount = SpreadMax;
 
                 for (int i = 0; i < SpreadMax; i++)
                 {
                     if (FInput[i] is ClientMessage)
                     {
-                        ClientMessage cm = FInput[i] as ClientMessage;
+                        var cm = (ClientMessage)FInput[i];
                         FText[i] = cm.Text;
-                        FBinary[i] = cm.Raw.ToStream();
+                        FBinary[i].Position = 0;
+                        FBinary[i].SetLength(cm.Raw.Length);
+                        FBinary[i].Write(cm.Raw, 0, cm.Raw.Length);
                         FType[i] = cm.Type.ToString();
                     }
                 }

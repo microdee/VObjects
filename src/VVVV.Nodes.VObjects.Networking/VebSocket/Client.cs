@@ -9,7 +9,7 @@ namespace VVVV.Nodes.VObjects
 {
     public static class VebSocketClientHelper
     {
-        public static ClientMessage ToClientMessage(this WebSocketSharp.MessageEventArgs e)
+        public static ClientMessage ToClientMessage(this MessageEventArgs e)
         {
             ClientMessage m = new ClientMessage();
             m.Type = e.Type;
@@ -103,6 +103,11 @@ namespace VVVV.Nodes.VObjects
             this.Client.OnAsyncMessageSent += onMessageSent;
             this.Client.Log.Output = this.OutputLog;
             this.Url = w.Url.ToString();
+        }
+
+        ~VebSocketClient()
+        {
+            Dispose();
         }
         public void SubscribeToMainloop(IHDEHost hdehost)
         {
