@@ -1,0 +1,305 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.106.dtd" >
+   <PATCH nodename="C:\vvvv\libs\md.ecosystem\packs\VObjects\girlpower\VebSocket\Sandboxes\OBS.Studio.remote.v4p" scrollx="0" scrolly="0" systemname="OBS.Studio.remote" filename="C:\vvvv\libs\md.ecosystem\packs\VObjects\girlpower\VebSocket\Sandboxes\OBS.Studio.remote.v4p">
+   <BOUNDS type="Window" left="6240" top="3450" width="13710" height="9075">
+   </BOUNDS>
+   <PACK Name="addonpack" Version="34.101.0">
+   </PACK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="1" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="1275" top="255" width="2730" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1275" top="255" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="wss://bitcoin.toshi.io">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="ws://localhost">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Info (VebSocket Client)" filename="%VVVV%\packs\VObjects\nodes\plugins\VVVV.Nodes.VObjects.Networking.dll" nodename="Info (VebSocket Client)" componentmode="Hidden" id="2">
+   <BOUNDS type="Node" left="5430" top="1290" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Url" visible="1">
+   </PIN>
+   <PIN pinname="State" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="3" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="4170" top="195" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4170" top="195" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE systemname="ReceivedMessages (VebSocket Client)" filename="%VVVV%\packs\VObjects\nodes\plugins\VVVV.Nodes.VObjects.Networking.dll" nodename="ReceivedMessages (VebSocket Client)" componentmode="Hidden" id="4">
+   <BOUNDS type="Node" left="3945" top="3210" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Message" visible="1">
+   </PIN>
+   <PIN pinname="Error" visible="1">
+   </PIN>
+   <PIN pinname="Message Bin Size" visible="1">
+   </PIN>
+   <PIN pinname="Message Type" visible="1">
+   </PIN>
+   <PIN pinname="Raw Message" visible="1">
+   </PIN>
+   <PIN pinname="Input Client" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="ClientMessage (Split)" filename="%VVVV%\packs\VObjects\nodes\plugins\VVVV.Nodes.VObjects.Networking.dll" nodename="ClientMessage (Split)" componentmode="Hidden" id="5">
+   <BOUNDS type="Node" left="3930" top="3840" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Text" visible="1">
+   </PIN>
+   <PIN pinname="Binary" visible="1">
+   </PIN>
+   <PIN pinname="Type" visible="1">
+   </PIN>
+   <PIN pinname="Input Message" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="10" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="5220" top="1860" width="2895" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5220" top="1860" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="2" srcpinname="Url" dstnodeid="10" dstpinname="Input String">
+   </LINK>
+   <NODE systemname="Timing (Debug)" nodename="Timing (Debug)" componentmode="Hidden" id="11">
+   <BOUNDS type="Node" left="7830" top="585" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="frames per second" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="12" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="7710" top="1140" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="7710" top="1140" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="11" srcpinname="frames per second" dstnodeid="12" dstpinname="Y Input Value">
+   </LINK>
+   <NODE systemname="ClientMessage (Join String)" filename="%VVVV%\packs\VObjects\nodes\plugins\VVVV.Nodes.VObjects.Networking.dll" nodename="ClientMessage (Join String)" componentmode="Hidden" id="18">
+   <BOUNDS type="Node" left="1440" top="2880" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1" slicecount="1" values="hwefplkwr">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="19" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="2730" top="3210" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2730" top="3210" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="MainLoop (VVVV)" nodename="MainLoop (VVVV)" componentmode="Hidden" id="-6">
+   <BOUNDS type="Node" left="8370" top="3285" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Maximum Background FPS" visible="1">
+   </PIN>
+   <PIN pinname="Maximum Foreground FPS" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="32" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="8610" top="2670" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8610" top="2670" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="120">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="32" srcpinname="Y Output Value" dstnodeid="-6" dstpinname="Maximum Background FPS">
+   </LINK>
+   <LINK srcnodeid="32" srcpinname="Y Output Value" dstnodeid="-6" dstpinname="Maximum Foreground FPS">
+   </LINK>
+   <NODE systemname="Send (VebSocket Client)" filename="%VVVV%\packs\VObjects\nodes\plugins\VVVV.Nodes.VObjects.Networking.dll" nodename="Send (VebSocket Client)" componentmode="Hidden" id="39">
+   <BOUNDS type="Node" left="1230" top="3420" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Error" visible="1">
+   </PIN>
+   <PIN pinname="Send" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Sending Messages" visible="1">
+   </PIN>
+   <PIN pinname="Sent Messages" visible="1">
+   </PIN>
+   <PIN pinname="Input Client" visible="1">
+   </PIN>
+   <PIN pinname="Messages" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="18" srcpinname="Output" dstnodeid="39" dstpinname="Message">
+   </LINK>
+   <NODE systemname="Client (VebSocket)" filename="%VVVV%\packs\VObjects\nodes\plugins\VVVV.Nodes.VObjects.Networking.dll" nodename="Client (VebSocket)" componentmode="Hidden" id="43">
+   <BOUNDS type="Node" left="1275" top="1560" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Compression" slicecount="1" values="Deflate">
+   </PIN>
+   <PIN pinname="Origin Header" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="MainLoop Events" visible="1">
+   </PIN>
+   <PIN pinname="Output Object" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="1" srcpinname="Output String" dstnodeid="43" dstpinname="Url">
+   </LINK>
+   <LINK srcnodeid="3" srcpinname="Y Output Value" dstnodeid="43" dstpinname="Construct">
+   </LINK>
+   <LINK srcnodeid="43" srcpinname="Output" dstnodeid="4" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="43" srcpinname="Output" dstnodeid="39" dstpinname="Input">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="44" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="6225" top="2280" width="1140" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6225" top="2280" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="2" srcpinname="State" dstnodeid="44" dstpinname="Input String">
+   </LINK>
+   <LINK srcnodeid="4" srcpinname="Message Bin Size" dstnodeid="19" dstpinname="Y Input Value">
+   </LINK>
+   <LINK srcnodeid="4" srcpinname="Raw Message" dstnodeid="5" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="19" srcpinname="Y Output Value" dstnodeid="39" dstpinname="Send">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="63" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="855" top="3870" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="855" top="3870" width="0" height="0">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="39" srcpinname="Sending Messages" dstnodeid="63" dstpinname="Input Node">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="64" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="1695" top="4440" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1695" top="4440" width="0" height="0">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="39" srcpinname="Sent Messages" dstnodeid="64" dstpinname="Input Node">
+   </LINK>
+   <PACK Name="VVVV.Packs" Version="0.2.0">
+   </PACK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="65" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="1425" top="2355" width="2100" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1425" top="2355" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="{&quot;subscribe&quot;:&quot;transactions&quot;}">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="65" srcpinname="Output String" dstnodeid="18" dstpinname="Input">
+   </LINK>
+   <NODE systemname="KeepLast (String)" filename="%VVVV%\packs\mp.essentials\nodes\plugins\mp.essentials.dll" nodename="KeepLast (String)" componentmode="Hidden" id="66">
+   <BOUNDS type="Node" left="4080" top="4755" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="5" srcpinname="Text" dstnodeid="66" dstpinname="Input">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="68" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="4095" top="5220" width="8835" height="1500">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4095" top="5220" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="66" srcpinname="Output" dstnodeid="68" dstpinname="Input String">
+   </LINK>
+   <LINK srcnodeid="43" srcpinname="Output Object" dstnodeid="39" dstpinname="Input Client">
+   </LINK>
+   <LINK srcnodeid="18" srcpinname="Output" dstnodeid="39" dstpinname="Messages">
+   </LINK>
+   <LINK srcnodeid="43" srcpinname="Output Object" dstnodeid="2" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="43" srcpinname="Output Object" dstnodeid="4" dstpinname="Input Client">
+   </LINK>
+   <LINK srcnodeid="4" srcpinname="Raw Message" dstnodeid="5" dstpinname="Input Message">
+   </LINK>
+   <PACK Name="vvvv-ZeroMQ_Release_x64" Version="0.5.0">
+   </PACK>
+   <PACK Name="vvvv-Message" Version="2.7">
+   </PACK>
+   </PATCH>
