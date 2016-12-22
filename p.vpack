@@ -2,6 +2,7 @@
 	<meta>
 		<name>VObjects</name>
 		<source>https://github.com/microdee/VObjects.git</source>
+        <license>http://www.imxprs.com/free/microdee/mdmit</license>
 		<author>microdee</author>
         <aliases>VObject</aliases>
 	</meta>
