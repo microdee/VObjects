@@ -1,19 +1,19 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.1.dtd" >
-   <PATCH nodename="E:\vvvv\libs\mcropack\packs\VObjects\nodes\modules\VObjectCollection\Dictionary (VObjectCollection).v4p" systemname="Dictionary (VObjectCollection)" filename="C:\vvvv\libs\mcropack\packs\VObjects\nodes\modules\VObjectCollection\Dictionary (VObjectCollection).v4p">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.106.dtd" >
+   <PATCH nodename="C:\vvvv\app\vvvv-vpm\packs\VObjects\nodes\modules\VObjectCollection\Dictionary (VObjectCollection).v4p" systemname="Dictionary (VObjectCollection)" filename="C:\vvvv\libs\mcropack\packs\VObjects\nodes\modules\VObjectCollection\Dictionary (VObjectCollection).v4p">
    <BOUNDS type="Window" left="17820" top="4680" width="9000" height="6000">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
-   <PACK Name="addonpack" Version="34.1.0">
+   <PACK Name="addonpack" Version="34.101.0">
    </PACK>
    <NODE systemname="Construct (VObjectCollection)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Construct (VObjectCollection)" componentmode="Hidden" id="0">
-   <BOUNDS type="Node" left="975" top="2685" width="100" height="100">
+   <BOUNDS type="Node" left="975" top="3435" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Name" visible="1">
    </PIN>
    <PIN pinname="Auto Clear" visible="1">
    </PIN>
-   <PIN pinname="Construct" visible="1">
+   <PIN pinname="Construct" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
@@ -21,9 +21,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="1" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="1680" top="1725" width="795" height="240">
+   <BOUNDS type="Box" left="1680" top="2475" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="1680" top="1725" width="0" height="0">
+   <BOUNDS type="Node" left="1680" top="2475" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="1" values="||">
    </PIN>
@@ -39,9 +39,9 @@
    <LINK srcnodeid="1" srcpinname="Output String" dstnodeid="0" dstpinname="Name">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="2" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="1335" top="2100" width="480" height="480">
+   <BOUNDS type="Box" left="1335" top="2850" width="480" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="1335" top="2100" width="0" height="0">
+   <BOUNDS type="Node" left="1335" top="2850" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
    </PIN>
@@ -55,16 +55,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="2" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Auto Clear">
-   </LINK>
-   <NODE systemname="OnOpen (VVVV)" nodename="OnOpen (VVVV)" componentmode="Hidden" id="3">
-   <BOUNDS type="Node" left="975" top="1710" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Bang" visible="1">
-   </PIN>
-   <PIN pinname="Simulate" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="3" srcpinname="Bang" dstnodeid="0" dstpinname="Construct">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="4" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="975" top="960" width="480" height="480">
@@ -85,13 +75,13 @@
    </PIN>
    <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="4" srcpinname="Y Output Value" dstnodeid="3" dstpinname="Simulate">
-   </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="5" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="975" top="3855" width="795" height="240">
+   <BOUNDS type="Box" left="975" top="4605" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="975" top="3855" width="0" height="0">
+   <BOUNDS type="Node" left="975" top="4605" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Descriptive Name" slicecount="1" values="Output">
    </PIN>
@@ -99,7 +89,7 @@
    </PIN>
    </NODE>
    <NODE systemname="Remove (VObjectCollection)" filename="..\..\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Remove (VObjectCollection)" componentmode="Hidden" id="6">
-   <BOUNDS type="Node" left="2055" top="3375" width="100" height="100">
+   <BOUNDS type="Node" left="2055" top="4125" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Parent" visible="1" slicecount="1" values="||">
    </PIN>
@@ -107,9 +97,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="7" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="2730" top="1515" width="480" height="480">
+   <BOUNDS type="Box" left="2730" top="2265" width="480" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="2730" top="1515" width="0" height="0">
+   <BOUNDS type="Node" left="2730" top="2265" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
@@ -131,9 +121,9 @@
    <LINK srcnodeid="0" srcpinname="Output Object" dstnodeid="6" dstpinname="Parent">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="8" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="2355" top="3990" width="480" height="480">
+   <BOUNDS type="Box" left="2355" top="4740" width="480" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="2355" top="3990" width="0" height="0">
+   <BOUNDS type="Node" left="2355" top="4740" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -146,6 +136,28 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="Constructed">
    </PIN>
    </NODE>
-   <LINK srcnodeid="3" srcpinname="Bang" dstnodeid="8" dstpinname="Y Input Value">
+   <NODE systemname="AvoidNIL (Spreads)" filename="%VVVV%\lib\nodes\modules\Spreads\AvoidNIL (Spreads).v4p" nodename="AvoidNIL (Spreads)" componentmode="Hidden" id="9">
+   <BOUNDS type="Node" left="1020" top="1770" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="4" srcpinname="Y Output Value" dstnodeid="9" dstpinname="Input">
    </LINK>
+   <NODE systemname="OnOpen (VVVV)" nodename="OnOpen (VVVV)" componentmode="Hidden" id="10">
+   <BOUNDS type="Node" left="975" top="2460" width="100" height="100">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="10" srcpinname="Bang" dstnodeid="0" dstpinname="Construct">
+   </LINK>
+   <LINK srcnodeid="10" srcpinname="Bang" dstnodeid="8" dstpinname="Y Input Value">
+   </LINK>
+   <LINK srcnodeid="9" srcpinname="Output" dstnodeid="10" dstpinname="Simulate">
+   </LINK>
+   <PACK Name="vvvv-Message" Version="2.7">
+   </PACK>
+   <PACK Name="vvvv-ZeroMQ_Release_x64" Version="0.5.0">
+   </PACK>
    </PATCH>
