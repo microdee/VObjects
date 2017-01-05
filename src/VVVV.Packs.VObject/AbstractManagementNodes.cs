@@ -150,7 +150,7 @@ namespace VVVV.Nodes.VObjects
                 for (int i = 0; i < FOutput.SliceCount; i++)
                 {
                     if ((FOutput[i] != null) && FDisposeDisposable[0])
-                        ObjectHelper.DisposeDisposable(FOutput[i]);
+                        VVVV.Nodes.PDDN.ObjectHelper.DisposeDisposable(FOutput[i]);
                 }
                 FOutput.SliceCount = 0;
             }

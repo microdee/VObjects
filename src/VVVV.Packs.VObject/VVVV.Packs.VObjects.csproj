@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>VVVV.Packs.VObjects</RootNamespace>
     <AssemblyName>VVVV.Packs.VObjects</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <NuGetPackageImportStamp>
@@ -20,7 +20,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\nodes\plugins\</OutputPath>
+    <OutputPath>..\..\nodes\plugins\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -80,49 +80,69 @@
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="PDDN, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\dependencies\PDDN.dll</HintPath>
+    <Reference Include="PDDN">
+      <HintPath>..\..\..\mp.essentials\nodes\plugins\PDDN.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition.CodePlex">
-      <HintPath>D:\vvvvapp\vvvv_50alpha34.103_x64\lib\core\System.ComponentModel.Composition.CodePlex.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\app\vvvv-vpm\lib\core\System.ComponentModel.Composition.CodePlex.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.Reactive.Core">
+      <HintPath>..\..\..\..\..\..\app\vvvv-vpm\lib\core\System.Reactive.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces">
+      <HintPath>..\..\..\..\..\..\app\vvvv-vpm\lib\core\System.Reactive.Interfaces.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Linq">
+      <HintPath>..\..\..\..\..\..\app\vvvv-vpm\lib\core\System.Reactive.Linq.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices">
+      <HintPath>..\..\..\..\..\..\app\vvvv-vpm\lib\core\System.Reactive.PlatformServices.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Reflection.Context.CodePlex">
+      <HintPath>..\..\..\..\..\..\app\vvvv-vpm\lib\core\System.Reflection.Context.CodePlex.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="VVVV.Core">
-      <HintPath>D:\vvvvapp\vvvv_50alpha34.103_x64\lib\core\VVVV.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\app\vvvv-vpm\lib\core\VVVV.Core.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="VVVV.Hosting">
-      <HintPath>D:\vvvvapp\vvvv_50alpha34.103_x64\lib\core\VVVV.Hosting.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\app\vvvv-vpm\lib\core\VVVV.Hosting.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="VVVV.Nodes.Generic">
-      <HintPath>D:\vvvvapp\vvvv_50alpha34.103_x64\lib\core\VVVV.Nodes.Generic.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\app\vvvv-vpm\lib\core\VVVV.Nodes.Generic.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="VVVV.PluginInterfaces">
-      <HintPath>D:\vvvvapp\vvvv_50alpha34.103_x64\lib\core\VVVV.PluginInterfaces.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\app\vvvv-vpm\lib\core\VVVV.PluginInterfaces.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="VVVV.Utils">
-      <HintPath>D:\vvvvapp\vvvv_50alpha34.103_x64\lib\core\VVVV.Utils.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\app\vvvv-vpm\lib\core\VVVV.Utils.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="VVVV.Utils3rdParty">
-      <HintPath>D:\vvvvapp\vvvv_50alpha34.103_x64\lib\core\VVVV.Utils3rdParty.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\app\vvvv-vpm\lib\core\VVVV.Utils3rdParty.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="VVVV.UtilsIL">
-      <HintPath>D:\vvvvapp\vvvv_50alpha34.103_x64\lib\core\VVVV.UtilsIL.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\app\vvvv-vpm\lib\core\VVVV.UtilsIL.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
