@@ -1,10 +1,10 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.103.dtd" >
-   <PATCH nodename="F:\vvvv\libs\md.ecosystem\packs\VObjects\nodes\modules\VObjectCollection\Pulse (Animation).v4p" systemname="Pulse (Animation)" filename="F:\vvvv\libs\md.ecosystem\packs\VObjects\nodes\modules\VObjectCollection\Pulse (Animation).v4p" scrollx="0" scrolly="1110">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.6.dtd" >
+   <PATCH nodename="C:\vvvv_system\app\vvvv-vpm\packs\VObjects\nodes\modules\VObjectCollection\Pulse (Animation).v4p" systemname="Pulse (Animation)" filename="F:\vvvv\libs\md.ecosystem\packs\VObjects\nodes\modules\VObjectCollection\Pulse (Animation).v4p" scrollx="0" scrolly="1110">
    <BOUNDS type="Window" left="6885" top="2865" width="9900" height="8445">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
-   <PACK Name="addonpack" Version="34.101.0">
+   <PACK Name="addonpack" Version="35.0.0">
    </PACK>
    <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="9">
    <BOUNDS type="Node" left="2775" top="1500" width="100" height="100">
@@ -27,7 +27,7 @@
    </PIN>
    </NODE>
    <NODE systemname="Add (VObjectCollection)" filename="..\..\plugins\VVVV.Nodes.VObjects.dll" nodename="Add (VObjectCollection)" componentmode="Hidden" id="7">
-   <BOUNDS type="Node" left="1425" top="3855" width="100" height="100">
+   <BOUNDS type="Node" left="4995" top="4050" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Parent" visible="1">
    </PIN>
@@ -37,9 +37,9 @@
    </PIN>
    <PIN pinname="Name" visible="1">
    </PIN>
+   <PIN pinname="Add" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="8" srcpinname="Output" dstnodeid="7" dstpinname="Parent">
-   </LINK>
    <NODE systemname="Counter (Animation)" nodename="Counter (Animation)" componentmode="Hidden" id="6">
    <BOUNDS type="Node" left="3285" top="2595" width="100" height="100">
    </BOUNDS>
@@ -64,8 +64,6 @@
    </NODE>
    <LINK srcnodeid="6" srcpinname="Output" dstnodeid="5" dstpinname="Input">
    </LINK>
-   <LINK srcnodeid="5" srcpinname="Output" dstnodeid="7" dstpinname="Name">
-   </LINK>
    <NODE systemname="ConstructToCollection (VObjectCollection)" filename="..\..\plugins\VVVV.Nodes.VObjects.dll" nodename="ConstructToCollection (VObjectCollection)" componentmode="Hidden" id="4">
    <BOUNDS type="Node" left="2955" top="3840" width="100" height="100">
    </BOUNDS>
@@ -74,6 +72,8 @@
    <PIN pinname="Name" visible="1">
    </PIN>
    <PIN pinname="Construct" visible="1">
+   </PIN>
+   <PIN pinname="Output Object" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="8" srcpinname="Output" dstnodeid="4" dstpinname="Parent">
@@ -109,7 +109,7 @@
    </BOUNDS>
    <PIN pinname="Input 1" visible="1">
    </PIN>
-   <PIN pinname="Input 2" slicecount="1" values="1" visible="1">
+   <PIN pinname="Input 2" slicecount="1" visible="1" values="1">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
@@ -149,7 +149,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="4140" top="1620" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="10">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -187,9 +187,9 @@
    </BOUNDS>
    <PIN pinname="Descriptive Name" slicecount="1" values="Object">
    </PIN>
+   <PIN pinname="Input Node" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="8" srcpinname="Output" dstnodeid="13" dstpinname="Input Node">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="14" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="4650" top="6285" width="795" height="240">
    </BOUNDS>
@@ -203,5 +203,41 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="2" srcpinname="Age" dstnodeid="14" dstpinname="Y Input Value">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="15">
+   <BOUNDS type="Box" left="5130" top="1770" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5130" top="1770" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Data">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="15" srcpinname="Output Node" dstnodeid="7" dstpinname="Source">
+   </LINK>
+   <LINK srcnodeid="4" srcpinname="Output Object" dstnodeid="7" dstpinname="Parent">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="16">
+   <BOUNDS type="Box" left="5970" top="3390" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5970" top="3390" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="Data">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="16" srcpinname="Output String" dstnodeid="7" dstpinname="Name">
+   </LINK>
+   <PACK Name="vvvv-Message" Version="2.9.6">
+   </PACK>
+   <LINK srcnodeid="3" srcpinname="Output" dstnodeid="13" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="9" srcpinname="Y Output Value" dstnodeid="7" dstpinname="Add">
    </LINK>
    </PATCH>
